@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<framework>
+	<databases>
+		<database name="Default">
+			<config name="Type">MYSQL</config>
+			<config name="ServerAddress">@ucmKey=ebiz.zcms.db.ip</config>
+			<config name="Port">@ucmKey=ebiz.zcms.db.port</config>
+			<config name="Name">@ucmKey=ebiz.zcms.db.dbname</config>
+			<config name="UserName">@ucmKey=ebiz.zcms.db.username</config>
+			<config name="Password">@ucmKey=ebiz.zcms.db.password</config>
+			<config name="MaxConnCount">1000</config>
+			<config name="InitConnCount">0</config>
+			<config name="TestTable">ZDMaxNo</config>
+		</database>
+		
+		<database name="Default-update">
+			<config name="Type">MYSQL</config>
+			<config name="ServerAddress">10.32.140.161</config>
+			<config name="Port">3306</config>
+			<config name="Name">zcms_update</config>
+			<config name="UserName">zcms</config>
+			<config name="Password">zcms</config>
+			<config name="MaxConnCount">1000</config>
+			<config name="InitConnCount">0</config>
+			<config name="TestTable">ZDMaxNo</config>
+		</database>
+	</databases>
+	</framework>

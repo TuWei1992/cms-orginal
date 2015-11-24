@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- We build this project for ensure there is no compile issue only, so 
+	we do not create any jar file now. -->
+<project name="ebiz-zcms-web" basedir="." default="war">
+	<property name="src.dir" value="JAVA"/>
+	<property file="${src.dir}/version.properties" />
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="classes.dir" value="${build.dir}" />
+	<property name="resources.dir" value="${src.dir}"/>
+	<property name="dist.dir" value="dist" />
+	<property name="webapp.dir" value="UI" />
+	<property name="webapp.lib.dir" value="${webapp.dir}/WEB-INF/lib" />
+	<property name="webapp.plugins.dir" value="${webapp.dir}/WEB-INF/plugins" />
+	<property name="target.classes" value="${webapp.dir}/WEB-INF/plugins/classes" />
+	<property name="build.target.classes" value="${webapp.dir}/WEB-INF/plugins/classes" />
+	 
+	<!-- <property name="test.dir" value="src/test" /> -->
+	<tstamp>
+		<format property="buildtime" pattern="yyyy-MM-DD HH:mm:ss" locale='zh-cn' />
+	</tstamp>
+	<target name="clean" description="--> clean the project">
+		<delete dir="${dist.dir}"/>
+		<delete dir="${build.dir}"/>
+		<delete dir="${build.target.classes}"/>
+	</target>
+	<target name="showenv" depends="clean" description="-->Show Environment">
+		<echo>ant.version:${ant.version}</echo>
+		<echo>java.version:${ant.java.version},java.vm.name:${java.vm.name}</echo>
+		<echo>project.name:${ant.project.name}</echo>
+		<echo>ant.file:${ant.file}</echo>
+		<echo>buildtime:${buildtime}</echo>
+	</target>
+	<path id="project.classpath"  >
+		<fileset dir="${webapp.lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${webapp.plugins.dir}">
+				<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${build.dir}" />
+	</path>
+	<tstamp>
+		<format property="NOW" pattern="yyyyMMddHHmmss"/>
+	</tstamp>
+
+	<target name="prepare"  depends="showenv">
+		<echo message="makes sure the needed directory structure is in place..." />
+		<delete dir="${build.dir}"   failonerror="false"/>
+		<delete dir="${classes.dir}" failonerror="false"/>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${build.target.classes}"/>
+	</target>
+	<!-- Compile java source -->
+	<target name="compile" depends="prepare"
+		description="Compile main source tree java files to class files">
+		<echo message="compile java src..." />
+		<javac  srcdir="${src.dir}" destdir="${build.target.classes}"  source="1.7" target="1.7" encoding="UTF-8" debug="true" deprecation="false" optimize="false"   failonerror="true" includeantruntime="false">
+			<compilerarg value="-Xlint:unchecked"/>
+			<src path="${src.dir}" />
+			<classpath refid="project.classpath" />
+		</javac>
+		<echo message="compile completed..." />
+	</target>
+	<!--Copy resources file-->
+	<target name="resources" depends="compile" description="Compile main source tree java files to class files">
+		<copy todir="${build.target.classes}" overwrite="true" includeemptydirs="false">
+				<fileset dir="${resources.dir}" includes="lang/**" />
+				<fileset dir="${resources.dir}" includes="plugins/*" />
+				<fileset dir="${resources.dir}" includes="*.xml" />
+				<fileset dir="${resources.dir}" includes="*.txt" />
+				<fileset dir="${resources.dir}" includes="*.properties" />
+				<fileset dir="${resources.dir}" includes="*.dat" />
+				<fileset dir="${resources.dir}" includes="*.config" />
+		</copy>
+	</target>
+	<!-- Package War -->
+	<target name="war" depends="resources" description="Build the web application archive">		
+		<!--<copy todir="${webapp.lib.dir}" overwrite="true" includeemptydirs="true" flatten="true">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>-->
+		<copy todir="${target.classes}" overwrite="true" includeemptydirs="false">
+			<fileset dir="${build.dir}">
+				<include name="/**"/>
+			</fileset>
+		</copy>
+		<echo message="war begin..." />
+		<war warfile="${dist.dir}/${ant.project.name}-${version}-Release-${NOW}.war" basedir="${webapp.dir}" webxml="${webapp.dir}/WEB-INF/web.xml">
+			<include name="**/*" />
+			<exclude name="**/jsp-api-2.0.jar"/>
+			<exclude name="**/servlet-api-2.5.jar"/>
+		</war>
+		<echo message="war completed..." />
+	</target>
+</project>

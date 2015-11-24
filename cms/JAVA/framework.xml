@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<framework>
+	<application>
+		<!-- 应用代码 -->
+		<config name="Code">CXCMS</config>
+
+		<!-- 应用名称 -->
+		<config name="Name">车享内容管理系统</config>
+
+		<!-- 是否是开发模式，开发模式下自动加载修改后的类、缓存session数据，以及输出更多的日志信息 -->
+		<config name="DebugMode">false</config>
+
+		<!-- 是否是前端部署，前端部署模式不允许后台用户登录，并且不允许所有需要有后台用户权限的UI类执行 ，enable4Front()未允许true的定时任务也不会执地 -->
+		<config name="FrontDeploy">false</config>
+
+		<!-- 日志管理器配置 -->
+		<config name="LogManager">com.zving.framework.utility.Log4jManager</config>
+
+		<!-- 是否输出SQL到日志中 -->
+		<config name="Log.SQL">true</config>
+
+		<!-- 登录方法，此方法执行后会变换sessionID，以提高安全性 -->
+		<config name="LoginMethod">com.zving.platform.ui.LoginUI.submit</config>
+
+		<!-- 登录页面，应用发现需要后台用户登录时会重定向到此页面 -->
+		<config name="LoginPage">login.zhtml</config>
+
+		<!-- 会员登录页面，应用发现需要前台会员登录时会重定向到此页面 -->
+		<config name="MemberLoginPage">member/login</config>
+
+		<!-- 代码来源，控件通过此类获得代码数据 -->
+		<config name="CodeSource">com.zving.platform.util.PlatformCodeSource
+		</config>
+
+		<!-- 默认语言 -->
+		<config name="DefaultLanguage">zh-cn</config>
+
+		<!-- 表达式是否自动转义，一般情况下都需要自动转义 -->
+		<config name="ExpressionAutoEscaping">true</config>
+
+		<!-- 是否启用事件分发 -->
+		<config name="Event.Enabled">false</config>
+
+		<!-- 事件分发目标URL -->
+		<config name="Event.Url">http://localhost:11211</config>
+
+		<!-- 媒体工具库类型，值必须是JDK或GraphicsMagick -->
+		<config name="ImageLibType">JDK</config>
+		<!-- GraphicsMagick所在路径 -->
+		<config name="GraphicsMagickDirectory"></config>
+		
+		<!-- ldap -->
+		<config name="ldapURL">ldap://192.168.19.249:389</config>
+	</application>
+	
+	<cron>
+	  <task id="com.zving.search.IndexTask"  disabled="true" />
+	  <task id="com.zving.stat.task.StatUpdateTask"  disabled="true" />
+	  <task id="com.zving.media.impl.VideoScanTask"  disabled="true" />
+	  <task id="com.zving.advertise.AdvertisePublishTask"  disabled="true" />
+	  <task id="com.zving.vote.VotePublishTask"  disabled="true" />
+	  <task id="com.zving.seo.service.impl.SitemapTask"  disabled="true" />
+	  <task id="com.zving.sitestyle.impl.SiteStyleTask"  disabled="true" />
+	  <task id="com.zving.search.SearchWordStatTask"  disabled="true" />
+	  <task id="com.zving.search.service.SearchWordCancelTopTask"  disabled="true" />
+	  <task id="com.zving.contentcore.service.impl.ArchiveTask"  disabled="true" />
+	</cron>
+</framework>

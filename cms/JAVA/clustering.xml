@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<framework>
+	<application>
+		<!-- 是否启用缓存同步，集群时必须启用 -->
+		<config name="CacheSyncEnable">false</config>
+		<!-- 缓存同步事件有效时长，单位为秒 -->
+		<config name="CacheSyncExpires">3</config>
+		<!-- 缓存同步器类名 -->
+		<config name="CacheSynchronizerClass">com.zving.framework.cache.SocketCacheSynchronizer</config>
+		<config name="SocketHost">localhost:11211</config>
+		
+		<!-- 使用Memached缓存同步器
+		<config name="CacheSynchronizerClass">com.zving.framework.cache.MemcachedCacheSynchronizer</config> 
+		<config name="MemcachedHost">localhost:11211</config> 
+		-->
+		<!-- 是否启用API缓存 -->
+ 		<config name="APICacheEnable">false</config>
+		<!-- API缓存有效时长，单位为秒 -->
+		<config name="APICacheExpires">3</config>
+	</application>
+</framework>
