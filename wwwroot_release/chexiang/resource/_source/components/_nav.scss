@@ -1,0 +1,56 @@
+// nav
+
+.nav-wrapper{
+	position:relative;
+	z-index:1;
+	@extend %width;
+	height:40px;
+	background-color:#03a9f4;
+}
+.nav{
+	@extend %wrap;
+	@extend %clearfix;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	li{
+		position:relative;
+		float:left;
+		margin-right:10px;
+	}
+	a{
+		float:left;
+		height:40px;
+		padding:0 16px;
+		color:#fff;
+		&:hover,&.cur{
+			background-color:#333;
+			color:#fff;
+			text-decoration:none;
+		}
+	}
+	.icon-new{
+		position:absolute;
+		top:-4px;
+		left:16px;
+		@include iconItem($skin,"icon-new");
+	}
+	.icon{
+		position:absolute;
+		top:-4px;
+		right:-5px;
+		height:16px;		
+		padding:0 4px;
+		background-color:#f60;
+		color:#fff;
+		font:400 12px/16px "宋体";
+		.icon-arr{
+			position:absolute;
+			left:4px; 
+			top:16px;
+			width:2px;
+			height:2px;
+			@include iconItem($skin,"icon-tag");
+		}
+	}
+}

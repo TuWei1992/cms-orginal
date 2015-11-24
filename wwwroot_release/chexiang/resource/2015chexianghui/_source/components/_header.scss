@@ -1,0 +1,47 @@
+// header
+
+.header-wrapper{
+	@extend %width;
+	background-color:#fff;
+}
+
+.header{
+	@extend %wrap;
+	@extend %clearfix;
+	.saic-logo{
+		float:left;
+		padding:20px 0;
+		font-size:0;
+	}
+	.logo{
+		margin-right:30px;
+	}
+	.header-act{
+		float:left;
+		padding:15px 0 0 20px;
+		width:500px;
+		height:55px;
+		overflow:hidden;
+	}
+	.help-tel{
+		float:right;
+		padding:20px 0;
+    	color:#666;
+    	dd{
+    		float:left;
+    	}
+	}
+	.icon-tel{
+		float:left;
+		margin-right:6px;
+		@include iconItem($skin,"icon-tel");
+    }
+    .time{
+    	font-size:12px;
+    	line-height:14px;
+    }
+    .tel-no{
+		font-size:20px;
+		line-height:24px;
+    }
+}

@@ -1,0 +1,62 @@
+// faq
+.mod-faq{
+	margin-top:10px;
+	padding-bottom:30px;
+	background-color:#fff;
+	.th{
+		height:60px;
+		padding:0 30px;
+		font-size:36px;
+		color:#999;
+		font-weight:100;
+		line-height:60px;
+		border-bottom:1px solid #ccc;
+	}
+	.page{
+		margin-top:30px;
+		padding-right:30px;
+	}
+}
+
+.faq-list{
+	font-size:16px;
+	dl{
+		position:relative;
+		border-bottom:1px solid #f0f0f0;
+		&.cur{
+			background-color:#fafafa;
+			.arrow{
+				@include iconItem($skin,"arrow-up");
+			}
+			dt{
+				padding-bottom:0;
+			}
+			dd{
+				display:block;
+				padding-bottom:15px;
+			}
+		}
+		&:hover{
+			background-color:#fafafa;
+		}
+	}
+	dt{
+		position:relative;
+		padding:15px 110px 15px 30px;
+		line-height:30px;
+		cursor:pointer;
+	}
+	.arrow{
+		position:absolute;
+		right:30px;
+		top:18px;
+		@include iconItem($skin,"arrow");
+	}
+	dd{
+		display:none;
+		padding:0 110px 0 30px;
+		text-indent: 2em;
+		line-height:30px;
+		color:#4285f4;
+	}
+}

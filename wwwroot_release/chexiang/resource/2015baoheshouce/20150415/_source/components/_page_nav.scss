@@ -1,0 +1,21 @@
+$img:"../img/";
+.page-nav{
+	background:#00a0e9;
+}
+nav{
+	padding-top:rem-calc(123px);
+	a{
+		display:block;
+		height:rem-calc(82px);
+		padding-left:rem-calc(56px);
+		margin-bottom:rem-calc(18px);
+		line-height:rem-calc(82px);
+		text-align:left;
+		color:#fff;
+		font-size:rem-calc(48px);
+		&:active{
+			background-color:#003567;
+			color:#fff;
+		}
+	}
+}

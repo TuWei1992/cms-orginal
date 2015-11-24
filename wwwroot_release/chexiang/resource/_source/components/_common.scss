@@ -1,0 +1,210 @@
+@charset "UTF-8";
+%clearfix{
+	&:after{
+		content:".";
+		height:0;
+		visibility:hidden;
+		display:block;
+		clear:both;
+		font-size:0;
+		line-height:0;
+	}
+	*zoom:1;
+}
+
+%width{
+	min-width:1190px;
+	width:100%;
+}
+
+%wrap{
+	width:1190px;
+	margin:0 auto;
+}
+
+$lte7:true !default;//ie6,7
+
+// inline-block
+// ie6-7 *display: inline;*zoom:1;
+@mixin inline-block{
+	display: inline-block;
+	@if $lte7 {
+		*display: inline;*zoom:1;
+	}
+}
+$link-color: #999;
+$link-color-hover: #f60;
+$font-family:'Helvetica Neue', Arial, 'Heiti SC','Microsoft YaHei',SimSun;
+[placeholder]:-webkit-input-placeholder{color:#999}
+[placeholder]:-ms-input-placeholder{color:#999}
+[placeholder]:-moz-placeholder{color:#999}
+[placeholder]:focus::-webkit-input-placeholder{opacity: 0}
+[placeholder]:focus::-moz-placeholder{opacity: 0}
+::-ms-clear { display: none; }
+.placeholdersjs{color:#999;}
+
+body{
+	background-color:#f5f5f5;
+	font:12px/1.5 $font-family;
+
+	color:#333;
+}
+a{
+	outline: none;
+	color:$link-color;
+	&:hover{
+		color:$link-color-hover;
+		text-decoration:underline;
+	}
+}
+// ad
+.img-center{
+	text-align:center;
+}
+.container{
+	@extend %wrap;
+}
+
+.mod-row{
+	@extend %clearfix;
+	margin:30px 0;	
+	.mod-side{
+		float:left;
+		width:230px;
+		background-color:#fff;
+	}
+	.mod-main{
+		float:right;
+		width:954px;
+	}
+	.mod-tit{
+		@extend %clearfix;
+		height:70px;
+		padding:30px 0 0 20px;
+		i{
+			float:left;
+			width:45px;
+			height:45px;
+			margin-right:10px;
+		}
+		.tit-name{
+			float:left;
+			font-size:18px;
+			color:#fff;
+			line-height:26px;
+			a{
+				color:#fff;
+				&:hover{
+					color:#fff;
+					text-decoration:none;
+				}
+			}
+			dd{
+				font-size:14px;
+			}
+			ins{	
+				@include inline-block;			
+				width:6px;
+				height:10px;
+				margin-left:12px;
+				@include iconItem($skin,"icon-default-arrow");
+			}
+		}
+	}
+
+}
+
+
+.mod-act{
+	@extend %clearfix;
+	.mod-act-main{
+		position:relative;
+		float:left;
+		width:714px;
+		height:340px;
+		overflow:hidden;
+	}
+	.mod-act-side{
+		position:relative;
+		float:right;
+		width:234px;
+		height:340px;
+		overflow:hidden;
+	}
+	.btn-area{
+		@extend %clearfix;
+		position:absolute;
+		top:0;
+		right:0;
+		z-index:2;
+		width:55px;
+		height:27px;
+		span{
+			@include inline-block;
+			cursor:pointer;
+		}
+		-webkit-user-select:none;
+	}
+	.icon-arrow-left{
+		float:left;
+		@include iconItem($skin,"arrow-img-prev");        			
+	}
+	.icon-arrow-right{
+		@include iconItem($skin,"arrow-img-next");        			
+	}
+	.act-img-box{
+		li{
+			display:none;
+		}
+		.show{
+			display:block;
+		}
+	}
+	
+}
+
+
+.icon-dot{
+	display:block;
+	width:6px;
+	height:6px;
+	background-color:#666;
+	overflow:hidden;
+}
+
+%mod-bg{
+	height:26px;
+	margin:6px 0 0;
+	padding:2px 8px;
+	background-color:#333;
+	line-height:26px;
+}
+
+%mod-main-tit{
+	float:left;
+	font-size:16px;
+	font-weight:100;
+	color:#fff;
+}
+
+.shadow{box-shadow:0 0 13px rgba(0,0,0,.23);}
+.hide{display:none;}
+
+%car-item{
+	.imgbox{
+		overflow:hidden;
+	}
+	.tit{
+		overflow:hidden;
+		a{
+			color:#333;
+			&:hover{
+				color:$link-color-hover;
+			}
+		}
+	}
+	.price{
+		overflow:hidden;
+		color:#e2212c;
+	}
+}

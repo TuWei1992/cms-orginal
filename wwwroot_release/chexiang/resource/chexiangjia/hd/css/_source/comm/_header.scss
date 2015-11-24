@@ -1,0 +1,26 @@
+.header-wrapper{
+	position:relative;
+	background-color:#fff;	
+	.header{
+		position:relative;
+		padding-bottom:8px;
+		z-index:1;
+		background:url(../img/bg_header.png) left bottom no-repeat;
+	}
+	.bg{
+		position:absolute;
+		bottom:0;
+		height:8px;
+		line-height:8px;
+		width:50%;		
+		overflow:hidden;
+	}
+	.bg_fl{		
+		left:0;
+		background:url(../img/bg_header_lf.png) right bottom repeat-x;
+	}
+	.bg_rg{	
+		right:0;	
+		background:url(../img/bg_header_rt.png) left bottom repeat-x;
+	}
+}

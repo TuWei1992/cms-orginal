@@ -1,0 +1,116 @@
+// cx-cu
+
+$cu-color:#e51c23;
+.cx-cu{
+	.mod-tit{
+		background-color:$cu-color;
+		.icon-cu{
+			@include iconItemNoSize($skin,"icon-m-cu");        	
+		}
+	}
+}
+
+.cu-img-area{
+	width:236px;
+	height:386px;
+	overflow:hidden;
+}
+
+.cu-act-main{
+	position:relative;
+	float:left;
+	width:474px;
+	height:486px;
+	margin-left:6px;
+}
+
+.cu-act-side{
+	float:right;
+	width:480px;
+	ul{
+		margin-top:-6px;
+	}
+	li{
+		position:relative;
+		float:left;
+		width:234px;
+		height:240px;
+		margin:6px 0 0 6px;
+	}
+}
+
+.cx-cu{
+	.tit{
+		a{
+			color:#333;
+			&:hover{
+				color:$link-color-hover;
+			}
+		}
+	}
+
+}
+.act-img-sumary{
+	position:absolute;
+	width:474px;
+	height:486px;
+	background-color:#fff;
+	font-size:14px;
+	.imgbox{
+		width:474px;
+		height:316px;
+	}
+	dd{
+		padding:0 15px;
+		line-height:24px;
+	}
+	.time{
+		margin:5px 0;
+		font-size:14px;
+		color:#999;
+		line-height:24px;
+		.icon-time{
+			float:left;
+			margin:6px 6px 6px 0;
+			@include iconItem($skin,"icon-time");
+		}
+	}
+	.tit{
+		height:32px;
+		font-size:24px;
+		line-height:32px;
+		overflow:hidden;
+	}
+	.sub-info{
+		margin-top:5px;
+		color:#666;
+	}
+	.desc{
+		margin-top:10px;
+		line-height:20px;
+		color:#666;
+	}
+}
+.act-img-item{
+	position:absolute;
+	width:234px;
+	height:240px;
+	background-color:#fff;
+	text-align:center;
+	font-size:14px;
+	.imgbox{
+		width:234px;
+		height:156px;
+		overflow:hidden;
+	}
+	.tit{
+		height:28px;
+		margin:15px 0 4px;
+		font-size:18px;
+		line-height:28px;
+		overflow:hidden;
+	}
+	.sub-info{
+		color:#666;
+	}
+}

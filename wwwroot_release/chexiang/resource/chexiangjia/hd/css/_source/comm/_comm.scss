@@ -1,0 +1,29 @@
+@charset "UTF-8";
+$link-color: #333;
+$link-color-hover: #f78e1e;
+$font-family:'Helvetica Neue', Arial, 'Heiti SC','Microsoft YaHei',SimSun;
+body{
+	background-color:#fff;
+}
+
+%clearfix{
+	&:after{
+		content:".";
+		height:0;
+		visibility:hidden;
+		display:block;
+		clear:both;
+		font-size:0;
+		line-height:0;
+	}
+	*zoom:1;
+}
+
+
+%wrap{
+	width:1190px;
+	margin:0 auto;
+}
+img{
+	display:block;
+}

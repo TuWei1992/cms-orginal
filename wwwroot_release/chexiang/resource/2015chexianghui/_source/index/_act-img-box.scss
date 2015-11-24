@@ -1,0 +1,52 @@
+// act-img-box
+.mod-side{
+	.mod-th{
+		position:relative;
+	}
+	.mod-tit{
+		padding:4px 0 0 5px;
+		font-size:18px;
+		font-weight:100;
+		line-height:50px;
+	}
+	.btn-area{
+		@extend %clearfix;
+		position:absolute;
+		top:16px;
+		right:0;
+		width:69px;
+		height:26px;
+		span{
+			@include inline-block;
+			cursor:pointer;
+		}
+		-webkit-user-select:none;
+	}
+	.icon-arrow-left{
+		float:left;
+		@include iconItem($indexskin,"arrow-img-prev",$extend:skinMaps);
+		&:hover{
+			@include iconItem($indexskin,"arrow-img-prev-hover",$extend:skinMaps);
+		}
+	}
+	.icon-arrow-right{
+		@include iconItem($indexskin,"arrow-img-next",$extend:skinMaps);
+		&:hover{
+			@include iconItem($indexskin,"arrow-img-next-hover",$extend:skinMaps);
+		}			
+	}
+}
+
+
+.act-img-box{
+	width:228px;
+	height:258px;
+	border:1px solid #e7e7e7;
+	overflow:hidden;
+	li{
+		display:none;
+	}
+	.show{
+		display:block;
+	}
+}

@@ -1,0 +1,176 @@
+// brand-wrapper
+
+.brand-wrapper{
+	@extend %width;
+	padding:30px 0;
+	background-color:#fff;
+}
+
+.brand-logo{
+	@extend %wrap;
+	margin-bottom:18px;
+	@extend %clearfix;;
+	li{
+		float:left;
+		width:105px;
+		height:90px;
+		margin-left:15px;
+		&.first{
+			margin-left:0;
+		}
+		&.mb{
+			margin-left:16px;
+		}
+	}
+	a{
+		display:block;
+		width:103px;
+		height:88px;
+		border:1px solid #ccc;
+		border-radius:3px;
+		color:#333;
+		&:hover{
+			color:#333;
+			text-decoration:none;
+		}
+	}
+	.current{ 
+		a{
+			width:101px;
+			height:86px;
+			border-width:2px;
+			border-color:#03a9f4;
+			i{
+				margin-top:13px;
+			}
+		}
+	}
+	i{
+		display:block;
+		margin:14px auto 0;
+		overflow:hidden;
+	}
+	.brand-name{
+		display:block;
+		text-align:center;
+		color:#333;
+		font-size:14px;
+		line-height:30px;
+	}
+}
+
+.logo-roewe{
+	@include iconItem($brand,"logo-roewe",$extend:brandMaps);
+}
+.logo-mg{
+	@include iconItem($brand,"logo-mg",$extend:brandMaps);
+}
+.logo-buick{
+	@include iconItem($brand,"logo-buick",$extend:brandMaps);
+}
+.logo-chevrolet{
+	@include iconItem($brand,"logo-chevrolet",$extend:brandMaps);
+}
+.logo-cadillac{
+	@include iconItem($brand,"logo-cadillac",$extend:brandMaps);
+}
+.logo-volkswagen{
+	@include iconItem($brand,"logo-vw",$extend:brandMaps);
+}
+.logo-skoda{
+	@include iconItem($brand,"logo-skoda",$extend:brandMaps);
+}
+.logo-WULING{
+	@include iconItem($brand,"logo-wuling",$extend:brandMaps);
+}
+.logo-baojun{
+	@include iconItem($brand,"logo-baojun",$extend:brandMaps);
+}
+.logo-MAXUS{
+	@include iconItem($brand,"logo-datong",$extend:brandMaps);
+}
+
+.brand-data{
+	position:relative;
+	height:156px;
+	@extend %wrap;
+	.btn-left,.btn-right{
+		position:absolute;
+		top:46px;
+		cursor:pointer;
+	}
+	.btn-left{
+		left:0;
+		@include iconItem($brand,"arrow-scroll-left",$extend:brandMaps);
+		&:hover{
+			@include iconItem($brand,"arrow-scroll-left-hover",$extend:brandMaps);
+		}
+	}
+	.btn-left-none{
+		cursor:default;
+		@include iconItem($brand,"arrow-scroll-left",$extend:brandMaps);
+		&:hover{
+			@include iconItem($brand,"arrow-scroll-left",$extend:brandMaps);
+		}
+	}
+	.btn-right{
+		right:0;
+		@include iconItem($brand,"arrow-scroll-right",$extend:brandMaps);
+		&:hover{
+			@include iconItem($brand,"arrow-scroll-right-hover",$extend:brandMaps);
+		}
+	}
+	.btn-right-none{
+		cursor:default;
+		@include iconItem($brand,"arrow-scroll-right",$extend:brandMaps);
+		&:hover{
+		@include iconItem($brand,"arrow-scroll-right",$extend:brandMaps);
+		}
+	}
+	.data-wrap{
+		width:1140px;
+		height:156px;
+		margin:0 auto;
+		overflow:hidden;
+	  	position: absolute;
+	  	top: 0;
+	  	left:25px;
+	}
+	ul{		
+		position: absolute;
+		width:9999px;
+	}
+	li{
+		float:left;
+		width:150px;
+		height:156px;
+		padding:0 20px;
+		font-size:14px;
+		line-height:20px;
+	}
+	.car-item{
+		@extend %car-item;
+		.imgbox{
+			width:150px;
+			height:100px;
+			background-size:150px auto;
+		}		
+		img{
+			-webkit-transition:-webkit-transform .2s linear;
+			-moz-transition:-moz-transform .2s linear;
+			-o-transition:-o-transform .2s linear;
+			transition:transform .2s linear;
+			&:hover{	
+				-webkit-transform:translateX(-5px);
+				-moz-transform:translateX(-5px);
+				-ms-transform:translateX(-5px);
+				-o-transform:translateX(-5px);
+				transform:translateX(-5px);
+			}
+		}
+		dd{
+			height:20px;
+			padding-left:10px;
+		}
+	}
+}

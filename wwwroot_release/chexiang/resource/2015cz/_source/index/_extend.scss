@@ -1,0 +1,19 @@
+/* extend */
+
+//$common:sprite-map("common/*.png",$spacing:5px,$layout: diagonal);
+$skin:sprite-map("common/*.png",$spacing:5px);
+%commonMaps {
+    background-image:$skin;
+    background-repeat: no-repeat;
+}
+$mod:sprite-map("mod/*.png",$spacing:5px);
+%modMaps {
+    background-image:$mod;
+    background-repeat: no-repeat;
+}
+$brand:sprite-map("brand/*.png",$spacing:5px);
+%brandMaps {
+    background-image:$brand;
+    background-repeat: no-repeat;
+}
+/* extend end */

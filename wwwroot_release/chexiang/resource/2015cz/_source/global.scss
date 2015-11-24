@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/* index.css
+ * Created: 2015-03-30
+ * Update: 2015-03-30
+ * Author: Amanda
+ */
+
+@import "lib/sprites",
+		"components/extend";
+
+@import "components/common",
+		"components/topnav",
+		"components/header",
+		"components/nav",		
+		"components/footer";

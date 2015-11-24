@@ -1,0 +1,128 @@
+@charset "UTF-8";
+%clearfix{
+	&:after{
+		content:".";
+		height:0;
+		visibility:hidden;
+		display:block;
+		clear:both;
+		font-size:0;
+		line-height:0;
+	}
+	*zoom:1;
+}
+
+%width{
+	min-width:1190px;
+	width:100%;
+}
+
+%wrap{
+	width:1190px;
+	margin:0 auto;
+}
+
+$lte7:true !default;//ie6,7
+
+// inline-block
+// ie6-7 *display: inline;*zoom:1;
+@mixin inline-block{
+	display: inline-block;
+	@if $lte7 {
+		*display: inline;*zoom:1;
+	}
+}
+$link-color: #999;
+$link-color-hover: #f60;
+$font-family:'Helvetica Neue', Arial, 'Heiti SC','Microsoft YaHei',SimSun;
+// [placeholder]:-webkit-input-placeholder{color:#999}
+// [placeholder]:-ms-input-placeholder{color:#999}
+// [placeholder]:-moz-placeholder{color:#999}
+// [placeholder]:focus::-webkit-input-placeholder{opacity: 0}
+// [placeholder]:focus::-moz-placeholder{opacity: 0}
+// ::-ms-clear { display: none; }
+// .placeholdersjs{color:#999;}
+
+body{
+	background-color:#f3f3f3;
+	// font:12px/1.5 $font-family;
+	// color:#333;
+}
+// a{
+// 	outline: none;
+// 	color:$link-color;
+// 	&:hover{
+// 		color:$link-color-hover;
+// 		text-decoration:underline;
+// 	}
+// }
+
+.container{
+	// @extend %wrap;
+	@extend %clearfix;
+	margin-bottom:30px;
+}
+
+.mod{
+	height:230px;
+	background-color:#fff;
+	overflow:hidden;
+	.th{
+		height:37px;
+		padding:0 20px 0 30px;
+		margin-bottom:5px;
+		line-height:37px;
+		.tit{
+			float:left;
+			font-size:16px;
+			font-weight:100;
+		}
+		.a-more{
+			float:right;
+		}
+	}
+}
+
+.tag-top,.tag-hot,.tag-fast{
+	@include inline-block;
+	width:16px;
+	height:16px;
+	background-color:#00c753;
+	color:#fff;
+	font:12px/16px SimSun;
+	text-align:center;
+}
+
+.tag-hot{
+	background-color:#e51b23;
+}
+
+.tag-fast{
+	background-color:#ff6501;
+}
+
+.txt-list{
+	@extend %clearfix;
+	height:180px;
+	overflow:hidden;
+	li{
+		position:relative;
+		float:left;
+		width:265px;
+		height:36px;
+		padding-left:30px;
+		font-size:14px;
+		line-height:36px;
+		overflow:hidden;
+	}
+	.dot{
+		position:absolute;
+		left:18px;
+		top:0;
+		width:12px;
+		color:#ccc;
+		font-size:20px;
+		line-height:36px;
+		font-family:Arial;
+	}
+}

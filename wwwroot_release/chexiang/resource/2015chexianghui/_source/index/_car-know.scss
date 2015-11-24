@@ -1,0 +1,81 @@
+// car-know
+.car-know{
+	@extend %clearfix;
+	height:290px;
+	background-color:#faf9f9;	
+	font-size:14px;
+	a{
+		color:#333;
+		&:hover{
+			color:#34cd45;
+		}
+	}
+}
+.car-knowledge{
+	float:left;
+	width:560px;
+	padding:0 15px;
+	overflow:hidden;
+	zoom:1;
+}
+.knowledge-item{
+	@extend %clearfix;
+	margin-top:-1px;
+	padding:20px 5px 15px;
+	border-top:1px solid #e7e7e7;
+	.img-box{
+		float:left;
+		width:159px;
+		height:106px;
+		margin-right:20px;
+	}
+	.summary{
+		float:left;
+		width:370px;
+		margin-top:-2px;
+	}
+	dt{
+		height:24px;
+		font-size:16px;
+		line-height:24px;
+		overflow:hidden;
+	}
+	.desc{
+		height:54px;
+		margin:7px 0 5px;
+		line-height:18px;
+		color:#666;
+		overflow:hidden;
+	}
+	.total-info{
+		color:#999;
+		span{
+			margin-right:20px;
+		}
+	}
+}
+
+.txt-list{
+	float:right;
+	width:600px;
+	height:265px;
+	padding:25px 0 0;
+	background-color:#f0f0f0;
+	line-height:30px;
+	li{
+		position:relative;
+		float:left;
+		width:265px;
+		height:30px;
+		padding-left:35px;
+		overflow:hidden;
+	}
+	.dot{
+		position:absolute;
+		left:20px;
+		top:0;
+		width:15px;
+		text-align:center;
+		color:#999;
+	}
+}

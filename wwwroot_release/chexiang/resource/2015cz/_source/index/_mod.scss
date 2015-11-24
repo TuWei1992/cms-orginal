@@ -1,0 +1,50 @@
+.mod{
+	position:relative;
+	z-index:2;
+	background-color:#11a2df;
+	.mod-tit{
+		height:120px;
+		@include iconItem($mod,"mod-tit",$extend:modMaps);
+	}
+	.mod-con{
+		width:1080px;
+		padding:20px;
+		margin:0 auto;
+		border-radius:2px;
+		background-color:#fff;
+	}
+	.mod-bt{
+		@extend %clearfix;
+		height:30px;
+		font-size:0;
+		overflow:hidden;
+		.bt-left{
+			float:left;
+			@include iconItem($mod,"bt-left",$extend:modMaps);
+		}
+		.bt-right{
+			float:right;
+			@include iconItem($mod,"bt-right",$extend:modMaps);
+		}
+	}
+	
+}
+.mod-tit{
+	@extend %clearfix;
+	color:#fff;
+	.tit-txt{
+		float:left;
+		width:200px;
+		padding:25px 0 0 399px;
+		font-size:48px;
+		font-weight:100;
+	}
+	.tit-time{
+		float:left;
+		height:36px;
+		padding:44px 0 0 18px;
+		font-size:24px;
+		line-height:36px;
+	}
+}
+	

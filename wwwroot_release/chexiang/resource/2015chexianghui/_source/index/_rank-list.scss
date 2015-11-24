@@ -1,0 +1,51 @@
+// rank-list
+.mod-side{
+	.rank-tit{
+		padding:0 0 1px 5px;
+		line-height:42px;
+	}
+}
+.rank-list{
+	@extend %clearfix;
+	border:1px solid #e7e7e7;
+	border-top-width:0;
+	li{
+		float:left;
+		height:66px;
+		padding:5px;
+		border-top:1px solid #e7e7e7;
+		overflow:hidden;
+	}
+	.img-box{
+		float:left;
+		width:75px;
+		height:50px;
+		margin:8px 7px 0 0;
+		overflow:hidden;
+		img{
+			width:75px;
+			height:50px;
+		}
+	}
+	.goods-item{
+		float:left;
+		width:135px;
+		a{
+			color:#666;
+			&:hover{
+				color:#333;
+			}
+		}
+	}
+	dt{
+		strong{
+			font-size:18px;
+			font-weight:700;
+		}
+	}
+	.member-prices{
+		strong,em{
+			font-weight:100;
+		}
+	}
+}

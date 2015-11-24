@@ -1,0 +1,271 @@
+// topnav
+.topnav-wrapper{
+	position:relative;
+	z-index:10;
+	@extend %width;
+	height:34px;
+	background-color:#fafafa;
+	border-bottom:1px solid #dfdfdf;
+}
+.topnav{
+	@extend %wrap;
+	@extend %clearfix;
+	a{
+		color:#666;
+		&:hover{
+			color:$link-color-hover;
+		}
+	}
+	.line{
+		margin:10px 4px 0;
+		width:1px;
+		height:14px;
+		background-color:#ccc;
+		overflow:hidden;
+	}
+}
+
+%span-default{	
+	border:1px solid #fafafa;
+	border-width:0 1px;
+	color:#666;
+	line-height:35px;
+	cursor:pointer;
+}
+
+%span-cur{
+	position:relative;
+	z-index:3;
+	background-color:#fff;
+	border-color:#d2d2d2;
+	color:#666;
+}
+
+%div-bd{
+	display:none;
+	position:absolute;
+	left:0;
+	top:34px;
+	z-index:2;
+	background-color:#fff;
+	border:1px solid #d2d2d2;
+}
+.topnav-main{
+	float:left;
+	color:#999;
+	li{
+		float:left;
+		position:relative;
+	}
+	.city-hd{
+		float:left;
+		padding:0 6px 0 5px;
+		// @extend %span-default;
+		color:#666;
+		line-height:35px;
+		cursor:pointer;
+		.icon-map{
+			float:left;
+			margin:9px 5px 0 0;
+			@include iconItem($skin,"icon-map");
+		}
+		&:hover{
+			color:$link-color-hover;
+			text-decoration:underline;
+			.icon-map{
+				@include iconItem($skin,"icon-map-hover");
+			}
+		}
+	}	
+	.city-cur{
+		// @extend %span-cur;
+		position:relative;
+		z-index:3;
+		padding:0 5px 0 4px;
+		background-color:#fff;		
+		border:1px solid #d2d2d2;
+		border-width:0 1px;
+		color:#666;
+		&:hover{
+			color:#666;
+			text-decoration: none;
+		}
+		.icon-map{
+			@include iconItem($skin,"icon-map-hover");
+		}
+	}
+	.city-bd{
+		@extend %div-bd;
+		width:420px;
+		height:150px;
+		padding:10px 0 0 5px;
+	}
+	.city-name{
+		float:left;
+		width:60px;
+		height:30px;
+		color:#666;
+		cursor:pointer;
+		span{
+			@include inline-block;
+			padding:0 5px;
+			line-height:18px;
+		}
+		&:hover{
+			span{
+				background-color:#03a9f4;
+				color:#fff;
+				text-decoration:none;
+			}
+		}
+	}
+
+	.weixin-hd{
+		float:left;
+		width:94px;
+		padding-left:4px;
+		// @extend %span-default;
+		color:#666;
+		line-height:35px;
+		cursor:pointer;
+		// .icon-weixin{
+		// 	float:left;
+		// 	margin:9px 10px 0 0;
+		// 	@include iconItem($skin,"icon-weixin");
+		// }
+		.icon-bao{
+			float:left;
+			margin:9px 10px 0 0;
+			@include iconItem($skin,"icon-bao");
+		}
+		&:hover{
+			color:$link-color-hover;
+			text-decoration:underline;
+			// .icon-weixin{
+			// 	@include iconItem($skin,"icon-weixin-hover");
+			// }
+			.icon-bao{
+				@include iconItem($skin,"icon-bao-hover");
+			}
+		}
+	}
+	.weixin-cur{
+		@extend %span-cur;
+		&:hover{
+			color:#666;
+			text-decoration: none;
+		}
+		// .icon-weixin{
+		// 	@include iconItem($skin,"icon-weixin-hover");
+		// }
+		.icon-bao{
+			@include iconItem($skin,"icon-bao-hover");
+		}
+	}
+	// .weixin-bd{
+	// 	@extend %div-bd;
+	// 	width:90px;
+	// 	height:90px;
+	// 	padding:5px 4px;
+	// 	text-align:center;
+	// }
+
+}
+
+
+.topnav-side{
+	float:right;
+	li{
+		position:relative;
+		float:left;
+		line-height:35px;
+		color:#666;
+		a{
+			margin:0 6px;
+			color:#666;
+		}		
+	}
+	.name{
+		padding-right:6px;
+	}
+	.last{
+		a{
+			margin-right:0;
+		}
+	}
+	.line{
+		margin:10px 6px 0;
+	}
+	.user-hd{
+		float:left;
+		// @extend %span-default;
+		color:#666;
+		line-height:35px;
+		cursor:pointer;
+		width:71px;
+		padding-left:11px;
+		a{
+			margin:0;
+		}
+	}
+	.user-cur{
+		// @extend %span-cur;
+		position:relative;
+		z-index:3;
+		width:70px;
+		padding-left:10px;
+		background-color:#fff;
+		border:1px solid #d2d2d2;
+		border-width:0 1px;
+		color:#666;
+	}
+	.group{
+		display:none;
+		position:absolute;
+		left:0;
+		top:34px;
+		width:80px;
+		background-color:#fff;
+		border:1px solid #d2d2d2;
+		a{
+			display:block;
+			width:94px;
+			height:24px;
+			margin:0;
+			padding:0 0 0 10px;
+			line-height:24px;
+		}
+	}
+	.hidden-num{
+		visibility:hidden;
+	}
+	.msg-num{
+		position:absolute;
+		right:3px;
+		top:4px;
+		height:10px;
+		padding:2px 4px;
+		background-color:#03a9f4;
+		border-radius:10px;
+		color:#fff;
+		font:9px/10px simsun;
+		-webkit-transform:scale(0.8);
+	}
+	.checkin-account{
+		width:40px;
+		height:34px;
+		text-align:center;
+	}
+	.add-score{
+		display:none;
+		position:absolute;
+	    top:0;
+	    left:-2px;
+		color:#00C853;
+		font-size:14px;
+    	white-space:nowrap;
+	}
+	.marked-sucess{
+		display:none;
+	}
+}

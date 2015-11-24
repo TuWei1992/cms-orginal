@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.subject-wrap{
+	@extend %width;
+	background-color:#11a2df;
+	.subject{
+		@extend %width;
+		height:497px;
+		background:url(../img/subject.jpg) no-repeat 50% 0;
+	}
+}

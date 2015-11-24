@@ -1,0 +1,88 @@
+$img:"../img/";
+
+%page-4{	
+	background-image:url(#{$img}page-4-bg1.jpg);
+	background-repeat:no-repeat;
+	background-position:50% 100%;
+	background-size:cover;
+}
+
+.page-4-1{
+	@extend %page-4;
+}
+.page-4-1 .img_1{
+	margin:rem-calc(224px) auto 0;
+	width:rem-calc(602px);
+	height:rem-calc(609px);
+	background-size:rem-calc(602px) auto;
+}
+.page-4-1 .stone{
+	position: absolute;
+	left:0;top:rem-calc(-100px);
+	width:100%;
+}
+.page-4-1 .lightning{
+	position: absolute;
+	top: rem-calc(100px);
+	left: 0;
+}
+.page-4-1 .baohe{
+	position:absolute;
+	top:rem-calc(306px);
+	left:rem-calc(253px);
+	width:rem-calc(155px);
+	height:rem-calc(176px);
+	background-size:rem-calc(155px) auto;
+}
+.page-4-1 .txt{	
+	@extend %center;
+	top:rem-calc(514px);
+	width:rem-calc(566px);
+	height:rem-calc(177px);
+	margin-left:rem-calc(-566px/2);
+	background-size:rem-calc(566px) auto;
+}
+.page-4-1 .faq{
+	position:absolute;
+	right:rem-calc(110px);
+	bottom:rem-calc(124px);
+	width:rem-calc(86px);
+	height:rem-calc(86px);
+	background-size:rem-calc(86px) auto;
+}
+
+
+.close {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+.close:hover::before, .close:hover::after {
+  background: #1ebcc5;
+}
+.close::before, .close::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #000;
+}
+.close::before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.close::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}

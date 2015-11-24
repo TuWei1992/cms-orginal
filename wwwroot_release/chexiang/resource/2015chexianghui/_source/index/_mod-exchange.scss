@@ -1,0 +1,113 @@
+// mod-exchange
+.mod-exchange{
+	.icon-grade{
+		float:left;
+		@include iconItem($indexskin,"icon-grade",$extend:skinMaps);
+		margin-right:8px;
+	}
+	.sub-tit{
+		float:left;
+		padding:14px 0 0;
+		margin-left:20px;
+		font-size:14px;
+		color:#c02819;
+		strong{
+			font-size:18px;
+			font-weight:700;
+		}
+	}
+	.goods-rec{
+		height:256px;
+		a{
+			width:237px;
+		}
+		.img-box{
+			width:237px;
+			height:157px;
+			margin-bottom:12px;
+			img{
+				width:237px;
+				height:157px;
+			}
+		}
+		.spec{
+			a{
+				width:236px;				
+			}
+			.img-box{
+				width:236px;
+				img{
+					width:236px;
+				}
+			}
+		}		
+		.goods-hint{
+			width:236px;
+			height:230px;
+			padding-top:24px;
+			background-color:#faf9f9;
+			text-align:center;
+			font-size:18px;
+			line-height:30px;
+			.icon-no{
+				margin-bottom:10px;
+			}
+			.go{
+				width:140px;
+				height:50px;
+				margin-top:35px;
+				&:hover{
+					margin:35px 0 0;
+					border:0 none;
+				}			
+			}
+		}
+	}
+	.icon-no{
+		@include inline-block;
+		@include iconItem($indexskin,"icon-no",$extend:skinMaps);
+	}
+	.go{
+		@include inline-block;
+		width:140px;
+		height:50px;
+		background-color:#4285f4;
+		color:#fff;
+		font-size:24px;
+		text-align:center;
+		line-height:50px;
+		strong{
+			font-weight:700;
+		}
+		i{
+			font-style:normal;
+			font-family:simsun;
+		}
+		&:hover{
+			background-color:#5677FC;
+			color:#fff;
+			text-decoration:none;
+		}
+	}
+}
+
+.goods-box{
+	height:150px;
+	padding-top:104px;
+	background-color:#faf9f9;
+	border:2px solid #f1f1f1;
+	.no-goods{
+		height:50px;
+		text-align:center;
+		font-size:18px;
+		line-height:50px;
+	}
+	.icon-no{
+		position:relative;
+		top:7px;
+		margin:0 15px 0 0;
+	}
+	.go{
+		margin-left:15px;
+	}
+}

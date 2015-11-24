@@ -1,0 +1,40 @@
+%page-7{
+	background-image:url(#{$imgPath}guide-last.jpg);
+	background-repeat:no-repeat;
+	background-position:50% 0;
+	background-size:cover;
+}
+.page-7-1{
+	@extend %page-7;
+	.txt-box{
+		left:rem-calc(40px);
+		text-align:left;
+	}
+	.tit{
+		font-size:rem-calc(60px);
+		font-weight:700;
+		line-height:rem-calc(90px);
+		color:#229cdd;
+	}
+	.sub-tit{
+		font-size:rem-calc(40px);
+		color:#229cdd;
+		line-height:rem-calc(60px);
+	}
+
+	.a-qa{
+		position:absolute;
+		left:50%;
+		bottom:rem-calc(68px);
+		display:block;
+		width:rem-calc(308px);
+		height:rem-calc(68px);
+		margin-left:rem-calc(-154px);
+		border:1px solid #f60;
+		font-size:rem-calc(30px);
+		color:#f60;
+		text-align:center;
+		line-height:rem-calc(68px);
+		text-shadow:0 0 24px rgba(0,0,0,.75);
+	}
+}

@@ -1,0 +1,35 @@
+$img:"../img/";
+
+%page-5{	
+	background-image:url(#{$img}step-bg.jpg);
+	background-repeat:no-repeat;
+	background-position:50% 100%;
+	background-size:cover;
+}
+
+.page-5-1{
+	@extend %page-5;
+}
+.page-5-1 .img_1{
+	margin:rem-calc(164px) auto 0;
+	width:rem-calc(602px);
+	height:rem-calc(609px);
+	background-size:rem-calc(602px) auto;
+}
+
+.page-5-1{
+	.pop-work{
+		position:absolute;
+		top:rem-calc(94px);
+		left:0;
+		width:100%;
+		height:100%;
+		background:rgba(0,160,230,0.9);
+	}
+	.img-pop{
+		width:rem-calc(466px);
+		height:rem-calc(424px);
+		margin:rem-calc(250px) auto 0;
+		background-size:rem-calc(466px) auto;
+	}
+}

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/* index.css
+ * Created: 2015-03-09
+ * Update: 2015-03-09
+ * Author: Amanda
+ */
+
+@import "global";
+@import "index/extend",
+		"index/common";
+
+@import "index/header",
+		"index/main-box",
+		"index/owner-rights",
+		"index/goods-rec",
+		"index/mod-exchange",
+		"index/act-img-box",
+		"index/rank-list",
+		"index/car-know",		
+		"index/sidebar";

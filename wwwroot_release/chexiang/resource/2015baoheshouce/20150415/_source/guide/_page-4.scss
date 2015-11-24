@@ -1,0 +1,125 @@
+.page-4-1{
+	@extend %page-3;
+	.img-wrap{		
+		position:absolute;
+		top:rem-calc(450px);
+		width:100%;
+	}
+	.img-box{
+		position:relative;
+		width:rem-calc(450px);
+		height:rem-calc(300px);
+		margin:0 auto;
+		img{
+			width:100%;
+		}
+	}
+	.mask{
+		display:none;
+		position:absolute;
+		left:0;top:0;
+		width:rem-calc(450px);
+		height:rem-calc(300px);
+		color:#fff;
+		line-height:rem-calc(300px);
+		background:rgba(0,0,0,.5);
+	}
+	.loading-img{
+		position:absolute;
+		display:none;
+		width:rem-calc(450px);
+		height:rem-calc(300px);
+		background:#000;
+		.ball {
+			position:absolute;
+			top:50%;
+			left:50%;
+			background-color: rgba(0,0,0,0);
+			border:5px solid rgba(0,183,229,0.9);
+			opacity:.9;
+			border-top:5px solid rgba(0,0,0,0);
+			border-left:5px solid rgba(0,0,0,0);
+			border-radius:50px;
+			box-shadow: 0 0 35px #2187e7;
+			width:rem-calc(50px);
+			height:rem-calc(50px);
+			margin:rem-calc(-50px/2 0 0 -50px/2);
+			-webkit-animation:spin .5s infinite linear;
+			animation:spin .5s infinite linear;
+		}
+	}
+
+	.big-img{
+		display:none;
+		.big-box{
+			position:absolute;
+			z-index:5;
+			width:100%;
+			height:100%;
+			background-color:#000;
+		}
+		img{
+			position:absolute;
+			left:0;
+			top:40%;
+			width:100%;
+			height:auto;
+			margin-top:rem-calc(-278px/2);
+		}
+	}
+}
+
+.select-box{
+	width:rem-calc(490px);
+	height:rem-calc(60px);
+	margin:0 auto;
+	li{
+		position:relative;
+		float:left;
+		width:rem-calc(235px);
+		height:rem-calc(60px);
+		&:last-child{
+			float:right;
+			width:rem-calc(235px);
+			.sel{
+				right:0;
+				left:auto;
+			}
+		}
+		.sel{
+			position:absolute;
+			top:0;
+			left:0;
+			width:rem-calc(235px);
+			height:rem-calc(60px);
+			opacity:0;
+		}
+	}
+	.sel-item{
+		position:relative;
+		width:rem-calc(220px);
+		height:rem-calc(60px);
+		padding-left:rem-calc(15px);
+		background:#2a2a2a;
+		font-size:rem-calc(30px);
+		line-height:rem-calc(60px);
+		text-align:left;
+		color:#b7b7b8;
+		&::after {
+			height: 0;
+			width: 0;
+			position: absolute;
+			top: 0;
+			right: rem-calc(20px);
+			bottom: 0;
+			border-left: rem-calc(15px) solid transparent;
+			border-right: rem-calc(15px) solid transparent;
+			border-top: rem-calc(15px) solid #00d3fe;
+			content: '';
+			display: block;
+			margin: auto 0;
+		}
+		overflow:hidden;
+	}
+}
+

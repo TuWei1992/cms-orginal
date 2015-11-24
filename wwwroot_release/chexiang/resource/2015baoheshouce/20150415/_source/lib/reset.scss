@@ -1,0 +1,62 @@
+body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+*:not(input,textarea) {
+  -webkit-touch-callout: inherit;
+  -webkit-user-select: auto;
+}
+body {
+  width: 100%;
+  font-family: Arial,"Heiti SC","Microsoft Yahei";
+  color: #229cdd;
+  -webkit-touch-callout: inherit ;
+  -webkit-user-select: auto ;
+  background-color: #111218;
+}
+a {
+  color: #878787;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+a:hover {
+  text-decoration: none;
+}
+button,input,select,textarea {
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+dt,dd {
+  display: inline-block;
+}
+textarea,input {
+  resize: none;
+  outline: none;
+}
+textarea {
+  resize: none;
+  -webkit-appearance: none;
+}
+ul,ol,li {
+  list-style: none;
+}
+em {
+  font-style: normal;
+}
+
+.clearfix{
+    zoom:1;
+    &:before{
+        content:"";
+        display:table;
+    }
+    &:after{
+        content:"";
+        display:table;
+        clear:both;
+    }
+}

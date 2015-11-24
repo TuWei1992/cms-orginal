@@ -1,0 +1,27 @@
+/* extend */
+
+//$common:sprite-map("common/*.png",$spacing:5px,$layout: diagonal);
+$skin:sprite-map("common/*.png",$spacing:5px);
+%commonMaps {
+    background-image:$skin;
+    background-repeat: no-repeat;
+}
+
+$sale:sprite-map("sale/*.png",$spacing:5px);
+%saleMaps {
+    background-image:$sale;
+    background-repeat: no-repeat;
+}
+
+$hui:sprite-map("hui/*.png",$spacing:5px);
+%huiMaps {
+    background-image:$hui;
+    background-repeat: no-repeat;
+}
+
+$brand:sprite-map("brand/*.png",$spacing:5px);
+%brandMaps {
+    background-image:$brand;
+    background-repeat: no-repeat;
+}
+/* extend end */

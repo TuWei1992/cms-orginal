@@ -1,0 +1,60 @@
+.cha_wrapper{
+	margin-bottom:60px;
+	.cha_cn{
+		@extend %wrap;
+		@extend %clearfix;
+		min-height:769px;
+		background:url(../img/bg_cha.png) 0 0 no-repeat;
+	}
+	.txt_b{
+		padding:86px 0 0 57px;
+		width:480px;
+		float:left;
+		.des{			
+			line-height:36px;
+			font-size:22px;
+			color:#666;
+			font-weight:100;
+		}
+		.gift{
+			width:389px;
+			height:65px;
+			margin:16px 0 14px;
+			line-height:65px;
+			background-color:#f78e1e;
+			color:#fff;
+			text-align:center;
+			font-size:26px;
+			font-weight:100;
+			i{
+				position:relative;
+				top:3px;
+				display:inline-block;
+				width:26px;
+				height:26px;
+				margin:4px 18px 0 0;
+				@include iconItem($icon,"icon_gift");
+			}
+		}
+		.remark{
+			font-size:16px;
+			color:#f60;
+		}
+		.qrcode{
+			margin:24px 0 40px;
+			p{
+				padding:4px 0 0;
+				line-height:32px;
+				color:#2a5caa;
+				font-size:22px;
+			}
+		}
+	}
+	.img_b{
+		padding:38px 52px 0 0;
+		img{
+			margin-bottom:20px;
+			box-shadow:2px 5px 5px #666;
+		}
+	}
+}

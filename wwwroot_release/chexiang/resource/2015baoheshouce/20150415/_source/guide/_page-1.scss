@@ -1,0 +1,36 @@
+.page-1-1{
+	background-image:url(#{$imgPath}guide-bg.jpg);
+	background-repeat:no-repeat;
+	background-position:50% 0;
+	background-size:cover;
+}
+
+.page-1-1{
+	.txt-box{
+		top:rem-calc(416px);
+	}
+	.tit{
+		margin-bottom:rem-calc(6px);
+		font-size:rem-calc(72px);
+		font-weight:700;
+		color:#229cdd;
+		line-height:rem-calc(80px);
+	}
+	.tit-sub{
+		line-height:rem-calc(44px);
+		font-size:rem-calc(48px);
+		color:#fff;
+		span{
+			display:inline-block;
+			vertical-align:middle;
+		}
+	}
+	.tag-ver{
+		height:rem-calc(44px);
+		margin-left:rem-calc(18px);
+		padding:rem-calc(0 14px);
+		background-color:#eb6100;
+		font-size:rem-calc(24px);
+		line-height:rem-calc(44px);
+	}
+}

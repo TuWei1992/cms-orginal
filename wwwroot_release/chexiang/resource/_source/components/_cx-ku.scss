@@ -1,0 +1,122 @@
+// cx-cu
+
+$ku-color:#03a9f4;
+.cx-ku{
+	.mod-tit{
+		margin-bottom:8px;
+		background-color:$ku-color;
+		.icon-ku{
+			@include iconItemNoSize($skin,"icon-m-ku");        	
+		}
+	}
+}
+
+.ku-cate{
+	li{
+		position:relative;
+		height:42px;
+		padding-left:36px;
+		font-size:14px;
+		line-height:42px;
+		color:#666;
+		cursor:pointer;
+		&:hover{
+			color:$link-color-hover;
+			text-decoration:underline;
+		}
+	}
+	.icon-dot{
+		position:absolute;
+		top:18px;
+		left:20px;
+	}
+	.arrow{
+		position:absolute;
+		top:15px;
+		right:20px;
+		@include iconItem($skin,"icon-black-arrow");        	
+	}
+	.current,.current:hover{
+		background-color:#03a9f4;
+		color:#fff;
+		text-decoration:none;
+		.icon-dot{
+			background-color:#fff;
+		}
+		.arrow{	
+			@include iconItemNoSize($skin,"icon-default-arrow");	
+		}
+	}
+}
+
+.ku-cate-data{
+	@extend %clearfix;
+	margin:-6px 0 0 -6px;
+	li{
+		position:relative;
+		float:left;
+		width:234px;
+		height:240px;
+		margin:6px 0 0 6px;
+	}
+	.car-item{
+		@extend %car-item;
+		position:absolute;
+		z-index:2;
+		width:234px;
+		height:240px;
+		background-color:#fff;
+		text-align:center;
+		.imgbox{
+			position:relative;
+			width:234px;
+			height:156px;
+		}
+		.tit{
+			height:24px;
+			margin:20px 0 5px;
+			font-size:18px;
+			line-height:24px;
+		}
+		.price{
+			font-size:14px;
+			line-height:18px;
+		}
+	}
+}
+
+
+
+.tag-mark{
+	position:absolute;
+	top:0;
+	z-index:3;
+	height:18px;
+	line-height:18px;
+	.tag-txt{
+		float:left;
+		height:18px;
+		padding:0 2px 0 8px;
+		color:#fff;
+	}
+	.tag-icon{
+		float:left;
+		overflow:hidden;	
+	}
+	@at-root .tag-y{
+		.tag-txt{
+			background-color:#f60;
+		}
+		.tag-icon{
+			@include iconItem($skin,'tag-y');
+		}
+	}
+	@at-root .tag-g{
+		.tag-txt{
+			background-color:#00c853;
+		}
+		.tag-icon{
+			@include iconItem($skin,'tag-g');		
+		}
+	}
+}

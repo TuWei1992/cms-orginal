@@ -1,0 +1,104 @@
+.lookback_wrapper{
+	margin-bottom:40px;
+	.lookback_cn{		
+		@extend %clearfix;
+		margin:0 auto;
+		width:1180px;
+		min-height:710px;
+		background: url(../img/bg_lookback.png) 0 0 no-repeat;
+	}	
+	.tit{
+		padding-left:40px;
+		height:60px;
+		line-height:60px;
+		color:#fff;
+		font-size:24px;
+		font-weight:700;
+	}
+
+}
+.lookback_main{
+	margin-left:10px;
+	padding-top:16px;
+	background-color:#000;
+}
+.img_cn{
+	margin:13px 0 23px 0;
+	height: 480px;	
+	position:relative;	
+	overflow: height;	
+	.imgcn_img{		
+		margin:0 auto;
+		width: 720px;
+		height: 480px;
+		position:relative;
+		overflow: height;		
+		img{
+			display: block;
+			width: 720px;
+			height: 480px;
+		}
+	}
+	.next,
+	.prev{
+		position:absolute;
+		top: 50%;
+		width: 50px;
+		height: 80px;
+	}
+	.prev{
+		left:60px;
+		@include iconItem($lookback,"btn_prev",$extend:lookbackMaps);
+	}
+	.next{
+		right: 60px;
+		@include iconItem($lookback,"btn_next",$extend:lookbackMaps);
+	}
+	.caption{
+		position:absolute;
+		left: 50%;
+		bottom:0;
+		width: 720px;
+		padding:4px 0;
+		height: 42px;
+		margin-left: -360px;
+		background:url(../img/bg_caption.png) 0 0 repeat-x;
+		//opacity: 0.3;		
+		color:#fff;
+		font-size: 18px;
+		line-height:20px;
+		.des{				
+			padding:0 20px;	
+			float: left;
+			width: 540px;
+		}
+		.index{			
+			padding:0 20px;
+			float: right;
+			width: 70px;
+			text-align: right;
+		}
+	}
+}
+.img_list{
+	@extend %clearfix;
+	margin:0 1px 0 17px;
+	padding-bottom:15px;
+	li{
+		width:170px;
+		height: 113px;
+		float: left;
+		margin:0 16px 0 0;
+		border: 3px solid #000;
+		border-radius:4px;
+		cursor: pointer;
+		img{
+			display: block;
+			width: 170px;
+			height: 113px;
+		}
+		&.cur{
+			border-color:#fff;
+		}
+	}
+}

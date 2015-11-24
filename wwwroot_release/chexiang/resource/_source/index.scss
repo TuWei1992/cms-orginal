@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* index.css
+ * Created: 2015-03-09
+ * Update: 2015-03-09
+ * Author: Amanda
+ */
+
+@import "lib/sprites",
+		"components/extend";
+@import "components/common";
+
+
+@import "components/topnav",
+		"components/header",
+		"components/nav",
+		"components/jquery.fs.selecter",
+		"components/jquery.fs.scroller",
+		"components/banner",
+		"components/brand",
+		"components/act-box",
+		"components/cx-mall",
+		"components/cx-ku",
+		"components/cx-cu",
+		"components/cx-sale",
+		"components/cx-hui",
+		"components/footer",   
+		"components/sidebar";

@@ -1,0 +1,98 @@
+// header
+.header{
+	@extend %clearfix;
+	position:relative;
+	z-index:3;
+	height:76px;
+	padding-top:44px;
+	.logo{
+		float:left;
+		.saic,.hui{
+			float:left;
+		}
+		a{
+			&:hover{
+				text-decoration: none;
+			}
+		}
+	}
+	.main-nav{
+		float:right;
+		margin-top:20px;
+		li{
+			position:relative;
+			float:left;
+			height:24px;
+			padding-bottom:5px;
+			margin:0 30px;
+			font-size: 16px;
+			line-height:24px;
+			text-align:center;
+			&:hover{
+				.menu-box{
+					display:block;
+				}
+			}		
+		}
+		.last{
+			margin-right:10px;
+		}
+		.cur{
+			padding-bottom:0;
+			border-bottom:5px solid #5789e4;
+		}
+		a{
+			@include inline-block;
+			color:#333;
+			&:hover{
+				color:#333;
+				text-decoration:none;
+			}
+		}
+	}
+	.menu-box{
+		display:none;
+		position:absolute;
+		left:50%;
+		top:28px;
+		width:115px;
+		margin-left:-58px;
+	}
+	.menu-list{
+		width:115px;		
+		background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QzZGOEJGNTNERThEMTFFNDlGRTc4RUQzOEE1MjA4QzQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzZGOEJGNTRERThEMTFFNDlGRTc4RUQzOEE1MjA4QzQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDNkY4QkY1MURFOEQxMUU0OUZFNzhFRDM4QTUyMDhDNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDNkY4QkY1MkRFOEQxMUU0OUZFNzhFRDM4QTUyMDhDNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pru5lcoAAAAbSURBVHjaYmxsbLzJQARgYiASjCqkjkKAAAMA0rkCcL7N/TEAAAAASUVORK5CYII=) repeat 0 0;
+		*background-image:url(../img/menu.png);
+		// background:rgba(129,129,129, .85);
+		// filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#d8818181,endcolorstr=#d8818181);
+		a{
+			display:block;
+			width:115px;
+			height:35px;
+			padding:0;
+			color:#efefef;
+			text-align:center;
+			line-height:35px;
+			&:hover{
+				color:#fff;
+				// background:rgba(84,84,84, .8);
+				background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzMwODU3NURERTg3MTFFNEI4NjZCN0M0MTA2RjBBREQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzMwODU3NUVERTg3MTFFNEI4NjZCN0M0MTA2RjBBREQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3MzA4NTc1QkRFODcxMUU0Qjg2NkI3QzQxMDZGMEFERCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3MzA4NTc1Q0RFODcxMUU0Qjg2NkI3QzQxMDZGMEFERCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhvdoNQAAAAbSURBVHjaYoyJifnOQARgYiASjCqkjkKAAAMAUWUCH8Sroh8AAAAASUVORK5CYII=) repeat 0 0;
+				background-image:url(../img/menu-hover.png);
+			}
+		}
+	}
+	.arrow{
+		position:absolute;
+		left:50%;
+		top:-5px;
+		margin-left:-5px;
+		@include iconItem($indexskin,"menu-arrow",$extend:skinMaps);
+	}
+}
+
+
+// :root .header .menu-list{
+// 	filter:none;
+// 	a:hover{
+// 		filter:none;
+// 	}
+// }

@@ -1,0 +1,71 @@
+// brand-wrapper
+.brand-wrapper{
+	position:relative;
+	z-index:2;
+	@extend %width;
+	height:114px;
+	background:url(../img/brand-bg.png) no-repeat 0 0;
+}
+
+.brand-logo{
+	padding:0 40px;
+	@extend %clearfix;;
+	li{
+		float:left;
+		width:108px;
+		height:114px;
+	}
+	a{
+		display:block;
+		width:108px;
+		height:114px;
+		color:#fff;
+		font-size:14px;
+		&:hover{
+			color:#fff;
+		}
+	}
+	i{
+		display:block;
+		margin:18px auto 0;
+		overflow:hidden;
+	}
+	.brand-name{
+		display:block;
+		text-align:center;
+		color:#fff;
+		font-size:14px;
+		line-height:40px;
+	}
+}
+
+.logo-roewe{
+	@include iconItem($brand,"logo-roewe",$extend:brandMaps);
+}
+.logo-mg{
+	@include iconItem($brand,"logo-mg",$extend:brandMaps);
+}
+.logo-buick{
+	@include iconItem($brand,"logo-buick",$extend:brandMaps);
+}
+.logo-chevrolet{
+	@include iconItem($brand,"logo-chevrolet",$extend:brandMaps);
+}
+.logo-cadillac{
+	@include iconItem($brand,"logo-cadillac",$extend:brandMaps);
+}
+.logo-volkswagen{
+	@include iconItem($brand,"logo-vw",$extend:brandMaps);
+}
+.logo-skoda{
+	@include iconItem($brand,"logo-skoda",$extend:brandMaps);
+}
+.logo-WULING{
+	@include iconItem($brand,"logo-wuling",$extend:brandMaps);
+}
+.logo-baojun{
+	@include iconItem($brand,"logo-baojun",$extend:brandMaps);
+}
+.logo-MAXUS{
+	@include iconItem($brand,"logo-datong",$extend:brandMaps);
+}

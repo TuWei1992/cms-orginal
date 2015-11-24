@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* index.css
+ * Created: 2015-03-30
+ * Update: 2015-03-30
+ * Author: Amanda
+ */
+
+@import "lib/sprites",
+		"index/extend",
+		"lib/reset";
+
+@import "index/common",
+		"index/subject",
+		"index/screen-1",
+		"index/screen-4",
+		"index/mod",
+		"index/brand",
+		"index/footer";
+
+
+
+
+.container{
+	@extend %wrap;
+	padding-top:54px;
+}
+.pos{
+	position:relative;
+}
+.row{
+	margin-bottom:50px;
+}
+.line-1{
+	position:absolute;
+	top:-58px;
+	left:-40px;
+	z-index:1;
+	@include iconItem($skin,"screen-line-1");
+}
+.line-2{
+	position:absolute;
+	bottom:-56px;
+	right:-24px;
+	z-index:1;
+	@include iconItem($skin,"screen-line-2");
+}
+.line-3{
+	position:absolute;
+	top:-140px;
+	left:-38px;
+	z-index:1;
+	@include iconItem($skin,"screen-line-3");
+}
+.line-4{
+	position:absolute;
+	bottom:-70px;	
+	right:-36px;
+	z-index:1;
+	@include iconItem($skin,"screen-line-4");
+}
+.line-5{
+	position:absolute;
+	top:-162px;
+	left:-34px;
+	z-index:1;
+	@include iconItem($skin,"screen-line-5");
+}
+.row-last{
+	margin-bottom:40px;
+}
+.mb0{margin-bottom:0;}

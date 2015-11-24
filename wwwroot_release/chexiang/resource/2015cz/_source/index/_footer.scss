@@ -1,0 +1,13 @@
+// footer
+
+.footer{
+	@extend %width;
+	padding:10px 0;
+	background-color:#fff;
+	line-height:30px;
+	color:#787878;
+	text-align:center;
+	.icp{
+		font-size:14px;
+	}
+}

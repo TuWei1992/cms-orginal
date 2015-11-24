@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* index.css
+ * Created: 2015-03-10
+ * Update: 2015-03-10
+ * Author: Amanda
+ */
+
+$mediaArray: "only screen",
+    "only screen and (min-width: 360px) and (max-width: 399px)",
+    "only screen and (min-width: 400px) and (max-width: 479px)",
+    "only screen and (min-width: 480px) and (max-width: 639px)",
+    "only screen and (min-width: 640px)";
+
+$rem-base: 30px;
+$ratioFor320: 640/320;
+$ratioFor360: 640/360;
+$ratioFor400: 640/400;
+$ratioFor480: 640/480;
+$ratioFor640: 640/640;
+$htmSizeArray: floor($rem-base/$ratioFor320), floor($rem-base/$ratioFor360), floor($rem-base/$ratioFor400), floor($rem-base/$ratioFor480), floor($rem-base/$ratioFor640);
+@import
+    "lib/reset",
+    "lib/rem-calc";
+
+$imgPath:"../img/guide/";
+
+@import "components/animations",
+        "components/ani_delay",
+        "components/page-landscape",
+        "components/load",
+        "guide/common",
+        "guide/page-1",
+        "guide/page-2",
+        "guide/page-3",
+        "guide/page-4",
+        "guide/page-5",
+        "guide/page-6",
+        "guide/page-7",
+    	"guide/page-qa";
+
+
+@for $mediaIndex from 1 to length($mediaArray) + 1 {
+    $media: nth($mediaArray, $mediaIndex);
+    $htmlFz: nth($htmSizeArray, $mediaIndex);
+    @media #{$media}
+    {
+        html {
+            font-size: $htmlFz;
+        }
+        @if($mediaIndex == 5){
+         .page{
+         	left:50%;
+         	width:rem-calc(640px);
+         	margin-left:rem-calc(-640px/2);
+         	}
+        }
+    }
+}
+
+@media only screen and(min-height:350px) and (max-height: 560px){
+    .txt-box{
+        top:rem-calc(30px);
+    }
+    .desc{
+        bottom:rem-calc(100px);
+    }
+    .page-1-1{
+        .txt-box{
+            top:rem-calc(356px);
+        }
+    }
+    .page-2-1{
+        background-position:50% rem-calc(-120px);
+        .txt-box{
+            top:rem-calc(60px);
+        }
+    }
+    .page-3-1{
+        .img-box{
+            top:rem-calc(220px);
+        }
+    }
+    .page-4-1{
+        .img-wrap{
+            top:rem-calc(320px);
+        }
+    }
+    .page-5-1{
+        .img-box{
+            top:rem-calc(240px);
+        }
+    }
+    .page-6-1{
+        .img-wrap{
+            top:rem-calc(240px);
+        }
+    }
+    .page-7-1{
+        background-position:50% rem-calc(-140px);
+        .txt-box{
+            top:rem-calc(40px);
+        }
+    }
+}
+
+@media only screen and(min-height: 600px){
+     .desc{
+        bottom:rem-calc(130px);
+    }
+}

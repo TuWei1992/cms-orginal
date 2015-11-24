@@ -1,0 +1,117 @@
+// cx-cu
+
+$mall-color:#e91e63;
+.cx-mall{
+	.mod-tit{
+		background-color:$mall-color;
+		.icon-mall{
+			@include iconItemNoSize($skin,"icon-m-mall");        	
+		}
+	}
+}
+.mall-cate{
+	@extend %clearfix;
+	padding:20px 0 0 30px;
+	height:245px;
+	overflow:hidden;
+	li{
+		float:left;
+		width:70px;
+		height:24px;	
+		margin:0 30px 18px 0;
+		font-size:16px;
+		overflow:hidden;
+		a{
+			color:#333;
+			&:hover{
+				color:$link-color-hover;
+			}
+		}
+	}
+}
+.mall-bot{	
+	margin:0 20px;
+	padding:20px 0 14px;
+	height:88px;
+	overflow:hidden;
+	border-top:1px solid #e2e2e2;
+	.tit{
+		margin-bottom:10px;
+		font-size:16px;
+		font-weight:400;
+		text-align:center;
+	}
+	ul{
+		@extend %clearfix;
+	}
+	li{
+		float:left;
+		width:90px;
+		margin-right:10px;
+		padding-bottom:6px;
+		color:#999;
+		font-size:14px;
+		&.last{
+			margin-right:0;
+		}
+	}
+
+}
+.mall-cate-data{
+	@extend %clearfix;
+	li{
+		position:relative;
+		float:left;
+		width:314px;
+		height:486px;
+		margin:0 6px 0 0;		
+		&.last{
+			margin:0;
+		}
+	}
+	.mall-item{
+		position:absolute;
+		height:486px;
+		width:314px;
+		img{
+			display:block;
+			width:314px
+		}
+		.mall-pop{
+			position:absolute;
+			width:250px;
+			height:90px;
+			left:27px;
+			bottom:24px;
+			background:rgba(255,255,255,0.9);filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#e5ffffff', endColorstr='#e5ffffff');	
+			cursor:pointer;	
+			color:#333;
+		}
+		&:hover{
+			//transform:translateY(-5px);
+			//transition:all 0.3s linear
+
+		}
+	}
+}
+.mpop-cn{	
+	padding:8px 26px 12px;
+	text-align:center;
+	.tit{
+		margin-bottom:10px;		
+		line-height:34px;
+		height:34px;
+		width:198px;
+		font-size:18px;		
+		font-weight:400;
+		border-bottom:1px solid #333;
+		overflow:hidden;
+	}
+	p{
+		height:30px;
+		width:198px;
+		line-height:30px;		
+		font-size:20px;
+		overflow:hidden;
+	}
+}

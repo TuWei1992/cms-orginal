@@ -1,0 +1,18 @@
+$img:"../img/";
+
+%page-6{	
+	background-image:url(#{$img}swip-bg.jpg);
+	background-repeat:no-repeat;
+	background-position:50% 100%;
+	background-size:cover;
+}
+
+.page-6-1{
+	@extend %page-6;
+}
+.page-6-1 .img_1{
+	margin:rem-calc(190px) auto 0;
+	width:rem-calc(573px);
+	height:rem-calc(529px);
+	background-size:rem-calc(573px) auto;
+}

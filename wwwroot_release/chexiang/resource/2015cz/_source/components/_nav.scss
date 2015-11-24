@@ -1,0 +1,38 @@
+// nav
+
+.nav-wrapper{
+	position:relative;
+	z-index:1;
+	@extend %width;
+	height:40px;
+	background-color:#03a9f4;
+}
+.nav{
+	@extend %wrap;
+	@extend %clearfix;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	li{
+		position:relative;
+		float:left;
+		margin-right:10px;
+	}
+	a{
+		float:left;
+		height:40px;
+		padding:0 16px;
+		color:#fff;
+		&:hover,&.cur{
+			background-color:#333;
+			color:#fff;
+			text-decoration:none;
+		}
+	}
+	.icon-new{
+		position:absolute;
+		top:-4px;
+		left:16px;
+		@include iconItem($skin,"icon-new");
+	}
+}

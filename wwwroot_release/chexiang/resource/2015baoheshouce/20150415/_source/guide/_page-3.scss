@@ -1,0 +1,10 @@
+.page-3-1{
+	@extend %page-3;
+	.img-box{
+		position:relative;
+		top:rem-calc(300px);
+		width:rem-calc(400px);
+		height:rem-calc(400px);
+		margin:0 auto;
+	}
+}

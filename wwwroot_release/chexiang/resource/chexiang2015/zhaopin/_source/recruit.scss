@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*---- struction style   ----*/
+.fl{ float:left;}
+.fr{ float:right;}
+.main_b{ width:950px;}
+.side{ width:230px;}
+
+
+/*---- common style   ----*/
+.main_recruit{ margin:10px 0 0; padding:0 30px; background-color:#fff;}
+	.main_recruit .btn{ display:inline-table; width:120px; height:40px; line-height:40px; background-color:#04a8f4; color:#fff; font-size:14px; text-align:center;}
+		.btn:hover{ text-decoration:none; background-color:#73b5fb; color:#fff;}
+
+/*----  brief introduction   ------*/
+.main_briefIntro{ position:relative;}
+	.main_briefIntro h2{ padding:24px 0 31px 0; line-height:36px; height:36px; font-size:36px; color:#999; font-weight:400;}
+	.main_briefIntro .intro_list{ }
+		.intro_list li{ float:left; width:160px; margin:3px 140px 17px 0; line-height:16px; height:16px; font-size:16px;}
+	.main_briefIntro .btn{ position:absolute; right:30px; bottom:17px;}
+	
+/*----  detail introduction   ------*/
+.main_detialIntro{}
+	.main_detialIntro .detailItem{ padding:30px 0 10px;}
+		.detailItem h3{ margin:0 0 20px; line-height:18px; font-size:14px; color:#333;}
+		.detailItem ol{ color:#666;}
+			.detailItem li{list-style:decimal; margin:0 0 0 20px; padding:0 0 14px 10px; line-height:20x; font-size:16px;}	
+	.main_detialIntro .bot{ padding:30px 0 20px;}	
+		.bot .btn{ float:left;}
+		.bot .share{ float:right; margin:6px 0 0;}
+		
+/*----  recruit side   ------*/
+.b_mod_attention{ margin-top:10px; height:300px; float:none;}
+.b_mod_attention .th{padding-top:10px;border-bottom:0 none;}
+.b_mod_attention .btn-sina{top:18px;right:25px;}
+.b_mod_attention dt{font-size:14px;line-height:22px;}
+.mod_ad{ margin:10px 0 0;}
+	.mod_ad img{ display:block;}
+	
+/*------------------------------------------------- trands page style   --------------------------------*/
+.main_trends{ margin:10px 0 0; padding:30px 40px 0; background-color:#fff;}
+	.main_trends h2{ margin-bottom:20px; line-height:36px; font-size:30px; color:#666; font-weight:400;}
+	.main_trends .sub_title{ margin-bottom:50px; line-height:16px; color:#999; font-size:14px;}
+	.main_trends p{ line-height:20px; margin-bottom:33px; font-size:16px; color:#666;}
+	.main_trends .bot{ padding:22px 0 20px;}

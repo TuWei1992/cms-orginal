@@ -1,0 +1,23 @@
+
+$icon:sprite-map("icons/*.png",$spacing:5px);
+%commonMaps {
+    background-image:$icon;
+    background-repeat: no-repeat;
+}
+$city:sprite-map("city/*.png",$spacing:5px);
+%cityMaps {
+    background-image:$city;
+    background-repeat: no-repeat;
+}
+
+$gift:sprite-map("gift/*.png",$spacing:5px);
+%giftMaps {
+    background-image:$gift;
+    background-repeat: no-repeat;
+}
+
+$lookback:sprite-map("lookback/*.png",$spacing:5px);
+%lookbackMaps {
+    background-image:$lookback;
+    background-repeat: no-repeat;
+}

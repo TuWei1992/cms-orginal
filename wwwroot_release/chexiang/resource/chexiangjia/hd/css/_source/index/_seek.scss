@@ -1,0 +1,215 @@
+.seek_wrapper{
+	margin-bottom:57px;	
+	.seek_cn{
+		@extend %wrap;		
+		.tit{
+			@extend %clearfix;
+			padding:10px 0 20px;
+		}
+		h3{			
+			float:left;
+			line-height:30px;
+			font-size:28px;
+			color:#333;
+			font-weight:400;
+		}		
+		.line{	
+			float: left;
+			width: 1px;
+			height: 24px;
+			margin:3px 20px 0;
+			background-color: #ccc;
+			overflow: hidden;		
+		}
+		.dealer-city{
+			float:left;
+			margin-top:3px;
+		}
+	}
+	.area_cn{
+		padding:20px 16px 0;
+		margin-bottom:10px;
+		background-color:#f9f9f9;
+		a{
+			display:inline-block;
+			height:24px;
+			line-height:24px;
+			padding:0 16px;
+			margin:0 2px 16px 0;
+			color:#333;
+			font-size:16px;
+			&.cur{
+				background-color:#03a9f4;
+				color:#fff;
+				&:hover{
+					color:#fff;
+					text-decoration:none;
+				}
+			}
+			&:hover{
+				color:$link-color-hover;
+				text-decoration:underline;
+			}
+			&.disable{
+				color:#ccc;
+			}
+		}
+	}
+	.map_cn{
+		@extend %clearfix;
+		height:529px;
+		background-color:#fafafa;
+		.shops{
+			padding:10px 8px;
+			width:280px;
+			height:500px;
+			overflow-y:auto;
+			float:left;
+			li{
+				padding:28px 16px 20px;
+				cursor:pointer;
+				h4{
+					font-size:16px;
+					font-weight:400;
+				}
+				p{
+					font-size:14px;
+					color:#666;
+				}
+				&.nd2{
+					background-color:#fff;
+				}
+				&.cur{
+					background-color:#e5f6fe;
+				}
+			}
+		}
+		.map{
+			width:882px;
+			float:right;
+			height:529px;
+		}
+	}
+	.amap-overlays{
+		a{
+			&:hover{
+				text-decoration:none;
+			}
+		}
+	}
+	.amap-info-content{
+		padding:10px 18px;				
+		h3{
+			float:none;
+			font-size:20px;
+			margin-bottom:6px;
+		}
+		.map_txt_cn{
+			padding:0 0 12px;
+			margin-bottom:24px;
+			border-bottom:1px solid #ccc;
+			font-size:14px;
+			em{
+				color:#f60;
+				font-style:normal;
+			}
+			p{
+				padding-bottom:6px;
+			}
+		}
+	}
+}
+.dealer-city{
+	position:relative;
+	.city-th{
+		position:relative;
+		z-index:2;
+		height:22px;
+		border-radius:12px;
+		border:1px solid #e9e9e9;
+		background-color:#e9e9e9;
+		cursor:pointer;
+	}
+	.a-city{
+		float:left;
+		padding:0 10px;
+		height:22px;
+		line-height:22px;
+		text-align:center;
+		span{
+			float:left;
+			color:#333;
+		}
+		&:hover{
+			span{
+				color:$link-color-hover;
+				text-decoration:underline;
+			}
+		}
+	}
+	.icon-map{
+		float:left;
+		@include iconItem($city,"icon-map",$extend:cityMaps);
+		margin:3px 6px 0 0;
+	}
+	.icon-arrow{
+		float:left;
+		@include iconItem($city,"icon-arrow-fbtn-down",$extend:cityMaps);
+		margin:10px 0 0 8px;
+	}	
+	.city-tb{
+		display:none;
+		position:absolute;
+		left:0;
+		top:23px;
+		z-index:1;
+		width:498px;
+		padding:10px;
+		border-radius:0 2px 2px;
+		border:1px solid #ccc;
+		background-color:#fff;
+		box-shadow:1px 3px 2px rgba(0,0,0,.15);
+		li{
+			float:left;
+			width:70px;
+			height:24px;
+			padding:4px 0;
+		}
+		a{
+			float:left;
+			padding:0 6px;
+			line-height:24px;
+			color:#666;
+			&:hover{
+				color:$link-color-hover;
+			}
+			&.cur{
+				color:#fff;
+				background-color:$link-color-hover;
+				&:hover{
+					text-decoration:none;
+				}
+			}
+		}
+	}
+}
+
+.dealer-city-sel{
+	.city-th{
+		border-radius:10px 10px 0 0;
+		background-color:#fff;
+		border-color:#ccc #ccc #fff;
+		.a-city{
+			span,&:hover span{
+				color:#333;
+				text-decoration:none;
+			}
+		}
+		.icon-map{
+			@include iconItem($city,"icon-map-sel",$extend:cityMaps);
+		}
+	}
+	.city-tb{
+		display:block;
+	}
+}

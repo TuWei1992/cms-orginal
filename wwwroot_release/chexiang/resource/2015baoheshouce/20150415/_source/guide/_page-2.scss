@@ -1,0 +1,26 @@
+.page-2-1{
+	background-image:url(#{$imgPath}app-bg.jpg);
+	background-repeat:no-repeat;
+	background-position:50% 0;
+	background-size:cover;
+}
+
+.page-2-1{
+	.txt-box{
+		top:rem-calc(140px);
+		left:rem-calc(40px);
+		color:#229cdd;
+		text-align:left;
+	}
+	.tit{
+		margin-bottom:rem-calc(6px);
+		font-weight:700;
+		font-size:rem-calc(60px);
+		line-height:rem-calc(80px);
+		color:#229cdd;
+	}
+	.tit-sub{
+		line-height:rem-calc(44px);
+		font-size:rem-calc(40px);
+	}
+}

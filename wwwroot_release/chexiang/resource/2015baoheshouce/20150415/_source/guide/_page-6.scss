@@ -1,0 +1,23 @@
+.page-6-1{
+	@extend %page-3;
+	.img-wrap{
+		position:absolute;
+		top:rem-calc(340px);
+		left:50%;
+		width:rem-calc(400px);
+		height:rem-calc(400px);
+		padding:rem-calc(20px 19px 0);
+		margin-left:rem-calc(-219px);		
+		img{
+			position:absolute;
+			left:-6px;
+			top:-6px;
+			width:100%;
+		}
+	}
+	.img-box{
+		width:rem-calc(400px);
+		height:rem-calc(400px);
+		background-color:#fff;
+	}
+}

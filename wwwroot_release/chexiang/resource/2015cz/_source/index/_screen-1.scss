@@ -1,0 +1,169 @@
+.slide-box{
+	position:relative;
+	margin-bottom:20px;
+	.show{
+		width:1080px;
+		height:380px;
+		overflow:hidden;
+	}
+	.page-num{
+		position:absolute;
+		right:15px;
+		bottom:12px;
+	}
+}
+
+
+.article-list{
+	@extend %clearfix;
+	li{
+		float:left;
+		width:360px;
+		height:410px;
+	}
+	.img-txt-item{
+		width:340px;
+		height:390px;
+		padding:10px;
+		background:#f5f3f3;
+	}
+	.arrow-up{
+		position:absolute;
+		@extend %bor_arrow;
+	}
+	.img-box{
+		position:relative;
+		width:340px;
+		height:190px;
+		margin-bottom:10px;
+		overflow:hidden;
+		.arrow-up{
+			right:50px;
+			bottom:-10px;
+			border-width:20px;
+			border-bottom:20px solid #f5f3f3;
+		}
+	}
+	.txt-summary{
+		position:relative;
+		width:300px;
+		height:150px;
+		padding:20px;
+		background-color:#fff;
+		.arrow-up{
+			right:50px;
+			top:-30px;
+			border-width:20px;
+			border-bottom:20px solid #fff;
+		}
+		dt{
+			height:30px;
+			font-size:24px;
+			line-height:30px;
+			margin-bottom:15px;
+		}
+		dd{
+			overflow:hidden;
+			line-height:24px;
+		}
+		.desc{
+			height:72px;
+			font-size:14px;
+		}
+		.arrow-right{
+			@extend %bor_arrow;
+			border-left:6px solid #e7661e;
+			margin-left:9px;
+			vertical-align:middle;
+		}
+	}
+	.txt-item{
+		position:relative;
+		width:290px;
+		height:330px;
+		padding:80px 35px 0;
+		background-color:#e4661d;
+		a{
+			color:#fff;
+			&:hover{
+				color:#fff;
+			}
+		}
+		.arrow-right{
+			@extend %bor_arrow;
+			border-left:6px solid #fff;
+			margin-left:9px;
+			vertical-align:middle;
+		}
+	}
+	.icon-traffic{
+		position:absolute;
+		top:23px;
+		right:25px;
+		@include iconItem($skin,"icon-traffic");		
+	}
+	.tit-txt{
+		height:280px;
+		font-size:36px;
+		line-height:40px;
+		overflow:hidden;
+	}
+}
+
+.map-area{
+	@extend %clearfix;
+	height:330px;
+	margin-top:10px;
+	background-color:#f5f3f3;
+	.img-box{
+		float: left;
+		width:540px;
+		height:318px;
+	}
+	.map-info{
+		float:left;
+		width:484px;
+		height:285px;
+		margin:10px 0 0 10px;
+		padding:25px 18px 0;
+		background-color:#fff;
+		font-size:14px;
+		line-height:24px;
+		color:#006ab4;
+		li{
+			position:relative;
+			width:440px;
+			padding-left:24px;
+		}
+		i{
+			position:absolute;
+			left:0;
+		}
+		span{
+			color:#000;
+		}
+		p{
+			color:#5e5e5e;
+		}
+	}
+	.icon-place{
+		top:12px;
+		@include iconItem($skin,"icon-place");
+	}
+	.icon-time{
+		top:4px;
+		@include iconItem($skin,"icon-time");
+	}
+	.icon-map{
+		top:5px;
+		@include iconItem($skin,"icon-map");
+	}
+	.icon-intro{
+		top:6px;
+		@include iconItem($skin,"icon-intro");
+	}
+
+	.place{
+		margin-bottom:30px;
+	}
+}

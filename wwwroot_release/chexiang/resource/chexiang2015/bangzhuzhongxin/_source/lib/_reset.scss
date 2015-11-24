@@ -1,0 +1,17 @@
+html,body,p,dl,dt,dd,table,td,th,input,img,form,div,span,ul,ol,li,h1,h2,h3,h4,h5,h6,select,fieldset,input,button,sub,sup,textarea{margin:0;padding:0;}
+body{font:14px/1.5 "Helvetica Neue",Arial,"Heiti SC","Microsoft YaHei";color:#4f4f4f;background:#fff;word-wrap:break-word;word-break:break-all;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+em,b,i,strong,cite,sub,sup{font-style: normal;font-weight:normal;}
+a{text-decoration: none;color:#0f0f0f;outline: none;}
+a:hover{text-decoration:underline;color:#0f0f0f;}
+:focus{outline:0;}
+li{list-style-type:none;}
+img{border:0 none;vertical-align:top;}
+fieldset{border-style: none }
+label,button{cursor: pointer;}
+select,input,textarea{font:12px/1.2em tahoma,arial,\5b8b\4f53;}
+.clearfix:after{content:".";height:0;visibility:hidden;display:block;clear:both;font-size:0;line-height:0;}
+.clearfix{*zoom:1;}
+.fix{word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
+.clear{font-size:0;line-height:0;height:0;clear:both;overflow: hidden;display: block;}
+.none{display:none;}

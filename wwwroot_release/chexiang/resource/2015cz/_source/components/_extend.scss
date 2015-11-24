@@ -1,0 +1,8 @@
+/* extend */
+
+//$common:sprite-map("common/*.png",$spacing:5px,$layout: diagonal);
+$skin:sprite-map("global/*.png",$spacing:5px);
+%commonMaps {
+    background-image:$skin;
+    background-repeat: no-repeat;
+}

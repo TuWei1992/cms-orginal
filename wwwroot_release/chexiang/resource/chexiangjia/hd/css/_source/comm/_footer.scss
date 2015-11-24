@@ -1,0 +1,58 @@
+.footer-main{
+	.footer-intro{
+		padding-top: 27px;
+	}
+	.footer-item{
+		width: 250px;
+		padding:40px 40px 0 0;
+		margin-left: 320px;		
+		color: #d6d6d6;
+		overflow: hidden;
+		zoom:1;
+		i{
+			width: 55px;
+			height: 55px;
+			float: left;
+			margin-right: 14px;
+			@include iconItem($icon,"icon_tel");
+		}	
+		.txt{
+			float: left;
+		}
+		h3{
+			height: 24px;
+			line-height: 24px;
+			margin-bottom: 14px;
+			font-size: 18px;
+			font-weight: 100;
+			text-align: left;
+		}
+		strong{
+			font-size: 24px;
+			font-weight: 100;
+		}
+	}
+	.footer-side{
+		float: left;
+		width: 360px;
+		padding-left:40px;
+		border-left: 1px solid #5c5c5c;
+	}
+	.weixin-info{
+		dt{
+			margin:-6px 0 0;
+			font-size: 24px;
+			font-weight: 400;
+			color: #d6d6d6;	
+		}
+		.weixinhao{
+			font-size: 18px;
+			color: #ccc;
+			font-weight: 100;
+		}
+		.desc{
+			font-size: 18px;
+			color: #999;
+		}
+	}
+}

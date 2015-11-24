@@ -1,0 +1,112 @@
+@charset "utf-8";
+body {
+  background-color: #FFFFFF;
+}
+.header-wrapper {
+  background-color: #fff;
+  border-bottom: 4px solid #e8e8e8;
+}
+
+.header .saic-logo {
+  float: left;
+  padding: 20px 0;
+  font-size: 0
+}
+
+.header .logo {
+  margin-right: 30px
+}
+
+.header .header-act {
+  float: left;
+  padding: 15px 0 0 20px;
+  width: 400px;
+  height: 55px;
+  overflow: hidden
+}
+
+.header .help-tel {
+  float: right;
+  padding: 20px 0;
+  color: #666
+}
+
+.header .help-tel dd {
+  float: left
+}
+
+.header .icon-tel {
+  float: left;
+  margin-right: 6px;
+  width: 36px;
+  height: 36px;
+  background-position: 0 -116px
+}
+
+.header .time {
+  font-size: 12px;
+  line-height: 14px
+}
+
+.header .tel-no {
+  font-size: 20px;
+  line-height: 24px
+}
+.about-container{
+  width: 1190px;
+  margin: 0 auto;
+  overflow: auto;
+  .about-crumbs{
+    height: 57px;
+    line-height: 57px;
+  }
+  .about-side{
+    width: 255px;
+    background-color: #fafafa;
+    float: left;
+    overflow: hidden;
+    li {
+      margin-top: 25px;
+      height: 45px;
+      line-height: 45px;
+      width: 100%;
+      text-indent: 24px;
+      font-size: 16px;
+      &:hover{
+        text-indent: 20px;
+        border-left: 4px solid #03a9f4;
+        background-color: #f2f2f2;
+      }
+    }
+    .choice{
+      text-indent: 20px;
+      border-left: 4px solid #03a9f4;
+      background-color: #f2f2f2;
+    }
+  }
+  .about-content{
+    width: 918px;
+    float: right;
+    font-size: 14px;
+    color: #999999;
+    margin-bottom: 85px;
+    .about-title{
+      border-left: 4px solid #03a9f4;
+      height: 25px;
+      margin: 20px 0 13px 0;
+      font-size: 24px;
+      text-indent: 10px;
+      line-height: 25px;
+    }
+    .line-between{
+      border-bottom: 1px solid #e8e8e8;
+      margin-bottom: 30px;
+    }
+    p{
+      line-height: 25px;
+    }
+  }
+}
+.font-18{font-size: 18px;}
+.font-bold{font-weight: bold;}
+.color333{color: #333333;}

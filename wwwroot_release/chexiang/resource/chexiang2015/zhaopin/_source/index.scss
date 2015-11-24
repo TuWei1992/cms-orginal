@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* index.css
+ * Created: 2015-03-09
+ * Update: 2015-03-09
+ * Author: Amanda
+ */
+@import "lib/sprites",
+		"components/extend",
+		"components/common";
+
+@import "index/header",
+		"index/banner",
+		"index/main",
+		"index/mod-job-filter",
+		"recruit",
+		"index/faq";

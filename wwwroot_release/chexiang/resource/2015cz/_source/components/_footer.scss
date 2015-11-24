@@ -1,0 +1,129 @@
+// footer
+%a-btn{
+	float:left;
+	height:30px;
+	background-color:#03a9f4;
+	text-align:center;
+	font-size:16px;
+	line-height:30px;
+	&:hover{
+		background-color:#73B5FB;
+		text-decoration:none;
+	}
+}
+.footer-main{
+	@extend %width;
+	height:200px;
+	background-color:#333;
+	a{
+		color:#666;
+		&:hover{
+			color:$link-color-hover;
+		}
+	}
+}
+.footer-intro{
+	@extend %clearfix;
+	@extend %wrap;
+	padding-top:10px;
+}
+.footer-item{
+	float:left;
+	width:200px;
+	line-height:24px;
+	color:#666;
+	dt{
+		padding:5px 0 10px;
+		font-size:16px;
+		color:#fff;
+		line-height:30px;
+	}
+	.tel{
+		font-size:14px;
+		font-weight:700;
+		color:#999;
+	}
+}
+.footer-side{
+	float:right;
+	width:350px;
+	.ercode-box{
+		@extend %clearfix;
+		padding-top:10px;
+		margin-bottom:10px;
+	}
+	.weixin-img{
+		float:left;
+		width:120px;
+		margin-right:10px;
+	}
+	.weixin-info{
+		float:left;
+		position:relative;
+		width:220px;
+		height:120px;
+		dt{
+			margin:-2px 0 10px;
+			font-size:16px;
+			color:#fff;
+		}
+		.weixinhao{
+			font-size:18px;
+			font-weight:700;
+			color:#ccc;
+		}
+		.desc{
+			position:absolute;
+			bottom:0;
+			line-height:18px;
+			color:#999;
+		}
+	}
+	.btn-area{
+		a{
+			color:#fff;
+			&:hover{
+				color:#fff;
+			}
+		}
+		i{
+			@include inline-block;
+			width:6px;
+			height:10px;
+			margin-left:5px;
+			@include iconItem($skin,"icon-default-arrow");
+		}
+	}
+	.a-btn{
+		@extend %a-btn;
+		width:120px;
+		margin-right:10px;
+	}
+	.a-btn-b{		
+		@extend %a-btn;
+		width:145px;
+	}
+}
+
+.footer-sub{
+	@extend %width;
+	padding:30px 0;
+	background-color:#fff;
+	line-height:20px;
+	color:#ccc;
+	a{
+		color:#ccc;
+		&:hover{
+			color:$link-color-hover;
+		}
+	}
+}
+.copyright{
+	text-align:center;
+}
+.friend-link{
+	@extend %wrap;
+	a{
+		margin-right:25px;
+	}
+}
