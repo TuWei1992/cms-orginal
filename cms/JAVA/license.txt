@@ -1,0 +1,5 @@
+This software contains source code from：
+ConcurrentLinkedHashMap (http://code.google.com/p/concurrentlinkedhashmap/)
+ASM (http://asm.ow2.org/)
+FastJSON (https://github.com/alibaba/fastjson/)
+Commons-EL (http://commons.apache.org/proper/commons-el/)
