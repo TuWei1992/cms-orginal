@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datamodel>
+	<attr name="Version">1</attr>
+	<attr name="PreviewDBType">MYSQL</attr>
+	<attr name="ModelName">test</attr>
+	<attr name="LastModified">2014-09-28 11:01:08</attr>
+	<category>
+		<attr name="Name">新建分类</attr>
+		<attr name="ID">c1</attr>
+		<attr name="Order">0</attr>
+		<tables>
+			<table>
+				<attr name="Name">Book</attr>
+				<attr name="Code">Book</attr>
+				<attr name="ID">Table-4e63b7bc-7253-4b48-b168-b62274dc7c22</attr>
+				<attr name="isGenerateCRUD">false</attr>
+				<attr name="isFrontEndStyleUI">false</attr>
+				<attr name="isGenerateCRUDPriv">false</attr>
+				<attr name="TableBackup">true</attr>
+				<attr name="Order">1</attr>
+				<indexes />
+				<columns>
+					<column>
+						<attr name="Name">ID</attr>
+						<attr name="Code">ID</attr>
+						<attr name="ID">Column-fcf2d2e1-d06a-4276-b485-d3daa6a58535</attr>
+						<attr name="MaxIDType">BookID</attr>
+						<attr name="Verify">
+							<![CDATA[]]>
+						</attr>
+						<attr name="DataType">7</attr>
+						<attr name="ListColumnWidth">0</attr>
+						<attr name="isMandatory">true</attr>
+						<attr name="isMaxID">false</attr>
+						<attr name="isPrimaryKey">true</attr>
+						<attr name="isSearchCondition">false</attr>
+						<attr name="isVisiableInForm">false</attr>
+						<attr name="isVisiableInList">false</attr>
+						<attr name="Length">0</attr>
+						<attr name="Precision">0</attr>
+					</column>
+					<column>
+						<attr name="Name">ISBN编码</attr>
+						<attr name="Code">ISBN</attr>
+						<attr name="ID">Column-c7703ffb-c7b8-4bf7-9c7c-ff9b25aa58f5</attr>
+						<attr name="Verify">
+							<![CDATA[]]>
+						</attr>
+						<attr name="DataType">1</attr>
+						<attr name="ListColumnWidth">0</attr>
+						<attr name="isMandatory">false</attr>
+						<attr name="isMaxID">false</attr>
+						<attr name="isPrimaryKey">false</attr>
+						<attr name="isSearchCondition">false</attr>
+						<attr name="isVisiableInForm">false</attr>
+						<attr name="isVisiableInList">false</attr>
+						<attr name="Length">100</attr>
+						<attr name="Precision">0</attr>
+					</column>
+					<column>
+						<attr name="Name">图书分类</attr>
+						<attr name="Code">Category</attr>
+						<attr name="ID">Column-d87a2ec1-b65a-4b66-b34e-7aafd2c32d5c</attr>
+						<attr name="Verify">
+							<![CDATA[]]>
+						</attr>
+						<attr name="DataType">1</attr>
+						<attr name="ListColumnWidth">0</attr>
+						<attr name="isMandatory">false</attr>
+						<attr name="isMaxID">false</attr>
+						<attr name="isPrimaryKey">false</attr>
+						<attr name="isSearchCondition">false</attr>
+						<attr name="isVisiableInForm">false</attr>
+						<attr name="isVisiableInList">false</attr>
+						<attr name="Length">200</attr>
+						<attr name="Precision">0</attr>
+					</column>
+					<column>
+						<attr name="Name">出版时间</attr>
+						<attr name="Code">PublishTime</attr>
+						<attr name="ID">Column-b739e6d4-daa7-4511-a0d8-bfa6adef7543</attr>
+						<attr name="Verify">
+							<![CDATA[]]>
+						</attr>
+						<attr name="DataType">12</attr>
+						<attr name="ListColumnWidth">0</attr>
+						<attr name="isMandatory">false</attr>
+						<attr name="isMaxID">false</attr>
+						<attr name="isPrimaryKey">false</attr>
+						<attr name="isSearchCondition">false</attr>
+						<attr name="isVisiableInForm">false</attr>
+						<attr name="isVisiableInList">false</attr>
+						<attr name="Length">0</attr>
+						<attr name="Precision">0</attr>
+					</column>
+				</columns>
+			</table>
+		</tables>
+	</category>
+	<relations />
+	<updateSQLs />
+</datamodel>
