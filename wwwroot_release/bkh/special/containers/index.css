@@ -1,0 +1,21 @@
+.${Name}_bg3_border { background: none repeat scroll 0% 0% rgb(255, 255, 255);  width:100%;height:100%;position:relative;overflow:hidden;}
+.${Name}_bg3_border .ct_bot_positionWrapper{position:absolute; bottom:0px; width:100%;overflow:hidden; background: url("cent_bottom.gif") repeat-x left bottom; height:${bottomHeight}px;}
+.${Name}_bg3_border .ct_bot { padding-left: 26px; font-size: 0px; background: url("left_bottom.gif") no-repeat left bottom; border-top:none; overflow: hidden; height: ${bottomHeight}px; }
+.${Name}_bg3_border .ct_bot .ct_bot_bg { font-size: 0px; overflow: hidden; height: ${bottomHeight}px; background: url("right_bottom.gif") no-repeat right bottom; }
+.${Name}_bg3_border .ct_cont {height:100%; position:relative; background:url("cent_middle.gif") repeat left top;  }
+.${Name}_bg3_border .ct_cont .ct_cont_bg{ background: url("left_middle.gif") repeat-y left top; height:100%;}
+.${Name}_bg3_border .ct_cont .ct_cont_bg .ct_cont_box{background: url("right_middle.gif") repeat-y right top; height:100%;}
+.${Name}_bg3_border .ct_contBox { clear: both; overflow: hidden; }
+.${Name}_bg3_border .ct_t_01 { padding: 6px 0px 4px; }
+.${Name}_bg3_border UL { list-style-type: none; padding: 0px; margin: 0px; }
+.${Name}_bg3_border LI { padding: 0px; margin: 0px; }
+.${Name}_bg3_border .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.${Name}_bg3_border .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.${Name}_bg3_border .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.${Name}_bg3_border A { color: rgb(0, 0, 0); text-decoration: none; }
+.${Name}_bg3_border .ct_list_009 li a{ color:#000000}
+.${Name}_bg3_border H2 { padding: 0px; margin: 0px; }
+.${Name}_bg3_border .ct_title {font-weight: normal; background: url('cent_top.gif') repeat-x left top; overflow: hidden; color:#C20E02; height: ${topHeight}px; font-weight:bold; }
+.${Name}_bg3_border .ct_title .ct_more { font-family:SIMSUN; padding-right: 10px; font-weight: normal; font-size: 12px; background: url('right_top.gif') no-repeat right top;  float: right; line-height: 26px; height: ${topHeight}px; }
+.${Name}_bg3_border .ct_title A:link { color:#ffffff; text-decoration: none; }
+.${Name}_bg3_border .ct_title .ct_name { padding-left:30px; font-size: 14px; float: left; overflow: hidden; line-height: 26px; white-space: nowrap; height: ${topHeight}px; overflow: hidden; color:#C20E02;  background: url('left_top.gif') no-repeat left top; color: #ffffff;}

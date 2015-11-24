@@ -1,0 +1,21 @@
+#headBox { margin: 0px auto; width: 950px; }
+#topWrap {  }
+#topWrap { padding: 5px 0px 0px; }
+BODY { padding: 0px; margin: 0px; }
+BODY { font-size: 12px; }
+.VBody { background: none repeat scroll 0% 0% rgb(255, 255, 255); text-align: center; }
+.VBody { background: none repeat scroll 0% 0% rgb(255, 255, 255); color: rgb(0, 0, 0); }
+.secondaryHeader { font-weight: 100; font-size: 12px; background: url('standardl2nav_bg.gif') repeat-x scroll 0% 0% rgb(255, 255, 255); overflow: hidden; color: rgb(0, 0, 0); height: 33px; }
+.sHBorder { border-right: 1px solid rgb(227, 227, 227); padding: 0px 10px 0px 12px; border-width: 1px; border-style: solid; border-color: rgb(227, 227, 227); overflow: hidden; }
+.sHLinks { float: right; line-height: 31px; }
+A { color: rgb(0, 0, 0); text-decoration: underline; }
+A { color: rgb(0, 0, 0); text-decoration: none; }
+.secondaryHeader A { color: rgb(0, 0, 0); text-decoration: none; }
+.sHLogo { float: left; overflow: hidden; line-height: 31px; height: 31px; }
+.sHLogo SPAN { display: block; font-size: 27px; float: left; vertical-align: middle; font-family: Arial; height: 31px; }
+.sHLogo SPAN { vertical-align: middle; }
+.sHLogo SPAN A { display: block; font-size: 27px; float: left; vertical-align: middle; font-family: Arial; height: 31px; }
+IMG { padding: 0px; margin: 0px; }
+IMG { border-right: 0px solid; border-width: 0px; border-style: solid; border-color: -moz-use-text-color; }
+IMG { border-color: rgb(0, 0, 0); border-style: solid; }
+.sHLogo SPAN A IMG { vertical-align: middle; }

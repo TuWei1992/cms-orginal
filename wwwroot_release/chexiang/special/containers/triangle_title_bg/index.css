@@ -1,0 +1,19 @@
+.triangle_title_bg { background: none repeat scroll 0% 0% rgb(255, 255, 255);  width:100%;height:100%;position:relative;overflow:hidden;}
+.triangle_title_bg .ct_bot_positionWrapper{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;}
+.triangle_title_bg .ct_bot { padding-left: 5px; font-size: 0px;  overflow: hidden; height: 5px; }
+.triangle_title_bg .ct_bot .ct_bot_bg { font-size: 0px; overflow: hidden; height: 5px; }
+.triangle_title_bg .ct_cont {height:100%; position:relative; padding: 0px 4px; }
+.triangle_title_bg .ct_contBox { clear: both; overflow: hidden; }
+.triangle_title_bg .ct_t_01 { padding: 6px 0px 4px; }
+.triangle_title_bg UL { list-style-type: none;  padding: 0px; margin: 0px; }
+.triangle_title_bg LI { padding: 0px; margin: 0px; }
+.triangle_title_bg .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.triangle_title_bg .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.triangle_title_bg a { color: #000000; text-decoration: none; }
+.triangle_title_bg .ct_t_01 li a{color:#013979; text-decoration: none;}
+.triangle_title_bg H2 { padding: 0px; margin: 0px; }
+.triangle_title_bg .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.triangle_title_bg .ct_title {font-weight: normal; background: url('s01_mj_004.gif') repeat-x 0px -25px #EAF1F5; overflow: hidden; color: rgb(255, 255, 255); border:1px solid #AEC6DD; height: 25px; }
+.triangle_title_bg .ct_title .ct_more { font-family:SIMSUN; padding-right: 10px; font-weight: normal; font-size: 12px; float: right; line-height: 25px; height: 25px; }
+.triangle_title_bg .ct_title A:link { color:#000000; text-decoration: none; }
+.triangle_title_bg .ct_title .ct_name { padding-left: 22px; font-size: 14px; float: left; overflow: hidden; line-height: 25px; white-space: nowrap; height: 25px; background: url('s01_mj_004.gif') no-repeat scroll 12px 0px transparent; color:#000000;}

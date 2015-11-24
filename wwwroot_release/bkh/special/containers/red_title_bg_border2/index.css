@@ -1,0 +1,18 @@
+.red_title_bg_border2 { background: none repeat scroll 0% 0% rgb(255, 255, 255);  width:100%;height:100%;position:relative;overflow:hidden;}
+.red_title_bg_border2 .ct_bot_positionWrapper{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;}
+.red_title_bg_border2 .ct_bot { padding-left: 5px; font-size: 0px; background:#FFF6FB; border:1px solid #FED1E8; border-top:none; overflow: hidden; height: 4px; }
+.red_title_bg_border2 .ct_bot .ct_bot_bg { font-size: 0px;overflow: hidden; height:4px; }
+.red_title_bg_border2 .ct_cont {height:100%; position:relative; padding:0px 4px 0px 4px; background:#FFF6FB; border-left:1px solid #FED1E8; border-right:1px solid #FED1E8;}
+.red_title_bg_border2 .ct_contBox { clear: both; overflow: hidden; }
+.red_title_bg_border2 .ct_t_01 { padding: 6px 0px 4px; }
+.red_title_bg_border2 UL {padding: 0px; margin: 0px;  list-style-type: none; }
+.red_title_bg_border2 LI { padding: 0px; margin: 0px; }
+.red_title_bg_border2 .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.red_title_bg_border2 .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.red_title_bg_border2 .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.red_title_bg_border2 A { color: rgb(0, 0, 0); text-decoration: none; }
+.red_title_bg_border2 H2 { padding: 0px; margin: 0px; }
+.red_title_bg_border2 .ct_title { font-weight: normal;  background:#FFE6F3; border:1px solid #FED1E8; overflow: hidden; color: rgb(255, 255, 255);  height: 26px; }
+.red_title_bg_border2 .ct_title .ct_more { font-family:SIMSUN; padding-right: 10px; font-weight: normal; font-size: 12px; float: right; line-height: 26px; height: 26px;}
+.red_title_bg_border2 .ct_title A:link { color: #FF308D;  text-decoration: none; }
+.red_title_bg_border2 .ct_title .ct_name {color: #FF308D; padding-left: 30px; font-size: 14px; float: left; overflow: hidden; line-height: 26px; white-space: nowrap; height: 26px; background:url('s04_mj_004.gif') no-repeat 10px center;}

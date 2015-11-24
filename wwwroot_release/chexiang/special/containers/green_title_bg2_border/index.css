@@ -1,0 +1,20 @@
+.green_title_bg2_border { background: none repeat scroll 0% 0% rgb(255, 255, 255);  width:100%;height:100%;position:relative;overflow:hidden;}
+.green_title_bg2_border .ct_bot_positionWrapper{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;}
+.green_title_bg2_border .ct_bot { padding-left: 5px; font-size: 0px; background:#ffffff; border:1px solid #BDD98C; border-top:none; overflow: hidden; height: 5px; }
+.green_title_bg2_border .ct_bot .ct_bot_bg { font-size: 0px; overflow: hidden; height: 5px; }
+.green_title_bg2_border .ct_cont {height:100%; position:relative; background:#ffffff; border-left:1px solid #BDD98C; padding: 0px 4px;  border-right:1px solid #BDD98C; }
+.green_title_bg2_border .ct_contBox { clear: both; overflow: hidden; }
+.green_title_bg2_border .ct_t_01 { padding: 6px 0px 4px; }
+.green_title_bg2_border UL { list-style-type: none;padding: 0px; margin: 0px; }
+.green_title_bg2_border LI { padding: 0px; margin: 0px; }
+.green_title_bg2_border .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.green_title_bg2_border .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.green_title_bg2_border .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.green_title_bg2_border A { color: rgb(0, 0, 0); text-decoration: none; }
+.green_title_bg2_border H2 { padding: 0px; margin: 0px; }
+.green_title_bg2_border .ct_title { font-weight: normal; }
+.green_title_bg2_border .ct_title { background: url('s43_lmy_004.gif') no-repeat 0px -26px; overflow: hidden; color:#C20E02; border: 1px solid #BDD98C ; border-bottom: none; height: 26px; }
+.green_title_bg2_border .ct_title .ct_more { font-family:SIMSUN; padding-right: 10px; font-weight: normal; font-size: 12px; background: url('s43_lmy_004.gif') no-repeat right bottom;  float: right; line-height: 26px; height: 26px; }
+.green_title_bg2_border .ct_title A:link { color:#ffffff; text-decoration: none; }
+.green_title_bg2_border .ct_title A:link { color: #ffffff; }
+.green_title_bg2_border .ct_title .ct_name { margin-left: 26px; padding-left:10px; padding-right:140px; font-size: 14px; float: left; overflow: hidden; line-height: 26px; white-space: nowrap; height: 26px; overflow: hidden; color:#C20E02;  background: url('s43_lmy_004.gif') no-repeat right top; color:#ffffff; }

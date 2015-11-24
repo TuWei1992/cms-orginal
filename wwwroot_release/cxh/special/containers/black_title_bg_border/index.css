@@ -1,0 +1,20 @@
+.black_title_bg_border { background: none repeat scroll 0% 0% rgb(255, 255, 255); width:100%;height:100%;position:relative;overflow:hidden;}
+.black_title_bg_border .ct_bot {position:absolute;bottom:0;left:0;width:100%; font-size: 0px; overflow: hidden; height: 4px;   background: #EEECE8; }
+.black_title_bg_border .ct_bot .ct_bot_bg {border:1px solid #767676; border-top:none; font-size: 0px; background: #EEECE8; overflow: hidden; height: 3px; }
+.black_title_bg_border .ct_cont { height:100%;position:relative; border-left: 1px solid #767676; border-right:1px solid #767676; background:#EEECE8; }
+.black_title_bg_border .ct_contBox { clear: both; overflow: hidden; }
+.black_title_bg_border .ct_t_01 { padding: 6px 0px 4px; }
+.black_title_bg_border UL { list-style-type: none; padding: 0px; margin: 0px;}
+.black_title_bg_border LI { padding: 0px; margin: 0px; }
+.black_title_bg_border .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.black_title_bg_border .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.black_title_bg_border .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.black_title_bg_border A { color: rgb(0, 0, 0); text-decoration: underline; }
+.black_title_bg_border A { color: rgb(0, 0, 0); text-decoration: none; }
+.black_title_bg_border H2 { padding: 0px; margin: 0px; }
+.black_title_bg_border .ct_title { font-weight: normal; }
+.black_title_bg_border .ct_title { background:url('s01_mj_004.gif') no-repeat left top #353535 ; overflow: hidden; border-bottom:#000000; color: rgb(255, 255, 255); height: 26px; }
+.black_title_bg_border .ct_title .ct_more { font-family:SIMSUN; padding-right: 10px; font-weight: normal; font-size: 12px; background: url('s01_mj_007.gif') no-repeat right -26px transparent; float: right; line-height: 26px; height: 26px; }
+.black_title_bg_border .ct_title A:link { color: rgb(0, 0, 0); text-decoration: none; }
+.black_title_bg_border .ct_title A:link { color: rgb(255, 255, 255); }
+.black_title_bg_border .ct_title .ct_name { padding-left: 30px; font-size: 14px; float: left; overflow: hidden; line-height: 26px; white-space: nowrap; height: 26px; background: url('s01_mj_007.gif') no-repeat left top transparent;}

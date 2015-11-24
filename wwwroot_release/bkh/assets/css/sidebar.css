@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+
+.b-sidebar{font-family:"Microsoft Yahei","微软雅黑","宋体";position: fixed;min-height: 630px;height:100%; right:0px;z-index:9999;}
+
+/* 左 */
+.b-sidebar-tabs{position:absolute;top:0;right:0;width:40px;height:100%;background:#122e3f;}
+.b-sidebar-tabs .b-btn-box{width:26px;height:32px;padding-top:18px; padding-left:14px;display: none;}
+.b-sidebar-tabs .sidebar-icon{background:url(../image/bg/sidebar-icon.png) no-repeat;display:inline-block;text-indent:-999999px;}
+.b-sidebar-tabs .close-btn{width:15px;height:16px;position:absolute;background-position:0 0;}
+ /* 箭头结束 */
+ 
+.b-sidebar-tabs .b-tabs-mask{height: 100%;}
+.b-sidebar-tabs .b-tab ,.b-tab-order,.b-tab-login{position:absolute;width:40px;cursor:pointer;}
+.b-sidebar-tabs .b-tab,.b-tab-login{height:157px;}
+.b-sidebar-tabs .b-tab-order{height:240px;}
+.b-sidebar-tabs .b-tabs-mask a:hover{background-color:#47abef;text-decoration:none;}
+/*.b-sidebar-tabs .b-tab-click{background-color:#47abef;}*/
+.b-sidebar-tabs .b-tab-logo-recommend{width:22px;height:24px;position:absolute;background-position:0 -24px;top:44px; left:9px;}
+.b-sidebar-tabs .b-tab-txt{position:absolute;font-size:14px; color:#fff;top:80px;padding:0 12px; width:14px;}
+.b-sidebar-tabs .b-tab-logo-prof{width:22px;height:24px;position:absolute;background-position:0 -58px;top:44px; left:10px;}
+.b-sidebar-tabs .b-tab-logo-login{width:23px;height:26px;position:absolute;background-position:0 -92px;top:44px; left:8px;}
+
+
+/* 右 */
+.b-recommend{position:absolute;width:310px;background-color:#393f48;height:100%;} 
+.b-recommend-title{padding-top:29px;}
+.b-recommend-title a{text-decoration:none;}
+.b-recommend-title-txt{color:#fff;text-align:center;font-size:24px;display:block;text-decoration:none;background:url(../image/bg/tit-line.png) 32px 10px no-repeat;}
+
+/* 推荐标题结束 */
+.recommend-list{padding:30px 0 10px;height:100%;overflow:auto;}
+.recommend-list .recommend-item{ width:211px; height:220px; background:#424953; color:#fff; padding:13px 49px;font-size:14px;margin-bottom:20px; }
+.recommend-list .img-link{ width:210px; height:140px;border:1px solid #bababc; display:block; margin-bottom:11px;}
+.recommend-list .txt-color{color:#a6b6ca;}
+.recommend-list .recommend-item p{ line-height:22px;}
+.recommend-list .recommend-item p a,h3 a{ color:#fff; text-decoration:none;}
+.recommend-list li:last-child{margin-bottom:100px;}
+.recommend-list .recommend-item h3{ max-height:22px; overflow:hidden; width:211px; font-size:14px;}
+
+
+/*add by wangjinglaing*/
+.b-recommend-title{width:294px;height:65px;position:absolute;z-index:999;top:0;background:#393f48}
+#box{height:800px;overflow:hidden}
+.recommend-list{overflow-x:hidden;margin-top:65px;}
+

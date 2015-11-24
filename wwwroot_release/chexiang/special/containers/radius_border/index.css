@@ -1,0 +1,16 @@
+.radius_border {background: url('tz_zxh_004.gif') no-repeat scroll 0px 0px rgb(255, 255, 255);  width:100%;height:100%;position:relative;overflow:hidden;}
+.radius_border .ct_bot_positionWrapper{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;}
+.radius_border .ct_bot { padding-left: 5px; font-size: 0px; background: url('tz_zxh_008.gif') no-repeat scroll 0px 100% rgb(255, 255, 255); overflow: hidden; height: 5px; }
+.radius_border .ct_bot .ct_bot_bg { font-size: 0px; background: url('tz_zxh_008.gif') no-repeat scroll 100% 100% rgb(255, 255, 255); overflow: hidden; height: 5px; }
+.radius_border .ct_cont {height:100%;  padding: 5px 0px 0px; background: url('tz_zxh_004.gif') no-repeat scroll 100% 0px rgb(255, 255, 255); margin-left: 5px; }
+.radius_border .ct_cont .ct_cont_bg {height:100%; border-right: 1px solid rgb(165, 187, 211); padding: 0px 5px; margin-left: -5px; border-left: 1px solid rgb(165, 187, 211); position: relative; }
+.radius_border .ct_contBox { clear: both; overflow: hidden; }
+.radius_border .ct_t_01 { padding: 6px 0px 4px; }
+.radius_border UL { padding: 0px; margin: 0px; list-style-type: none; }
+.radius_border LI { padding: 0px; margin: 0px; }
+.radius_border .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.radius_border A { color: rgb(0, 0, 0); text-decoration: none; }
+.radius_border .ct_t_04 .ct_line { background: url('bg_mj_002.gif') repeat-x scroll 0px 0px transparent; margin: 6px 4px 0px; overflow: hidden; height: 1px; }
+.radius_border H1 { padding: 0px; margin: 0px; }
+.radius_border .ct_t_04 H1 { font-weight: normal; font-size: 20px; color: rgb(204, 46, 47); line-height: 38px; font-family: "黑体"; text-align: center; }
+.radius_border .ct_t_04 H1 A:link { color: rgb(204, 46, 47); text-decoration: none; }

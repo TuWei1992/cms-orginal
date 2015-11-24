@@ -1,0 +1,53 @@
+.c-focus {
+    width: 100%;
+    height: 376px;
+	position: relative;
+    margin-top: -8px;
+    overflow: hidden;
+
+}
+.c-focus .c-focus-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	position: absolute;
+	height: 100%;
+}
+.c-focus .c-focus-list li {	    
+    display: inline-block;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+
+
+.c-focus .c-focus-list img{
+	min-width:1300px;
+	max-width:1900px;
+	border: 0;
+	display: inline-block;
+}
+.c-focus .playerControl {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	bottom: 10px;
+	right: 5px;
+	height: 14px;
+}
+
+.c-focus .playerControl li {
+	float: left;
+	width: 17px;
+	height: 17px;
+	cursor: pointer;
+	margin: 0px 8px;
+    background: url("../image/bg/banner-list.png") 0 -28px;
+}
+.c-focus .playerControl li.current {
+    background: url("../image/bg/banner-list.png") 0 -2px;
+
+}

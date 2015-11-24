@@ -1,0 +1,275 @@
+@charset "utf-8";
+
+/**
+
+ ____     __              ___                     __                        __
+/\  _`\  /\ \__          /\_ \                   /\ \                      /\ \__
+\ \,\L\_\\ \ ,_\  __  __ \//\ \       __     ____\ \ \___       __      __ \ \ ,_\
+ \/_\__ \ \ \ \/ /\ \/\ \  \ \ \    /'__`\  /',__\\ \  _ `\   /'__`\  /'__`\\ \ \/
+   /\ \L\ \\ \ \_\ \ \_\ \  \_\ \_ /\  __/ /\__, `\\ \ \ \ \ /\  __/ /\  __/ \ \ \_
+   \ `\____\\ \__\\/`____ \ /\____\\ \____\\/\____/ \ \_\ \_\\ \____\\ \____\ \ \__\
+    \/_____/ \/__/ `/___/> \\/____/ \/____/ \/___/   \/_/\/_/ \/____/ \/____/  \/__/
+                      /\___/
+                      \/__/
+
+ * Statement: ...//TODO: Write statement.
+ *
+ * Describe: A CSS Reset (or “Reset CSS”) is a short, often compressed (minified) set of CSS rules that resets the styling of all HTML elements to a consistent baseline.
+ *
+ * Further Changes, Comments: ...//TODO: Give a further changes and comments link.
+ *
+ * Docs: ...//TODO: Give a link about project documents.
+ *
+ * Author: 沈维忠 ( Shen Weizhong / Tony Stark )
+ *
+ *      Cell Phone: (+86) 15921299022
+ *
+ *      Github：//github.com/Tony-Stark/
+ *
+ *      Trello: //trello.com/shenweizhong/
+ *
+ *      个人全球统一标识（ Gravatar ）：//en.gravatar.com/swzcowboy/
+ *
+ *      个人主页（ Personal Homepage ）：//iTonyYo.github.io/
+ *
+ *      Linkedin：//cn.linkedin.com/in/itonyyo/
+ *
+ *      Twitter: @iTonyYo, //twitter.com/iTonyYo/
+ *
+ *      Instagram：//instagram.com/itonyyo/
+ *
+ *      Facebook：//www.facebook.com/shenweizhong/
+ *
+ *      Google+: //plus.google.com/114960355664861539339/
+ *
+ *      Instagram: //instagram.com/itonyyo/
+ *
+ *      QQ：563214029, //user.qzone.qq.com/563214029/
+ *
+ *      Sina Weibo: //weibo.com/itonyyo/
+ *
+ *      WhatsApp：15921299022
+ *
+ *      微信（ WeChat ）：iTonyYo
+ *
+ *      Facebook Messenger：shenweizhong
+ *
+ *      Skype：live:swzyocowboy
+ *
+ *      Line：shenweizhong
+ *
+ *      Email: swzyocowboy@icloud.com, swzyocowboy@hotmail.com, iTonyYo@gmail.com, itonyyo@vip.qq.com, shenweizhong@facebook.com
+ *
+ * Thanks: ...//TODO: If there are some contributors, just mark them.
+
+ * Version: 0.1.0-alpha
+ *
+ * Creation Date: ~.
+ *
+ * Last Update: 2014.10.14 16:50 PM ( Tony ).    ...//TODO: Update the 'Last Update'.
+ *
+ * Music ( Custom ):     ...//TODO: If you are listenning some music, just write the name of songs.
+ *
+ * License: ...//TODO: Give a license.
+ *
+ * Copyright: ...//TODO: Give a copyright.
+ */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    outline: 0;
+
+    font-size: 100%;
+
+    vertical-align: baseline;
+
+    background: transparent;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+
+    display: block;
+
+}
+
+input, textarea, select {
+
+    margin: 0;
+
+    padding: 0;
+
+    outline: 0;
+
+}
+
+body {
+
+    color: #333;
+
+}
+
+body, button, input, select, textarea {
+
+    font: 12px/1.5 tahoma,arial,\5b8b\4f53;
+
+    *line-height: 1.5;
+
+}
+
+h1,h2,h3,h4,h5,h6 {
+
+    font-size: 100%;
+
+}
+
+address, cite, dfn, em, var {
+
+    font-style: normal;
+
+}
+
+ul, ol {
+
+    list-style: none;
+
+}
+
+a {
+
+    text-decoration: none;
+
+}
+
+a:hover {
+
+    text-decoration: underline;
+
+}
+
+blockquote, q {
+
+    quotes: none;
+
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+
+    content: '';
+
+    content: none;
+
+}
+
+fieldset, img {
+
+    border: none;
+}
+
+button, input, select, textarea {
+
+    font-size: 100%;
+
+}
+
+select, input, button, button img, label {
+
+    vertical-align: middle;
+
+}
+
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+
+    border: none;
+
+    padding: 0;
+
+}
+
+input::-ms-clear{
+
+    display: none;
+
+}
+
+table {
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
+
+}
+
+hr {
+
+    border: none;
+
+    height: 1px;
+
+}
+
+.clear {
+
+    clear: both;
+
+    display: block;
+
+    overflow: hidden;
+
+    visibility: hidden;
+
+    width: 0;height: 0;
+
+}
+
+.clearfix:before, .clearfix:after {
+
+    content: '.';
+
+    display: block;
+
+    overflow: hidden;
+
+    visibility: hidden;
+
+    font-size: 0;
+
+    line-height: 0;
+
+    width: 0;
+
+    height: 0;
+
+}
+
+.clearfix:after {
+
+    clear: both;
+
+}
+
+.clearfix {
+
+    zoom: 1;
+
+}

@@ -1,0 +1,19 @@
+.blue_triangle_title_bg__radius_border { background: none repeat scroll 0% 0% rgb(255, 255, 255); width:100%;height:100%;position:relative;overflow:hidden;}
+.blue_triangle_title_bg__radius_border .ct_bot { font-size: 0px;  background:#F3F9FF;overflow: hidden; height: 5px; position:absolute;bottom:0;left:0;width:100%;}
+.blue_triangle_title_bg__radius_border .ct_bot .ct_bot_bg { font-size: 0px; border:1px solid #b0c7df; border-top:none; overflow: hidden; height: 4px; }
+.blue_triangle_title_bg__radius_border .ct_cont { position:relative; border-left:1px solid #b0c7df;  border-right:1px solid #b0c7df; background:#F3F9FF; padding: 0px 4px; border-top:none;height:100%;}
+.blue_triangle_title_bg__radius_border .ct_contBox { clear: both; overflow: hidden; }
+.blue_triangle_title_bg__radius_border .ct_t_01 { padding: 6px 0px 4px; }
+.blue_triangle_title_bg__radius_border UL { list-style-type: none; padding: 0px; margin: 0px;}
+.blue_triangle_title_bg__radius_border LI { padding: 0px; margin: 0px; }
+.blue_triangle_title_bg__radius_border .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.blue_triangle_title_bg__radius_border .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.blue_triangle_title_bg__radius_border .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.blue_triangle_title_bg__radius_border A { color: rgb(0, 0, 0); text-decoration: none; }
+.blue_triangle_title_bg__radius_border .ct_t_01 li a{color: rgb(0, 0, 0); text-decoration: none;}
+.blue_triangle_title_bg__radius_border H2 { padding: 0px; margin: 0px; }
+.blue_triangle_title_bg__radius_border .ct_title { font-weight: normal; }
+.blue_triangle_title_bg__radius_border .ct_title { background: url('s01_mj_005.gif') no-repeat right top #185E9A; overflow: hidden; color: rgb(255, 255, 255); border-bottom: 1px solid rgb(162, 186, 210); height: 26px; }
+.blue_triangle_title_bg__radius_border .ct_title A:link { color: rgb(0, 0, 0); text-decoration: none; }
+.blue_triangle_title_bg__radius_border .ct_title A:link { color: rgb(255, 255, 255); }
+.blue_triangle_title_bg__radius_border .ct_title .ct_name { padding-left: 22px; font-size: 14px; float: left; overflow: hidden; line-height: 24px; white-space: nowrap; height: 26px; background: url('s01_mj_005.gif') no-repeat left -26px; }

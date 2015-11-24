@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+/**
+ * Statement: ...//TODO: Write statement.
+ *
+ * Describe: CSS Reset.
+ *
+ * Further Changes, Comments: ...//TODO: Give a further changes and comments link.
+ *
+ * Docs: ...//TODO: Give a link about project documents.
+ *
+ * Original Author: 沈维忠 ( Shen Weizhong / Tony Stark )
+ *
+ *  	Cell Phone: (+86) 15921299022
+ *
+ *  	Github：//github.com/Tony-Stark/
+ *
+ *  	Trello: //trello.com/shenweizhong/
+ *
+ *  	个人全球统一标识（ Gravatar ）：//en.gravatar.com/swzcowboy/
+ *
+ *  	个人主页（ Personal Homepage ）：//tony-stark.github.io/
+ *
+ *  	Linkedin：//cn.linkedin.com/in/itonyyo/
+ *
+ *  	Twitter: @iTonyYo, //twitter.com/iTonyYo/
+ *
+ *  	Instagram：//instagram.com/itonyyo/
+ *
+ *  	Facebook：//www.facebook.com/shenweizhong/
+ *
+ *  	Google+: //plus.google.com/114960355664861539339/
+ *
+ *  	Instagram: //instagram.com/itonyyo/
+ *
+ *  	QQ：563214029, //user.qzone.qq.com/563214029/
+ *
+ *  	Sina Weibo: //weibo.com/itonyyo/
+ *
+ *  	WhatsApp：15921299022
+ *
+ *  	微信（ WeChat ）：iTonyYo
+ *
+ *  	Facebook Messenger：shenweizhong
+ *
+ *  	Skype：live:swzyocowboy
+ *
+ *  	Line：shenweizhong
+ *
+ *  	Email: swzyocowboy@icloud.com, swzyocowboy@hotmail.com, iTonyYo@gmail.com, itonyyo@vip.qq.com, shenweizhong@facebook.com
+ *
+ * Thanks: ...//TODO: If there are some contributors, just mark them.
+ *
+ * Version: 2.0
+ *
+ * Creation Date: ~ ( Tony ).
+ *
+ * Last Update: ~ ( Tony ).    ...//TODO: Update the 'Last Update'.
+ *
+ * Music ( Custom ):     ...//TODO: If you are listenning some music, just write the name of songs.
+ *
+ * License: ...//TODO: Give a license.
+ *
+ * Copyright: ...//TODO: Give a copyright.
+ */
+
+
+
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+
+* {
+
+	outline: 0;
+
+	border: 0;
+
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+
+	margin: 0;
+
+	padding: 0;
+
+	font-size: 100%;
+
+	font: inherit;
+
+	vertical-align: baseline;
+
+}
+
+body {
+
+	line-height: 1;
+
+}
+
+ol, ul {
+
+	list-style: none;
+
+}
+
+ins {
+
+	text-decoration: none;
+
+}
+
+blockquote {
+
+	quotes: none;
+
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+
+	content: '';
+
+	content: none;
+
+}

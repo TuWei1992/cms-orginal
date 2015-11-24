@@ -1,0 +1,922 @@
+/* index.css
+ * Created: 2015-03-09
+ * Update: 2015-03-09
+ * Author: Amanda
+ */
+/* extend */
+/* line 5, ../_source/components/_extend.scss */
+.banner-wrap .page-num span, .banner-wrap .page-num .cur, .mod-job .a-more i, .mod-news .icon-arrow-left, .mod-news .icon-arrow-right, .rend-data a i, .rend-data a:hover i, .faq-list dl.cur .arrow, .faq-list .arrow {
+  background-image: url('../img/skin-sfef040d801.png');
+  background-repeat: no-repeat;
+}
+
+/* line 2, ../_source/components/_common.scss */
+.container, .txt-list, .header, .mod-news .btn-area, .mod-job-filter .filter-list dl {
+  *zoom: 1;
+}
+/* line 3, ../_source/components/_common.scss */
+.container:after, .txt-list:after, .header:after, .mod-news .btn-area:after, .mod-job-filter .filter-list dl:after {
+  content: ".";
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* line 15, ../_source/components/_common.scss */
+.header-wrapper, .banner-wrapper {
+  min-width: 1190px;
+  width: 100%;
+}
+
+/* line 20, ../_source/components/_common.scss */
+.header {
+  width: 1190px;
+  margin: 0 auto;
+}
+
+/* line 46, ../_source/components/_common.scss */
+body {
+  background-color: #f3f3f3;
+}
+
+/* line 60, ../_source/components/_common.scss */
+.container {
+  margin-bottom: 30px;
+}
+
+/* line 66, ../_source/components/_common.scss */
+.mod {
+  height: 230px;
+  background-color: #fff;
+  overflow: hidden;
+}
+/* line 70, ../_source/components/_common.scss */
+.mod .th {
+  height: 37px;
+  padding: 0 20px 0 30px;
+  margin-bottom: 5px;
+  line-height: 37px;
+}
+/* line 75, ../_source/components/_common.scss */
+.mod .th .tit {
+  float: left;
+  font-size: 16px;
+  font-weight: 100;
+}
+/* line 80, ../_source/components/_common.scss */
+.mod .th .a-more {
+  float: right;
+}
+
+/* line 86, ../_source/components/_common.scss */
+.tag-top, .tag-hot, .tag-fast {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: 16px;
+  height: 16px;
+  background-color: #00c753;
+  color: #fff;
+  font: 12px/16px SimSun;
+  text-align: center;
+}
+
+/* line 96, ../_source/components/_common.scss */
+.tag-hot {
+  background-color: #e51b23;
+}
+
+/* line 100, ../_source/components/_common.scss */
+.tag-fast {
+  background-color: #ff6501;
+}
+
+/* line 104, ../_source/components/_common.scss */
+.txt-list {
+  height: 180px;
+  overflow: hidden;
+}
+/* line 108, ../_source/components/_common.scss */
+.txt-list li {
+  position: relative;
+  float: left;
+  width: 265px;
+  height: 36px;
+  padding-left: 30px;
+  font-size: 14px;
+  line-height: 36px;
+  overflow: hidden;
+}
+/* line 118, ../_source/components/_common.scss */
+.txt-list .dot {
+  position: absolute;
+  left: 18px;
+  top: 0;
+  width: 12px;
+  color: #ccc;
+  font-size: 20px;
+  line-height: 36px;
+  font-family: Arial;
+}
+
+/* line 3, ../_source/index/_header.scss */
+.header-wrapper {
+  background-color: #fff;
+}
+
+/* line 11, ../_source/index/_header.scss */
+.header .saic-logo {
+  float: left;
+  padding: 20px 0;
+  font-size: 0;
+}
+/* line 16, ../_source/index/_header.scss */
+.header .logo {
+  margin-right: 30px;
+}
+/* line 19, ../_source/index/_header.scss */
+.header .main-nav {
+  float: right;
+  padding: 20px 0 0;
+}
+/* line 22, ../_source/index/_header.scss */
+.header .main-nav li {
+  float: left;
+  padding: 0 25px;
+  font-size: 18px;
+  line-height: 40px;
+}
+/* line 27, ../_source/index/_header.scss */
+.header .main-nav li.last {
+  padding-right: 0;
+}
+/* line 31, ../_source/index/_header.scss */
+.header .main-nav a {
+  color: #666;
+}
+/* line 33, ../_source/index/_header.scss */
+.header .main-nav a.cur, .header .main-nav a:hover {
+  color: #04a9f4;
+  text-decoration: none;
+}
+
+/* line 3, ../_source/index/_banner.scss */
+.banner-wrapper {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+/* line 10, ../_source/index/_banner.scss */
+.banner-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  z-index: 2;
+}
+/* line 17, ../_source/index/_banner.scss */
+.banner-wrap li {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 400px;
+  z-index: 0;
+  overflow: hidden;
+}
+/* line 27, ../_source/index/_banner.scss */
+.banner-wrap .img {
+  display: block;
+  height: 400px;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  background-color: #f3f3f3;
+}
+/* line 34, ../_source/index/_banner.scss */
+.banner-wrap .cur {
+  display: block;
+}
+/* line 37, ../_source/index/_banner.scss */
+.banner-wrap .page-num {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: 12px;
+  width: 900px;
+  height: 16px;
+  margin-left: -450px;
+  text-align: center;
+}
+/* line 46, ../_source/index/_banner.scss */
+.banner-wrap .page-num span {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: 16px;
+  height: 16px;
+  background-position: 0 -188px;
+  cursor: pointer;
+}
+/* line 51, ../_source/index/_banner.scss */
+.banner-wrap .page-num .cur {
+  width: 16px;
+  height: 16px;
+  background-position: 0 -167px;
+}
+
+/* line 2, ../_source/index/_main.scss */
+.mod-job {
+  float: left;
+  width: 590px;
+  margin-right: 10px;
+}
+/* line 6, ../_source/index/_main.scss */
+.mod-job .th {
+  background-color: #ff9701;
+  color: #fff;
+}
+/* line 10, ../_source/index/_main.scss */
+.mod-job .a-more {
+  color: #fff;
+}
+/* line 12, ../_source/index/_main.scss */
+.mod-job .a-more:hover {
+  color: #fff;
+}
+/* line 15, ../_source/index/_main.scss */
+.mod-job .a-more i {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: 6px;
+  height: 10px;
+  background-position: 0 -152px;
+  margin-left: 6px;
+}
+
+/* line 24, ../_source/index/_main.scss */
+.mod-news {
+  float: left;
+  width: 350px;
+}
+/* line 27, ../_source/index/_main.scss */
+.mod-news .th {
+  position: relative;
+  background-color: #04a9f4;
+  color: #fff;
+}
+/* line 32, ../_source/index/_main.scss */
+.mod-news .btn-area {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  z-index: 2;
+  width: 55px;
+  height: 27px;
+}
+/* line 40, ../_source/index/_main.scss */
+.mod-news .btn-area span {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  cursor: pointer;
+}
+/* line 45, ../_source/index/_main.scss */
+.mod-news .icon-arrow-left {
+  float: left;
+  width: 28px;
+  height: 27px;
+  background-position: 0 -47px;
+}
+/* line 49, ../_source/index/_main.scss */
+.mod-news .icon-arrow-right {
+  width: 27px;
+  height: 27px;
+  background-position: 0 -15px;
+}
+/* line 52, ../_source/index/_main.scss */
+.mod-news .data-wrap {
+  position: relative;
+  width: 350px;
+  height: 180px;
+  overflow: hidden;
+}
+/* line 58, ../_source/index/_main.scss */
+.mod-news .data-wrapper {
+  position: absolute;
+  width: 999px;
+}
+/* line 62, ../_source/index/_main.scss */
+.mod-news .txt-list {
+  float: left;
+  width: 350px;
+}
+/* line 65, ../_source/index/_main.scss */
+.mod-news .txt-list li {
+  width: 320px;
+}
+/* line 67, ../_source/index/_main.scss */
+.mod-news .txt-list li a {
+  float: left;
+  width: 290px;
+  height: 36px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* line 76, ../_source/index/_main.scss */
+.mod-news .txt-list .time {
+  position: absolute;
+  right: 30px;
+  top: 0;
+  color: #999;
+}
+
+/* line 85, ../_source/index/_main.scss */
+.mod-attention {
+  float: right;
+  width: 230px;
+}
+/* line 88, ../_source/index/_main.scss */
+.mod-attention .th {
+  position: relative;
+  height: 36px;
+  border-bottom: 1px solid #ccc;
+}
+/* line 93, ../_source/index/_main.scss */
+.mod-attention .btn-sina {
+  position: absolute;
+  right: 15px;
+  top: 8px;
+  width: 67px;
+  height: 24px;
+  overflow: hidden;
+}
+/* line 100, ../_source/index/_main.scss */
+.mod-attention .btn-sina iframe {
+  float: right;
+}
+/* line 104, ../_source/index/_main.scss */
+.mod-attention .zhaopin-weixin {
+  padding: 4px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  line-height: 16px;
+}
+/* line 110, ../_source/index/_main.scss */
+.mod-attention .zhaopin-weixin .img-box {
+  display: inline;
+}
+/* line 113, ../_source/index/_main.scss */
+.mod-attention .zhaopin-weixin dt {
+  margin-top: 5px;
+}
+/* line 116, ../_source/index/_main.scss */
+.mod-attention .zhaopin-weixin strong {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* line 3, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter {
+  width: 950px;
+  height: auto;
+  margin-top: 10px;
+}
+/* line 7, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .th {
+  height: 59px;
+  border-bottom: 1px solid #ccc;
+}
+/* line 10, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .th .tit {
+  font-size: 24px;
+  line-height: 58px;
+  color: #999;
+}
+/* line 16, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .tb {
+  padding: 0 30px 20px;
+  font-size: 14px;
+}
+/* line 20, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter a {
+  color: #03a9f4;
+}
+/* line 22, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter a:hover {
+  color: #f60;
+}
+/* line 26, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .filter-list {
+  padding: 9px 0 14px;
+  margin-bottom: 10px;
+  color: #666;
+  border-bottom: 1px solid #ccc;
+  line-height: 18px;
+}
+/* line 35, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .filter-list dt {
+  float: left;
+  width: 76px;
+  padding: 5px 0;
+}
+/* line 40, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .filter-list dd {
+  padding: 5px 0 0 0;
+  overflow: hidden;
+  zoom: 1;
+}
+/* line 45, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .filter-list a {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding: 0 4px;
+  margin: 0 10px 5px 0;
+}
+/* line 50, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .filter-list .cur {
+  color: #fff;
+  background-color: #ff6602;
+}
+/* line 53, ../_source/index/_mod-job-filter.scss */
+.mod-job-filter .filter-list .cur:hover {
+  color: #fff;
+  background-color: #ff6602;
+}
+
+/* line 61, ../_source/index/_mod-job-filter.scss */
+.rend-data {
+  width: 100%;
+  color: #999;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+/* line 67, ../_source/index/_mod-job-filter.scss */
+.rend-data .job-tit {
+  width: 285px;
+}
+/* line 70, ../_source/index/_mod-job-filter.scss */
+.rend-data .job-type {
+  width: 122px;
+}
+/* line 73, ../_source/index/_mod-job-filter.scss */
+.rend-data .job-place, .rend-data .job-num {
+  width: 120px;
+}
+/* line 76, ../_source/index/_mod-job-filter.scss */
+.rend-data .job-time {
+  width: 170px;
+}
+/* line 79, ../_source/index/_mod-job-filter.scss */
+.rend-data th {
+  height: 39px;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 39px;
+  font-weight: 100;
+  text-align: left;
+  color: #333;
+}
+/* line 87, ../_source/index/_mod-job-filter.scss */
+.rend-data td {
+  height: 32px;
+  padding: 9px 0 8px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  overflow: hidden;
+}
+/* line 94, ../_source/index/_mod-job-filter.scss */
+.rend-data .fix_txt {
+  height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 103, ../_source/index/_mod-job-filter.scss */
+.rend-data tbody tr:hover td {
+  background-color: #fafafa;
+}
+/* line 109, ../_source/index/_mod-job-filter.scss */
+.rend-data a i {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: 6px;
+  height: 10px;
+  background-position: 0 0;
+  margin-left: 10px;
+}
+/* line 116, ../_source/index/_mod-job-filter.scss */
+.rend-data a:hover i {
+  width: 6px;
+  height: 10px;
+  background-position: 0 -79px;
+}
+
+/* line 124, ../_source/index/_mod-job-filter.scss */
+.page .a-prev .arrow, .page .a-next .arrow {
+  display: inline-block;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: 6px dashed transparent;
+}
+
+/* line 133, ../_source/index/_mod-job-filter.scss */
+.page {
+  margin-top: 15px;
+  text-align: right;
+  line-height: 24px;
+}
+/* line 137, ../_source/index/_mod-job-filter.scss */
+.page a {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  height: 24px;
+  background-color: #fff;
+  border: 1px solid #999;
+  color: #4285f4;
+  vertical-align: middle;
+}
+/* line 144, ../_source/index/_mod-job-filter.scss */
+.page a.cur, .page a:hover {
+  background-color: #4285f4;
+  border-color: #4285f4;
+  color: #fff;
+  text-decoration: none;
+}
+/* line 151, ../_source/index/_mod-job-filter.scss */
+.page .num {
+  margin: 0 10px;
+}
+/* line 153, ../_source/index/_mod-job-filter.scss */
+.page .num a {
+  padding: 0 8px;
+}
+/* line 156, ../_source/index/_mod-job-filter.scss */
+.page .num i {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding: 0 3px;
+}
+/* line 161, ../_source/index/_mod-job-filter.scss */
+.page .a-prev {
+  padding: 0 10px 0 4px;
+}
+/* line 163, ../_source/index/_mod-job-filter.scss */
+.page .a-prev .arrow {
+  *position: relative;
+  *top: 6px;
+  border-right: 6px solid #4285f4;
+}
+/* line 171, ../_source/index/_mod-job-filter.scss */
+.page .a-prev:hover .arrow {
+  border-right-color: #fff;
+}
+/* line 176, ../_source/index/_mod-job-filter.scss */
+.page .a-prev-none {
+  border-color: #ccc;
+  cursor: default;
+  background-color: #fff;
+}
+/* line 180, ../_source/index/_mod-job-filter.scss */
+.page .a-prev-none .arrow {
+  border-right-color: #ccc;
+}
+/* line 183, ../_source/index/_mod-job-filter.scss */
+.page .a-prev-none:hover {
+  background-color: #fff;
+  border-color: #ccc;
+}
+/* line 186, ../_source/index/_mod-job-filter.scss */
+.page .a-prev-none:hover .arrow {
+  border-right-color: #ccc;
+}
+/* line 191, ../_source/index/_mod-job-filter.scss */
+.page .a-next {
+  padding: 0 4px 0 10px;
+}
+/* line 193, ../_source/index/_mod-job-filter.scss */
+.page .a-next .arrow {
+  border-left: 6px solid #4285f4;
+  margin-left: 10px;
+}
+/* line 199, ../_source/index/_mod-job-filter.scss */
+.page .a-next:hover .arrow {
+  border-left-color: #fff;
+}
+/* line 204, ../_source/index/_mod-job-filter.scss */
+.page .a-next-none {
+  background-color: #fff;
+  border-color: #ccc;
+  cursor: default;
+  color: #ccc;
+}
+/* line 209, ../_source/index/_mod-job-filter.scss */
+.page .a-next-none .arrow {
+  border-left-color: #ccc;
+}
+/* line 212, ../_source/index/_mod-job-filter.scss */
+.page .a-next-none:hover {
+  background-color: #fff;
+  border-color: #ccc;
+  color: #ccc;
+}
+/* line 216, ../_source/index/_mod-job-filter.scss */
+.page .a-next-none:hover .arrow {
+  border-left-color: #ccc;
+  color: #ccc;
+}
+
+/*---- struction style   ----*/
+/* line 3, ../_source/recruit.scss */
+.fl {
+  float: left;
+}
+
+/* line 4, ../_source/recruit.scss */
+.fr {
+  float: right;
+}
+
+/* line 5, ../_source/recruit.scss */
+.main_b {
+  width: 950px;
+}
+
+/* line 6, ../_source/recruit.scss */
+.side {
+  width: 230px;
+}
+
+/*---- common style   ----*/
+/* line 10, ../_source/recruit.scss */
+.main_recruit {
+  margin: 10px 0 0;
+  padding: 0 30px;
+  background-color: #fff;
+}
+
+/* line 11, ../_source/recruit.scss */
+.main_recruit .btn {
+  display: inline-table;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #04a8f4;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* line 12, ../_source/recruit.scss */
+.btn:hover {
+  text-decoration: none;
+  background-color: #73b5fb;
+  color: #fff;
+}
+
+/*----  brief introduction   ------*/
+/* line 15, ../_source/recruit.scss */
+.main_briefIntro {
+  position: relative;
+}
+
+/* line 16, ../_source/recruit.scss */
+.main_briefIntro h2 {
+  padding: 24px 0 31px 0;
+  line-height: 36px;
+  height: 36px;
+  font-size: 36px;
+  color: #999;
+  font-weight: 400;
+}
+
+/* line 18, ../_source/recruit.scss */
+.intro_list li {
+  float: left;
+  width: 160px;
+  margin: 3px 140px 17px 0;
+  line-height: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+/* line 19, ../_source/recruit.scss */
+.main_briefIntro .btn {
+  position: absolute;
+  right: 30px;
+  bottom: 17px;
+}
+
+/*----  detail introduction   ------*/
+/* line 23, ../_source/recruit.scss */
+.main_detialIntro .detailItem {
+  padding: 30px 0 10px;
+}
+
+/* line 24, ../_source/recruit.scss */
+.detailItem h3 {
+  margin: 0 0 20px;
+  line-height: 18px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* line 25, ../_source/recruit.scss */
+.detailItem ol {
+  color: #666;
+}
+
+/* line 26, ../_source/recruit.scss */
+.detailItem li {
+  list-style: decimal;
+  margin: 0 0 0 20px;
+  padding: 0 0 14px 10px;
+  line-height: 20x;
+  font-size: 16px;
+}
+
+/* line 27, ../_source/recruit.scss */
+.main_detialIntro .bot {
+  padding: 30px 0 20px;
+}
+
+/* line 28, ../_source/recruit.scss */
+.bot .btn {
+  float: left;
+}
+
+/* line 29, ../_source/recruit.scss */
+.bot .share {
+  float: right;
+  margin: 6px 0 0;
+}
+
+/*----  recruit side   ------*/
+/* line 32, ../_source/recruit.scss */
+.b_mod_attention {
+  margin-top: 10px;
+  height: 300px;
+  float: none;
+}
+
+/* line 33, ../_source/recruit.scss */
+.b_mod_attention .th {
+  padding-top: 10px;
+  border-bottom: 0 none;
+}
+
+/* line 34, ../_source/recruit.scss */
+.b_mod_attention .btn-sina {
+  top: 18px;
+  right: 25px;
+}
+
+/* line 35, ../_source/recruit.scss */
+.b_mod_attention dt {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/* line 36, ../_source/recruit.scss */
+.mod_ad {
+  margin: 10px 0 0;
+}
+
+/* line 37, ../_source/recruit.scss */
+.mod_ad img {
+  display: block;
+}
+
+/*------------------------------------------------- trands page style   --------------------------------*/
+/* line 40, ../_source/recruit.scss */
+.main_trends {
+  margin: 10px 0 0;
+  padding: 30px 40px 0;
+  background-color: #fff;
+}
+
+/* line 41, ../_source/recruit.scss */
+.main_trends h2 {
+  margin-bottom: 20px;
+  line-height: 36px;
+  font-size: 30px;
+  color: #666;
+  font-weight: 400;
+}
+
+/* line 42, ../_source/recruit.scss */
+.main_trends .sub_title {
+  margin-bottom: 50px;
+  line-height: 16px;
+  color: #999;
+  font-size: 14px;
+}
+
+/* line 43, ../_source/recruit.scss */
+.main_trends p {
+  line-height: 20px;
+  margin-bottom: 33px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* line 44, ../_source/recruit.scss */
+.main_trends .bot {
+  padding: 22px 0 20px;
+}
+
+/* line 2, ../_source/index/_faq.scss */
+.mod-faq {
+  margin-top: 10px;
+  padding-bottom: 30px;
+  background-color: #fff;
+}
+/* line 6, ../_source/index/_faq.scss */
+.mod-faq .th {
+  height: 60px;
+  padding: 0 30px;
+  font-size: 36px;
+  color: #999;
+  font-weight: 100;
+  line-height: 60px;
+  border-bottom: 1px solid #ccc;
+}
+/* line 15, ../_source/index/_faq.scss */
+.mod-faq .page {
+  margin-top: 30px;
+  padding-right: 30px;
+}
+
+/* line 21, ../_source/index/_faq.scss */
+.faq-list {
+  font-size: 16px;
+}
+/* line 23, ../_source/index/_faq.scss */
+.faq-list dl {
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+/* line 26, ../_source/index/_faq.scss */
+.faq-list dl.cur {
+  background-color: #fafafa;
+}
+/* line 28, ../_source/index/_faq.scss */
+.faq-list dl.cur .arrow {
+  width: 24px;
+  height: 24px;
+  background-position: 0 -94px;
+}
+/* line 31, ../_source/index/_faq.scss */
+.faq-list dl.cur dt {
+  padding-bottom: 0;
+}
+/* line 34, ../_source/index/_faq.scss */
+.faq-list dl.cur dd {
+  display: block;
+  padding-bottom: 15px;
+}
+/* line 39, ../_source/index/_faq.scss */
+.faq-list dl:hover {
+  background-color: #fafafa;
+}
+/* line 43, ../_source/index/_faq.scss */
+.faq-list dt {
+  position: relative;
+  padding: 15px 110px 15px 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+/* line 49, ../_source/index/_faq.scss */
+.faq-list .arrow {
+  position: absolute;
+  right: 30px;
+  top: 18px;
+  width: 24px;
+  height: 24px;
+  background-position: 0 -123px;
+}
+/* line 55, ../_source/index/_faq.scss */
+.faq-list dd {
+  display: none;
+  padding: 0 110px 0 30px;
+  text-indent: 2em;
+  line-height: 30px;
+  color: #4285f4;
+}

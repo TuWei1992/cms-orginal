@@ -1,0 +1,10 @@
+BODY { padding: 0px; margin: 0px; }
+BODY { font-size: 12px; }
+.VBody { background: none repeat scroll 0% 0% rgb(255, 255, 255); text-align: center; }
+.VBody { background: none repeat scroll 0% 0% rgb(255, 255, 255); color: rgb(0, 0, 0); }
+.footer { line-height: 28px; background:#fff url(bg.gif) repeat-x 0 bottom; border:#e3e3e3 1px solid; }
+.footer { color: #666; }
+P { padding: 0px; margin: 0px; }
+A { color: rgb(0, 0, 0); text-decoration: underline; }
+A { color: rgb(0, 0, 0); text-decoration: none; }
+.footer A:link { color: rgb(0, 0, 0); }

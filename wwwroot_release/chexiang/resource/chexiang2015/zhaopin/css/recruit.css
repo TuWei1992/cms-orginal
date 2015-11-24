@@ -1,0 +1,198 @@
+/*---- struction style   ----*/
+/* line 3, ../_source/recruit.scss */
+.fl {
+  float: left;
+}
+
+/* line 4, ../_source/recruit.scss */
+.fr {
+  float: right;
+}
+
+/* line 5, ../_source/recruit.scss */
+.main_b {
+  width: 950px;
+}
+
+/* line 6, ../_source/recruit.scss */
+.side {
+  width: 230px;
+}
+
+/*---- common style   ----*/
+/* line 10, ../_source/recruit.scss */
+.main_recruit {
+  margin: 10px 0 0;
+  padding: 0 30px;
+  background-color: #fff;
+}
+
+/* line 11, ../_source/recruit.scss */
+.main_recruit .btn {
+  display: inline-table;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #04a8f4;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* line 12, ../_source/recruit.scss */
+.btn:hover {
+  text-decoration: none;
+  background-color: #73b5fb;
+  color: #fff;
+}
+
+/*----  brief introduction   ------*/
+/* line 15, ../_source/recruit.scss */
+.main_briefIntro {
+  position: relative;
+}
+
+/* line 16, ../_source/recruit.scss */
+.main_briefIntro h2 {
+  padding: 24px 0 31px 0;
+  line-height: 36px;
+  height: 36px;
+  font-size: 36px;
+  color: #999;
+  font-weight: 400;
+}
+
+/* line 18, ../_source/recruit.scss */
+.intro_list li {
+  float: left;
+  width: 160px;
+  margin: 3px 140px 17px 0;
+  line-height: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+/* line 19, ../_source/recruit.scss */
+.main_briefIntro .btn {
+  position: absolute;
+  right: 30px;
+  bottom: 17px;
+}
+
+/*----  detail introduction   ------*/
+/* line 23, ../_source/recruit.scss */
+.main_detialIntro .detailItem {
+  padding: 30px 0 10px;
+}
+
+/* line 24, ../_source/recruit.scss */
+.detailItem h3 {
+  margin: 0 0 20px;
+  line-height: 18px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* line 25, ../_source/recruit.scss */
+.detailItem ol {
+  color: #666;
+}
+
+/* line 26, ../_source/recruit.scss */
+.detailItem li {
+  list-style: decimal;
+  margin: 0 0 0 20px;
+  padding: 0 0 14px 10px;
+  line-height: 20x;
+  font-size: 16px;
+}
+
+/* line 27, ../_source/recruit.scss */
+.main_detialIntro .bot {
+  padding: 30px 0 20px;
+}
+
+/* line 28, ../_source/recruit.scss */
+.bot .btn {
+  float: left;
+}
+
+/* line 29, ../_source/recruit.scss */
+.bot .share {
+  float: right;
+  margin: 6px 0 0;
+}
+
+/*----  recruit side   ------*/
+/* line 32, ../_source/recruit.scss */
+.b_mod_attention {
+  margin-top: 10px;
+  height: 300px;
+  float: none;
+}
+
+/* line 33, ../_source/recruit.scss */
+.b_mod_attention .th {
+  padding-top: 10px;
+  border-bottom: 0 none;
+}
+
+/* line 34, ../_source/recruit.scss */
+.b_mod_attention .btn-sina {
+  top: 18px;
+  right: 25px;
+}
+
+/* line 35, ../_source/recruit.scss */
+.b_mod_attention dt {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/* line 36, ../_source/recruit.scss */
+.mod_ad {
+  margin: 10px 0 0;
+}
+
+/* line 37, ../_source/recruit.scss */
+.mod_ad img {
+  display: block;
+}
+
+/*------------------------------------------------- trands page style   --------------------------------*/
+/* line 40, ../_source/recruit.scss */
+.main_trends {
+  margin: 10px 0 0;
+  padding: 30px 40px 0;
+  background-color: #fff;
+}
+
+/* line 41, ../_source/recruit.scss */
+.main_trends h2 {
+  margin-bottom: 20px;
+  line-height: 36px;
+  font-size: 30px;
+  color: #666;
+  font-weight: 400;
+}
+
+/* line 42, ../_source/recruit.scss */
+.main_trends .sub_title {
+  margin-bottom: 50px;
+  line-height: 16px;
+  color: #999;
+  font-size: 14px;
+}
+
+/* line 43, ../_source/recruit.scss */
+.main_trends p {
+  line-height: 20px;
+  margin-bottom: 33px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* line 44, ../_source/recruit.scss */
+.main_trends .bot {
+  padding: 22px 0 20px;
+}

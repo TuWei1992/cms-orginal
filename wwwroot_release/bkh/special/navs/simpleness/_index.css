@@ -1,0 +1,25 @@
+﻿
+body ul li{
+	margin:0;
+	padding:0;
+}
+ul,li{
+	list-style-type:none;
+}
+.hs11{
+}
+.hs11 li{
+	float:left;
+	border-left:1px solid #DDDDDD;
+	padding:0 8px;
+}
+.hs11 li.first{
+	border-left-width:0;
+}
+.hs11 a{
+	color:#666;
+	text-decoration:none;
+}
+.hs11 a:hover{
+	text-decoration:underline;
+}

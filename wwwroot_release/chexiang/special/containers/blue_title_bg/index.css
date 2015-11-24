@@ -1,0 +1,21 @@
+.blue_title_bg { background: none repeat scroll 0% 0% rgb(255, 255, 255); width:100%;height:100%;position:relative;overflow:hidden; }
+.blue_title_bg .ct_bot {position:absolute;bottom:0;left:0;width:100%;   font-size: 0px; background:#ffffff;  overflow: hidden; height: 5px; }
+.blue_title_bg .ct_bot .ct_bot_bg { font-size: 0px; overflow: hidden; height: 5px; }
+.blue_title_bg .ct_cont {height:100%; position:relative; padding: 0px 4px; background:#ffffff; }
+.blue_title_bg .ct_contBox { clear: both; overflow: hidden; }
+.blue_title_bg .ct_t_01 { padding: 6px 0px 4px; }
+.blue_title_bg UL { list-style-type: none;  padding: 0px; margin: 0px;}
+.blue_title_bg LI { padding: 0px; margin: 0px; }
+.blue_title_bg .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.blue_title_bg .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.blue_title_bg .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.blue_title_bg A { color: rgb(0, 0, 0); text-decoration: none; }
+.blue_title_bg .ct_t_01 li a{color: rgb(0, 0, 0); text-decoration: none;}
+.blue_title_bg .ct_t_01 li a:hover{ color: #ff0000; }
+.blue_title_bg H2 { padding: 0px; margin: 0px; }
+.blue_title_bg .ct_title { font-weight: normal; }
+.blue_title_bg .ct_title { background: url('s01_mj_003.gif') no-repeat left top; overflow: hidden; color: rgb(255, 255, 255); height: 26px; }
+.blue_title_bg .ct_title .ct_more { font-family:SIMSUN; padding-right: 10px; font-weight: normal; font-size: 12px; background: url('s01_mj_003.gif') no-repeat right top;  float: right; line-height: 26px; height: 26px; }
+.blue_title_bg .ct_title A:link { color:#000000; text-decoration: none; }
+.blue_title_bg .ct_title A:link { color: #000000; }
+.blue_title_bg .ct_title .ct_name { padding-left: 19px; font-size: 14px; float: left; overflow: hidden; line-height: 26px; white-space: nowrap; height: 26px; background: url('s01_mj_003.gif') no-repeat left -26px; width:150px; color:#000000; }

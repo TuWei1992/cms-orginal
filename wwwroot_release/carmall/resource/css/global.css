@@ -1,0 +1,832 @@
+/* index.css
+ * Created: 2015-03-30
+ * Update: 2015-03-30
+ * Author: Amanda
+ */
+/* extend */
+/* line 5, ../_source/components/_extend.scss */
+.topnav-main .city-hd .icon-map, .topnav-main .city-hd:hover .icon-map, .topnav-main .city-cur .icon-map, .topnav-main .weixin-hd .icon-bao, .topnav-main .weixin-hd:hover .icon-bao, .topnav-main .weixin-cur .icon-bao, .topnav-side .weixin-hd .icon-bao, .topnav-side .weixin-hd:hover .icon-bao, .header .icon-tel, .nav .icon-new, .footer-side .btn-area i, .side-abs .icon-client, .side-abs .icon-weixin, .side-fix .icon-advice, .side-fix .icon-top, .advice-pop .ico-advice-arrows {
+  background-image: url('../img/global-sab6a909908.png');
+  background-repeat: no-repeat;
+}
+
+/* line 2, ../_source/components/_common.scss */
+.topnav, .header, .nav, .footer-intro, .footer-side .ercode-box {
+  *zoom: 1;
+}
+/* line 3, ../_source/components/_common.scss */
+.topnav:after, .header:after, .nav:after, .footer-intro:after, .footer-side .ercode-box:after {
+  content: ".";
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* line 15, ../_source/components/_common.scss */
+.topnav-wrapper, .header-wrapper, .nav-wrapper, .footer-main, .footer-sub {
+  min-width: 1190px;
+  width: 100%;
+}
+
+/* line 20, ../_source/components/_common.scss */
+.container, .topnav, .header, .nav, .footer-intro, .friend-link {
+  width: 1190px;
+  margin: 0 auto;
+}
+
+/* line 38, ../_source/components/_common.scss */
+[placeholder]:-webkit-input-placeholder {
+  color: #999;
+}
+
+/* line 39, ../_source/components/_common.scss */
+[placeholder]:-ms-input-placeholder {
+  color: #999;
+}
+
+/* line 40, ../_source/components/_common.scss */
+[placeholder]:-moz-placeholder {
+  color: #999;
+}
+
+/* line 41, ../_source/components/_common.scss */
+[placeholder]:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+/* line 42, ../_source/components/_common.scss */
+[placeholder]:focus::-moz-placeholder {
+  opacity: 0;
+}
+
+/* line 43, ../_source/components/_common.scss */
+::-ms-clear {
+  display: none;
+}
+
+/* line 44, ../_source/components/_common.scss */
+.placeholdersjs {
+  color: #999;
+}
+
+/* line 46, ../_source/components/_common.scss */
+body {
+  background-color: #f2f0f0;
+  font: 12px/1.5 "Helvetica Neue", Arial, "Heiti SC", "Microsoft YaHei", SimSun;
+  color: #333;
+}
+
+/* line 51, ../_source/components/_common.scss */
+a {
+  outline: none;
+  color: #999;
+}
+/* line 54, ../_source/components/_common.scss */
+a:hover {
+  color: #f60;
+  text-decoration: underline;
+}
+
+/* line 2, ../_source/components/_topnav.scss */
+.topnav-wrapper {
+  position: relative;
+  z-index: 10;
+  height: 34px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+/* line 13, ../_source/components/_topnav.scss */
+.topnav a {
+  color: #666;
+}
+/* line 15, ../_source/components/_topnav.scss */
+.topnav a:hover {
+  color: #f60;
+}
+/* line 19, ../_source/components/_topnav.scss */
+.topnav .line {
+  margin: 10px 4px 0;
+  width: 1px;
+  height: 14px;
+  background-color: #ccc;
+  overflow: hidden;
+}
+
+/* line 36, ../_source/components/_topnav.scss */
+.topnav-main .weixin-cur {
+  position: relative;
+  z-index: 3;
+  background-color: #fff;
+  border-color: #d2d2d2;
+  color: #666;
+}
+
+/* line 44, ../_source/components/_topnav.scss */
+.topnav-main .city-bd {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 34px;
+  z-index: 2;
+  background-color: #fff;
+  border: 1px solid #d2d2d2;
+}
+
+/* line 53, ../_source/components/_topnav.scss */
+.topnav-main {
+  float: left;
+  color: #999;
+}
+/* line 56, ../_source/components/_topnav.scss */
+.topnav-main li {
+  float: left;
+  position: relative;
+}
+/* line 60, ../_source/components/_topnav.scss */
+.topnav-main .a-txt {
+  float: left;
+  padding: 0 6px 0 5px;
+  color: #666;
+  line-height: 35px;
+}
+/* line 65, ../_source/components/_topnav.scss */
+.topnav-main .a-txt:hover {
+  color: #f60;
+}
+/* line 69, ../_source/components/_topnav.scss */
+.topnav-main .a-logo {
+  float: left;
+  padding: 4px 0 0;
+}
+/* line 72, ../_source/components/_topnav.scss */
+.topnav-main .a-logo .logo {
+  margin-right: 10px;
+}
+/* line 75, ../_source/components/_topnav.scss */
+.topnav-main .a-logo img {
+  vertical-align: middle;
+}
+/* line 79, ../_source/components/_topnav.scss */
+.topnav-main .city-hd {
+  float: left;
+  padding: 0 6px 0 5px;
+  color: #666;
+  line-height: 35px;
+  cursor: pointer;
+}
+/* line 86, ../_source/components/_topnav.scss */
+.topnav-main .city-hd .icon-map {
+  float: left;
+  margin: 9px 5px 0 0;
+  width: 13px;
+  height: 15px;
+  background-position: 0 -77px;
+}
+/* line 91, ../_source/components/_topnav.scss */
+.topnav-main .city-hd:hover {
+  color: #f60;
+  text-decoration: underline;
+}
+/* line 94, ../_source/components/_topnav.scss */
+.topnav-main .city-hd:hover .icon-map {
+  width: 13px;
+  height: 15px;
+  background-position: 0 -57px;
+}
+/* line 99, ../_source/components/_topnav.scss */
+.topnav-main .city-cur {
+  position: relative;
+  z-index: 3;
+  padding: 0 5px 0 4px;
+  background-color: #fff;
+  border: 1px solid #d2d2d2;
+  border-width: 0 1px;
+  color: #666;
+}
+/* line 108, ../_source/components/_topnav.scss */
+.topnav-main .city-cur:hover {
+  color: #666;
+  text-decoration: none;
+}
+/* line 112, ../_source/components/_topnav.scss */
+.topnav-main .city-cur .icon-map {
+  width: 13px;
+  height: 15px;
+  background-position: 0 -57px;
+}
+/* line 116, ../_source/components/_topnav.scss */
+.topnav-main .city-bd {
+  width: 420px;
+  height: 150px;
+  padding: 10px 0 0 5px;
+}
+/* line 122, ../_source/components/_topnav.scss */
+.topnav-main .city-name {
+  float: left;
+  width: 60px;
+  height: 30px;
+  color: #666;
+  cursor: pointer;
+}
+/* line 128, ../_source/components/_topnav.scss */
+.topnav-main .city-name span {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding: 0 5px;
+  line-height: 18px;
+}
+/* line 134, ../_source/components/_topnav.scss */
+.topnav-main .city-name:hover span {
+  background-color: #03a9f4;
+  color: #fff;
+  text-decoration: none;
+}
+/* line 142, ../_source/components/_topnav.scss */
+.topnav-main .weixin-hd {
+  float: left;
+  width: 94px;
+  padding-left: 4px;
+  color: #666;
+  line-height: 35px;
+  cursor: pointer;
+}
+/* line 155, ../_source/components/_topnav.scss */
+.topnav-main .weixin-hd .icon-bao {
+  float: left;
+  margin: 9px 10px 0 0;
+  width: 16px;
+  height: 16px;
+  background-position: 0 -21px;
+}
+/* line 160, ../_source/components/_topnav.scss */
+.topnav-main .weixin-hd:hover {
+  color: #f60;
+  text-decoration: underline;
+}
+/* line 166, ../_source/components/_topnav.scss */
+.topnav-main .weixin-hd:hover .icon-bao {
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+}
+/* line 173, ../_source/components/_topnav.scss */
+.topnav-main .weixin-cur:hover {
+  color: #666;
+  text-decoration: none;
+}
+/* line 180, ../_source/components/_topnav.scss */
+.topnav-main .weixin-cur .icon-bao {
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+}
+
+/* line 195, ../_source/components/_topnav.scss */
+.topnav-side {
+  float: right;
+}
+/* line 197, ../_source/components/_topnav.scss */
+.topnav-side li {
+  position: relative;
+  float: left;
+  line-height: 35px;
+  color: #666;
+}
+/* line 202, ../_source/components/_topnav.scss */
+.topnav-side li a {
+  margin: 0 6px;
+  color: #666;
+}
+/* line 207, ../_source/components/_topnav.scss */
+.topnav-side .name {
+  padding-right: 6px;
+}
+/* line 211, ../_source/components/_topnav.scss */
+.topnav-side .last a {
+  margin-right: 0;
+}
+/* line 215, ../_source/components/_topnav.scss */
+.topnav-side .line {
+  margin: 10px 6px 0;
+}
+/* line 218, ../_source/components/_topnav.scss */
+.topnav-side .user-hd {
+  float: left;
+  color: #666;
+  line-height: 35px;
+  cursor: pointer;
+  width: 71px;
+  padding-left: 11px;
+}
+/* line 226, ../_source/components/_topnav.scss */
+.topnav-side .user-hd a {
+  margin: 0;
+}
+/* line 230, ../_source/components/_topnav.scss */
+.topnav-side .user-cur {
+  position: relative;
+  z-index: 3;
+  width: 70px;
+  padding-left: 10px;
+  background-color: #fff;
+  border: 1px solid #d2d2d2;
+  border-width: 0 1px;
+  color: #666;
+}
+/* line 241, ../_source/components/_topnav.scss */
+.topnav-side .group {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 34px;
+  width: 80px;
+  background-color: #fff;
+  border: 1px solid #d2d2d2;
+}
+/* line 249, ../_source/components/_topnav.scss */
+.topnav-side .group a {
+  display: block;
+  width: 94px;
+  height: 24px;
+  margin: 0;
+  padding: 0 0 0 10px;
+  line-height: 24px;
+}
+/* line 258, ../_source/components/_topnav.scss */
+.topnav-side .hidden-num {
+  visibility: hidden;
+}
+/* line 261, ../_source/components/_topnav.scss */
+.topnav-side .msg-num {
+  position: absolute;
+  right: 3px;
+  top: 4px;
+  height: 10px;
+  padding: 2px 4px;
+  background-color: #03a9f4;
+  border-radius: 10px;
+  color: #fff;
+  font: 9px/10px simsun;
+  -webkit-transform: scale(0.8);
+}
+/* line 273, ../_source/components/_topnav.scss */
+.topnav-side .checkin-account {
+  width: 40px;
+  height: 34px;
+  text-align: center;
+}
+/* line 278, ../_source/components/_topnav.scss */
+.topnav-side .add-score {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #00C853;
+  font-size: 12px;
+  white-space: nowrap;
+}
+/* line 287, ../_source/components/_topnav.scss */
+.topnav-side .marked-sucess {
+  display: none;
+}
+/* line 290, ../_source/components/_topnav.scss */
+.topnav-side .weixin-hd {
+  float: left;
+  padding-left: 4px;
+  color: #666;
+  line-height: 35px;
+  cursor: pointer;
+}
+/* line 302, ../_source/components/_topnav.scss */
+.topnav-side .weixin-hd .icon-bao {
+  float: left;
+  margin: 9px 10px 0 0;
+  width: 16px;
+  height: 16px;
+  background-position: 0 -21px;
+}
+/* line 307, ../_source/components/_topnav.scss */
+.topnav-side .weixin-hd:hover {
+  color: #f60;
+  text-decoration: underline;
+}
+/* line 313, ../_source/components/_topnav.scss */
+.topnav-side .weixin-hd:hover .icon-bao {
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+}
+
+/* line 3, ../_source/components/_header.scss */
+.header-wrapper {
+  background-color: #fff;
+}
+
+/* line 11, ../_source/components/_header.scss */
+.header .saic-logo {
+  float: left;
+  padding: 20px 0;
+  font-size: 0;
+}
+/* line 16, ../_source/components/_header.scss */
+.header .logo {
+  margin-right: 30px;
+}
+/* line 19, ../_source/components/_header.scss */
+.header .header-act {
+  float: left;
+  padding: 15px 0 0 20px;
+  width: 500px;
+  height: 55px;
+  overflow: hidden;
+}
+/* line 26, ../_source/components/_header.scss */
+.header .help-tel {
+  float: right;
+  padding: 20px 0;
+  color: #666;
+}
+/* line 30, ../_source/components/_header.scss */
+.header .help-tel dd {
+  float: left;
+}
+/* line 34, ../_source/components/_header.scss */
+.header .icon-tel {
+  float: left;
+  margin-right: 6px;
+  width: 36px;
+  height: 36px;
+  background-position: 0 -116px;
+}
+/* line 39, ../_source/components/_header.scss */
+.header .time {
+  font-size: 12px;
+  line-height: 14px;
+}
+/* line 43, ../_source/components/_header.scss */
+.header .tel-no {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* line 3, ../_source/components/_nav.scss */
+.nav-wrapper {
+  position: relative;
+  z-index: 1;
+  height: 40px;
+  background-color: #03a9f4;
+}
+
+/* line 10, ../_source/components/_nav.scss */
+.nav {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}
+/* line 16, ../_source/components/_nav.scss */
+.nav li {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+}
+/* line 21, ../_source/components/_nav.scss */
+.nav a {
+  float: left;
+  height: 40px;
+  padding: 0 16px;
+  color: #fff;
+}
+/* line 26, ../_source/components/_nav.scss */
+.nav a:hover, .nav a.cur {
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+}
+/* line 32, ../_source/components/_nav.scss */
+.nav .icon-new {
+  position: absolute;
+  top: -4px;
+  left: 16px;
+  width: 22px;
+  height: 14px;
+  background-position: 0 -97px;
+}
+
+/* line 2, ../_source/components/_footer.scss */
+.footer-side .a-btn, .footer-side .a-btn-b {
+  float: left;
+  height: 30px;
+  background-color: #03a9f4;
+  text-align: center;
+  font-size: 16px;
+  line-height: 30px;
+}
+/* line 9, ../_source/components/_footer.scss */
+.footer-side .a-btn:hover, .footer-side .a-btn-b:hover {
+  background-color: #73B5FB;
+  text-decoration: none;
+}
+
+/* line 14, ../_source/components/_footer.scss */
+.footer-main {
+  height: 200px;
+  background-color: #333;
+}
+/* line 18, ../_source/components/_footer.scss */
+.footer-main a {
+  color: #666;
+}
+/* line 20, ../_source/components/_footer.scss */
+.footer-main a:hover {
+  color: #f60;
+}
+
+/* line 25, ../_source/components/_footer.scss */
+.footer-intro {
+  padding-top: 10px;
+}
+
+/* line 30, ../_source/components/_footer.scss */
+.footer-item {
+  float: left;
+  width: 200px;
+  line-height: 24px;
+  color: #666;
+}
+/* line 35, ../_source/components/_footer.scss */
+.footer-item dt {
+  padding: 5px 0 10px;
+  font-size: 16px;
+  color: #fff;
+  line-height: 30px;
+}
+/* line 41, ../_source/components/_footer.scss */
+.footer-item .tel {
+  font-size: 14px;
+  font-weight: 700;
+  color: #999;
+}
+
+/* line 47, ../_source/components/_footer.scss */
+.footer-side {
+  float: right;
+  width: 350px;
+}
+/* line 50, ../_source/components/_footer.scss */
+.footer-side .ercode-box {
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+/* line 55, ../_source/components/_footer.scss */
+.footer-side .weixin-img {
+  float: left;
+  width: 120px;
+  margin-right: 10px;
+}
+/* line 60, ../_source/components/_footer.scss */
+.footer-side .weixin-info {
+  float: left;
+  position: relative;
+  width: 220px;
+  height: 120px;
+}
+/* line 65, ../_source/components/_footer.scss */
+.footer-side .weixin-info dt {
+  margin: -2px 0 10px;
+  font-size: 16px;
+  color: #fff;
+}
+/* line 70, ../_source/components/_footer.scss */
+.footer-side .weixin-info .weixinhao {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ccc;
+}
+/* line 75, ../_source/components/_footer.scss */
+.footer-side .weixin-info .desc {
+  position: absolute;
+  bottom: 0;
+  line-height: 18px;
+  color: #999;
+}
+/* line 83, ../_source/components/_footer.scss */
+.footer-side .btn-area a {
+  color: #fff;
+}
+/* line 85, ../_source/components/_footer.scss */
+.footer-side .btn-area a:hover {
+  color: #fff;
+}
+/* line 89, ../_source/components/_footer.scss */
+.footer-side .btn-area i {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  width: 6px;
+  height: 10px;
+  margin-left: 5px;
+  width: 6px;
+  height: 10px;
+  background-position: 0 -42px;
+}
+/* line 97, ../_source/components/_footer.scss */
+.footer-side .a-btn {
+  width: 120px;
+  margin-right: 10px;
+}
+/* line 102, ../_source/components/_footer.scss */
+.footer-side .a-btn-b {
+  width: 145px;
+}
+
+/* line 108, ../_source/components/_footer.scss */
+.footer-sub {
+  padding: 30px 0;
+  background-color: #fff;
+  line-height: 20px;
+  color: #ccc;
+}
+/* line 114, ../_source/components/_footer.scss */
+.footer-sub a {
+  color: #ccc;
+}
+/* line 116, ../_source/components/_footer.scss */
+.footer-sub a:hover {
+  color: #f60;
+}
+
+/* line 121, ../_source/components/_footer.scss */
+.copyright {
+  text-align: center;
+}
+
+/* line 126, ../_source/components/_footer.scss */
+.friend-link a {
+  margin-right: 25px;
+}
+
+/* line 2, ../_source/components/_sidebar.scss */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  width: 35px;
+  height: 100%;
+  background-color: #000;
+}
+/* line 10, ../_source/components/_sidebar.scss */
+.sidebar .tit {
+  display: block;
+  width: 17px;
+  padding: 7px 9px 0;
+  text-align: center;
+  line-height: 16px;
+  cursor: pointer;
+}
+/* line 17, ../_source/components/_sidebar.scss */
+.sidebar .tit i {
+  float: left;
+}
+/* line 20, ../_source/components/_sidebar.scss */
+.sidebar .tit:hover {
+  padding-left: 7px;
+  background: #3b3b3b;
+  border-left: 2px solid #03a9f4;
+}
+
+/* line 28, ../_source/components/_sidebar.scss */
+.side-abs {
+  font-size: 14px;
+  color: #fff;
+}
+/* line 31, ../_source/components/_sidebar.scss */
+.side-abs li {
+  float: left;
+  position: relative;
+}
+/* line 36, ../_source/components/_sidebar.scss */
+.side-abs .tit {
+  height: 81px;
+  padding: 18px 9px 0;
+}
+/* line 39, ../_source/components/_sidebar.scss */
+.side-abs .tit i {
+  float: left;
+  margin-bottom: 5px;
+}
+/* line 44, ../_source/components/_sidebar.scss */
+.side-abs .tit:hover {
+  position: relative;
+  margin: -1px 0;
+  padding: 19px 9px 1px 7px;
+}
+/* line 50, ../_source/components/_sidebar.scss */
+.side-abs .line {
+  width: 25px;
+  height: 1px;
+  margin: 0 5px;
+  background-color: #444;
+  overflow: hidden;
+}
+/* line 57, ../_source/components/_sidebar.scss */
+.side-abs .icon-client {
+  width: 16px;
+  height: 16px;
+  background-position: 0 -196px;
+}
+/* line 60, ../_source/components/_sidebar.scss */
+.side-abs .icon-weixin {
+  width: 17px;
+  height: 13px;
+  background-position: 0 -232px;
+}
+/* line 63, ../_source/components/_sidebar.scss */
+.side-abs .weixin-bd {
+  display: none;
+  position: absolute;
+  right: 35px;
+  top: 0;
+  width: 90px;
+  height: 90px;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #d2d2d2;
+}
+/* line 75, ../_source/components/_sidebar.scss */
+.side-abs .weixin-show .tit {
+  position: relative;
+  margin: -1px 0;
+  padding: 19px 9px 1px 7px;
+  background: #3b3b3b;
+  border-left: 2px solid #03a9f4;
+}
+/* line 82, ../_source/components/_sidebar.scss */
+.side-abs .weixin-show .weixin-bd {
+  display: block;
+}
+
+/* line 88, ../_source/components/_sidebar.scss */
+.side-fix {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 35px;
+  height: 80px;
+}
+/* line 94, ../_source/components/_sidebar.scss */
+.side-fix li {
+  position: relative;
+  margin-bottom: 10px;
+}
+/* line 98, ../_source/components/_sidebar.scss */
+.side-fix .tit {
+  height: 23px;
+}
+/* line 101, ../_source/components/_sidebar.scss */
+.side-fix .icon-advice {
+  width: 17px;
+  height: 17px;
+  background-position: 0 -157px;
+}
+/* line 104, ../_source/components/_sidebar.scss */
+.side-fix .icon-top {
+  width: 17px;
+  height: 10px;
+  background-position: 0 -217px;
+}
+/* line 107, ../_source/components/_sidebar.scss */
+.side-fix .a-top {
+  height: 21px;
+  padding-top: 9px;
+  cursor: poniter;
+}
+
+/* line 114, ../_source/components/_sidebar.scss */
+.advice-pop {
+  display: none;
+  position: absolute;
+  right: 50px;
+  top: 0;
+  width: 86px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #494949;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+}
+/* line 126, ../_source/components/_sidebar.scss */
+.advice-pop .ico-advice-arrows {
+  position: absolute;
+  top: 9px;
+  right: -6px;
+  width: 7px;
+  height: 12px;
+  background-position: 0 -179px;
+}

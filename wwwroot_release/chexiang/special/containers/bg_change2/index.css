@@ -1,0 +1,16 @@
+.bg_change2 { background: none repeat scroll 0% 0% rgb(255, 255, 255); width:100%;height:100%;position:relative;overflow:hidden;}
+.bg_change2 .ct_bot { position:absolute;bottom:0;left:0;width:100%; font-size: 0px;background:#ffffff;   overflow: hidden; height: 5px; }
+.bg_change2 .ct_bot .ct_bot_bg {border:1px solid #FFFFFF; border-top:none;  font-size: 0px;  overflow: hidden; height: 5px; }
+.bg_change2 .ct_cont {height:100%; padding: 4px 4px 0px 4px;  border:1px solid #FFFFFF; background:url('hbg.gif') repeat-x left top #ffffff; }
+.bg_change2 .ct_cont .ct_cont_bg { padding: 0px 5px; }
+.bg_change2 .ct_contBox { clear: both; overflow: hidden; }
+.bg_change2 .ct_t_01 { padding: 6px 0px 4px; }
+.bg_change2 UL {padding: 0px; margin: 0px;  list-style-type: none; }
+.bg_change2 LI { padding: 0px; margin: 0px; }
+.bg_change2 .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.bg_change2 .ct_t_04 .ct_line { margin: 6px 4px 0px; overflow: hidden; height: 1px; }
+.bg_change2 H1 { padding: 0px; margin: 0px; }
+.bg_change2 .ct_t_04 H1 { font-weight: normal; font-size: 14px; color: rgb(204, 46, 47); line-height: 30px; text-align: left; padding-left:16px; font-weight:bold; }
+.bg_change2 .ct_t_04 H1 A:link { color:#000000; text-decoration: none; }
+.bg_change2 .ct_memo{ padding:0px; margin:0px; color:#525252; line-height:1.8; text-indent:2em; font-size:12px; }
+ 

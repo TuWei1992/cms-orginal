@@ -1,0 +1,770 @@
+/* index.css
+ * Created: 2015-03-30
+ * Update: 2015-03-30
+ * Author: Amanda
+ */
+/* extend */
+/* line 5, ../_source/index/_extend.scss */
+.article-list .icon-traffic, .map-area .icon-place, .map-area .icon-time, .map-area .icon-map, .map-area .icon-intro, .line-1, .line-2, .line-3, .line-4, .line-5 {
+  background-image: url('../img/common-s8f98c54072.png');
+  background-repeat: no-repeat;
+}
+
+/* line 10, ../_source/index/_extend.scss */
+.mod .mod-tit, .mod .mod-bt .bt-left, .mod .mod-bt .bt-right {
+  background-image: url('../img/mod-s424106fafb.png');
+  background-repeat: no-repeat;
+}
+
+/* line 15, ../_source/index/_extend.scss */
+.logo-roewe, .logo-mg, .logo-buick, .logo-chevrolet, .logo-cadillac, .logo-volkswagen, .logo-skoda, .logo-WULING, .logo-baojun, .logo-MAXUS {
+  background-image: url('../img/brand-sadbd624788.png');
+  background-repeat: no-repeat;
+}
+
+/* extend end */
+/* line 1, ../_source/lib/_reset.scss */
+html, body, p, dl, dt, dd, table, td, th, input, img, form, div, span, ul, ol, li, h1, h2, h3, h4, h5, h6, select, fieldset, input, button, sub, sup, textarea {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 2, ../_source/lib/_reset.scss */
+body {
+  font: 14px/1.5 "Helvetica Neue",Arial,"Heiti SC","Microsoft YaHei";
+  color: #4f4f4f;
+  background: #fff;
+  word-wrap: break-word;li
+  word-break: break-all;
+}
+
+/* line 3, ../_source/lib/_reset.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+/* line 4, ../_source/lib/_reset.scss */
+em, b, i, strong, cite, sub, sup {
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* line 5, ../_source/lib/_reset.scss */
+a {
+  text-decoration: none;
+  color: #0f0f0f;
+  outline: none;
+}
+
+/* line 6, ../_source/lib/_reset.scss */
+a:hover {
+  text-decoration: underline;
+  color: #0f0f0f;
+}
+
+/* line 7, ../_source/lib/_reset.scss */
+:focus {
+  outline: 0;
+}
+
+/* line 8, ../_source/lib/_reset.scss */
+li {
+  list-style-type: none;
+}
+
+/* line 9, ../_source/lib/_reset.scss */
+img {
+  border: 0 none;
+  vertical-align: top;
+}
+
+/* line 10, ../_source/lib/_reset.scss */
+fieldset {
+  border-style: none;
+}
+
+/* line 11, ../_source/lib/_reset.scss */
+label, button {
+  cursor: pointer;
+}
+
+/* line 12, ../_source/lib/_reset.scss */
+select, input, textarea {
+  font: 12px/1.2em tahoma,arial,\5b8b\4f53;
+}
+
+/* line 13, ../_source/lib/_reset.scss */
+.clearfix:after {
+  content: ".";
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* line 14, ../_source/lib/_reset.scss */
+.clearfix {
+  *zoom: 1;
+}
+
+/* line 15, ../_source/lib/_reset.scss */
+.fix {
+  word-break: keep-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 16, ../_source/lib/_reset.scss */
+.clear {
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  display: block;
+}
+
+/* line 17, ../_source/lib/_reset.scss */
+.none {
+  display: none;
+}
+
+/* line 2, ../_source/index/_common.scss */
+.article-list, .map-area, .mod .mod-bt, .mod-tit, .brand-logo {
+  *zoom: 1;
+}
+/* line 3, ../_source/index/_common.scss */
+.article-list:after, .map-area:after, .mod .mod-bt:after, .mod-tit:after, .brand-logo:after {
+  content: ".";
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* line 15, ../_source/index/_common.scss */
+.subject-wrap, .subject-wrap .subject, .brand-wrapper, .footer {
+  min-width: 1160px;
+  width: 100%;
+}
+
+/* line 20, ../_source/index/_common.scss */
+.container {
+  width: 1160px;
+  margin: 0 auto;
+}
+
+/* line 25, ../_source/index/_common.scss */
+.article-list .arrow-up, .article-list .txt-summary .arrow-right, .article-list .txt-item .arrow-right {
+  display: inline-block;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: 6px dashed transparent;
+}
+
+/* line 48, ../_source/index/_common.scss */
+body {
+  background-color: #f2f0f0;
+  font: 12px/1.5 "Helvetica Neue", Arial, "Heiti SC", "Microsoft YaHei", SimSun;
+  color: #000;
+}
+
+/* line 53, ../_source/index/_common.scss */
+a {
+  outline: none;
+  color: #000;
+}
+/* line 56, ../_source/index/_common.scss */
+a:hover {
+  color: #f60;
+  text-decoration: underline;
+}
+
+/* line 2, ../_source/index/_subject.scss */
+.subject-wrap {
+  background-color: #11a2df;
+}
+/* line 5, ../_source/index/_subject.scss */
+.subject-wrap .subject {
+  height: 497px;
+  background: url(../img/subject.jpg) no-repeat 50% 0;
+}
+
+/* line 1, ../_source/index/_screen-1.scss */
+.slide-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+/* line 4, ../_source/index/_screen-1.scss */
+.slide-box .show {
+  width: 1080px;
+  height: 380px;
+  overflow: hidden;
+}
+/* line 9, ../_source/index/_screen-1.scss */
+.slide-box .page-num {
+  position: absolute;
+  right: 15px;
+  bottom: 12px;
+}
+
+.slide-box .page-num span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: #575656;
+  cursor: pointer;
+}
+
+.slide-box .page-num span.cur{
+  background: #ff9600;
+}
+
+/* line 19, ../_source/index/_screen-1.scss */
+.article-list li {
+  float: left;
+  width: 360px;
+  height: 410px;
+}
+.article-list li img {
+  max-width: 360px;
+  max-height: 410px;
+}
+/* line 24, ../_source/index/_screen-1.scss */
+.article-list .img-txt-item {
+  width: 340px;
+  height: 390px;
+  padding: 10px;
+  background: #f5f3f3;
+}
+/* line 30, ../_source/index/_screen-1.scss */
+.article-list .arrow-up {
+  position: absolute;
+}
+/* line 34, ../_source/index/_screen-1.scss */
+.article-list .img-box {
+  position: relative;
+  width: 340px;
+  height: 190px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 40, ../_source/index/_screen-1.scss */
+.article-list .img-box .arrow-up {
+  right: 50px;
+  bottom: -10px;
+  border-width: 20px;
+  border-bottom: 20px solid #f5f3f3;
+}
+/* line 47, ../_source/index/_screen-1.scss */
+.article-list .txt-summary {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  padding: 20px;
+  background-color: #fff;
+}
+/* line 53, ../_source/index/_screen-1.scss */
+.article-list .txt-summary .arrow-up {
+  right: 50px;
+  top: -30px;
+  border-width: 20px;
+  border-bottom: 20px solid #fff;
+}
+/* line 59, ../_source/index/_screen-1.scss */
+.article-list .txt-summary dt {
+  height: 30px;
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 15px;
+}
+/* line 65, ../_source/index/_screen-1.scss */
+.article-list .txt-summary dd {
+  overflow: hidden;
+  line-height: 24px;
+}
+/* line 69, ../_source/index/_screen-1.scss */
+.article-list .txt-summary .desc {
+  height: 72px;
+  font-size: 14px;
+}
+/* line 73, ../_source/index/_screen-1.scss */
+.article-list .txt-summary .arrow-right {
+  border-left: 6px solid #e7661e;
+  margin-left: 9px;
+  vertical-align: middle;
+}
+/* line 80, ../_source/index/_screen-1.scss */
+.article-list .txt-item {
+  position: relative;
+  width: 290px;
+  height: 330px;
+  padding: 80px 35px 0;
+  background-color: #e4661d;
+}
+/* line 86, ../_source/index/_screen-1.scss */
+.article-list .txt-item a {
+  color: #fff;
+}
+/* line 88, ../_source/index/_screen-1.scss */
+.article-list .txt-item a:hover {
+  color: #fff;
+}
+/* line 92, ../_source/index/_screen-1.scss */
+.article-list .txt-item .arrow-right {
+  border-left: 6px solid #fff;
+  margin-left: 9px;
+  vertical-align: middle;
+}
+/* line 99, ../_source/index/_screen-1.scss */
+.article-list .icon-traffic {
+  position: absolute;
+  top: 23px;
+  right: 25px;
+  width: 46px;
+  height: 46px;
+  background-position: 0 -118px;
+}
+/* line 105, ../_source/index/_screen-1.scss */
+.article-list .tit-txt {
+  height: 280px;
+  font-size: 36px;
+  line-height: 40px;
+  overflow: hidden;
+}
+
+/* line 113, ../_source/index/_screen-1.scss */
+.map-area {
+  height: 330px;
+  margin-top: 10px;
+  background-color: #f5f3f3;
+}
+/* line 118, ../_source/index/_screen-1.scss */
+.map-area .img-box {
+  float: left;
+  width: 540px;
+  height: 318px;
+}
+/* line 123, ../_source/index/_screen-1.scss */
+.map-area .map-info {
+  float: left;
+  width: 484px;
+  height: 285px;
+  margin: 10px 0 0 10px;
+  padding: 25px 18px 0;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+  color: #006ab4;
+}
+.map-info b{font-weight: bold;}
+/* line 133, ../_source/index/_screen-1.scss */
+.map-area .map-info li {
+  position: relative;
+  width: 440px;
+  padding-left: 24px;
+}
+/* line 138, ../_source/index/_screen-1.scss */
+.map-area .map-info i {
+  position: absolute;
+  left: 0;
+}
+/* line 142, ../_source/index/_screen-1.scss */
+.map-area .map-info span {
+  color: #000;
+}
+/* line 145, ../_source/index/_screen-1.scss */
+.map-area .map-info p {
+  color: #5e5e5e;
+}
+/* line 149, ../_source/index/_screen-1.scss */
+.map-area .icon-place {
+  top: 12px;
+  width: 15px;
+  height: 15px;
+  background-position: 0 -77px;
+}
+/* line 153, ../_source/index/_screen-1.scss */
+.map-area .icon-time {
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  background-position: 0 -97px;
+}
+/* line 157, ../_source/index/_screen-1.scss */
+.map-area .icon-map {
+  top: 5px;
+  width: 13px;
+  height: 16px;
+  background-position: 0 -56px;
+}
+/* line 161, ../_source/index/_screen-1.scss */
+.map-area .icon-intro {
+  top: 6px;
+  width: 15px;
+  height: 13px;
+  background-position: 0 -38px;
+}
+/* line 166, ../_source/index/_screen-1.scss */
+.map-area .place {
+  margin-bottom: 30px;
+}
+
+/* line 1, ../_source/index/_screen-4.scss */
+.tit-summary {
+  margin-top: -20px;
+  padding: 0 25px 10px 30px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 30px;
+  *position: relative;
+  *z-index: 2;
+}
+
+/* line 1, ../_source/index/_mod.scss */
+.mod {
+  position: relative;
+  z-index: 2;
+  background-color: #11a2df;
+}
+/* line 5, ../_source/index/_mod.scss */
+.mod .mod-tit {
+  height: 120px;
+  width: 1160px;
+  height: 120px;
+  background-position: 0 -70px;
+}
+/* line 9, ../_source/index/_mod.scss */
+.mod .mod-con {
+  width: 1080px;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.mod-con .con-main{
+  background: #000;
+}
+
+.mod-con .vide-tit{
+  background: #fff;
+  font-size: 28px;
+  padding:8px 0 25px 10px;
+  color: #787878;
+}
+
+.mod-con .video-box{
+  width:760px;
+  height: 460px;
+  float:left;
+}
+
+.mod-con .comment-box{
+  width:290px;
+  height: 460px;
+  background: #d8d8d8;
+  float: left;
+  position:relative;
+  margin-left: 15px;
+}
+.comment-box .c-title{
+  height:40px;line-height: 40px;color:#767676;padding-left:18px;font-size:14px;background: #000;position:relative;
+}
+
+.comment-box .c-title span{background:url(../img/comment_icon.png) no-repeat 0 13px;position: absolute;top:0;right:20px;padding-left:23px;}
+.comment-box .c-list{padding:10px 40px;font-size: 14px;}
+.comment-box .c-comment{position: absolute; bottom:10px;left:40px;}
+.c-list li{position: relative;color: #006ab4;line-height: 20px;width:220px;float:left;margin-bottom:8px;}
+.c-list p{color: #000;}
+.c-list li span{position: absolute;top:0;right:0;color: #969696;}
+.c-list textarea{width:220px;height: 60px;padding:15px;background: #fbfbfb;border:1px solid #ccc;}
+.c-list .button-box{margin-top: 10px;color:#e57946;}
+.c-list .button-box span{line-height: 28px;float:right;padding-right:5px;}
+.button{width:88px;height: 28px;background: #0f9fdb;color:#fff;border:none;float: right}
+.button:hover{background: #0b8cc2;}
+
+.con-side{background: #000;padding:10px 20px 40px 20px;}
+.con-side li.hover{background: #212121;}
+.con-side li{width:260px;height:180px;overflow: hidden;float:left;}
+.con-side li img{padding:10px;width:240px;height:130px;}
+.con-side p{color:#e4661d;text-align: center;}
+
+/* line 16, ../_source/index/_mod.scss */
+.mod .mod-bt {
+  height: 30px;
+  font-size: 0;
+  overflow: hidden;
+}
+/* line 21, ../_source/index/_mod.scss */
+.mod .mod-bt .bt-left {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background-position: 0 0;
+}
+/* line 25, ../_source/index/_mod.scss */
+.mod .mod-bt .bt-right {
+  float: right;
+  width: 30px;
+  height: 30px;
+  background-position: 0 -35px;
+}
+
+/* line 32, ../_source/index/_mod.scss */
+.mod-tit {
+  color: #fff;
+}
+/* line 35, ../_source/index/_mod.scss */
+.mod-tit .tit-txt {
+  float: left;
+  width: 200px;
+  padding: 25px 0 0 399px;
+  font-size: 48px;
+  font-weight: 100;
+}
+/* line 42, ../_source/index/_mod.scss */
+.mod-tit .tit-time {
+  float: left;
+  height: 36px;
+  padding: 44px 0 0 18px;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+/* line 2, ../_source/index/_brand.scss */
+.brand-wrapper {
+  position: relative;
+  z-index: 2;
+  height: 114px;
+  background: url(../img/brand-bg.png) no-repeat 0 0;
+}
+
+/* line 10, ../_source/index/_brand.scss */
+.brand-logo {
+  padding: 0 40px;
+}
+/* line 13, ../_source/index/_brand.scss */
+.brand-logo li {
+  float: left;
+  width: 108px;
+  height: 114px;
+}
+/* line 18, ../_source/index/_brand.scss */
+.brand-logo a {
+  display: block;
+  width: 108px;
+  height: 114px;
+  color: #fff;
+  font-size: 14px;
+}
+/* line 24, ../_source/index/_brand.scss */
+.brand-logo a:hover {
+  color: #fff;
+}
+/* line 28, ../_source/index/_brand.scss */
+.brand-logo i {
+  display: block;
+  margin: 18px auto 0;
+  overflow: hidden;
+}
+/* line 33, ../_source/index/_brand.scss */
+.brand-logo .brand-name {
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+/* line 42, ../_source/index/_brand.scss */
+.logo-roewe {
+  width: 34px;
+  height: 44px;
+  background-position: 0 -294px;
+}
+
+/* line 45, ../_source/index/_brand.scss */
+.logo-mg {
+  width: 41px;
+  height: 44px;
+  background-position: 0 -245px;
+}
+
+/* line 48, ../_source/index/_brand.scss */
+.logo-buick {
+  width: 42px;
+  height: 44px;
+  background-position: 0 -49px;
+}
+
+/* line 51, ../_source/index/_brand.scss */
+.logo-chevrolet {
+  width: 42px;
+  height: 44px;
+  background-position: 0 -147px;
+}
+
+/* line 54, ../_source/index/_brand.scss */
+.logo-cadillac {
+  width: 42px;
+  height: 44px;
+  background-position: 0 -98px;
+}
+
+/* line 57, ../_source/index/_brand.scss */
+.logo-volkswagen {
+  width: 42px;
+  height: 44px;
+  background-position: 0 -392px;
+}
+
+/* line 60, ../_source/index/_brand.scss */
+.logo-skoda {
+  width: 42px;
+  height: 44px;
+  background-position: 0 -343px;
+}
+
+/* line 63, ../_source/index/_brand.scss */
+.logo-WULING {
+  width: 44px;
+  height: 44px;
+  background-position: 0 -441px;
+}
+
+/* line 66, ../_source/index/_brand.scss */
+.logo-baojun {
+  width: 37px;
+  height: 44px;
+  background-position: 0 0;
+}
+
+/* line 69, ../_source/index/_brand.scss */
+.logo-MAXUS {
+  width: 42px;
+  height: 44px;
+  background-position: 0 -196px;
+}
+
+/* line 3, ../_source/index/_footer.scss */
+.footer {
+  padding: 10px 0;
+  background-color: #fff;
+  line-height: 30px;
+  color: #787878;
+  text-align: center;
+}
+/* line 10, ../_source/index/_footer.scss */
+.footer .icp {
+  font-size: 14px;
+}
+
+/* line 23, ../_source/index.scss */
+.container {
+  padding-top: 54px;
+}
+
+/* line 27, ../_source/index.scss */
+.pos {
+  position: relative;
+}
+
+/* line 30, ../_source/index.scss */
+.row {
+  margin-bottom: 50px;
+}
+
+/* line 33, ../_source/index.scss */
+.line-1 {
+  position: absolute;
+  top: -58px;
+  left: -40px;
+  z-index: 1;
+  width: 429px;
+  height: 172px;
+  background-position: 0 -204px;
+}
+
+/* line 40, ../_source/index.scss */
+.line-2 {
+  position: absolute;
+  bottom: -56px;
+  right: -24px;
+  z-index: 1;
+  width: 291px;
+  height: 188px;
+  background-position: 0 -381px;
+}
+
+/* line 47, ../_source/index.scss */
+.line-3 {
+  position: absolute;
+  top: -140px;
+  left: -38px;
+  z-index: 1;
+  width: 166px;
+  height: 147px;
+  background-position: 0 -574px;
+}
+
+/* line 54, ../_source/index.scss */
+.line-4 {
+  position: absolute;
+  bottom: -70px;
+  right: -36px;
+  z-index: 1;
+  width: 213px;
+  height: 210px;
+  background-position: 0 -726px;
+}
+
+/* line 61, ../_source/index.scss */
+.line-5 {
+  position: absolute;
+  top: -162px;
+  left: -34px;
+  z-index: 1;
+  width: 86px;
+  height: 180px;
+  background-position: 0 -941px;
+}
+
+/* line 68, ../_source/index.scss */
+.row-last {
+  margin-bottom: 40px;
+}
+
+/* line 71, ../_source/index.scss */
+.mb0 {
+  margin-bottom: 0;
+}
+
+.slide-nav{
+  position: fixed;
+  z-index: 1000;
+  left:50%;
+  top:20px;
+  margin-left:580px;
+}
+.slide-nav-bg{  
+  width:1px;
+  height:500px;
+  background: #ff9600;
+  left:18px;
+  position: relative;
+  z-index: 1001;
+}
+.slide-nav ul{padding-left:18px;}
+.slide-nav li{width:100px;position: relative;color:#8b8b8b;height:100px;cursor:pointer;}
+.slide-nav li i{display:block;margin:0;padding:0;background:url(../img/nav-icon.png) no-repeat 0 0;width:14px;height:14px;position: absolute;left:-25px;top:0;}
+.slide-nav li.not i{background-position:-16px 0;width:7px;height:7px;left:-21px}
+.slide-nav li.cur i{background-position:0 -17px;width:19px;height:14px;left:-28px;}
+.displayN{display:none;} 

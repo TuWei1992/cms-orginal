@@ -1,0 +1,18 @@
+/*分享弹框样式*/
+.shareWrap *{font-size:12px;}
+.shareWrap div{margin:0; padding:0; font-size:12px;}
+.shareWrap{ width:460px; padding:10px; background:#ffffff; border:1px solid #CCCCCC; box-shadow:0 0 2px #D4D9DD inset;}
+.shareWrap .shareTitle{ height:24px; line-height:24px; border-bottom:1px dotted #e7e7e7; padding-bottom:6px;}
+.shareWrap .shareTitle .shareClose{ float:right; vertical-align:middle; cursor:pointer; margin-top:5px; background:url(zcms_share_close.gif) no-repeat left top; width:10px; height:10px; line-height:10px;}
+.shareWrap .shareCon { padding:5px 20px;}
+.shareWrap .shareCon .share{ line-height:1.9; font-size:12px; font-weight:normal; color:#656764; overflow:hidden; padding:8px 0px;}
+.shareWrap .shareCon .share strong{ float:left; width:72px;}
+.shareWrap .shareCon .share a{ color:#14647d; padding-left:22px; padding-right:15px; display:inline-block; height:20px; text-decoration:none;}
+.shareWrap .shareCon .share a:hover{ text-decoration:underline;}
+.shareWrap .shareCon .share a.tsina{ background:url(zcms_share_icon.gif) no-repeat left 2px;}
+.shareWrap .shareCon .share a.renren{ background:url(zcms_share_icon.gif) no-repeat left -26px; padding-left:18px;}
+.shareWrap .shareCon .share a.qzone{ background:url(zcms_share_icon.gif) no-repeat left -53px;}
+.shareWrap .shareCon .share a.tsohu{ background:url(zcms_share_icon.gif) no-repeat left -82px;}
+.shareWrap .shareCon .share .text{ color:#909090; border:1px solid #999999; width:160px; padding:3px;}
+.shareWrap .shareCon .share .copybtn{ width:49px; height:24px; line-height:24px; background:url(zcms_share_copybtn.gif) no-repeat left top; cursor:pointer; border:none;  text-align:center; vertical-align:middle;}
+.shareWrap .shareCon .share table td{ padding:5px;}

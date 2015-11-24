@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+/*美化表单样式*/
+.form-select{display:inline-block;*display:inline;*zoom:1;border:solid 1px #e4e4e4;height: 36px;position: relative;cursor: pointer}
+.form-select-handle{color:#000;display:inline-block;zoom:1;padding:8px 0 8px 10px;padding-right: 26px;}
+.form-select-handle i{position: absolute;right:10px;top:16px;border-style:solid dashed dashed dashed;border-color:transparent;border-top-color:#666;font-size:0;height:0;line-height:0;width:0;border-width:5px 4px 0;vertical-align: middle;}
+.form-select-expand i{border-style:dashed dashed solid dashed;border-width:0 4px 5px;border-color:transparent;border-bottom-color:#666;}
+.form-select-handle span{white-space: nowrap;overflow: hidden;display:block;width:100%}
+.form-select-options{border:1px solid #e4e4e4;background: #fff;position:absolute;left:-1px;top:36px;display:none;z-index: 100}
+.form-select-options-above{bottom:25px; top:auto!important}
+.form-select-options li{line-height:1.2em; padding: 7px 10px}
+.form-select-options ul{width:100%}
+.form-select-options li:hover,.form-select-options li.hover,.form-select-options li.selected{background:#dcdcdc}
+.form-select-options{overflow:hidden}
+.form-checkbox{display:inline-block;*display:inline;*zoom:1;width:13px;height:13px;background: #fff;border:1px solid #cdcad5;vertical-align: middle}
+.form-checkbox .form-checkbox-inner{width:100%;height: 100%}
+.form-checkbox  .form-checkbox-checked{background: url(../../images/cked_bg.jpg) no-repeat left top}
+.form-select-unselected{color:#999}
+.form-option-selected{background-color: #c3e4f2}
+

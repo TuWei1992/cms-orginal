@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+/**
+
+ ____     __              ___                     __                        __
+/\  _`\  /\ \__          /\_ \                   /\ \                      /\ \__
+\ \,\L\_\\ \ ,_\  __  __ \//\ \       __     ____\ \ \___       __      __ \ \ ,_\
+ \/_\__ \ \ \ \/ /\ \/\ \  \ \ \    /'__`\  /',__\\ \  _ `\   /'__`\  /'__`\\ \ \/
+   /\ \L\ \\ \ \_\ \ \_\ \  \_\ \_ /\  __/ /\__, `\\ \ \ \ \ /\  __/ /\  __/ \ \ \_
+   \ `\____\\ \__\\/`____ \ /\____\\ \____\\/\____/ \ \_\ \_\\ \____\\ \____\ \ \__\
+    \/_____/ \/__/ `/___/> \\/____/ \/____/ \/___/   \/_/\/_/ \/____/ \/____/  \/__/
+                      /\___/
+                      \/__/
+
+ * Statement: ...//TODO: Write statement.
+ *
+ * Describe: IE7 Stylesheet for index page.
+ *
+ * Further Changes, Comments: ...//TODO: Give a further changes and comments link.
+ *
+ * Docs: ...//TODO: Give a link about project documents.
+ *
+ * Author: 沈维忠 ( Shen Weizhong / Tony Stark )
+ *
+ *      Cell Phone: (+86) 15921299022
+ *
+ *      Github：//github.com/Tony-Stark/
+ *
+ *      Trello: //trello.com/shenweizhong/
+ *
+ *      个人全球统一标识（ Gravatar ）：//en.gravatar.com/swzcowboy/
+ *
+ *      个人主页（ Personal Homepage ）：//iTonyYo.github.io/
+ *
+ *      Linkedin：//cn.linkedin.com/in/itonyyo/
+ *
+ *      Twitter: @iTonyYo, //twitter.com/iTonyYo/
+ *
+ *      Instagram：//instagram.com/itonyyo/
+ *
+ *      Facebook：//www.facebook.com/shenweizhong/
+ *
+ *      Google+: //plus.google.com/114960355664861539339/
+ *
+ *      Instagram: //instagram.com/itonyyo/
+ *
+ *      QQ：563214029, //user.qzone.qq.com/563214029/
+ *
+ *      Sina Weibo: //weibo.com/itonyyo/
+ *
+ *      WhatsApp：15921299022
+ *
+ *      微信（ WeChat ）：iTonyYo
+ *
+ *      Facebook Messenger：shenweizhong
+ *
+ *      Skype：live:swzyocowboy
+ *
+ *      Line：shenweizhong
+ *
+ *      Email: swzyocowboy@icloud.com, swzyocowboy@hotmail.com, iTonyYo@gmail.com, itonyyo@vip.qq.com, shenweizhong@facebook.com
+ *
+ * Thanks: ...//TODO: If there are some contributors, just mark them.
+
+ * Version: 0.1.0-alpha
+ *
+ * Creation Date: ~.
+ *
+ * Last Update: 2014.10.14 16:57 PM ( Tony ).    ...//TODO: Update the 'Last Update'.
+ *
+ * Music ( Custom ):     ...//TODO: If you are listenning some music, just write the name of songs.
+ *
+ * License: ...//TODO: Give a license.
+ *
+ * Copyright: ...//TODO: Give a copyright.
+ */
+
+#J_arrowSlider.slider-rectangle .slider-markers {
+    width:720px;
+    height:6px;
+    padding:13px 0 11px 270px;
+}
+.slider-figure .slider-markers li,
+.slider-dot .slider-markers li,
+#J_arrowSlider.slider-rectangle .slider-markers li {
+   display:inline;
+   float:left;
+}
+
+#J_arrowSlider.slider-rectangle .slider-markers li.active-marker {
+   margin-top:-1px;
+}
+
+#J_arrowSlider.slider-figure .slider-markers,
+.slider-dot .slider-markers {
+    width:546px;
+    padding:12px 0 12px 450px
+}
+
+.slider-figure .slider-markers li{
+    width:10px;
+}

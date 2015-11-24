@@ -1,0 +1,22 @@
+.blue_title_radiusbg_border { background: none repeat scroll 0% 0% rgb(255, 255, 255);  width:100%;height:100%;position:relative;overflow:hidden;}
+.blue_title_radiusbg_border .ct_bot_positionWrapper{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;}
+.blue_title_radiusbg_border .ct_bot { padding-left: 5px; font-size: 0px; background:#EEF9FE; border:1px solid #9EBFD2; border-top:none; overflow: hidden; height: 5px; }
+.blue_title_radiusbg_border .ct_bot .ct_bot_bg { font-size: 0px; overflow: hidden; height: 5px; }
+.blue_title_radiusbg_border .ct_cont {height:100%; position:relative; border-left:1px solid #9EBFD2; padding: 0px 4px; background:#EEF9FE;  border-right:1px solid #9EBFD2; }
+.blue_title_radiusbg_border .ct_contBox { clear: both; overflow: hidden; }
+.blue_title_radiusbg_border .ct_t_01 { padding: 6px 0px 4px; }
+.blue_title_radiusbg_border UL { padding: 0px; margin: 0px; }
+.blue_title_radiusbg_border UL { list-style-type: none; }
+.blue_title_radiusbg_border LI { padding: 0px; margin: 0px; }
+.blue_title_radiusbg_border .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.blue_title_radiusbg_border .ct_c_t_01 LI { font-size: 14px; line-height: 23px; }
+.blue_title_radiusbg_border .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.blue_title_radiusbg_border A { color: rgb(0, 0, 0); text-decoration: none; }
+.blue_title_radiusbg_border H2 { padding: 0px; margin: 0px; }
+.blue_title_radiusbg_border .ct_title { font-weight: normal; }
+.blue_title_radiusbg_border .ct_title { background: url('s01_mj_005.gif') no-repeat left top #89C4E0; overflow: hidden; color:#C20E02; height: 26px; }
+.blue_title_radiusbg_border .ct_title .ct_more { font-family:SIMSUN; padding-right: 10px; font-weight: normal; font-size: 12px; background: url('s01_mj_005.gif') no-repeat right top #89C4E0;  float: right; line-height: 26px; height: 26px; }
+.blue_title_radiusbg_border .ct_title A:link { color:#000000; text-decoration: none; }
+.blue_title_radiusbg_border .ct_title A:link { color: #000000; }
+.blue_title_radiusbg_border .ct_title .ct_name { padding-right:18px; padding-left:12px; font-size: 14px; float: left; overflow: hidden; white-space: nowrap; height: 18px; padding-top:8px;   background: url('s01_mj_005.gif') no-repeat 100% -26px; overflow: hidden; color:#C20E02; margin-left:16px; color: #000000; }
+ 

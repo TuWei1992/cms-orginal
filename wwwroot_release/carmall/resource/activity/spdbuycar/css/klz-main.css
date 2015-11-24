@@ -1,0 +1,20 @@
+@charset "utf-8";
+body{font-family:'Microsoft YaHei';background:#f5f6f5;}
+a:hover{ text-decoration:none;}
+/*BANNER*/
+.banner .banner01{background:url(../images/banner_01.jpg) no-repeat center;width:100%;height:131px;display:block;}
+.banner .banner02{background:url(../images/banner_02.jpg) no-repeat center;width:100%;height:123px;display:block;}
+.banner .banner03{background:url(../images/banner_03.jpg) no-repeat center;width:100%;height:149px;display:block;}
+.banner .banner04{background:url(../images/banner_04.jpg) no-repeat center;width:100%;height:145px;display:block;}
+.banner .banner-input{width:1070px;height:145px;margin:0 auto;position:relative;}
+.banner .banner-btn{background:#ec0309;width:260px;height:50px;line-height:50px;text-align:center;display:block;position:absolute;font-size:24px;color:#fff;top:5px;left:0;}
+.banner .banner-btn:hover{background:#fd040a; cursor:pointer;}
+.banner .btn-em{font-size:18px;color:#fff;font-style:normal;position:absolute;top:70px;left:0;}
+.content{width:1190px;margin:0 auto;background:#fff;padding-bottom:60px;}
+.content img{display:block;}
+.parameter-bg{background:#fff;width:1190px;margin:0 auto;}
+.parameter-main{width: 1105px;height:775px; overflow-y:auto;margin: 0 auto;}
+.parameter-main .parameter{width:1086px;margin:0 auto;}
+
+
+

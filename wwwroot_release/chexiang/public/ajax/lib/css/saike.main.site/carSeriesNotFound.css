@@ -1,0 +1,64 @@
+.apology {
+	border-bottom: 4px solid #f3f3f3;
+	position:relative;
+}
+
+.apology img {
+	margin-left: 160px;
+	margin-top: 50px;
+	/*margin-bottom: -25px;*/
+	margin-bottom: -10px;
+}
+
+.apology h1{
+	color: #3f67c0;
+	font-size: 36px;
+	margin-left: 180px;
+	margin-bottom: 10px;
+	line-height: 60px;
+}
+
+.apology h1 img{
+	margin-left: 50px;
+}
+
+.apology .blue-car-line{
+	border-bottom: 4px solid #3397e3;
+	width: 258px;
+	height: 4px;
+	position: absolute;
+	left: 0;
+	bottom: -4px;
+}
+.action {
+	margin-left: 415px;
+}
+
+.action a {
+	vertical-align: middle;
+}
+
+.action a.link-orange:link  {color: #FF8E42; background: none; outline: none;} /* 橙色 */  /* 高亮 */ 
+.action a.link-orange:visited {color: #FF8E42; background: none; outline: none; text-decoration: none;}
+.action a.link-orange:hover {color: #FF8E42; outline: none; text-decoration: underline;}
+.action a.link-orange:active {background: none; text-decoration: underline; outline: 1px dotted #000;}
+
+.action p {
+	line-height: 55px;
+}
+
+.action .triangle-r {
+	display: inline-block;
+	vertical-align: middle;
+	border-left-color: #ff8e42;
+	border-width: 9px 0 9px 14px;
+	position: static;
+	margin: 0 1px 5px 5px;
+}
+
+/*404page @tong20140312*/
+.c-errorpage{width:630px; margin:120px auto 0;}
+.c-errorpage>dt{width:115px; height:95px;}
+.c-errorpage>dd{width:500px; margin:65px 0 0; font:14px/25px 'microsoft yahei'; color:#4e4e4e;}
+.c-errorpage>dd .c-errorpage-tips{font-weight:bold; font-size:24px; color:#004386;}
+.c-errorpage>dd .c-errorpage-link{margin:0 0 0 10px; font-weight:bold; color:#004386;}

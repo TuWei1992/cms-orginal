@@ -1,0 +1,233 @@
+﻿/*各种菜单的样式*/
+
+body,p,ul,li,a{
+	margin:0;
+	padding:0;
+}
+ul,li{
+	list-style-type:none;
+}
+/****菜单类型：3*****/
+.highlight{
+	background-color: transparent;
+    background-position: left top;
+    background-repeat: repeat;
+    border-radius: 5px 5px 5px 5px;
+    height: 40px;
+    padding-left: 20px;
+    position: relative;
+}
+/*鼠标hover时，展开子菜单*/
+.highlight li  ul{
+	display:none;
+}
+.highlight  li:hover>ul{
+	display:block;
+}
+
+/**/
+.highlight .top{
+    background-color: transparent;
+    background-position: right top;
+    background-repeat: no-repeat;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding-bottom: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    text-align: center;
+    width: 200px;
+}
+
+.highlight .top:hover {
+    background-position: left top;
+	background-repeat: repeat-x;
+}
+
+.highlight   a,.highlight a:hover{
+    color: #FFFFFF;
+    display: block;
+    font-family: arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/*防止hs3中的a元素样式被页面的a:hover样式覆盖掉*/
+.highlight   a:hover{
+	color: #FFFFFF;
+}
+.highlight .top  ul{
+    background-color: transparent;
+    left:0;
+    margin-left: 0;
+    position: absolute;
+	width:100%;/*绝对定位的元素的百分比宽度值计算时相对于父元素的*/
+	/*
+	padding-left: 5px;
+    padding-right: 5px;
+	*/
+}
+.highlight .sub  ul{
+    background-color: transparent;
+    left:0;
+    margin-left: 0;
+    position: absolute;
+	width:100%;
+}
+.highlight .top li{
+    background-image: none;
+    background-position: left top;
+    background-repeat: repeat;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    padding-bottom: 0;
+	/*
+	padding-left: 5px;
+    padding-right: 5px;
+	*/
+    position: relative;
+    text-align: center;
+	width:100%;
+}
+
+/*子菜单呈现方式（向上、向下）*/
+.highlight.down .top ul{
+	top:40px;
+}
+.highlight.down .sub ul{
+	top:0;
+}
+/*
+.highlight.up{
+	margin-top:200px;
+}
+*/
+.highlight.up .top ul{
+	bottom:40px;
+}
+.highlight.up .sub ul{
+	bottom:0;
+}
+/*配色方案种类（bg_red，bg_chocolate）*/
+	/*黑色背景*/
+.highlight.bg_black{
+	background-image: url("images/01.jpg");
+}
+.highlight.bg_black .top{
+    background-image: url("images/02.jpg");  
+}
+.highlight.bg_black .top:hover {
+    background-image: url("images/03.jpg");  
+}
+.highlight.bg_black .top  li{	
+	background-color: #7E7E7E;	
+}
+.highlight.bg_black .top  li:hover{	
+	background-color: #050505;	
+}
+	/*咖啡色*/
+.highlight.bg_chocolate{
+	background-image: url("images/11.jpg");
+}
+.highlight.bg_chocolate .top {
+    background-image: url("images/12.jpg");  
+}
+.highlight.bg_chocolate .top:hover {
+    background-image: url("images/13.jpg");  
+}
+.highlight.bg_chocolate .top  li{	
+	background-color: #C37426;
+}
+.highlight.bg_chocolate .top  li:hover{	
+	background-color: #964A00;
+}
+	/*蓝色*/
+.highlight.bg_blue{
+	background-image: url("images/21.jpg");
+}
+.highlight.bg_blue .top{
+    background-image: url("images/22.jpg");
+}
+.highlight.bg_blue .top:hover {
+    background-image: url("images/23.jpg");
+}
+.highlight.bg_blue .top  li{	
+	background-color: #0E88DD;
+}
+.highlight.bg_blue .top  li:hover{	
+	background-color: #0057A5;
+}
+	/*红色*/
+.highlight.bg_red{
+	background-image: url("images/31.jpg");
+}
+.highlight.bg_red .top {
+    background-image: url("images/32.jpg");
+}
+.highlight.bg_red .top:hover {
+    background-image: url("images/33.jpg");
+}
+.highlight.bg_red .top  li{	
+	background-color: #E40000;
+}
+.highlight.bg_red .top  li:hover{	
+	background-color: #BC0F0F;
+}
+	/*黄色*/
+.highlight.bg_yellow{
+	background-image: url("images/41.jpg");
+}
+.highlight.bg_yellow .top {
+    background-image: url("images/42.jpg");
+}
+.highlight.bg_yellow .top:hover {
+    background-image: url("images/43.jpg");
+}
+.highlight.bg_yellow .top  li{	
+	background-color: #FC6701;
+}
+.highlight.bg_yellow .top  li:hover{	
+	background-color: #DC3200;
+}
+	/*紫色*/
+.highlight.bg_purple{
+	background-image: url("images/51.jpg");
+}
+.highlight.bg_purple .top {
+    background-image: url("images/52.jpg");
+}
+.highlight.bg_purple .top:hover {
+    background-image: url("images/53.jpg");
+}
+.highlight.bg_purple .top  li{	
+	background-color: #CF25AB;
+}
+.highlight.bg_purple .top  li:hover{	
+	background-color: #93008C;
+}
+	/*绿色*/
+.highlight.bg_green{
+	background-image: url("images/61.jpg");
+}
+.highlight.bg_green .top{
+    background-image: url("images/62.jpg");
+}
+.highlight.bg_green .top:hover {
+    background-image: url("images/63.jpg");
+}
+.highlight.bg_green .top  li{	
+	background-color: #09CF2D;
+}
+.highlight.bg_green .top  li:hover{	
+	background-color: #008419;
+}
+/*********end 菜单类型3************/

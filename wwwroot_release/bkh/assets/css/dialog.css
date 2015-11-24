@@ -1,0 +1,98 @@
+/*
+ * @component:dialog;
+ * @data:20131127;
+*/
+#c-dialog { position:absolute; top:-1000px; left:-1000px; width:420px; z-index:9010; font-size:12px; }
+#c-dialog .pdb-main { position:absolute; height:300px; top:0; left:0;  z-index:9010; border:solid 5px #545454; background-color:#fff; overflow:hidden; }
+#c-dialog .pdb-main .pdb-title { background-color:#3f67c0; color:#fff; height:44px; overflow:hidden; }
+#c-dialog .pdb-main .pdb-title .border-out{ position:absolute;right:0; top:0; width:47px; height:44px; border-left:1px solid #2c4886;background: #3f67c0}
+#c-dialog .pdb-main .pdb-title .border-in{ float:right; width:46px; height:44px; border-left:1px solid #819bd5;}
+#c-dialog .pdb-main .pdb-title span.close { float:right; text-indent:-10000px; cursor:pointer; margin:12px 14px 0 0; }
+#c-dialog .pdb-main .pdb-title h4 {white-space: nowrap; width:100%; overflow: hidden; text-overflow: ellipsis ;font-size:18px; font-weight:normal; line-height:44px; text-indent:15px; padding:0; margin:0; color:#fff; font-family:"Microsoft Yahei";}
+#c-dialog .pdb-main .pdb-title h4.tab { height:26px; padding-top:4px; line-height:24px; padding-left:10px; text-indent:0; }
+#c-dialog .pdb-main .pdb-title h4.tab span { font-weight:bold; display:block; float:left; line-height:24px; height:24px; padding:2px 20px 0; cursor:pointer; }
+#c-dialog .pdb-main .pdb-title h4.tab span.on { color:#BD0021; background:#fff repeat-x; }
+#c-dialog .pdb-main .pdb-content { background-color:#fff; color:#000; font-size:12px; line-height:150%; overflow:hidden; }
+#c-dialog .pdb-main .pdb-bottom { height:34px; padding:10px 20px; overflow:hidden; }
+#c-dialog .pdb-main .pdb-bottom-text { height:34px; line-height:34px; }
+#c-dialog .pdb-main .pdb-bottom-action { height:34px; line-height:34px; float:right; }
+/*#c-dialog .pdb-main p { margin:0; padding:0; }*/
+.pdb-bottom-action, .pdb-bottom-text{ margin:0; padding:0; }
+
+#c-dialog .pdb-main .msg-success { padding:20px 20px 20px 40px; line-height:20px; }
+#c-dialog .pdb-main .msg-error { padding:25px 20px 20px 40px; line-height:20px; }
+#c-dialog .pdb-main .msg-alert { padding:20px 20px 20px 40px; line-height:20px; }
+#c-dialog .pdb-main .msg-confirm { padding:20px 20px 20px 40px; line-height:20px; }
+#c-dialog .pdb-main .fl { float:left; }
+#c-dialog .pdb-main .fr { float:right; }
+#c-dialog .pdb-main .f14 { font-size:14px; }
+#c-dialog .pdb-main .fbold { font-weight:bold; }
+#c-dialog .pdb-main .fred { color:#f00; }
+#c-dialog .pdb-main .p10 { padding:10px; }
+#c-dialog .pdb-main .p20 { padding:20px; }
+#c-dialog .pdb-main .pb20 { padding-bottom:20px; }
+#c-dialog .pdb-main .mt10 { margin-top:10px; }
+#c-dialog .pdb-main .mt20 { margin-top:20px; }
+#c-dialog .pdb-main .mb10 { margin-bottom:10px; }
+#c-dialog .pdb-main .mb20 { margin-bottom:20px; }
+#c-dialog .pdb-main .ml10 { margin-left:10px; }
+#c-dialog .pdb-main .ml20 { margin-left:20px; }
+#c-dialog .pdb-main .tal { text-align:left; }
+#c-dialog .pdb-main .tar { text-align:right; }
+#c-dialog .pdb-main .tac { /*text-align:center;*/ padding-left: 92px; }
+#c-dialog .pdb-main a.dialog-btn { display:inline-block; margin-right:5px; padding:0; height:22px; line-height:22px; text-decoration:none; }
+#c-dialog .pdb-main a.dialog-btn em { display:inline-block; font-style:normal; font-size:12px; height:12px; line-height:12px; padding:4px 10px; cursor:pointer;*line-height:24px}/*fix by dongyuanyuan 2014-3-20*/
+#c-dialog .pdb-main a.btn-action em { color:#fff; font-weight:bold; background-position:left 0; }
+#c-dialog .pdb-main a.btn-action, #c-dialog .pdb-main a.btn-cancel { 
+    background-color: #35B5EB;
+    border: medium none;
+    border-radius: 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Microsoft Yahei;
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    width: 140px;
+}
+#c-dialog .pdb-main a.btn-cancel{ background-color: #BDC3C7;}
+#c-dialog .pdb-main a.btn-ok{ background-color: #35B5EB;}
+#c-dialog .pdb-main a.btn-cancel em { background-position:left -25px; }
+#c-dialog .pdb-main .txt-loading-32 { height:32px; padding-top:36px; line-height:20px; text-align:center; font-size:14px; }
+#c-dialog .pdb-main dl.prompt { padding:5px 10px; }
+#c-dialog .pdb-main dl.prompt dt { line-height:20px; }
+#c-dialog .pdb-main dl.prompt dd input { border:solid 1px #ccc; height:22px; line-height:22px; padding-left:5px; color:#333; width:90%; }
+
+/*按钮加hover状态*/
+#c-dialog .pdb-main a.btn-action:hover{background-color:#61d0ff;}
+#c-dialog .pdb-main a.dialog-btn:hover{background-color:#61d0ff;}
+
+/*关闭按钮样式*/
+.icon {
+    width: 17px;
+    height: 17px;
+    background: url(../image/bg/close.png) no-repeat;
+}
+
+
+#util-overlayer{ opacity: 0.2 !important;}
+#c-dialog .pdb-main{ border-color: #989898;}
+#c-dialog .pdb-main .pdb-title{ background-color: #294e65;}
+#c-dialog .pdb-main .pdb-title .border-out{ border: 0; background-color: #294e65;}
+#c-dialog .pdb-main .pdb-title .border-in{ border: 0;}
+#c-dialog .pdb-main .txt-loading-32{ padding-top: 10px !important;}
+
+/*弹出层内容*/
+.dialog-fir{ position: relative; padding: 30px 60px 30px 80px;}
+    .fir-point{ line-height: 50px; color: #999;}
+    .fir-btn{ margin: 20px 0 0 80px;}
+    .fir-tip{ line-height: 50px; color: #333;}
+
+.dialog-sec{ }
+    a.sec-goon{ color: #2674a5; padding-left: 10px;}
+    a.sec-goon:hover{ color: #2674a5;}
+.icon-dialog{ background: url("../image/bg/icon_dialog.png") no-repeat;}
+.icon-ok{ background-position: 0 0; padding:12px 21px;}
+.icon-warn{ position: absolute; top:18px; left: 22px; background-position: -48px 0; padding:12px 21px;}

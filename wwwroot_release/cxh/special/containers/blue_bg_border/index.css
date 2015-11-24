@@ -1,0 +1,18 @@
+.blue_bg_border {width:100%;height:100%;position:relative;overflow:hidden;}
+.blue_bg_border .ct_bot_positionWrapper{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;}
+.blue_bg_border .ct_bot { padding-left: 5px; font-size: 0px; background: #F3FBFE; overflow: hidden; height: 5px; border:1px solid #9ECBF7; border-top:none; }
+.blue_bg_border .ct_bot .ct_bot_bg { font-size: 0px; background: #F3FBFE; overflow: hidden; height: 5px; }
+.blue_bg_border .ct_cont {height:100%; padding: 5px 0px 0px; background: url('s03_mj_009.gif') repeat-x left top #F3FBFE;  border:1px solid #9ECBF7;  border-bottom:none;}
+.blue_bg_border .ct_cont .ct_cont_bg { padding: 0px 5px;  position: relative; }
+.blue_bg_border .ct_contBox { clear: both; overflow: hidden; }
+.blue_bg_border .ct_contBox .c_memo{ font-size:12px; line-height:1.8; text-indent:24px; padding:0px; margin:0px; padding-top:10px; color:#333333;}
+.blue_bg_border .ct_t_01 { padding: 6px 0px 4px; }
+.blue_bg_border UL {padding: 0px; margin: 0px; list-style-type: none; }
+.blue_bg_border LI { padding: 0px; margin: 0px; }
+.blue_bg_border .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.blue_bg_border A { color: rgb(0, 0, 0); text-decoration: underline; }
+.blue_bg_border A { color: rgb(0, 0, 0); text-decoration: none; }
+.blue_bg_border .ct_t_04 .ct_line { background: url('bg_mj_002.gif') repeat-x scroll 0px 0px transparent; margin: 6px 4px 0px; overflow: hidden; height: 1px; }
+.blue_bg_border H1 { padding: 0px; margin: 0px; }
+.blue_bg_border .ct_t_04 H1 { font-weight: normal; font-size: 16px; color: rgb(204, 46, 47); line-height: 32px; font-family: "ºÚÌå"; text-align: center; }
+.blue_bg_border .ct_t_04 H1 A:link { color: rgb(204, 46, 47); text-decoration: none; }

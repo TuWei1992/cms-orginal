@@ -1,0 +1,218 @@
+﻿/*各种菜单的样式*/
+
+body,p,ul,li,a{
+	margin:0;
+	padding:0;
+}
+ul,li{
+	list-style-type:none;
+}
+/****菜单类型：2*****/
+.flat{
+	background-color: transparent;
+	/*background-image: url("images/11.jpg");*/
+    background-position: left top;
+    background-repeat: repeat;
+    height: 40px;
+    line-height: 40px;
+    /*margin-bottom: 10px;*/
+    padding-left: 10px;
+    position: relative;
+}
+/*鼠标hover时，展开子菜单*/
+.flat  li  ul{
+	display:none;
+}
+.flat  li:hover>ul{
+	display:block;
+}
+/*使用下面的样式也可以实现逐层展开
+.flat  li  ul{
+	display:none;
+}
+.flat  li:hover ul{
+	display:block;
+}
+.flat  li:hover ul  ul{
+	display:none;
+}
+.flat  li ul  li:hover ul{
+	display:block;
+}
+*/
+/**/
+.flat .top{
+    background-color: transparent;
+    background-image: url("images/png_bg.png");
+    background-position: right top;
+    background-repeat: no-repeat;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding-bottom: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    text-align: center;
+    width: 115px;
+}
+.flat .top:hover {
+    background-position: center top;
+	background-repeat: repeat-x;
+}
+
+.flat   a {
+    color: #FFFFFF;
+    display: block;
+    font-family: arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.flat a:hover{
+	 color: #FFFFFF;
+	 text-decoration: none;
+}
+.flat .top  ul{
+    background-color: transparent;
+    background-image: url("images/png_bg.png");
+	left:0;
+    margin-left: 0;
+    padding: 10px 5px 8px 5px;
+    position: absolute;
+}
+
+.flat .top li{
+    background-image: url("images/png_bg.png");
+    background-position: left top;
+    background-repeat: repeat;
+    height: 31px;
+    line-height: 31px;
+    padding-bottom: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    text-align: center;
+	width:105px;
+	background-color:transparent;
+}
+
+.flat .sub  ul{	
+	position:absolute;
+	left:120px;
+	
+}
+/*子菜单呈现方式（向上、向下）*/
+.flat.down .top ul{
+	top:40px;
+}
+.flat.down .sub ul{
+	top:-10px;
+}
+.flat.up{
+	margin-top:200px;
+}
+.flat.up .top ul{
+	bottom:40px;
+}
+.flat.up .sub ul{
+	bottom:-10px;
+}
+/*配色方案种类（bg_red，bg_chocolate）*/
+	/*黑色背景*/
+.flat.bg_black{
+	background-image: url("images/01.jpg");
+}
+.flat.bg_black .top:hover {
+    background-image: url("images/02.jpg");  
+}
+.flat.bg_black .top  ul{	
+	background-color: #373737;	
+}
+.flat.bg_black .top  li:hover{	
+	background-color: #1F1F1F;	
+}
+	/*咖啡色*/
+.flat.bg_chocolate{
+	background-image: url("images/11.jpg");
+}
+.flat.bg_chocolate .top:hover {
+    background-image: url("images/12.jpg");  
+}
+.flat.bg_chocolate .top  ul{	
+	background-color: #FD6D0A;
+}
+.flat.bg_chocolate .top  li:hover{	
+	background-color: #9B4D00;
+}
+	/*蓝色*/
+.flat.bg_blue{
+	background-image: url("images/21.jpg");
+}
+.flat.bg_blue .top:hover {
+    background-image: url("images/22.jpg");
+}
+.flat.bg_blue .top  ul{	
+	background-color: #00BEED;
+}
+.flat.bg_blue .top  li:hover{	
+	background-color: #0067C1;
+}
+	/*红色*/
+.flat.bg_red{
+	background-image: url("images/31.jpg");
+}
+.flat.bg_red .top:hover {
+    background-image: url("images/32.jpg");
+}
+.flat.bg_red .top  ul{	
+	background-color: #FF4E00;
+}
+.flat.bg_red .top  li:hover{	
+	background-color: #B80000;
+}
+	/*黄色*/
+.flat.bg_yellow{
+	background-image: url("images/41.jpg");
+}
+.flat.bg_yellow .top:hover {
+    background-image: url("images/42.jpg");
+}
+.flat.bg_yellow .top  ul{	
+	background-color: #FDC70A;
+}
+.flat.bg_yellow .top  li:hover{	
+	background-color: #F96500;
+}
+	/*紫色*/
+.flat.bg_purple{
+	background-image: url("images/51.jpg");
+}
+.flat.bg_purple .top:hover {
+    background-image: url("images/52.jpg");
+}
+.flat.bg_purple .top  ul{	
+	background-color: #F00088;
+}
+.flat.bg_purple .top  li:hover{	
+	background-color: #94008C;
+}
+	/*绿色*/
+.flat.bg_green{
+	background-image: url("images/61.jpg");
+}
+.flat.bg_green .top:hover {
+    background-image: url("images/62.jpg");
+}
+.flat.bg_green .top  ul{	
+	background-color: #93D800;
+}
+.flat.bg_green .top  li:hover{	
+	background-color: #00881A;
+}
+/*********end 菜单类型2************/

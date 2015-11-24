@@ -1,0 +1,20 @@
+.blue_title_bg_radius_grey_border { background: none repeat scroll 0% 0% rgb(255, 255, 255);  width:100%;height:100%;position:relative;overflow:hidden;}
+.blue_title_bg_radius_grey_border .ct_bot_positionWrapper{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;}
+.blue_title_bg_radius_grey_border .ct_bot { padding-left: 5px; font-size: 0px; background: url('sty_lmy_013.gif') no-repeat scroll 0px 100%; overflow: hidden; height: 5px; }
+.blue_title_bg_radius_grey_border .ct_bot .ct_bot_bg { font-size: 0px; background: url('sty_lmy_013.gif') no-repeat scroll 100% 100%; overflow: hidden; height: 5px; }
+.blue_title_bg_radius_grey_border .ct_cont {height:100%; border-right: 1px solid #BBC0C6; padding: 0px 4px; border-left:1px solid #BBC0C6; background:#ffffff; }
+.blue_title_bg_radius_grey_border .ct_contBox { clear: both; overflow: hidden; }
+.blue_title_bg_radius_grey_border .ct_t_01 { padding: 6px 0px 4px; }
+.blue_title_bg_radius_grey_border UL { padding: 0px; margin: 0px; }
+.blue_title_bg_radius_grey_border UL { list-style-type: none; }
+.blue_title_bg_radius_grey_border LI { padding: 0px; margin: 0px; }
+.blue_title_bg_radius_grey_border .ct_list_009 LI { padding-left: 1em; background: url('unfcn_mj_01.gif') no-repeat scroll 5px 50% transparent; }
+.blue_title_bg_radius_grey_border .ct_t_01 LI { font-size: 14px; line-height: 23px; }
+.blue_title_bg_radius_grey_border .ct_datetime { padding-left: 5px; font-size: 0.85em; color: rgb(153, 153, 153); line-height: 1.6em; }
+.blue_title_bg_radius_grey_border A { color: rgb(0, 0, 0); text-decoration: none; }
+.blue_title_bg_radius_grey_border H2 { padding: 0px; margin: 0px; }
+.blue_title_bg_radius_grey_border .ct_title {font-weight: normal; background: url('sty_lmy_005.gif') repeat-x left -26px; overflow: hidden; color: rgb(255, 255, 255); height: 26px; }
+.blue_title_bg_radius_grey_border .ct_title .ct_more { font-family:SIMSUN; padding-right: 10px; font-weight: normal; font-size: 12px; background: url('sty_lmy_005.gif') no-repeat right bottom;  float: right; line-height: 26px; height: 26px; }
+.blue_title_bg_radius_grey_border .ct_title A:link { color: rgb(0, 0, 0); text-decoration: none; }
+.blue_title_bg_radius_grey_border .ct_title A:link { color: rgb(255, 255, 255); }
+.blue_title_bg_radius_grey_border .ct_title .ct_name { padding-left: 30px; font-size: 14px; float: left; overflow: hidden; line-height: 26px; white-space: nowrap; height: 26px; background: url('sty_lmy_005.gif') no-repeat left top;  }

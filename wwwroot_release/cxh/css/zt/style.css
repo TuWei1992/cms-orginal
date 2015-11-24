@@ -1,0 +1,181 @@
+@charset "utf-8";
+/* CSS Document */
+.s960{width:960px; margin: 0 auto;}
+.f-family{font-family:"微软雅黑";}
+.f-songti{font-family:"宋体";}
+.f-over{overflow:hidden;}
+.fr {float: right;}
+.fl{float:left;}
+
+.head-banner {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-bottom: 30px;
+	width: 100%;
+	height: 380px;
+	overflow: hidden;
+}
+
+.img-tool {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 340px;
+	font-size: 0;
+	line-height: 0;
+	text-align: center;
+}
+.img-tool span {
+	height: 10px;
+	width: 10px;
+	margin-left: 5px;
+	display: inline-block;
+	background: url(../img/icon-all.png) -15px -629px no-repeat;
+}
+.img-tool .cur-img {
+background: url(../img/icon-all.png) 0 -629px no-repeat;
+}
+
+.main{
+	float:left;
+	width:960px;
+	min-height:1280px;
+	overflow:hidden;
+	margin:380px auto auto auto;
+}
+.main-head{
+	text-align:center;
+	height:105px;
+	margin:0 auto;
+	width:960px;
+	line-height:105px;
+	background:url(../img/qianggou.png) no-repeat center;
+	}
+.main-content{
+	width:960px;
+	min-height:1170px;
+	over-flow:hidden;
+	}
+.main-content ul li{
+	height:370px;
+	width:310px;
+	background:#eeeeee;
+	display:inline-block;
+	margin-bottom:30px;
+	}
+.img1{
+	width:300px;
+	height:200px;
+	margin:5px;
+	border:0;
+	}
+.img2{
+	position:relative;
+	width:52px;
+	height:72px;
+	left:80%;
+	top:-103%;
+	background:url(../img/sobuy.png) no-repeat;
+	text-align:center;
+	font-size:18px;
+	color:#fff;
+	font-weight:bold;
+	}
+.named{
+	height:54px;
+	width:310px;
+	text-align:center;
+	margin:0;
+	font-size:18px;
+	word-wrap:break-word;
+	}
+.price{
+	background:#bee5f8;
+	height:50px;
+	width:310px;
+	font-size:14px;
+	color:#333;
+	text-align:left;
+	}
+.price dl dt{
+	height:50px;
+	width:170px;
+	display:inline-block;
+	margin-bottom:30px;
+	overflow:hidden;
+	float:left;
+	padding-top:4px;
+	padding-left:10px;
+   }
+.qianggou{
+	height:56px;
+	width:310px;
+	background:#FFF;
+	float:left;
+	color:#3e648b;
+	font-size:18px;
+	text-align:left;
+	line-height:56px;
+	display:inline;
+	padding-left:10px;
+	}
+.qianggou .img{
+	text-align:left;
+	padding-left:20px;
+	width:132px;
+	height:54px;
+	margin-right:0px;
+	border:0;
+	float:right;
+	font-size:18px;
+	color:#FFF;
+	line-height:54px;
+	background:url(../img/buynow.png) no-repeat;
+	}
+.share-sidebar{width:120px;height:330px;position:fixed;right:60px;top:200px;background:#fff;color:#3e648b;}
+.share-sidebar-list{height:330px;width:120px;overflow:hidden;}
+.share-sidebar-list1{height:155px;width:120px;float:left;}
+.share-sidebar-list1 .text{width:120px;height:30px;line-height:30px;color:#3e648b;font-size:18px;font-weight:bolder;text-align:center;}
+.share-sidebar-list1 img{height:120px;width:120px;padding:5px;border:0;float:left;}
+.share-sidebar-list2{height:175px;width:120px;overflow:hidden;}
+.share-sidebar-list2 ul{height:175px;width:120px;}
+.share-sidebar-list2 ul li{
+	height:34px;
+	width:120px;
+	overflow:hidden;
+	float:left;
+	text-align:center;
+	line-height:34px;
+	font-size:16px;
+	display:block;
+	font-family:"Microsoft Yahei";
+	}
+.bottomline{width:100px;height:1px;background:#dfdfdf;margin:auto 10px;}
+.share-sidebar-list2 ul li:hover{color:#fff;background:#3e648b;cursor:pointer;}
+.bottom-top{
+	position: fixed;
+	right:7%;
+	top:100%;
+	margin-left: 510px;
+	margin-top: -104px;
+	z-index: 9999;
+}
+.bottom-top img{border:0;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
