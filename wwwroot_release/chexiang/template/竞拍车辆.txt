@@ -1,0 +1,43 @@
+				<cms:cxdata catalogAlias="cxp" condition="cityId=${cxParam.cityId}">
+					<z:if condition="${__Total > 0}">
+					<div id="col-second-header" class="col-second-header clearfix">
+						<h3 class="antialiased">竞价车辆</h3>
+						<!--<a href="${Config.ChexiangpaiBase}/login/initUsedCars.htm" target="_blank" hreflang="zh" class="antialiased f-yahei l-gray">查看更多</a>-->
+					</div>
+					<ul class="col-grid-cars clearfix">
+						<z:list count="4">
+						<z:if condition="${CXData.data.status == 4}">
+						 <li class="li_2 sell-in-progress">
+						</z:if>
+						<z:else>
+						  <z:if condition="${CXData.data.status == 5}">
+							<li class="li_1 sell-begin">
+						  </z:if>
+						  <z:else>
+							<li class="li_3 sell-deal">
+						  </z:else>
+						</z:else>
+							<i class="banner"></i>
+							<img src="${CXData.data.picURL}" width="224px" height="160px">
+																	
+							<a class="antialiased hover-link" href="${Config.ChexiangpaiBase}/auction/saledetail.htm?applyId=${CXData.data.id}&type=1" target="_blank">
+							${charWidth(CXData.data.info, 72, "...")}
+							</a>
+
+							<div class="antialiased sell-details">
+
+								<div class="car-license">${CXData.data.year}年上牌</div>
+
+								<div class="car-journey">${CXData.data.distance}&nbsp;万公里</div>
+
+								<div class="car-price">${CXData.data.beginPrice}</div>
+
+								<div class="car-price-unit">万</div>
+
+							</div>
+
+						</li>
+						</z:list>
+					</ul>
+					</z:if>
+					</cms:cxdata>

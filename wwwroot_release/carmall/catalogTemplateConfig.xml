@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogConfig platformID="pc">
+	<catalog name="成都" id="15628" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate>template/mallIndex.template.html</ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="链接组" id="15629" parentID="15628" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="购车" id="15630" parentID="15628" type="Image">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="苏州" id="15631" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate>template/mallIndex.template.html</ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="链接组" id="15632" parentID="15631" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="购车" id="15633" parentID="15631" type="Image">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="上海" id="15634" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate>template/mallIndex.template.html</ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="链接组" id="15635" parentID="15634" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="购车" id="15636" parentID="15634" type="Image">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="南京" id="15637" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate>template/mallIndex.template.html</ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="链接组" id="15638" parentID="15637" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="购车" id="15639" parentID="15637" type="Image">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="杭州" id="15642" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate>template/mallIndex.template.html</ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="链接组" id="15643" parentID="15642" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="购车" id="15644" parentID="15642" type="Image">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="豆腐块" id="15645" parentID="15642" type="product">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="帮助中心" id="15649" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate>template/about.list.template.html</ListTemplate>
+		<DetailTemplate>template/about2015.detail.template.html</DetailTemplate>
+	</catalog>
+	<catalog name="宁波" id="15698" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate>template/mallIndex.template.html</ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="链接组" id="15699" parentID="15698" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="购车" id="15700" parentID="15698" type="Image">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="专题活动" id="15710" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+	<catalog name="整车专题页" id="15712" type="Article">
+		<IndexTemplate></IndexTemplate>
+		<ListTemplate></ListTemplate>
+		<DetailTemplate></DetailTemplate>
+	</catalog>
+</catalogConfig>

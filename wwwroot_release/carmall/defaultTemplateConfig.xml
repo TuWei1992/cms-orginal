@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaultConfig platformID="pc">
+	<template type="Article" name="文章">
+		<ArticleList></ArticleList>
+		<ArticleDetail></ArticleDetail>
+	</template>
+	<template type="Image" name="图片">
+		<ImageList></ImageList>
+		<ImageDetail></ImageDetail>
+	</template>
+	<template type="File" name="文件">
+		<FileList></FileList>
+		<FileDetail></FileDetail>
+	</template>
+	<template type="Audio" name="音频">
+		<AudioList></AudioList>
+		<AudioDetail></AudioDetail>
+	</template>
+	<template type="Video" name="视频">
+		<VideoList></VideoList>
+		<VideoDetail></VideoDetail>
+	</template>
+	<template type="Special" name="专题">
+		<SpecialList></SpecialList>
+	</template>
+	<template type="CXData" name="车享数据">
+		<CXDataList></CXDataList>
+		<CXDataDetail></CXDataDetail>
+	</template>
+	<template type="bkhsy" name="别克汇首页">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+	<template type="czd" name="车知道">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+	<template type="textLink" name="文字链接">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+	<template type="imgTextLink" name="图文链接">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+	<template type="cxhdmodel" name="促销活动模型">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+	<template type="provinceshortening" name="省市简写">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+	<template type="ss" name="ss">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+	<template type="product" name="商城豆腐块">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+	<template type="ff" name="ff">
+		<CustomContentList></CustomContentList>
+		<CustomContentDetail></CustomContentDetail>
+	</template>
+</defaultConfig>

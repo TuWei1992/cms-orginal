@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>${Title}</title>
+<link href="../../style/default.css" rel="stylesheet" type="text/css" />
+<script src="../../framework/main.js"></script>
+</head>
+<script>
+var uploader;
+function getUploader(){
+	uploader=uploader||new Uploader("SpecialUploader");
+	return uploader;
+}
+</script>
+<body class="z-body-dialog">
+<form id="form1">
+	<table align="center" valign="middle" width="100%" >
+		<tr>
+	        <td width="70" height="30" align="right"><z:lang id="Special.BorderName">边框名称</z:lang>：</td>
+	        <td align="left"><input type="text" id="Name" style="width:160px" verify="NotNull&&Length<100" /></td>
+	    </tr>
+		<tr>
+			<td></td>
+			<td><z:uploader id="SpecialUploader" width="260" allowType="gif,png" fileCount="1"/>
+			<p>(<z:lang id="Special.SelectBorderImg">请选择一张gif或png格式的边框图，用来裁剪成9部分的样式边框图片</z:lang>)</p></td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>

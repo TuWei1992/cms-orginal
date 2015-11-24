@@ -1,0 +1,229 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title><z:lang id="Contentcore.ImageCutting.Title">图片处理</z:lang></title>
+<link href="../../style/default.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="borderCutImg.css" />
+<script type="text/javascript" src="../../framework/main.js"></script>
+<script type="text/javascript" src="../../contentcore/images/jquery.imgareaselect.js"></script>
+<script type="text/javascript" src="imgEdit.js"></script>
+<script type="text/javascript">
+imgEditState.allowBigZoom=[100,500];
+imgEditState.zoomGap=100;
+Page.onLoad(function(){
+	
+});
+</script>
+<style type="text/css">
+.ImgCutWrap {
+	width:800px;
+	height:100%;
+	margin:0 auto;
+	overflow:hidden;
+}
+.ImgCutCon{
+height:100%;
+}
+.ImgCutWrap .ImgEditMenus {
+	height:24px;
+	line-height:24px;
+	overflow:hidden;
+	padding-bottom:3px;
+	border-bottom:1px solid #D1D9E0;
+}
+.ImgCutWrap .ImgEditMenus img {
+	vertical-align:middle;
+}
+.ImgCutOptions {
+	width:180px;
+	padding-left:9px;
+	overflow:hidden;
+	border-right:1px solid #D1D9E0;
+}
+.ImgCutOptions .ImgCutOption {
+	clear:both;
+	overflow:hidden;
+	padding:14px 10px 0px 10px;
+}
+.ImgCutOptions .ImgCutOption .options {
+	font-weight:normal;
+	padding-top:8px;
+}
+.ImgCutOptions .ImgCutOption .options td {
+	padding:5px;
+}
+.ImgCutOptions .ImgCutOption .options label {
+	float:left;
+	width:64px;
+	height:24px;
+	line-height:24px;
+}
+.ImgBox {
+	width:610px;
+	height:467px;
+	overflow:auto;
+	background:#ffffff;
+	position:relative;
+}
+.ImgBox img.waterImgCur{ border:1px solid #333333;}
+a.current {
+	background:url(../style/zvingclassic/buttons.gif) no-repeat left -623px;
+}
+a.current b {
+	background:url(../style/zvingclassic/buttons.gif) no-repeat right -823px;
+}
+.z-slider {
+	width:111px;
+	height:21px;
+	margin:0 auto;
+}
+.z-slider-thumb {
+	width:11px;
+	height:21px;
+	background:url(icon.gif) no-repeat left top;
+}
+.sliderNum {
+	overflow:hidden;
+	height:20px;
+	line-height:20px;
+	padding-top:20px;
+}
+label{ margin:0px; }
+.TextBox,.warterImg{ position:absolute; z-index:100; top:20px; text-align:left; left:20px; background:none; border:none; color:#000000; }
+.waterImgWrap{ text-align:center; }
+.waterImgWrap img{ margin-top:6px; padding:2px; background:#ffffff; border:1px solid #cccccc; cursor:pointer; }
+.waterImgWrap img.current{ border:1px solid #ff0000; }
+.warterImg{ cursor:move; }
+.narrow{ width:20px; height:20px; margin-right:8px; _display:inline; background:url(iconNarrow.gif) no-repeat center center; cursor:pointer;}
+.larger{ width:20px; height:20px; margin-left:8px; _display:inline; background:url(iconenlarge.gif) no-repeat center center; cursor:pointer;}
+#menus{ padding-top:8px; margin-right:12px; }
+.menuWrap{ background:url(bottom_blueline.gif) repeat-x left 32px; height:33px; overflow:hidden; line-height:33px;}
+.ImgCutOptions .ImgCutOption .options td div#colorBox{ width:68px; }
+.ImgCutOptions .ImgCutOption .options td div#colorBox td{ padding:2px 0px 2px 2px;}
+</style>
+<script>
+function applyCut(){	
+	if(Verify.hasError(null, "#tb_wh", false)) {  //验证宽高的输入格式
+		return;
+	}
+	var dc = {
+			Path:"${Path}",
+			x:imgEditState.apply.left,y:imgEditState.apply.top,w:$V("#Imgwidth"),h:$V("#Imgheight"),Scale:imgEditState.scale.x,
+			cnName:$V("#BorderName_cn"),twName:$V("#BorderName_tw"),enName:$V("#BorderName_en"),orderIndex:$V("#OrderIndex")
+			};
+	
+	if((imgEditState.apply.width<=0 || imgEditState.apply.height<=0) && imgEditState.scale.x==1) {
+		return;
+	}
+
+	Server.sendRequest("Special.borderCutting", dc, function(response) {
+			if(response.Status == 1) {
+				MsgPop(response.Message);
+				parent.$D.close();
+			} else {
+				Dialog.warn(response.Message);
+			}
+	},null,null,'json');
+}
+function cancel(){
+	parent.$D.close();
+}
+Page.onLoad(function(){
+	var borderName=parent.$D.borderName;
+	$("#BorderName_cn").val(borderName);
+	$("#BorderName_tw").val(borderName);
+	$("#BorderName_en").val(borderName);
+	$("#OrderIndex").val(0);
+});
+</script>
+</head>
+<body class="z-body-detail">
+<z:init method="CommonImageCutting.init">
+<div class="ImgCutWrap">
+  <div class="ImgCutWrap">
+    <div class="ImgCutCon clearself" style="background-color:white">
+      <div class="fl ImgCutOptions" id="components">
+        <div>
+			<div class="ImgCutOption" style=""> <strong><z:lang id="Special.BorderName">边框名称</z:lang>：</strong>
+            <div class="options">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" id="tb_wh">
+                <tr>
+                  <td>
+                    <input type="text" value="" style="width:150px;" id="BorderName_cn" /> zh-cn
+                   </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" value="" style="width:150px;" id="BorderName_tw" /> zh-tw
+                   </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" value="" style="width:150px;" id="BorderName_en" /> en
+                   </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="ImgCutOption" style=""> <strong><z:lang id="Special.OrderIndex">排序序列</z:lang>：</strong>
+            <div class="options">
+             <table border="0" cellpadding="0" cellspacing="0" width="100%" id="tb_wh">
+                <tr>
+                  <td>
+                    <input type="text" value="" verify="Int" style="width:150px;" id="OrderIndex" />
+                   </td>
+                </tr></table>
+            </div></div>
+          <div class="ImgCutOption" style=""> <strong><z:lang id="Contentcore.ImageCutting.Cutting">裁剪</z:lang>：</strong>
+            <div class="options">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" id="tb_wh">
+                <tr>
+                  <td><z:lang id="Common.Width">宽度</z:lang>
+                    <input type="text" value="" verify="Int" style="width:50px;" id="Imgwidth" />
+                    px</td>
+                </tr>
+                <tr>
+                  <td><z:lang id="Common.Height">高度</z:lang>
+                    <input type="text" value="" verify="Int" style="width:50px;" id="Imgheight"/>
+                    px</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="ImgCutOption" style="padding-top:15px; padding-left:4px; padding-right:4px; padding-bottom:20px;" id="sliderCon"><strong><z:lang id="Contentcore.ImageCutting.Zoom">缩放</z:lang>：</strong>( <label id="scaleImg"></label> <label id="scale" style="padding-left:5px;"></label>)
+            <div class="clearself" style="padding-top:20px;">
+                <div id="sliderContent" style="display: none"></div>
+                <div class="fl narrow" id="narrow"></div>
+            	<div style="padding-left:10px;float:left; padding-bottom:10px;"><input type="button" value="@{Contentcore.ImageCutting.ActualSize}" id="oldimgWid" /></div>
+                <div class="fl larger" id="larger"></div>
+            </div>
+          </div>
+          <div  style="border-top:1px solid #D1D9E0; padding:20px 20px 0;">
+            <input type="button" onClick="applyCut()" style="width:60px;" value="@{Contentcore.ImageCutting.Apply}">
+            <input type="button" onClick="cancel()" style="width:60px;"  value="@{Contentcore.ImageCutting.Cancel}">
+          </div>
+        </div>
+        </div>
+        <div class="fr ImgBox" >
+        <table border="0" cellpadding="0" width="100%" height="100%" style="table-layout:fixed;">
+        <tr>
+        <td height="30" style="text-align: center;"><b><z:lang id="Special.ChooseBorderCutArea">请选择裁剪区域，以便将图片裁剪为9个边框样式图</z:lang></b><p>(<z:lang id="Special.ChooseBorderMemo">可以对图片放大，以便精确选择</z:lang>)</p></td>
+        </tr>
+          <tr>
+            <td align="center" valign="middle" >
+            <div id="imgBox" style="padding:3px"><img id="photo" src="${PreviewPrefix}special/containers/${Path}"/></div></td>
+          </tr>
+        </table>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</z:init>
+</body>
+</html>
