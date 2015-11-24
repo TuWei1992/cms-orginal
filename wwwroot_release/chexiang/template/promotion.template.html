@@ -1,0 +1,51 @@
+<z:config type="Block" name="促销活动" />
+<div class="mod-row cx-cu">
+	<div class="mod-side">
+		<div class="mod-tit">
+			<i class="icon-cu"></i>
+			<dl class="tit-name">
+				<dt><a href="${Config.CuBase}/brand/promotion/showProm.htm?brand=-1&orderByItem=endingTime&currentPage=1&activity=all&status=all" target="_blank">促销活动<ins></ins></a></dt>
+				<dd><span id="promotionCount"></span>个活动进行中</dd>
+			</dl>
+		</div>
+		<div class="cu-img-area">
+			<cms:imagegroup catalogAlias="sy20150328_cxhd_zctp" name="图片">
+			<z:if condition="${__Total>0}">
+				<cms:image count="1">
+				<z:if condition="${image.LinkURL != ''}"><a href="${image.LinkURL}" target="_blank"</z:if><z:else><span</z:else> title="${image.name}"><img class="lazy" data-original="${image.ImagePath}" alt="${image.name}" width="230" height="386"><z:if condition="${image.LinkURL != ''}"></a></z:if><z:else></span></z:else>
+				</cms:image>
+			</z:if>
+			</cms:imagegroup>
+		</div>
+	</div>
+	<div class="cu-act-main">
+		<dl class="act-img-sumary">
+			<cms:customcontent catalogAlias="sy20150328_cxhd_ycwz">
+			<dt class="imgbox">
+				<a href="${cxhdmodel.MetaValue_titleLink}" target="_blank" title="${cxhdmodel.MetaValue_alt}"><img alt="${cxhdmodel.MetaValue_alt}" class="lazy" data-original="${prefix(cxhdmodel.MetaValue_img)}" width="474" height="316"></a>
+			</dt>
+			<dd class="time"><i class="icon-time"></i>${format(cxhdmodel.MetaValue_startDate,'YYYY-MM-dd')} - ${format(cxhdmodel.MetaValue_endDate,'YYYY-MM-dd')}</dd>
+			<dd class="tit"><a href="${cxhdmodel.MetaValue_titleLink}" target="_blank">${cxhdmodel.Title}</a></dd>
+			<dd class="sub-info">${cxhdmodel.MetaValue_fqf}</dd>
+			<dd class="desc" title="${cxhdmodel.MetaValue_description}">${charWidth(cxhdmodel.MetaValue_description, 130, "...")}</dd>
+			</cms:customcontent>
+		</dl>
+	</div>
+	<div class="cu-act-side">
+		<ul>
+			<cms:customcontent catalogAlias="sy20150328_cxhd_ycwz">
+			<z:list count="4" begin="2" >
+			<li>
+				<dl class="act-img-item">
+					<dt class="imgbox">
+						<a href="${cxhdmodel.MetaValue_titleLink}" target="_blank" title="${cxhdmodel.MetaValue_alt}"><img class="lazy" data-original="${prefix(cxhdmodel.MetaValue_img)}" alt="${cxhdmodel.MetaValue_alt}" width="234" height="156"></a>
+					</dt>
+					<dd class="tit"><a href="${cxhdmodel.MetaValue_titleLink}" target="_blank">${cxhdmodel.Title}</a></dd>
+					<dd class="sub-info">${cxhdmodel.MetaValue_fqf}</dd>
+				</dl>
+			</li>
+			</z:list>
+			</cms:customcontent>
+		</ul>
+	</div>
+</div>

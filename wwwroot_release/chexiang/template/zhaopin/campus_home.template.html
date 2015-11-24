@@ -1,0 +1,104 @@
+<z:config type="CatalogIndex" name="校园招聘栏目首页" />
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+	<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+		<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>
+		<meta http-equiv="cache-control" content="public"/>
+		<meta http-equiv="expires" content="max-age"/>	
+		<title>车享招聘</title>
+		<meta name="keywords" content="车享招聘"/>
+		<!-- begin | global javascript -->
+			<script>
+				(function (window, console) {
+//				 	window.base = "${Config.Base}";
+					window.base = "";
+					window.accountBase="${Config.AccountBase}";
+					window.mainBase = "${Config.MainBase}";
+					window.imBase = "${Config.ImBase}";
+					window.OrderBase = "${Config.OrderBase}";
+					window.memberBase = "${Config.MemberBase}";
+					window.mallBase = "${Config.MallBase}";
+					window.imUrl="${Config.imUrl}?arg=admin&style=2";
+					
+				} (window, "undefined" != typeof console ? console : void 0));
+			</script>
+		<!-- end | global javascript -->
+		<link href="${surl('resource/common/img/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+		<!-- begin | public stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/common/css/reset.css')}">
+		<link rel="stylesheet" href="${surl('resource/common/css/global.css')}">
+		<!-- end | public stylesheet -->
+		<!-- begin | private stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/zhaopin/css/index.css')}">
+		<!-- end | private stylesheet -->
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${surl('resource/common/js/jquery_1_8_3.js')}"></script>
+	<!-- end | public javascript -->		
+</head>
+<body>
+	<!-- begin | Top Bar -->
+    <cms:include file="../header_index-mini.template.html" />
+	<!-- end | Top Bar -->
+	
+	<!-- begin | menu Bar -->
+    <cms:include file="header_menu.zhaopin.template.html" />
+	<!-- end | menu Bar -->
+	
+	<!-- container -->
+	<div class="campus-home">
+		<div class="campus-main">
+			<ul class="">
+				<li class="fresh-graduate cur">
+					<a class="img" href="<cms:catalog alias='zpsy_xyzp_yjs'>${indexSuffix(catalog.Link)}</cms:catalog>">
+						<div class="tip-box">
+							<h4 class="tit">应届生</h4>
+							<div class="tb">
+								<p>车享生是一批具有热情，创新力，拼搏劲的学生</p>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="trainee">
+					<a class="img" href="<cms:catalog alias='zpsy_xyzp_sxs'>${indexSuffix(catalog.Link)}</cms:catalog>">
+						<div class="tip-box">
+							<h4 class="tit">实习生</h4>
+							<div class="tb">
+								<p>对不同年级和专业，都希望你能找到适合你的机会。</p>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="activity">
+					<a class="img" href="<cms:catalog alias='zpsy_xyzp_xyhd'>${indexSuffix(catalog.Link)}</cms:catalog>">
+						<div class="tip-box">
+							<h4 class="tit">校园活动</h4>
+							<div class="tb">
+								<p>快来多关注“车享招聘”订阅号，礼品活动“享”不停。</p>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>		
+	</div>
+
+
+	<!-- footer -->
+	<cms:include file="../footer_index.template.html" />
+	<!-- end | Footer -->
+	
+	<!-- sidebar -->
+	<cms:include file="../sidebar.template.html" />
+	<!-- end | sidebar -->	
+
+	
+	<script>
+	$('.main-nav a').removeClass('cur');$('.main-nav li').eq(3).find('a').addClass('cur');
+	</script>
+	<script src="${surl('resource/common/js/header.js')}"></script>
+	<script src="${surl('resource/zhaopin/js/index.js')}"></script>
+	<cms:include file="../analysis.template.html" />
+</body>
+</html>

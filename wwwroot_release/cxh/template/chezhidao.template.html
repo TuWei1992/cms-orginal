@@ -1,0 +1,33 @@
+<z:config type="Block" name="车知道" />
+<!-- car-know -->
+<div class="mod-row">
+  <div class="mod-th">
+    <h2 class="mod-tit">车知道</h2>
+    <a class="a-more" href="${Config.ClubBase}" target="_blank">查看更多 &gt;</a>
+  </div>
+  <div class="car-know">
+    
+    <div class="car-knowledge">
+      <cms:article catalogAlias="cxhxb_czd">
+        <z:list>
+           <div class="knowledge-item">
+              <div class="img-box">
+                <a href="${Article.SourceURL}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="" width="159" height="106"></a>
+              </div>
+              <dl class="summary">
+                <dt><a href="${Article.SourceURL}" target="_blank">${Article.Title}</a></dt>
+                <dd class="desc">${charWidth(Article.SourceTitle, 154, "...")}</dd>
+              </dl>
+            </div>	
+        </z:list>
+      </cms:article>	
+    </div>
+    <cms:cxdata code="findQuestionByPageSize" condition="pageSize=16">
+      <ul class="txt-list">
+        <z:list count="16">
+          <li><i class="dot">•</i><a href="${Config.ClubBase}/question/${CXData.data.id}" target="_blank">${charWidth(CXData.data.title, 34, "...")}</a></li>
+        </z:list>
+      </ul>
+    </cms:cxdata>
+  </div>
+</div>

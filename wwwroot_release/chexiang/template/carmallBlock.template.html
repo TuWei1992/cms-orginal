@@ -1,0 +1,58 @@
+<z:config type="Block" name="车享商城首页区块" />
+<div class="mod-row cx-mall">
+			<div class="mod-side">
+				<div class="mod-tit">
+					<i class="icon-mall"></i>
+					<dl class="tit-name">
+						<dt><a href="${Config['ebiz.zcms.web.carmallBase']}" target="_blank">车享商城<ins></ins></a></dt>
+						<dd>心享&nbsp;&#8226;&nbsp;车成</dd>
+					</dl>
+				</div>
+				<ul class="mall-cate">
+					<cms:article catalogAlias="sy20150328_cxsc_ljz" name="首页链接" loadcontent="true">
+						<z:list>
+							<z:match value="${Article.Content}" regex="<a.*?>.+?</a>">
+								<z:list count="12">
+									<li>${(Data.Value)}</li>
+								</z:list>
+							</z:match>
+						</z:list>
+					</cms:article>
+				</ul>
+				<div class="mall-bot">
+					<h3 class="tit">服务保障</h3>
+					<ul>
+						<li>透明价格保障</li>
+						<li class="last">车源供应保障</li>
+						<li>服务品质保障</li>
+						<li class="last">违约先行赔付</li>
+					</ul>
+				</div>
+			</div>
+			<div class="mod-main">
+				<ul class="mall-cate-data">
+					<cms:imagegroup catalogAlias="sy20150328_cxsc_tj" name="首页图集">
+					<z:list>
+						<cms:image count="3">
+						   <z:list>
+								<li class='${i==__Total?"last":""}'>
+								<div class='mall-item'>
+									<a<z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if>><img class="lazy" data-original="${imageSize(Image.ImagePath,314,486)}" width="314" height="486" alt="" />
+										<z:if condition="${not empty Image.Name || not empty Image.Info}">
+										<div class="mall-pop">
+											<div class="mpop-cn">
+												<z:if condition="${not empty Image.Name}"><h3 class="tit">${Image.Name}</h3></z:if>
+												<z:if condition="${not empty Image.Info}"><p>${Image.Info}</p></z:if>
+											</div>
+										</div>
+										</z:if>
+									</a>
+								</div>
+								</li>
+							</z:list>
+						</cms:image>
+					</z:list>
+					</cms:imagegroup>
+				</ul>
+			</div>
+		</div>

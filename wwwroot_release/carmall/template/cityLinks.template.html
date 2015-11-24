@@ -1,0 +1,6 @@
+<z:config type="Block" name="城市路径" />
+<cms:catalog level="Root" condition="SEOKeywords is not null and SEOKeywords != ''">
+var cityLinks = {
+<z:list><z:if condition="${i!=1}">,</z:if>'${Catalog.SEOKeywords}':['/${Catalog.Path}','${Catalog.Name}']</z:list>
+}
+</cms:catalog>

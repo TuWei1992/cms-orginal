@@ -1,0 +1,289 @@
+<z:config type="SiteIndex" name="@{Contentcore.SiteIndexTemplate}" />
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<meta content="" name="apple-mobile-web-app-title">
+	<meta name="description" content="${Site.SEODescription}"/>
+	<meta name="keywords" content="${Site.SEOKeywords}"/>
+	<meta content="telephone=no" name="format-detection" />
+  	<title>${Site.SEOTitle}</title>
+	<link rel="shortcut icon" href="" />
+	<link rel="stylesheet" href="${surl('resource/mainsite/css/index.css')}">
+  <script src="${surl('resource/mainsite/js/jquery_1_8_3.js')}"></script>
+<script src="${surl('resource/mainsite/js/swiper.js')}" type="text/javascript" charset="utf-8"></script>
+  <!--script src="${surl('resource/mainsite/js/header.js')}"></script-->
+  <script>
+    (function (window, console) {
+      window.base ="${Config['ebiz.zcms.web.wapBase']}";
+      // window.base = "";
+      window.accountBase="${Config.AccountBase}";
+      window.mainBase = "${Config.MainBase}";
+      window.imBase = "${Config.ImBase}";
+      window.OrderBase = "${Config.OrderBase}";
+      window.memberBase = "${Config.MemberBase}";
+      window.imUrl="${Config.imUrl}?arg=admin&style=2";
+    } (window, "undefined" != typeof console ? console : void 0));
+  </script>
+</head>
+<body>
+  <header>
+    <img width="46.4%" src="../resource/mainsite/image/logo.png" alt="">
+     <a class="menberLogin"  href="javascript:void(0);">会员登录</a>
+    <a class="menberUser" style="display:none" href="${Config.MemberBase}/member/member.htm">用户名</a>
+  </header>
+  <nav class="menu">
+    <ul class="clearfix">
+      <li><a href="${Config['ebiz.zcms.web.wapBase']}" class="curr" title="首页">首页</a></li>
+		<li><a href="${Config['ebiz.zcms.web.carmallBase']}" target="_blank">车享商城</a></li>
+      <li><a href="${Config['ebiz.zcms.web.wapBase']}/car/index.html" title="车型大全">车型大全</a></li>
+      <li><a href="${Config.CuBase}/brand/promotion/showProm.htm?brand=-1&orderByItem=endingTime&currentPage=1&activity=all&status=all" title="促销活动">促销活动</a></li>
+      <li><a href="${Config.ChexiangpaiBase}/sellcar.htm" title="二手车">二手车</a></li>
+      <li><a href="${Config.MallBase}/cxh/index.htm" title="车享汇">车享汇</a></li>
+    </ul>
+  </nav>
+
+ <!--- slide images -->
+ <cms:imagegroup catalogAlias="sy20150328_ydd_sydbjdt" name="焦点图">
+	<z:if condition="${__Total>0}">
+		<cms:image>
+		<z:if condition="${__Total>0}">
+  <div id="banner">
+    <a href="javascript:;" class="arrow-left"></a> 
+    <a href="javascript:;" class="arrow-right"></a> 
+    <div id="bannerSwiper" class="swiper-container"> 
+      <div class="swiper-wrapper">
+			<z:list><div id="swiper-slide${i}" class="swiper-slide"><a href="${image.LinkURL}" target="_blank" title="${image.name}"><img src="${image.ImagePath}" alt="${image.name}" /></a></div></z:list>
+      </div>
+    </div>
+    <div class="pagination" id="bannerpagination"></div>
+  </div>
+  </z:if>
+  </cms:image>
+  </z:if>
+	</cms:imagegroup>
+
+<!--  品牌专区-start  -->
+<div class="box brand">
+
+<cms:cxdata catalogAlias="pp">
+  <z:list>
+    <z:if condition="${i==1||i==6}">
+    <ul class="clearfix">
+    </z:if>
+    <li class="brand-item">
+      <a href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/home.htm" title="${CXData.data.velBrandChsName}" target="_blank">
+        <img src="../resource/mainsite/image/b-${CXData.data.velBrandEngName}.png" alt="${CXData.data.velBrandChsName}">
+        <p>${CXData.data.velBrandChsName}</p>
+      </a>
+    </li>
+    <z:if condition="${i==5||i==10}">
+      </ul>
+    </z:if>
+  </z:list>
+</cms:cxdata>
+</div>
+<!--  品牌专区-end  -->
+
+<!--  新车推荐-start  -->
+<div class="box brand recomm">
+  <h4 class="tit"><p>车型推荐 <a class="more fl-r" href="${mainBase}/car/index.htm">更多</a></p></h4>
+<cms:cxdata code="newlySeries" condition="size=6">
+    <z:list>
+      <z:if condition="${i==1||i==4}">
+      	<ul class="clearfix">
+      </z:if>
+      <li>
+        <a href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/series_${CXData.data.velSeriesId}/home.htm" target="_blank"><img class="lazy" data-original="${commonImg(eval('/210x140${CXData.data.coverImg}'))}" alt="${CXData.data.velSeriesChsName}"></a></z:if>
+        <p><a href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/series_${CXData.data.velSeriesId}/home.htm" target="_blank">${CXData.data.velSeriesChsName}</a><br/>
+          <span class="price"><z:if condition="${CXData.data.maxPrice > 0}">￥${format(CXData.data.minPrice/10000,'.00')}万 ~ ${format(CXData.data.maxPrice/10000,'.00')}万</z:if><z:else>暂无价格</z:else></span></p>
+      </li>
+      <z:if condition="${i==3||i==6}">
+        </ul>
+      </z:if>
+    </z:list>
+</cms:cxdata>
+  </div>
+<!--  新车推荐-end  -->
+
+<!--  促销活动-start  -->
+<div class="box brand sales">
+  <h4 class="tit"><p>促销活动<a class="more fl-r" href="${Config.CuBase}/brand/promotion/showProm.htm?brand=-1&orderByItem=endingTime&currentPage=1&activity=all&status=all">更多</a></p></h4>
+  <ul class="clearfix">
+  <cms:customcontent catalogAlias="sy20150328_ydd_cxhd">
+    <z:list begin="1" count="4">
+    <li>
+        <a href="${cxhdmodel.MetaValue_titleLink}" target="_blank">
+          <div class="imgbox"><img class="lazy" data-original="${prefix(cxhdmodel.MetaValue_img)}" alt="${cxhdmodel.MetaValue_alt}"></div>
+        <dl class="info">
+          <dt><strong class="salestitle">${cxhdmodel.Title}</strong><br/><small>发起方：${cxhdmodel.MetaValue_fqf}</small></dt>
+          
+        </dl>
+        </a>
+      </li>
+    </z:list>
+  </cms:customcontent>
+  </ul>
+</div>
+<!--  促销活动-end  -->
+
+<!--  中部轮播-start  -->
+<div class="focus swiper-container focus-act margin-top20">
+  <div class="swiper-wrapper">
+    <cms:imagegroup count="1" catalogAlias="sy20150328_ydd_syzbjdt" name="焦点图">
+    <z:list>
+      <cms:image>
+        <z:list>
+          <div class="swiper-slide">
+            <a title="${image.Name}" href="${image.SourceURL}" target="_blank"><img src="${image.ImagePath}" width="963px" height="446px"></a>
+           </div>
+        </z:list>
+      </cms:image>
+    </z:list>
+  	</cms:imagegroup>
+   </div>
+  <div class="swiper-pagination swiper-pagination-act" style="display:none"></div>
+</div>
+<!--  中部轮播-end  -->  
+
+
+<!--  车享汇-start   catalogAlias="sy20150328_cxh_hyqy"-->
+<div class="box brand cxmember">
+  <h4 class="tit border-bottom"><p>车享汇 <a class="more fl-r" href="${Config.MallBase}/cxh/index.htm">更多</a></p></h4>
+  <div class="focus">
+      <div class="swiper-container focus-hui">
+        <div class="swiper-wrapper">
+          <cms:imagegroup count="1" catalogAlias="sy20150328_ydd_cxh_jdt" name="焦点图">
+          <z:if condition="${__Total>0}">
+            <cms:image>
+              <z:list>
+                <div class="swiper-slide">
+                  <a title="${image.name}" href="${image.LinkURL}" target="_blank"><img src="${image.ImagePath}" alt="${image.name}" width="963px" height="446px"></a>
+                 </div>
+              </z:list>
+            </cms:image>
+          </z:if>
+          </cms:imagegroup>
+        </div>
+        <div class="swiper-pagination swiper-pagination-hui" style="display:none"></div>
+      </div>
+    </div>
+ <cms:article catalogAlias="sy20150328_ydd_cxh_hyqy" level="Current" loadcontent="true">
+  <z:list>
+    <a href="${Article.SourceURL}">
+    <dl class="list">
+      <dt class="img-box"><img src="${Article.LogoFile}" alt="${Article.Title}" /></dt>
+      <dt>${Article.Title}</dt>
+      <dd>
+        ${Article.SourceTitle}
+        <img class="arrow" src="../resource/mainsite/image/icon-7.png" alt="${Article.Title}">
+      </dd>
+    </dl>
+    </a>
+  </z:list>
+</cms:article>
+</div>
+<!--  车享汇-end  -->
+
+  <nav class="menu margin-top20 foot">
+    <ul class="clearfix">
+      <li><a href="${mainBase}" title="首页">首页</a></li>
+	  <li><a href="${Config['ebiz.zcms.web.carmallBase']}" target="_blank">车享商城</a></li>
+      <li><a href="${Config.CarlibBase}/overview/brand_-1.htm" title="车型大全">车型大全</a></li>
+      <li><a href="${Config.CuBase}/brand/promotion/showProm.htm?brand=-1&orderByItem=endingTime&currentPage=1&activity=all&status=all" title="促销活动">促销活动</a></li>
+      <li><a href="${Config.ChexiangpaiBase}/main/index.htm" title="二手车">二手车</a></li>
+      <li><a href="${Config.MallBase}/cxh/index.htm" title="车享汇">车享汇</a></li>
+    </ul>
+  </nav>
+  
+  <footer>
+    <p>CopyRight &copy; 2013-2015,版权所有车享<br/>沪ICP备14000481号</p>
+  </footer>
+
+<script src="${surl('resource/mainsite/js/parser.js')}" type="text/javascript" charset="utf-8"></script>
+<script src="${surl('resource/mainsite/js/tokenizer.js')}" type="text/javascript" charset="utf-8"></script>
+<script src="${surl('resource/mainsite/js/vminpoly.js')}" type="text/javascript" charset="utf-8"></script>
+<script src="${surl('resource/mainsite/js/jquery.lazyload.js')}"></script>
+<script>
+   // 判断用户是否已登录
+  //$.getJSON(base+ "/common/head.htm",function(data){
+  //if(data && data.status!=0){
+  //		  $(".menberLogin").hide().siblings(".menberUser").show();				
+  // $(".menberUser").text(data.realName);
+  //}else{
+  //$(".menberLogin").show().siblings(".menberUser").hide();
+  //}
+  //});
+  
+   $.ajax({url: base+ "/common/head.htm",dataType: "json",cache: false,success: function(data) {
+           if(data && data.status!=0){
+			  $(".menberLogin").hide().siblings(".menberUser").show();				
+              $(".menberUser").text(data.realName);
+			}else{
+				$(".menberLogin").show().siblings(".menberUser").hide();
+			}
+        }});
+  
+  var n=$('.focus-act .swiper-slide').length,j=$('.focus-hui .swiper-slide').length;
+  if(n>1){
+    $('.swiper-pagination-act').show();
+    var swiper_act = new Swiper('.focus-act', {
+      pagination: '.swiper-pagination-act',
+      paginationClickable: true
+    });
+  }
+  if(j>1){
+    $('.swiper-pagination-hui').show();
+    var swiper_hui = new Swiper('.focus-hui', {
+      pagination: '.swiper-pagination-hui',
+      paginationClickable: true
+    });
+  }
+  function scrollPic(){
+    $("img.lazy").lazyload({
+      effect:"fadeIn"
+    });
+  }
+scrollPic();
+
+$(function(){    
+  var oBan = $("#banner");
+  var iLen = oBan.find(".swiper-slide").length;       
+  if(oBan.attr("id")){
+      if(iLen > 1){
+        var mySwiper = new Swiper('#bannerSwiper',{
+          loop: true,
+          autoplay:5000,
+          speed:1000,
+          pagination: '#bannerpagination',
+          paginationClickable: true,
+          grabCursor : true,
+          nextButton: '.arrow-right',
+          prevButton: '.arrow-left',
+          parallax:true,
+        });  
+      }           
+  }
+});
+ 
+  //baidu analysis
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?37cf568cd7cc8e164f8cb43c8223cea7";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+
+  //chexiang
+  _cxProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+  document.write(decodeURIComponent("%3Cscript src='" + _cxProtocol + "data.chexiang.com/js/cx_analytics.js?t=" + new Date().getTime() + "&type=' id='analyticsScript' type='text/javascript'%3E" + "%3C/script%3E"));
+  $(".menberLogin").on("click", function(){
+		var backUrl = window.location.href;
+    	window.location.href ="/account/quickLogin.htm?backUrl=" + backUrl;
+		return false;
+	});
+</script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<z:config type="Block" name="Common Header Template" />
+<div id="header" class="header">
+  <div class="h_infoNav">
+    <div class="h_masthead pagewidth">
+      <p><span class="h_s01 cRed"><a target="_blank" href="http://www.zving.com">Zving Software</a></span> <span class="h_s02 cRed"><a target="_blank" href="http://www.zving.com/products/zcms/">Zving Content Manage System</a></span> <span id="h_getDay" class="cGray">2011-12-25 Sunday</span></p>
+      <div class="h_set"> <span class="cGray"><a id="h_sethomea" href="javascript:setHomepage('http://news.ifeng.com/history/')">Home</a> <a href="javascript:addFavorite('${Site.URL}','${Site.Name}');">Add2favorite</a>
+       <a target="_blank" href="#;">Site map</a> <a onclick="hideloginbox();" style="cursor:pointer;">Copyright</a>
+        </span>
+        <div style="display:inline;" id="h_welcome"></div>
+      </div>
+      <div style="display:none;" id="h_loginbox" class="h_indexLogin">
+        <div class="h_close cGray2"><a style="cursor:pointer;" onclick="closeloginbox();">Close</a></div>
+        <div class="clear"></div>
+        <form name="l_f" id="h_form1" method="post" action="">
+          <ul>
+            <li>
+              <label>Username </label>
+              <input type="text" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_uname" class="h_text" name="uname">
+            </li>
+            <li>
+              <label>Password </label>
+              <input type="password" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_pass" class="h_text" name="pass">
+            </li>
+            <li>
+              <input type="button" onclick="javascript:CheckInfo();" value="" class="h_btn04" name="Submit">
+            </li>
+          </ul>
+          <div class="h_indexReg">No username <br>
+            <a target="_blank" href="#;">Register</a></div>
+          <input type="hidden" value="${Site.Link}" id="h_backurl" name="backurl">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="height:80px;">
+    <div class="pagewidth">
+      <span class="pagewidth1"><a href="${Site.Link}"><img src="../images/head_logo.gif" width="500" height="78" class="fl"></a></span>
+      <div class="header_top">
+      	<a href="${FrontAppContext}member/login?SiteID=${Site.ID}" class="fr inline-block login_btn">Login</a>
+      	<a href="${FrontAppContext}member/register?SiteID=${Site.ID}" class="fr inline-block">Registr</a><a href="#">Registration Protocol</a> | <a href="#">Help Center</a> | <a href="#">Member Center</a>
+        <div style="clear:both">
+          <form name="form1" method="get" action="${FrontAppContext}search/result" target="_blank">
+            <input type="hidden" name="SiteID" value="${Site.ID}"/>
+            <input type="text" name="Query" style="width:160px" value="${Request.Query}"/>
+             <input type="submit" value="Search" style="width:60px" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagewidth" style="background:#c01410; border-top:2px solid #01478f; overflow:hidden;">
+    <div class="clearself">
+      <div class="headNav cWhite">
+		<ul>
+			<cms:catalog level="Root">
+				<z:list>
+					<li style="font-size:14px"><strong><a href="${Catalog.Link}" target="_blank">${Catalog.Name}</a></strong>
+					<cms:catalog level="Child" id="${Catalog.ID}">
+						<z:list><a href="${Catalog.Link}" target="_blank">${Catalog.Name}</a></z:list>
+					</cms:catalog>
+					</li>
+				</z:list>
+			</cms:catalog>
+ 		</ul>
+		</div>
+    </div>
+  </div>
+</div>
+
+<!-- end div#header.header -->

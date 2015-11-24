@@ -1,0 +1,33 @@
+<z:config name="站点首页模板" type="SiteIndex" />
+<?xml version="1.0" encoding="utf-8" ?> 
+<rss version="2.0">
+<channel>
+  <title>${Site.Name}</title> 
+<image>
+  <title>${Site.Name}</title> 
+  <link>${Site.Url}</link> 
+  <url>${Site.Url}/${Site.LogoFile}</url> 
+</image>
+<description>${Site.Name}</description> 
+<link>${Site.Url}</link> 
+<language>zh-cn</language> 
+<generator>${Site.Url}</generator> 
+<copyright>opyright(C) 泽元新闻网 2007-2008    All Rights Reserved. 京ICP备06024929号 </copyright> 
+<pubDate>${format(PublishDate,'yyyy-MM-dd')}</pubDate> 
+<category /> 
+<cms:article level="CurrentAndChild" page="true" pagesize="50">
+	<z:list>
+		<item>
+ 			<title>${Article.Title}</title> 
+ 			<link>${Site.Url}/${Article.Path}</link>
+ 			<author>${Article.Author}</author> 
+ 			<guid>${Site.Url}/${Article.Path}</guid> 
+ 			<category>${Catalog.Name}</category> 
+ 			<pubDate>${format(Article.PublishDate,'yyyy-MM-dd')}</pubDate> 
+ 			<comments /> 
+ 			<description>${charWidth(Article.Summary,20)}</description> 
+  	</item>
+  	</z:list>
+</cms:article>
+</channel>
+</rss>

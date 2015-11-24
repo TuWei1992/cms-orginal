@@ -1,0 +1,70 @@
+<z:config type="Block" name="侧边浮动栏" />
+<div id="mall-sidebar" class="sidebar">
+	<ul class="side-abs">
+		<li class="mainsite-im">
+			<span class="tit im-client">
+				<i class="icon-client"></i><span class="icon-text">客服</span>
+			</span>
+			<span class="advice-pop">客服<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="side-calculator">				
+			<a class="tit" href="http://www.chexiang.com/car/tool/buy_0_0_0.htm" target="_blank">
+				<i class="icon-calculator"></i><span class="icon-text">计算器</span>
+			</a>
+			<span class="advice-pop">计算器<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="side-collection">					
+			<a class="mall-my" id="mall-my" href="javascript:void(0)" login-href="/member/myCollect.htm">
+				<i class="icon-collection"></i><span class="icon-text">我的收藏</span>
+			</a>
+			<span class="advice-pop">我的收藏<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<!--  
+		<li class="line"></li>
+		<li class="side-browse">					
+			<a class="mall-my" href="" target="_blank">
+				<i class="icon-browse"></i>最近浏览
+			</a>
+		</li>
+		-->
+	</ul>
+	<ul class="side-fix">
+		<li class="cmp-enter">
+			<span class="tit a-comp" href="" target="_blank"><i class="icon-comp"></i></span>
+			<span class="advice-pop">反馈建议<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="backtoTop">
+			<span class="tit a-top"><i class="icon-top"></i></span>
+			<span class="advice-pop">返回顶部<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+	</ul>
+</div>
+<div id="feedbook" style="display:none;">
+	<!-- <form name="feedOrder" action="http://mall.dds.com/member/addFeedback.htm" method="post" id="feedOrder">  -->
+		<div class="feedbook">
+			<dl class="clearfix">
+				<dt>反馈类型：</dt>
+				<dd>
+					<label><input type="radio" name="feedbackType" value="2" id="RadioFeed_0" checked="checked" />商品价格</label>
+					<label><input type="radio" name="feedbackType" value="3" id="RadioFeed_1" />购买流程</label>
+					<label><input type="radio" name="feedbackType" value="1" id="RadioFeed_2" />投诉</label>
+					<label><input type="radio" name="feedbackType" value="4" id="RadioFeed_3" />其他</label>
+				</dd>
+			</dl>
+			<dl class="clearfix">
+				<dt>意见：</dt>
+				<dd>
+					<textarea name="question" id="question" cols="" rows="" maxlength = "500"></textarea>
+				</dd>
+			</dl>
+			<div class="submit-error">
+			</div>
+			<div class="submit-feed">
+				<input type="button" value="提交" class="feedbook-btn" id="submitFeed">
+			</div>
+		</div>
+	<!-- </form> -->
+</div>

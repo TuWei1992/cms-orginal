@@ -1,0 +1,149 @@
+
+<div style="display:none;">hack IE
+<style>
+ul,li { margin:0; padding:0; }
+.votecontainer{ font-size:12px;	padding:0 10px; width:680px; margin:auto; text-align:left; }
+.votecontainer .vote-title { line-height:32px; text-align:center; padding: 10px; margin:0; }
+.vote-content { border:1px solid #e3e3e3; }
+.vote-subject { padding:10px; }
+.subject { font-size:14px; font-weight:bold; color:#599200; }
+.require { color:red; font-size:12px; font-weight:normal; }
+.rules { font-size:12px; font-weight:normal; }
+.subject-items { width:98%; list-style:none; }
+.item { padding:5px; margin:0; display:list-item;text-align:-webkit-match-parent; }
+/*强制单选按钮和复选按钮项内容在一行内显示*/
+.item input{ margin-right:8px; }
+.vote_btnrow { margin:0 auto; padding:10px; text-align:center; }
+.votecontainer img{	_width:expression(Math.min(120,this.width));  border:0; }
+/*
+具体映射关系参照代码类别VoteItemType
+item_0:选择
+item_1:单行文本
+item_2:多行文本
+item_3:图片上传
+item_4:文章列表
+*/
+</style>
+</div>
+<div style="width:100%;text-align:center;">
+<div id='vote_19' class='votecontainer'>
+	<h1 class="vote-title">欢迎参与调查:新闻类型关注度调查</h1>
+	<div id="replacer_voteForm_19" action="http://localhost:10090/zcms/vote/result" method="post" target="_blank">
+	<input type='hidden' id='vote_VoteID' name='vote_VoteID' value='19'>
+	<input type='hidden' id='vote_SiteID' name='vote_SiteID' value='14'>
+	<div class="vote-content">
+		
+		
+		<div class="vote-subject">
+			<h4 class="subject-title">
+				<span class="subject">1. 喜欢哪类新闻</span>
+			</h4>
+			<ul class="subject-items">
+				
+				
+					<li class="item" style="">
+						
+						<label><input type="radio" name="Subject_67" value="220" />军事</label>
+						
+						
+						
+						
+					</li>
+					<li class="item" style="background-color:#eff6fb;">
+						
+						<label><input type="radio" name="Subject_67" value="221" />娱乐</label>
+						
+						
+						
+						
+					</li>
+					<li class="item" style="">
+						
+						<label><input type="radio" name="Subject_67" value="222" />财经</label>
+						
+						
+						
+						
+					</li>
+					<li class="item" style="background-color:#eff6fb;">
+						
+						<label><input type="radio" name="Subject_67" value="223" />科技</label>
+						
+						
+						
+						
+					</li>
+				
+			</ul>
+		</div>
+		
+	</div>
+	<div class="vote_btnrow">
+		
+		<span class="vote-submit">
+		<input type="submit" id="tijiao" value="提交" />&nbsp;&nbsp;
+		</span>
+		
+		<span class="vote-viewresult" >
+		<input type='button' value="查看" onclick='javascript:window.open("http://localhost:10090/zcms/vote/result?vote_VoteID=19&vote_SiteID=14&vote_View=true")'>
+		</span>
+			
+	</div>
+	</div>
+</div></div>
+<script>
+(function(){
+//IE中不支持form嵌套，所以模板中先用div替代，如果调查项不在form中就吧div替换为form
+var formReplacer=document.getElementById('replacer_voteForm_19');
+var inForm=false;
+var ele=formReplacer.parentNode;
+var body=document.body;
+while(ele!==body){
+	if(ele.tagName==='FORM'){
+		inForm=true;
+		break;
+	}
+	ele=ele.parentNode;
+}
+ele=null;
+if(!inForm){
+	var form=document.createElement('form');
+	form.setAttribute('action',formReplacer.getAttribute('action'));
+	form.setAttribute('target',formReplacer.getAttribute('target'));
+	form.setAttribute('method',formReplacer.getAttribute('method'));
+	form.id='voteForm_19';
+	formReplacer.parentNode.insertBefore(form,formReplacer);
+	form.appendChild(formReplacer);
+}
+
+//处理文本域的字数控制，超过特定长度后就不再接收输入
+var container=document.getElementById('vote_19'),
+	inputs=container.getElementsByTagName('input'),
+	textareas=container.getElementsByTagName('textarea'),
+	maxNumForInput=120,
+	maxNumForTextarea=400,
+	i,len;
+
+for((i=0,len=inputs.length); i<len; i++ ){
+	if(inputs[i].type==='text'||inputs[i].type==='password'){
+		inputs[i].setAttribute('maxlength',maxNumForInput);
+	}
+}
+var lenControl=function(evt){
+	evt=evt||window.event;
+	if(this.value.length>maxNumForTextarea){
+		return false;
+	}
+},
+blurHandler=function(evt){
+	if(this.value.length>maxNumForTextarea){
+		this.value=this.value.substring(0,maxNumForTextarea);
+	}
+};
+for((i=0,len=textareas.length);i<len;i++){
+	textareas[i].onkeydown=lenControl;
+	textareas[i].onblur=blurHandler;
+}
+
+}());
+</script>

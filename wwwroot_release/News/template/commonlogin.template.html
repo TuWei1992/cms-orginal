@@ -1,0 +1,138 @@
+<z:config type="Block" name="登录弹出层区块"/>
+<style>
+BODY {background-color: #ffffff; color: #555; line-height: 1.5;	word-wrap: break-word;	word-break: break-all;}
+A {border-bottom: 0px;	border-left: 0px;	background-color: transparent;	color: #004276;	border-top: 0px;border-right: 0px;text-decoration: none;}
+BODY, DIV, FORM, UL, LI, H1, H4 {padding-bottom: 0px;margin: 0px;padding-left: 0px;padding-right: 0px;padding-top: 0px;}
+UL, LI {list-style-type: none;}
+IMG {border-bottom: 0px;border-left: 0px;border-top: 0px;border-right: 0px;}
+TD, TEXTAREA { line-height: 1.5;	word-wrap: break-word;	word-break: break-all;}
+BODY, INPUT, TEXTAREA {margin: 0px;font-family: Tahoma, SimSun, sans-serif;font-size: 12px;}
+DIV, P, TABLE, TD {	line-height: inherit;font-family: inherit;font-size: 1em;}
+EM {font-style: normal;font-weight: normal;text-decoration: none;}
+EM {color: #999;}
+H1,H4 {color: #444;}
+H1 A, H4 A {color: #222;}
+H1 {font-family: "Microsoft YaHei", SIMHEI, sans-serif;font-size: 24px;font-weight: normal;}
+H4 {font-family: "Microsoft YaHei", Arial, sans-serif;font-size: 14px;}
+.fr {float: right;_display: inline;}
+.red {color: #ba2635;}
+.cRed {color: #ba2636;}
+.f14 {font-size: 14px;}
+I {font-family: "宋体";color: #f60;}
+input.textInput {border: 1px solid #7F9CBA;float:left;font-size:12px;height:16px;line-height:16px;padding:3px;width:170px;}
+.loginFormWrap{border:5px solid #eee;background-color:#eee;-moz-border-radius: 4px;-webkit-border-radius: 4px;}
+.loginForm {background:#fff;padding-bottom: 15px;padding-left: 15px;padding-right: 15px;height: 255px;padding-top: 15px;-moz-border-radius: 2px;-webkit-border-radius: 2px;}
+.loginForm H4 {border-bottom: #ddd 1px solid;padding-bottom: 5px;margin-bottom: 5px;}
+.btn_regist {padding:8px 20px;background-color:#ddd}
+.btn_regist:hover { background-color:#aaa; }
+.diaglogin_div {  
+	border:5px solid #eee;
+	background-color:#fff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	text-align: center;  
+	font-size: 12px;  
+	z-index:99;
+	left:30%;/*FF IE7*/  
+	top: 20%;/*FF IE7*/  
+	margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */  
+	margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/  
+	margin-top:0px;  
+	position:absolute;/*FF IE7*/  
+}
+.note_div{
+	width:800px;
+	height:310px;
+	/*overflow:scroll;*/
+	text-align: left;
+	padding:15px;
+}
+</style>
+<script>
+function ajaxLogin() {
+	var dc = Form.getData("diagLoginForm");
+	dc.add("SiteID", '${Site.ID}')
+	dc.add("UserName", $V("DUserName"))
+	dc.add("Password", $V("DPassword"))
+	dc.add("AuthCode", $V("DAuthCode"))
+	Server.sendRequest("Member.doLogin", dc, function(response) {
+			if(response.Status == 1) {
+				if( response.Message!=undefined ){
+					alert(response.Message);
+				}
+				window.location.reload();
+			} else {
+				alert(response.Message);
+			}
+		});
+}
+
+function closeLoginDiag(){
+	$('#popDiv').fadeOut(1000);
+}
+</script>
+<div id="popDiv" class="diaglogin_div" style="display:none;">
+   <div style="text-align:right;padding-right:3px;">
+    <a href="javascript:closeLoginDiag();">关闭</a>
+    </div>
+    <div id='orgNote' class="note_div">
+    <table border="0" cellSpacing="5" cellPadding="0" width="100%">
+	    <tbody>
+	      <tr vAlign="top">
+	        <td width="50%"><div class=""><div class="loginForm">
+	            <h4> <z:lang id="Member.MemberLogin">会员登录</z:lang> </h4>
+	            <form id="diagLoginForm" style="MARGIN: 20px 15px">
+	      		  <input type="hidden" id="Referer" name="Referer" value="${Request.Referer}" />
+	              <b><z:lang id="Member.RegisterUserLogin">已注册用户请从这里登录</z:lang></b><br />
+	              <br />
+	              <table border="0" cellSpacing="9" cellPadding="0" width="100%">
+	                <tbody>
+	                  <tr>
+	                    <td noWrap> <z:lang id="Common.UserName">用户名</z:lang>: </td>
+	                    <td><input class="name" id="DUserName" name="DUserName" value="" /></td>
+	                  </tr>
+	                  <tr>
+	                    <td> <z:lang id="Common.Password">密码</z:lang>: </td>
+	                    <td><input class="mima" type="password" id="DPassword" name="DPassword" value="" />
+	                      <a href="${FrontAppContext}member/forget/login?SiteID=${Site.ID}"><z:lang id="Member.ForgotPassword">忘记密码？</z:lang></a></td>
+	                  </tr>
+	                  <tr>
+	                    <td> <z:lang id="Login.VerifyCode">验证码</z:lang> </td>
+	                    <td>
+	                    	<input style="WIDTH: 55px" type="text" class="AuthCode" id="DAuthCode" name="DAuthCode" value="" />
+	                     	<img id="CommonLoginAuthCodeImg" src="${FrontAppContext}framework/images/blank.gif" 
+			                	alt="<z:lang id='Login.RefreshVerifyCode'>点击刷新验证码</z:lang>" 
+			                	style="cursor:pointer;background:url(${FrontAppContext}authCode.zhtml?Height=21&Width=50) no-repeat center center;" 
+			                	height="28" width="100" align="absmiddle" 
+			                	onClick="this.style.backgroundImage='url(${FrontAppContext}authCode.zhtml?Height=21&Width=50&'+new Date().getTime()+')'" /> 
+			              	<a href="#;" onclick="document.getElementById('CommonLoginAuthCodeImg').style.backgroundImage='url(${FrontAppContext}authCode.zhtml?Height=21&Width=50&'+new Date().getTime()+')'">重新获得验证码</a></td>
+	                  </tr>
+	                  <tr>
+	                    <td>&nbsp;</td>
+	                    <td>
+	                    	<input type="button" value="<z:lang id='Member.Login'>登录</z:lang>" onclick="ajaxLogin()" /></td>
+	                  </tr>
+	                </tbody>
+	              </table>
+	            </form>
+	          </div></div></td>
+	         <td style="border-left:1px solid #ccc;" width="1"></td>
+	        <td width="50%"><div class=""><div style="BACKGROUND-COLOR: #f9f9f9" class="loginForm">
+	            <h4> <z:lang id="Member.Regist">新用户注册</z:lang> </h4>
+	            <div style="LINE-HEIGHT: 20px; MARGIN: 20px">
+	              <div style="MARGIN-BOTTOM: 10px"> <b><z:lang id="Member.NewRegister">未注册用户请注册新帐户</z:lang></b> </div>
+	             <z:lang id="Member.RegisterServices">注册后，您可享受以下服务</z:lang>
+	              <ul style='FONT-FAMILY: "宋体"; COLOR: #669900'>
+	                <li> · <z:lang id="Member.ProvidingInfo">提供你可能喜欢的资讯、文章</z:lang> </li>
+	                <li> · <z:lang id="Member.CommentArticle">可对文章发表评论</z:lang> </li>
+	                <li> · <z:lang id="Member.Contibue">可以对接受投稿的栏目进行投稿</z:lang> </li>
+	                <li> · <z:lang id="Member.Exchange">可以在论坛和其他会员交流</z:lang> </li>
+	              </ul>
+	              <br />
+	              <a class="btn_regist" href="${FrontAppContext}member/register?SiteID=${Site.ID}&Referer=${Request.Referer}">注册新用户</a> </div>
+	          </div></div></td>
+	      </tr>
+	    </tbody>
+	  </table>
+    </div>
+</div>

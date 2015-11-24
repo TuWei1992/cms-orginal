@@ -1,0 +1,422 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:ice="http://ns.adobe.com/incontextediting">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+<script src="../js/common.js"></script>
+<style>
+#marqueeBox {
+	width:266px;
+	overflow:hidden;
+}
+.pagewidth{ width:960px;}
+.pagewidth1 {width:960px;}
+</style>
+</head>
+<body>
+<div id="header" class="header">
+  <div class="h_infoNav">
+    <div class="h_masthead pagewidth">
+      <p><span class="h_s01 cRed"><a target="_blank" href="http://www.zving.com">Zving Software</a></span> <span class="h_s02 cRed"><a target="_blank" href="http://www.zving.com/products/zcms/">Zving Content Manage System</a></span> <span id="h_getDay" class="cGray">2011-12-25 Sunday</span></p>
+      <div class="h_set"> <span class="cGray"><a id="h_sethomea" href="javascript:setHomepage('http://news.ifeng.com/history/')">Home</a> <a href="javascript:AddFavorite('http://news.ifeng.com/history/','泽元新闻网历史');">Add2favorite</a>
+       <a target="_blank" href="#;">Site map</a> <a onclick="hideloginbox();" style="cursor:pointer;">Copyright</a>
+        </span>
+        <div style="display:inline;" id="h_welcome"></div>
+      </div>
+      <div style="display:none;" id="h_loginbox" class="h_indexLogin">
+        <div class="h_close cGray2"><a style="cursor:pointer;" onclick="closeloginbox();">关闭</a></div>
+        <div class="clear"></div>
+        <form name="l_f" id="h_form1" method="post" action="http://my.ifeng.com/?_c=index&amp;_a=login">
+          <ul>
+            <li>
+              <label>账号 </label>
+              <input type="text" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_uname" class="h_text" name="uname">
+            </li>
+            <li>
+              <label>Pass Word </label>
+              <input type="password" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_pass" class="h_text" name="pass">
+            </li>
+            <li>
+              <input type="button" onclick="javascript:CheckInfo();" value="" class="h_btn04" name="Submit">
+            </li>
+          </ul>
+          <div class="h_indexReg">没有账号？<br>
+            <a target="_blank" href="#;">立即注册</a></div>
+          <input type="hidden" value="http://news.ifeng.com/history/" id="h_backurl" name="backurl">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="height:80px;">
+    <div class="pagewidth">
+      <span class="pagewidth1"><img src="../images/head_logo.gif" width="500" height="78" class="fl"></span>
+      <div class="header_top"><a class="fr inline-block login_btn">Login</a><a class="fr inline-block">Registr</a><a href="#">Registration protocol</a> | <a href="#">help center</a> | <a href="#">member center</a>
+        <div style="clear:both">
+          <form name="form1" method="post" action="">
+            <input type="text" name="textfield" id="textfield" style="width:160px">
+            <select name="select2" id="select2" style="width:90px">
+              <option>All Site</option>
+            </select>
+            <input type="submit" name="button" id="button" value="Search" style="width:60px">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagewidth" style="background:#c01410; border-top:2px solid #01478f; overflow:hidden;">
+    <div class="clearself">
+      <div class="headNav cWhite">
+		<ul>
+				<li><strong><a href="#;" target="_blank">World</a></strong> <a href="#;" target="_blank">Asia</a> <a href="#;" target="_blank">Middle East</a> <a href="#;" target="_blank">Americas</a> <a href="#;" target="_blank">Europe</a> <a href="#;" target="_blank">Africa</a> <a href="#;" target="_blank">Int'l Organizations</a></li>
+
+				<li><strong><a href="#;" target="_blank">Lifestyle</a></strong> <a href="#;" target="_blank">Culture</a> <a href="#;" target="_blank">Travel</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Food&amp;Drink</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Health</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Society</a></li>
+			  <li><strong><a href="#;" target="_blank">Sports</a></strong> <a href="#;" target="_blank">Soccer</a> <a href="#;" target="_blank">Basketball</a> <a href="#;" target="_blank">Volleyball</a> <a href="#;" target="_blank">Tennis&amp;Golf</a> <a href="#;" target="_blank">Table Tennis</a> <a href="#;" target="_blank">Badminton</a></li>
+		</ul>
+		<ul>
+			  <li><strong><a href="#;" target="_blank">China</a></strong> <a href="#;" target="_blank">Politics</a> <a href="#;" target="_blank">Mainland</a> <a href="#;" target="_blank">HK/Taiwan</a> <a href="#;" target="_blank">China&amp;World</a></li>
+			  <li><strong><a href="#;" target="_blank">Business</a></strong> <a href="#;" target="_blank">Economy</a> <a href="#;" target="_blank">Market</a> <a href="#;" target="_blank">Industries</a> <a href="#;" target="_blank">Entrepreneur</a> <a href="#;" target="_blank">Career</a></li>
+		  <li><strong><a href="#;" target="_blank">Entertainment</a></strong> <a href="#;" target="_blank">Music</a> <a href="#;" target="_blank">Movie</a> <a href="#;" target="_blank">Celebrity</a> <a href="#;" target="_blank">TV</a></li>
+	    </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end div#header.header -->
+<div id="main" class="pagewidth main" style="width:960px">
+  <div class="main_box">
+    <div class="col_L">
+      <div style="width:100%; height:225px; overflow:hidden;"><img width="300" height="225" border="0" src="../images/photo.gif"></div>
+      <div class="col_L_box clearself" style="height:1065px;">
+        <!-- div.side_mod --> 
+        <div class="side_mod">
+          <h4 class="mod_tit"><a href="#">Lifestyle</a></h4>
+          <div style="margin-top:10px; height:230px;" class="tvBox">
+            <div class="tit15"><a href="#" target="_blank" class="more">MORE&gt;&gt;</a><span><a target="_blank" href="#;">Culture</a></span></div>
+            <div class="clear"></div>
+            <div style=" margin:10px 0;" class="clearself"><img src="../images/photo.gif" width="100" height="100" class="fl" style="margin:0 15px 0 0">
+              <h5><a href="#">Leave Afghanistan now</a></h5>
+              Torrential rainstorm struck Longyan, XX Province, May 2...<a class="red" href="#">[Full]</a></div>
+            <ul class="news_list">
+              <li><a target="_blank" href="#;">Sharapova beats Azarenka in Porsc...</a></li>              <li><a target="_blank" href="#;">Akhal-Teke horses appear at exhib...</a></li>
+              <li><a target="_blank" href="#;">French presidential candidate Hol...</a></li>
+<li><a target="_blank" href="#;">Film fest reels in contracts for ...</a></li>
+            </ul>
+          </div>
+          <div class="bordA"></div>
+          <div style="margin-top:10px; height:230px;" class="tvBox">
+            <div class="tit15"><a href="#" target="_blank" class="more">MORE&gt;&gt;</a><span><a target="_blank" href="#;">Travel</a></span></div>
+            <div class="clear"></div>
+            <div style=" margin:10px 0;" class="clearself"><img src="../images/photo.gif" width="100" height="100" class="fl" style="margin:0 15px 0 0">
+              <h5><a href="#">Leave Afghanistan now</a></h5>
+              Torrential rainstorm struck Longyan, XX Province, May 2...<a class="red" href="#">[Full]</a></div>
+            <ul class="news_list">
+              <li><a target="_blank" href="#;">Sharapova beats Azarenka in Porsc...</a></li>              <li><a target="_blank" href="#;">Akhal-Teke horses appear at exhib...</a></li>
+              <li><a target="_blank" href="#;">French presidential candidate Hol...</a></li>
+<li><a target="_blank" href="#;">Film fest reels in contracts for ...</a></li>
+            </ul>
+          </div>
+          <div class="bordA"></div>
+          <div style="margin-top:10px; height:230px;" class="tvBox">
+            <div class="tit15"><a href="#" target="_blank" class="more">MORE&gt;&gt;</a><span><a target="_blank" href="#;">Fashion</a></span></div>
+            <div class="clear"></div>
+            <div style=" margin:10px 0;" class="clearself"><img src="../images/photo.gif" width="100" height="100" class="fl" style="margin:0 15px 0 0">
+              <h5><a href="#">Leave Afghanistan now</a></h5>
+              Torrential rainstorm struck Longyan, XX Province, May 2...<a class="red" href="#">[Full]</a></div>
+            <ul class="news_list">
+              <li><a target="_blank" href="#;">Sharapova beats Azarenka in Porsc...</a></li>              <li><a target="_blank" href="#;">Akhal-Teke horses appear at exhib...</a></li>
+              <li><a target="_blank" href="#;">French presidential candidate Hol...</a></li>
+<li><a target="_blank" href="#;">Film fest reels in contracts for ...</a></li>
+            </ul>
+          </div>
+          <div style="height:1em; overflow:hidden; clear:both;"></div>
+        </div>
+        <!-- div.side_mod -->
+        <div class="side_mod" style="height:260px;">
+          <h4 class="mod_tit"><a href="#">Entertainment</a></h4>
+          <div style="margin-top:10px; height:200px;" class="tvBox clearself">
+            <div id="marqueeBox">
+              <table>
+                <tr>
+                  <td id="marqueeInner" nowrap><table cellpadding="3">
+                      <tr>
+                        <td align="center"><img width="55" height="55" src="../images/photo.gif" alt=" "><br>
+                          asdf</td>
+                        <td align="center"><img width="55" height="55" src="../images/photo.gif" alt=" "><br>
+                          asdf</td>
+                        <td align="center"><img width="55" height="55" src="../images/photo.gif" alt=" "><br>
+                          asdf</td>
+                        <td align="center"><img width="55" height="55" src="../images/photo.gif" alt=" "><br>
+                          asdf</td>
+                      </tr>
+                    </table></td>
+                  <td id="marqueeClone" nowrap>&nbsp;</td>
+                </tr>
+              </table>
+            </div>
+            <script>
+            	domReady(function(){
+						//marquee('marqueeBox','marqueeInner','marqueeClone')
+				});
+            </script>
+            <div class="clear"></div>
+            <ul class="news_list">
+              <li><a target="_blank" href="#;">Sharapova beats Azarenka in Porsc...</a></li>              <li><a target="_blank" href="#;">Akhal-Teke horses appear at exhib...</a></li>
+              <li><a target="_blank" href="#;">French presidential candidate Hol...</a></li><li><a target="_blank" href="#;">Akhal-Teke horses appear at exhib...</a></li>
+              <li><a target="_blank" href="#;">French presidential candidate Hol...</a></li>
+            </ul>
+          </div>
+          <div style="height:1em; overflow:hidden; clear:both;"></div>
+        </div>
+        <!-- div.side_mod --> 
+      </div>
+      <!--end div.col_L_box--> 
+    </div>
+    <!--end div.col_L-->
+    <div class="col_M">
+      <div class="topNew clearself" style="padding-top:5px;height:20px;line-height:20px;"><span>Focus News <em style="font-size:12px;font-weight:normal"><script>
+	arr=new Date().toUTCString().split(' ');
+	arr.shift();
+	arr.pop();
+	arr.pop();
+	arr.join(' ');
+	document.write(arr);
+      </script></em> </span><a target="_blank" href="#;">MORE&gt;&gt;</a></div>
+      <h3 style="clear:both; margin:5px 0;"><a target="_blank" href="#;" class="m_bold" style="color:#004276;">China activist leaves US embassy</a></h3>
+      <ul class="list05 h24" style="height:100px;">
+        <li>
+          <h4><a target="_blank" href="#;" class="sys_url">Chinese fishermen face arrest by ROK</a></h4>
+          <div class="Function"> <span class="sys_time">16:08</span></div>
+        </li>
+        <li>
+          <h4><a target="_blank" href="#;" class="sys_url">Hillary Clinton in Beijing for SED</a></h4>
+          <div class="Function"> <span class="sys_time">02:56</span></div>
+        </li>
+        <li>
+          <h4><a target="_blank" href="#;" class="sys_url">Janos Ader elected president of Hungary</a></h4>
+          <div class="Function"> <span class="sys_time">22:32</span></div>
+        </li>
+        <li>
+          <h4><a target="_blank" href="#;" class="sys_url">Bomb explodes again in central Nepal
+</a></h4>
+          <div class="Function"> <span class="sys_time">09:57</span></div>
+        </li>
+      </ul>
+      <div class="line02"> </div>
+      <ul class="list05 h24" style="height:120px;">
+        <li>
+          <h4><a target="_blank" href="#;" class="m_bold">Factory activity indicator expands
+</a></h4>
+          <div class="Function"> <span class="sys_time">14:17</span></div>
+        </li>
+        <li>
+          <h4><a target="_blank" href="#;" class="sys_url">Space scientists look to nature
+
+</a></h4>
+          <div class="Function"> <span class="sys_time">16:39</span></div>
+        </li>
+        <li>
+          <h4><a target="_blank" href="#;" class="sys_url">Chinese fishermen face arrest by ROK
+</a></h4>
+          <div class="Function"> <span class="sys_time">18:03</span></div>
+        </li>
+        <li>
+          <h4><a target="_blank" href="#;" class="sys_url">Hillary Clinton in Beijing for SED</a></h4>
+          <div class="Function"> <span class="sys_time">17:31</span></div>
+        </li>
+        <li>
+          <h4><a target="_blank" href="#;" class="sys_url">Janos Ader elected president of Hungary</a></h4>
+          <div class="Function"> <span class="sys_time">16:07</span></div>
+        </li>
+      </ul>
+      <div class="boxM01" style="height:315px;">
+        <div class="tit02"> <span class="ch"><a target="_blank" href="#;">World News</a></span><span class="cDGray"><a class="nobg" target="_blank" href="#;">Asia</a> | <a target="_blank" href="#;">Americas</a> | <a target="_blank" href="#;">Europe</a></span></div>
+        <div class="picTxt02">
+          <h4><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></h4>
+          <ul>
+            <li> <a target="_blank" href="#;"><img width="165" height="110" alt=" " src="../images/photo.gif"></a>
+              <div class="textbg"></div>
+              <div class="text cWhite"><a target="_blank" href="#;">South China Sea dispute</a></div>
+            </li>
+            <li> <a target="_blank" href="#;"><img width="165" height="110" alt=" " src="../images/photo.gif"></a>
+              <div class="textbg"></div>
+              <div class="text cWhite"><a target="_blank" href="#;">Leave Afghanistan now</a></div>
+            </li>
+          </ul>
+        </div>
+        <ul class="list05">
+          <li><a target="_blank" href="#;">Myanmar's Suu Kyi takes oath of office</a></li>
+          <li><a target="_blank" href="#;">Price of negotiating with N. Korea</a></li>
+          <li><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></li>
+          <li><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></li>
+          <li><a target="_blank" href="#;">Factory activity indicator expands</a></li>
+        </ul>
+      </div>
+      <div class="boxM01" style="height:300px;">
+        <div class="tit02"> <span class="ch"><a target="_blank" href="#;">China News</a></span><span class="cDGray"><a class="nobg" target="_blank" href="#;">Politics</a> | <a target="_blank" href="#;">Mainland</a> | <a target="_blank" href="#;">HK/Taiwan</a></span></div>
+        <div class="picTxt">
+          <div class="picTxt">
+            <h4><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></h4>
+            <div class="hotPic"> <a target="_blank" href="#;"> <img width="123" height="86" alt=" " src="../images/photo.gif"></a>
+              <div class="textbg"></div>
+              <div class="text cWhite"> <a target="_blank" href="#;">Leave Afghanistan now</a></div>
+            </div>
+            <ul class="list03">
+              <li> <a target="_blank" href="#;">Space scientists look to nature</a></li>
+              <li> <a target="_blank" href="#;">Leave Afghanistan now</a></li>
+              <li><a target="_blank" href="#;">Don't abandon women to Taliban</a></li>
+              <li> <a target="_blank" href="#;">South China Sea dispute</a></li>
+            </ul>
+          </div>
+        </div>
+        <ul class="list05">
+          <li><a target="_blank" href="#;">Myanmar's Suu Kyi takes oath of office</a></li>
+          <li><a target="_blank" href="#;">Price of negotiating with N. Korea</a></li>
+          <li><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></li>
+          <li><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></li>
+          <li><a target="_blank" href="#;">Factory activity indicator expands</a></li>
+        </ul>
+      </div>
+      <div class="boxM01" style="height:300px;">
+        <div class="tit02"> <span class="ch"><a target="_blank" href="#;">Business</a></span><span class="cDGray"><a class="nobg" target="_blank" href="#;">Economy</a> | <a target="_blank" href="#;">Market</a> | <a target="_blank" href="#;">Industries</a></span></div>
+        <div class="picTxt">
+          <div class="picTxt">
+            <h4><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></h4>
+            <div class="hotPic"> <a target="_blank" href="#;"> <img width="123" height="86" alt=" " src="../images/photo.gif"></a>
+              <div class="textbg"></div>
+              <div class="text cWhite"> <a target="_blank" href="#;">Leave Afghanistan now</a></div>
+            </div>
+            <ul class="list03">
+              <li> <a target="_blank" href="#;">Space scientists look to nature</a></li>
+              <li> <a target="_blank" href="#;">Leave Afghanistan now</a></li>
+              <li><a target="_blank" href="#;">Don't abandon women to Taliban</a></li>
+              <li> <a target="_blank" href="#;">South China Sea dispute</a></li>
+            </ul>
+          </div>
+        </div>
+        <ul class="list05">
+          <li><a target="_blank" href="#;">Myanmar's Suu Kyi takes oath of office</a></li>
+          <li><a target="_blank" href="#;">Price of negotiating with N. Korea</a></li>
+          <li><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></li>
+          <li><a target="_blank" href="#;">Bomb explodes again in central Nepal</a></li>
+          <li><a target="_blank" href="#;">Factory activity indicator expands</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--end div.col_M--> 
+  </div>
+  <!--end div.main_col-->
+  <div class="col_R">
+    <div class="blockRB clearself" style="height:610px;">
+      <h3><span>Ranking List </span><a href="#;" target="_blank" class="more">MORE&gt;&gt;</a></h3>
+      <div class="pt">
+        <div><a href="#;" target="_blank"><img alt=" " src="../images/photo.gif" height="60" width="80"></a></div>
+        <h5><a href="#;" target="_blank">Chinese Premier meets Polish </a></h5>
+      </div>
+      <div class="list12" style="height:195px;">
+        <ul>
+          <li><a title="" href="#;" target="_blank">Chinese Premier visits Volvo head...</a></li>
+          <li><a title="" href="#;" target="_blank">Chinese Premier arrives in Stockholm</a></li>
+          <li><a title="" href="#;" target="_blank">Volvo deal connects China, Sweden</a></li>
+          <li><a title="" href="#;" target="_blank">Hu urges negotiations to end bord...</a></li>
+        </ul>
+        <div class="bordA"></div>
+        <ul>
+          <li><a title="" href="#;" target="_blank">Chinese Premier visits Volvo head...</a></li>
+          <li><a title="" href="#;" target="_blank">Chinese Premier arrives in Stockholm</a></li>
+          <li><a title="" href="#;" target="_blank">Volvo deal connects China, Sweden</a></li>
+          <li><a title="" href="#;" target="_blank">Hu urges negotiations to end bord...</a></li>
+        </ul>
+      </div>
+      <div class="bordA"></div>
+      <h3><span>ReCommend</span><a href="#;" target="_blank" class="more">MORE&gt;&gt;</a></h3>
+      <div class="pt">
+        <div><a href="#;" target="_blank"><img alt=" " src="../images/photo.gif" height="60" width="80"></a></div>
+        <h5><a href="#;" target="_blank">Chinese Premier meets Polish </a></h5>
+      </div>
+      <div class="list12" style="height:195px;">
+        <ul>
+          <li><a title="" href="#;" target="_blank">Chinese Premier visits Volvo head...</a></li>
+          <li><a title="" href="#;" target="_blank">Chinese Premier arrives in Stockholm</a></li>
+          <li><a title="" href="#;" target="_blank">Volvo deal connects China, Sweden</a></li>
+          <li><a title="" href="#;" target="_blank">Hu urges negotiations to end bord...</a></li>
+        </ul>
+        <div class="bordA"></div>
+        <ul>
+          <li><a title="" href="#;" target="_blank">Chinese Premier visits Volvo head...</a></li>
+          <li><a title="" href="#;" target="_blank">Chinese Premier arrives in Stockholm</a></li>
+          <li><a title="" href="#;" target="_blank">Volvo deal connects China, Sweden</a></li>
+          <li><a title="" href="#;" target="_blank">Hu urges negotiations to end bord...</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="blockRB clearself" style="height:295px;">
+  <h3><span>Business</span><a href="#;" target="_blank" class="more">MORE&gt;&gt;</a></h3>
+      <div class="pt">
+        <div><a href="#;" target="_blank"><img alt=" " src="../images/photo.gif" height="60" width="80"></a></div>
+        <h5><a href="#;" target="_blank">Chinese Premier meets Polish </a></h5>
+      </div>
+      <div class="list12" style="height:195px;">
+        <ul>
+          <li><a title="" href="#;" target="_blank">Chinese, Pakistani armies to enha...</a></li>
+          <li><a title="" href="#;" target="_blank">Chinese Premier arrives in Stockholm</a></li>
+          <li><a title="" href="#;" target="_blank">Volvo deal connects China, Sweden</a></li>
+          <li><a title="" href="#;" target="_blank">Hu urges negotiations to end bord...</a></li>
+        </ul>
+        <div class="bordA"></div>
+        <ul>
+          <li><a title="" href="#;" target="_blank">Chinese, Pakistani armies to enha...</a></li>
+          <li><a title="" href="#;" target="_blank">Chinese Premier arrives in Stockholm</a></li>
+          <li><a title="" href="#;" target="_blank">Volvo deal connects China, Sweden</a></li>
+          <li><a title="" href="#;" target="_blank">Hu urges negotiations to end bord...</a></li>
+        </ul>
+      </div>
+    </div>
+<div style="height:1em; overflow:hidden; clear:both;"></div>
+    <div class="side_mod" style="height:335px;">
+      <h4 class="mod_tit">Special</h4>
+      <div>
+        <div class="pic_newslist_s">
+          <div class="new">
+            <div><a href="#;" target="_blank">Leave Afghanistan now</a><a href="#;" target="_blank"></a> </div>
+            <p><span>2011-11-23 10:04:40</span></p>
+          </div>
+          <div class="pic"><a href="#;" target="_blank"><img src="../images/photo.gif" border="0" height="45" width="60"></a></div>
+        </div>
+        <div class="pic_newslist_s">
+          <div class="new">
+            <div><a href="#;" target="_blank">South China Sea dispute</a> <a href="#;" target="_blank"></a> </div>
+            <p><span>2011-10-20 17:08:00</span></p>
+          </div>
+          <div class="pic"><a href="#;" target="_blank"><img src="../images/photo.gif" border="0" height="45" width="60"></a></div>
+        </div>
+        <div class="pic_newslist_s">
+          <div class="new">
+            <div><a href="#;" target="_blank">Leave Afghanistan now</a><a href="#;" target="_blank"></a></div>
+            <p><span>2011-09-09 18:32:00</span></p>
+          </div>
+          <div class="pic"><a href="#;" target="_blank"><img src="../images/photo.gif" border="0" height="45" width="60"></a></div>
+        </div>
+        <div class="pic_newslist_s">
+          <div class="new">
+            <div><a href="#;" target="_blank">South China Sea dispute</a> <a href="#;" target="_blank"></a></div>
+            <p><span>2011-09-30 17:08:00</span></p>
+          </div>
+          <div class="pic"><a href="#;" target="_blank"><img src="../images/photo.gif" border="0" height="45" width="60"></a></div>
+        </div>
+        <div class="more02"><a target="_blank" href="#;">MORE</a>
+      </div></div>
+    </div>
+  </div>
+  <!--end div.col_R--> 
+</div>
+<!--end div#main.main-->
+<div id="footer" class="footer">
+  <div class="line_red pagewidth"></div>
+  <div class="pagewidth" style="text-align:center; padding:20px 0 5px;"><a href="#">Advertising services</a> | <a href="#">recruitment </a> | <a href="#">privacy policy</a> | <a href="#">disclaimer</a> | <a href="#">feedback</a></div>
+  <div class="pagewidth" style="text-align:center; padding:5px 0 40px;">Copyright(C) Zving News 2007-2008    All Rights Reserved.<br>
+    Tel：010-82895509 E-mail:office@zving.com</div>
+</div>
+<!-- end div#footer.footer-->
+</body>
+</html>

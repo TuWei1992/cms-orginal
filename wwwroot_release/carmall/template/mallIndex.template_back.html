@@ -1,0 +1,743 @@
+<z:config type="ArticleList" name="商城首页" />
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>商城</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link rel="stylesheet" href="${surl('resource/css/common/reset.css')}" media="screen" />
+<link rel="stylesheet" href="${surl('resource/css/mall/base.css')}" media="screen" />
+<link rel="stylesheet" href="${surl('resource/css/mall/index.css')}" media="screen" />
+</head>
+<body>
+<!-- head | header -->
+
+<cms:include file="header.template.html" />
+
+<!-- end | header -->
+<!-- 全屏轮播 -->
+<div class="banner-wrapper"  id="banner-wrap">
+	<div class="banner-wrap">
+		<ul class="slideList">
+		    <cms:cxdata code="getAdvertise" condition="channelCode=CARMALL,plateCode=LUNBOTU,territoryId=${Catalog.SEOKeywords}">
+			<z:list>
+			<li>
+				<a lazyimg = "${commonImg(CXData.data.imgUrl)}" imgsrc = "${surl('resource/images/mall/index/blank.gif')}" title="${CXdata.data.title}" target="_blank" href="${CXData.data.url}" class="img"></a>
+			</li>
+			</z:list>
+			  </cms:cxdata>
+		</ul>
+	</div>
+</div>
+<div class="search-home">
+	<div class="search-home-sel">
+		<div class="home-search-box">
+			<div class="home-search-text">
+				<span class="search-text">综合</span>
+				<span class="search-jt"></span>
+			</div>
+			<div class="search-home-list">
+				<a href="javascript:void(0)" title="综合" showSearch = 'sysbol'>综合</a>
+				<a href="javascript:void(0)" class="sel" title="上路价" showSearch = 'price'>上路价</a>
+			</div>
+		</div>
+	</div>
+	<div class="search-home-con">
+		<div class="search-box-long search-box-sel" id="sysbolDiv">
+			<form method="get" target="_blank" action="/multisearch/search.htm">
+				<input type="hidden" name="cat" value="1" />
+				<input type="text" id="attendSymbol" name="kwd" class="search-input-long" autocomplete="off" class="txt" placeholder="请输入品牌、级别、车系、车型" />
+			    <button type="submit" class="submit-home search-submit"><i></i></button>
+			</form>
+		</div>
+		<div class="search-box-long" id="priceDiv">
+			<form method="get" target="_blank" action="/multisearch/search.htm">
+				<input type="hidden" name="cat" value="0" />
+				<input type="text" id="attendPrice" name="kwd" class="search-input-long" autocomplete="off" class="txt" placeholder="请输入购车预算" maxlength="5" />
+			    <button type="submit" class="submit-home search-submit-home"><i></i></button>
+			    <div class="price-unit">
+			    	元
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 全屏轮播  End -->
+
+<!-- cms test -->
+<cms:block code="${Catalog.Alias}_linkGroup" updateBlock="false"/>
+<!-- 导航 Nav 
+<div class="hmode-white">
+	<div class="home-nav clearfix">
+		<div class="home-nav-list">
+			<div class="nav-title">
+				品牌
+			</div>
+			<div class="nav-content">
+				<a href="" title="" target="_blank">荣威</a>
+				<a href="" title="" target="_blank">MG</a>
+				<a href="" title="" target="_blank">别克</a>
+				<a href="" title="" target="_blank">雪佛兰</a>
+				<a href="" title="" target="_blank">凯迪拉克</a>
+				<a href="" title="" target="_blank">上海大众</a>
+				<a href="" title="" target="_blank">斯柯达</a>
+				<a href="" title="" target="_blank">五菱</a>
+				<a href="" title="" target="_blank">宝骏 </a>
+				<a href="" title="" target="_blank">上汽大通</a>
+				<a href="" title="" target="_blank">斯巴鲁</a>
+				<a href="" title="" target="_blank">进口大众</a>
+			</div>
+		</div>
+		<div class="home-nav-list">
+			<div class="nav-title">
+				级别
+			</div>
+			<div class="nav-content">
+			    <a href="" title="" target="_blank">微型车</a>
+				<a href="" title="" target="_blank">小型车</a>
+				<a href="" title="" target="_blank">紧凑型车</a>
+				<a href="" title="" target="_blank">中型车</a>
+				<a href="" title="" target="_blank">中大型车</a>
+				<a href="" title="" target="_blank">跑车</a>
+				<a href="" title="" target="_blank">MPV</a>
+				<a href="" title="" target="_blank">SUV</a>
+				<a href="" title="" target="_blank">客车 </a>
+			</div>
+		</div>
+		<div class="home-nav-list list-end">
+			<div class="nav-title">
+				上路价
+			</div>
+			<div class="nav-content">
+			    <a href="" title="" target="_blank">10元以下</a>
+				<a href="" title="" target="_blank">10-15元</a>
+				<a href="" title="" target="_blank">15-22元</a>
+				<a href="" title="" target="_blank">22-28元</a>
+				<a href="" title="" target="_blank">28-35元 </a>
+				<a href="" title="" target="_blank">35-40元</a>
+				<a href="" title="" target="_blank">40元以上</a>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<!-- 导航 Nav End-->
+
+<!-- 车享特供 -->
+<div class="hmode-gray">
+	<div class="home-provide">
+		<div class="modle-title">
+			<h2>
+				车享特供
+				<span class="h2-info">买放心车，选车享特供</span>
+			</h2>
+			<a href="" title="查看更多" target="_blank" class="more">查看更多&nbsp;<span class="more-s">></span></a>
+		</div>
+		<ul class="home-provide-content clearfix">
+			<li>
+				<dl class="car-detail car-detail2">
+					<dd class="img-box">
+						<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+							<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+						</a>
+						<div class="img-lab">
+							<span class="lab-zj lab-red">直降<br/>7200</span>
+						</div>
+						<span class="carnumber">已售:55辆</span>
+					</dd>
+					<dt class="name-box">
+						<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+					</dt>
+					<dd class="info-box">
+						<strong>￥23.56元</strong>
+						<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+						<i>￥25.82元</i>
+					</dd>
+					<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+						适合居家过日子的全能SUV，历史底价抢购中 
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl class="car-detail car-detail2">
+					<dd class="img-box">
+						<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+							<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+						</a>
+						<div class="img-lab">
+							<span class="lab-zj lab-blue">0利率</span>
+						</div>
+						<span class="carnumber">已售:55辆</span>
+					</dd>
+					<dt class="name-box">
+						<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+					</dt>
+					<dd class="info-box">
+						<strong>￥23.56元</strong>
+						<div class="discount discount-blue" tooltip='提车款提车款'>提车款</div>
+						<i class="no-i">月供20000/分12期</i>
+					</dd>
+					<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+						适合居家过日子的全能SUV，历史底价抢购中
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl class="car-detail car-detail2">
+					<dd class="img-box">
+						<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+							<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+						</a>
+						<div class="img-lab">
+							<span class="lab-zj lab-red">直降<br/>7200</span>
+						</div>
+						<span class="carnumber">已售:55辆</span>
+					</dd>
+					<dt class="name-box">
+						<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+					</dt>
+					<dd class="info-box">
+						<strong>￥23.56元</strong>
+						<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+						<i>￥25.82元</i>
+					</dd>
+					<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+						适合居家过日子的全能SUV，历史底价抢购中
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl class="car-detail car-detail2">
+					<dd class="img-box">
+						<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+							<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+						</a>
+						<div class="img-lab">
+							<span class="lab-zj lab-red">直降<br/>7200</span>
+						</div>
+						<span class="carnumber">已售:55辆</span>
+					</dd>
+					<dt class="name-box">
+						<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+					</dt>
+					<dd class="info-box">
+						<strong>￥23.56元</strong>
+						<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+						<i>￥25.82元</i>
+					</dd>
+					<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+						适合居家过日子的全能SUV，历史底价抢购中
+					</dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 车享特供 End -->
+
+<cms:block code="${Catalog.Alias}_buyCar" updateBlock="false"/>
+
+<!-- 现金购车 -->
+<!--
+<div class="hmode-white">
+	<div class="home-cash">
+		<div class="modle-title">
+			<h2>
+				现金购车
+				<span class="h2-info">买放心车，选车享特供</span>
+			</h2>
+			<a href="" title="查看更多" target="_blank" class="more">查看更多&nbsp;<span class="more-s">></span></a>
+		</div>
+		<div class="home-cash-content clearfix">
+			<div class="home-cash-l">
+				<ul class="minSlid-ul home-cash-l-ul">
+					<li class="cul">
+						<dl class="car-detail detail-home-1">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy" src="images/mall/public/blank.gif" data-original="images/mall/index/max-img1.jpg" alt="全新晶锐" height="300" width="450"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-red">直降<br/>7200</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+								<i>￥25.82元</i>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="car-detail detail-home-1">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy" src="images/mall/public/blank.gif" data-original="images/mall/index/max-img2.jpg" alt="全新晶锐" height="300" width="450"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-red">直降<br/>7200</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+								<i>￥25.82元</i>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+				</ul>
+	
+			</div>
+			<div class="home-cash-r">
+				<ul class="home-cash-ul home-r-ul">
+					<li>
+						<dl class="car-detail car-detail2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-red">直降<br/>7200</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+								<i>￥25.82元</i>
+							</dd>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="car-detail car-detail2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-red">直降<br/>7200</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+								<i>￥25.82元</i>
+							</dd>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="car-detail car-detail2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-red">直降<br/>7200</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+								<i>￥25.82元</i>
+							</dd>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="car-detail car-detail2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-red">直降<br/>7200</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-green" tooltip='车的价格加服务价格'>上路价</div>
+								<i>￥25.82元</i>
+							</dd>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<!-- 现金购车  End -->
+
+<!-- 分期购车 
+<div class="hmode-gray">
+	<div class="home-staging">
+		<div class="modle-title">
+			<h2>
+				分期购车
+				<span class="h2-info">买放心车，选车享特供</span>
+			</h2>
+			<a href="" title="查看更多" target="_blank" class="more">查看更多&nbsp;<span class="more-s">></span></a>
+		</div>
+		<div class="home-staging-content clearfix">
+			<div class="home-staging-l">
+				<ul class="minSlid-ul home-staging-l-ul">
+					<li class="cul">
+						<dl class="car-detail detail-home-2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy" src="images/mall/public/blank.gif" data-original="images/mall/index/max-img2.jpg" alt="全新晶锐" height="300" width="450"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-blue">0利率</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-blue" tooltip='提车款提车款'>提车款</div>
+								<i class="no-i">月供20000/分12期</i>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="car-detail detail-home-2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy" src="images/mall/public/blank.gif" data-original="images/mall/index/max-img1.jpg" alt="全新晶锐" height="300" width="450"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-blue">0利率</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-blue" tooltip='提车款提车款'>提车款</div>
+								<i class="no-i">月供20000/分12期</i>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+				</ul>
+				
+			</div>
+			<div class="home-staging-r">
+				<ul class="home-staging-ul home-r-ul">
+					<li>
+						<dl class="car-detail car-detail2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-blue">0利率</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-blue" tooltip='提车款提车款'>提车款</div>
+								<i class="no-i">月供20000/分12期</i>
+							</dd>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="car-detail car-detail2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-blue">0利率</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-blue" tooltip='提车款提车款'>提车款</div>
+								<i class="no-i">月供20000/分12期</i>
+							</dd>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="car-detail car-detail2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-blue">0利率</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-blue" tooltip='提车款提车款'>提车款</div>
+								<i class="no-i">月供20000/分12期</i>
+							</dd>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="car-detail car-detail2">
+							<dd class="img-box">
+								<a title="全新晶锐" target="_blank" href="http://www.chexiang.com/car/skoda/series_107/home.htm">
+									<img class="lazy"  data-original="images/mall/home/carImg.jpg" alt="全新晶锐" height="180" width="270"/>
+								</a>
+								<div class="img-lab">
+									<span class="lab-zj lab-blue">0利率</span>
+								</div>
+								<span class="carnumber">已售:55辆</span>
+							</dd>
+							<dt class="name-box">
+								<a class="name-text" href="" title="科帕奇 2014款 2.4L 7座城市版">科帕奇 2014款 2.4L 7座城市版</a>
+							</dt>
+							<dd class="info-box">
+								<strong>￥23.56元</strong>
+								<div class="discount discount-blue" tooltip='提车款提车款'>提车款</div>
+								<i class="no-i">月供20000/分12期</i>
+							</dd>
+							<dd class="caption-box" title="适合居家过日子的全能SUV，历史底价抢购中">
+								适合居家过日子的全能SUV，历史底价抢购中
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div> 
+<!-- 分期购车 End -->
+
+<!-- sidebar -->
+<!-- sidebar | start -->
+<div id="mall-sidebar" class="sidebar">
+	<ul class="side-abs">
+		<li class="mainsite-im">
+			<span class="tit im-client">
+				<i class="icon-client"></i><span class="icon-text">客服</span>
+			</span>
+			<span class="advice-pop">客服<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="side-calculator">				
+			<a class="tit" href="http://www.chexiang.com/car/tool/buy_0_0_0.htm" target="_blank">
+				<i class="icon-calculator"></i><span class="icon-text">计算器</span>
+			</a>
+			<span class="advice-pop">计算器<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="side-collection">					
+			<a class="mall-my" id="mall-my" href="javascript:void(0)">
+				<i class="icon-collection"></i><span class="icon-text">我的收藏</span>
+			</a>
+			<span class="advice-pop">我的收藏<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<!--  
+		<li class="line"></li>
+		<li class="side-browse">					
+			<a class="mall-my" href="" target="_blank">
+				<i class="icon-browse"></i>最近浏览
+			</a>
+		</li>
+		-->
+	</ul>
+	<ul class="side-fix">
+		<li class="cmp-enter">
+			<span class="tit a-comp" href="" target="_blank"><i class="icon-comp"></i></span>
+			<span class="advice-pop">反馈建议<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="backtoTop">
+			<span class="tit a-top"><i class="icon-top"></i></span>
+			<span class="advice-pop">返回顶部<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+	</ul>
+</div>
+<div id="feedbook" style="display:none;">
+	<!-- <form name="feedOrder" action="http://mall.dds.com/member/addFeedback.htm" method="post" id="feedOrder">  -->
+		<div class="feedbook">
+			<dl class="clearfix">
+				<dt>反馈类型：</dt>
+				<dd>
+					<label><input type="radio" name="feedbackType" value="2" id="RadioFeed_0" checked="checked" />商品价格</label>
+					<label><input type="radio" name="feedbackType" value="3" id="RadioFeed_1" />购买流程</label>
+					<label><input type="radio" name="feedbackType" value="1" id="RadioFeed_2" />投诉</label>
+					<label><input type="radio" name="feedbackType" value="4" id="RadioFeed_3" />其他</label>
+				</dd>
+			</dl>
+			<dl class="clearfix">
+				<dt>意见：</dt>
+				<dd>
+					<textarea name="question" id="question" cols="" rows="" maxlength = "500"></textarea>
+				</dd>
+			</dl>
+			<div class="submit-error">
+			</div>
+			<div class="submit-feed">
+				<input type="button" value="提交" class="feedbook-btn" id="submitFeed">
+			</div>
+		</div>
+	<!-- </form> -->
+</div>
+<!-- sidebar | end -->
+
+<!-- footer -->
+<!-- begin | Footer -->	
+<div class="footer">
+	<div class="footer-main clearfix">
+		<div class="footer-intro">
+			<dl class="footer-item">
+				<dt>关于我们</dt>
+				<dd><a href="http://www.chexiang.com/gycx/about.shtml" target="_blank">关于车享</a></dd>
+				<dd><a href="http://join.chexiang.com" target="_blank">加入我们</a></dd>
+				<dd><a href="http://www.chexiang.com/gycx/terms.shtml" target="_blank">法律声明</a></dd>
+				<dd><a href="http://www.chexiang.com/gycx/impunity.shtml" target="_blank">免责条款</a></dd>
+				<dd><a href="http://www.chexiang.com/gycx/privacy.shtml" target="_blank">隐私权声明</a></dd>
+			</dl>
+			<dl class="footer-item">
+				<dt>联系我们</dt>
+				<dd><a href="http://join.chexiang.com" target="_blank">加入我们</a></dd>
+				<dd>
+					<p class="tel">4008 020 666</p>
+				</dd>
+			</dl>
+			<dl class="footer-item">
+				<dt>售后服务</dt>
+			<!-- <dd><a href="${Config.MainBase}/feedback/suggest.htm" target="_blank">投诉建议</a></dd> -->	
+				<dd><a href="http://www.chexiang.com/gycx/agreement.shtml" target="_blank">用户服务协议</a></dd>
+			</dl>
+			<dl class="footer-item">
+				<dt>会员说明</dt>
+				<dd><a href="http://mall.chexiang.com/help.htm?tab=tab-rights" target="_blank">会员权益</a></dd>
+				<dd><a href="http://mall.chexiang.com/help.htm?tab=tab-integral" target="_blank">积分说明</a></dd>
+				<dd><a href="http://mall.chexiang.com/help.htm?tab=tab-register" target="_blank">注册流程</a></dd>
+				<dd><a href="http://mall.chexiang.com/help.htm?tab=tab-problem" target="_blank">常见问题</a></dd>
+			</dl>
+			<div class="footer-side">
+				<div class="ercode-box clearfix">
+					<span title="微信订阅号"><img class="weixin-img" src="${surl('resource/images/mall/public/ercode.png')}" alt="微信订阅号" width="120" height="120"></span>
+					<dl class="weixin-info">
+					<dt>微信订阅号</dt>
+					<dd class="weixinhao">chexiangV</dd>
+					<dd class="desc">
+						<p>扫描二维码关注车享官方账号</p>
+						<p>还有劲爆优惠等你来拿!</p>
+					</dd>
+					</dl>
+				</div>
+				<div class="btn-area">
+					<a class="a-btn" href="http://dealer.chexiang.com" target="_blanks">经销商登录<i></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-sub">
+		<p class="copyright">CopyRight &copy; 2014-2015, All Rights Reserved 版权所有 车享     沪ICP备14000481号</p>
+		<p class="friend-link">	
+			<a href="http://www.roewe.com.cn/" target="_blank">荣威品牌官网</a>
+			<a href="http://www.saicmg.com/" target="_blank">MG品牌官网</a>
+			<a href="http://www.buick.com.cn/" target="_blank">别克品牌官网</a>
+			<a href="http://www.chevrolet.com.cn/" target="_blank">雪佛兰品牌官网</a>
+			<a href="http://www.cadillac.com.cn/" target="_blank">凯迪拉克品牌官网</a>
+			<a href="http://www.svw-volkswagen.com/zh.html" target="_blank">上海大众品牌官网</a>
+			<a href="http://www.skoda.com.cn/" target="_blank">上海大众斯柯达品牌官网</a>
+			<a href="http://www.sgmw.com.cn/" target="_blank">五菱品牌官网</a>
+			<a href="http://www.autobaojun.com/" target="_blank">宝骏品牌官网</a>
+			<a href="http://www.saicmaxus.com/" target="_blank">大通品牌官网</a>
+			<a href="http://auto.iqiyi.com/" target="_blank">爱奇艺汽车</a>		
+		</p>
+	</div>
+</div>
+<!-- end | Footer -->
+
+<script>
+var MALL = {};
+MALL.base = "http://carmall.dds.com/";
+MALL.accountQuickBase = "http://account.dds.com";
+</script>
+
+<script src="${surl('resource/js/common/jquery_1_8_3.js')}"></script>
+<script src="${surl('resource/js/common/jquery.lazyload.js')}"></script>
+
+<script src="${surl('resource/js/mall/public/header.js')}"></script>
+<script src="${surl('resource/js/mall/public/suggest.js')}"></script>
+<script src="${surl('resource/js/mall/public/base.js')}"></script>
+<script src="${surl('resource/js/mall/public/ECar.fullSlide.js')}"></script>
+<script src="${surl('resource/js/mall/public/ECar.easyDialog.js')}"></script>
+<script src="${surl('resource/js/mall/index/index.js')}"></script>
+<!--[if lte IE 9]>
+<script src="${surl('js/common/placeholders.js')}"></script>
+<![endif]-->
+</body>
+</html>

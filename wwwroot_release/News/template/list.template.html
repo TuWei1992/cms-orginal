@@ -1,0 +1,81 @@
+<z:config type="ArticleList" name="文章列表页" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${Site.Name}-${Catalog.Name}</title>
+<cms:include file="include.template.html"></cms:include>
+<link href="../css/page.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- 页头开始 -->
+<cms:include file="headerblock2.template.html" ssi="false">{ZCMS:文件包含}</cms:include>
+<!-- 页头结束 -->
+<!-- 主体开始 -->
+<div class="main cata_main pageWidth clearself">
+
+<!-- 第一块开始 -->
+<div class="blockboxB blockboxnobg clearself">
+<!-- 第一块左侧开始 -->
+<div class="newslist_left clearself fl">
+ <cms:article catalogid="${Catalog.ID}" level="CurrentandChild" hasattribute="image" count="1">
+  <z:list>
+  <z:if condition="${article.logofile != ''}">
+  <div class="list_catapic clearself">
+     <a href="${Article.Link}"><img class="fl" src="${article.logofile}" width="400" /></a>
+     <div class="list_catainfo fl">
+          <dl>
+            <a href="${Article.Link}" title="${Article.Title}">${Article.Title}</a>
+            <dt>${format(Article.PublishDate, 'yyyy-MM-dd HH:mm:ss')}</dt>
+            <dd><a href="${Article.Link}">${charWidth(Article.Summary,90,'...')}</a></dd>
+          </dl>
+    </div>
+  </div>
+  </z:if>
+  <z:else></z:else>
+  </z:list>
+ </cms:article>
+  <div class="listpage_list">
+  <cms:article catalogid="${Catalog.ID}" page="true" pagesize="8" >
+      <z:list>
+        <dl>
+            <a href="${Article.Link}" title="${Article.Title}">${Article.Title}</a>
+            <dt><a href="${Article.Link}">${Article.Summary}</a></dt>
+            <dd>${format(Article.PublishDate, 'yyyy-MM-dd HH:mm:ss')}</dd>
+        </dl>
+      </z:list>
+  </cms:article>
+  </div>
+  <div class="pagebar clearself">
+      <cms:pagebar></cms:pagebar>
+  </div>
+</div>
+<!-- 第一块左侧结束 -->
+
+<!-- 第一块右侧开始 -->
+<cms:include file="blockright.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 第一块右侧结束 -->
+</div>
+<!-- 第一块结束 -->
+
+</div>
+<!-- 主体结束 -->
+
+<!-- 页脚开始 -->
+<cms:include file="footer.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 页脚结束 -->
+<script type="text/javascript" src="../js/jquery.soChange-min.js"></script>
+<script type="text/javascript" src="../js/cata_index.js"></script>
+<script>
+var curCatalogInnerCode="${Catalog.InnerCode}";//获取当前页面所在栏目的InnerCode，这句不能够写在外部js文件里
+for(var i=1,len=curCatalogInnerCode.length; i<len/6+1; i++){
+    var innerCode=curCatalogInnerCode.substring(0,i*6);
+    var catalogElement=document.getElementById(innerCode);
+    if(catalogElement){
+        catalogElement.className+=" current";
+    }
+}
+</script>
+</body>
+</html>

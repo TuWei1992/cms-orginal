@@ -1,0 +1,121 @@
+<z:config type="ArticleDetail" name="公用详细页" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${(Site.Name)}--${(Catalog.Name)}--${(Article.Title)}</title>
+<cms:include file="include.template.html"></cms:include>
+<link href="../css/page.css" rel="stylesheet" type="text/css">
+<link href="../css/img_gallery.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/imggallery.js"></script>
+<script>
+$(window).on('load',function(){
+	$('div.article_content img').each(function(){if(this.clientWidth>680){this.width=680}})
+})
+</script>
+</head>
+
+<body>
+<!-- 页头开始 -->
+<cms:include file="headerblock2.template.html" ssi="false">{ZCMS:文件包含}</cms:include>
+<!-- 页头结束 -->
+
+<!-- 主体开始 -->
+<div class="main cata_main pageWidth clearself">
+<!-- 第一块开始 -->
+<div class="blockboxB blockboxnobg clearself">
+<!-- 第一块左侧开始 -->
+<div class="newslist_left clearself fl">
+  
+  <div class="detailpage_list">
+    <dl>
+        <dt style="${Content.TitleStyle}">${(Article.Title)}</dt>
+        <dd>${format(Article.PublishDate,'yyyy年MM月dd日 HH:mm')}&nbsp;&nbsp;${Article.Source}
+        &nbsp;&nbsp;<a class="scbtn" href="javascript:;" onclick="addFavorites('${Article.ID}','Content')">收藏</a>
+        <cms:toimage contentid="${Article.ID}"></cms:toimage>
+        </dd>
+    </dl>
+  </div>
+  <div class="article_content" style="width:680px; overflow:hidden;">
+    ${(Article.Content)}
+  </div>
+  <z:if condition="${Article.ContentPageSize>1}">
+  <div class="relative_detail clearself">
+    <h4>分页导航：</h4>
+    <ul>
+   	<cms:articlenavbar>
+   	<z:list>
+       <li><i>·</i><a target="_blank" href="${ArticleNavBar.Link}">${(ArticleNavBar.Title)}</a></li>
+	</z:list>
+	</cms:articlenavbar>
+    </ul>
+  </div>
+  </z:if>
+  <div class="relative_detail clearself">
+    <h4>相关新闻</h4>
+    <ul>
+    <cms:relacontent count="5">
+      	<z:list>
+       	 <li><a target="_blank" href="${RelaContent.Link}">&middot;${(RelaContent.Title)}</a></li>
+        </z:list>
+    </cms:relacontent>
+      </ul>
+  </div>
+  
+  <div id="div_comment" class="comment clearself" >
+    <cms:comment></cms:comment>
+  </div>
+  
+  
+</div>
+<!-- 第一块左侧结束 -->
+
+<!-- 第一块右侧开始 -->
+
+<cms:include file="blockright.template.html">{ZCMS:文件包含}</cms:include>
+
+<!-- 第一块右侧结束 -->
+</div>
+<!-- 第一块结束 -->
+
+</div>
+<!-- 主体结束 -->
+
+<!-- 页脚开始 -->
+<cms:include file="footer.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 页脚结束 -->
+<script type="text/javascript" src="../js/jquery.soChange-min.js"></script>
+<script type="text/javascript" src="../js/cata_index.js"></script>
+<script>
+var curCatalogInnerCode="${Catalog.InnerCode}";//获取当前页面所在栏目的InnerCode，这句不能够写在外部js文件里
+for(var i=1,len=curCatalogInnerCode.length; i<len/6+1; i++){
+    var innerCode=curCatalogInnerCode.substring(0,i*6);
+    var catalogElement=document.getElementById(innerCode);
+    if(catalogElement){
+        catalogElement.className+=" current";
+    }
+}
+
+function addFavorites(id,favtype){
+	var url = '${FrontAppContext}member/logined?t='+new Date().getTime();
+	loadJs(url, function(){
+		if(result.IsLogin){
+			if(!id || !favtype){
+				Dialog.alert("<z:lang id="Memberfavorites.Favorites.ErrorMsg">缺少必须的参数</z:lang>");
+				return;
+			}
+			var dc = {ID:id,FavType:favtype};
+			loadJs("${FrontAppContext}memberFavorites/add?ID="+id+"&FavType="+favtype+'&t='+new Date().getTime(),function(){
+						Dialog.alert(result.message);
+				});
+		}else{
+			//登录
+			Dialog.alert("还未登录，请先登录");
+			var loginurl ="${FrontAppContext}member/login?SiteID=${Site.ID}&Referer="+encodeURIComponent(window.location.href);
+			window.location.href = loginurl;
+		}
+	});
+}
+</script>
+</body>
+</html>

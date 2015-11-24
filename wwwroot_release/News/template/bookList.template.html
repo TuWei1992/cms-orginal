@@ -1,0 +1,16 @@
+<z:config type="BookList" name="书籍列表" />
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${Catalog.Name}</title>
+</head>
+<body>
+<ul>
+ <cms:book>
+ <z:list>
+    <li><a href="${Book.Link}">${Book.Title}</a> ${Book.ISBN}</li>
+ </z:list>
+ </cms:book>
+</ul>
+</body>
+</html>

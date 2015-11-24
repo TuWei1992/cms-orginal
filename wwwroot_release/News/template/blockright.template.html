@@ -1,0 +1,63 @@
+<z:config type="Block" name="主体内容右侧" />
+  <div class="blockboxB_right fr">
+  	<h4>最新新闻</h4>
+    <div class="br_con">
+      <ul style="margin-top:5px;">
+       <cms:article level="Root" type="Recent" count="10">
+       	    <z:list>
+           		<li><a href="${Article.Link}" title="${Article.Title}">&middot;${charWidth(Article.Title,36,'..')}</a></li>
+			</z:list>    
+         </cms:article>
+      </ul>
+    </div>
+    <div class="br_videotabs jcsp">
+        <ul class="br_video zbrtab"><li><h4>推荐视频</h4></ul>
+    </div>
+    <div class="videoconall clearself">
+      <div class="br_videocon zbrcon clearself">
+       <cms:video catalogalias="sp" level="CurrentAndChild" count="7">
+         <div class="videocon clearself">
+       	    <z:list begin="1" count="4">
+                 <dl class="clearself fl">
+           			 <dt style="width:115px; height:60px; overflow:hidden;"><a href="${Video.Link}"><img class="fl" width="115" src="${Video.LogoFile}" /></a></dt><dd class="br_coninfo fl"><a href="${Video.Link}" title="${Video.Title}">${charWidth(Video.Title,14,'..')}</a></dd>
+         		 </dl>
+            </z:list>
+            </div>
+         </cms:video>        
+      </div>
+    </div>
+    <h4 class="new_phtypeh1">热门排行</h4>
+    <div class="new_phtype">
+    <ul class="soci_type">
+        <cms:article level="Root" type="Hot" count="10">
+       	    <z:list begin="1" count="3">
+           		 <li><i class="firtoth1">${i}</i><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,34,'..')}</a></li>
+            </z:list>
+            <z:list begin="4" count="7">
+             <li><i>${i+3}</i><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,34,'..')}</a></li>
+			</z:list>    
+         </cms:article>
+    </ul>
+    </div>
+        
+    <h4 class="soc_storyh">军事热图</h4> 
+     
+    <div class="changeBox_rs1" id="change_rs">
+  		  <cms:imagegroup type="Recent" count="4" catalogid="9205">
+          	<z:list>
+                <div class="a_bigImg">
+                    <div class="imgp_rstitle"><a href="${ImageGroup.Link}">${charWidth(ImageGroup.Title,30,'..')}</a></div>
+                    <a href="${ImageGroup.Link}"><img src="${imageSize(ImageGroup.LogoFile,250,170)}" alt="" /></a>
+                </div>
+            </z:list>
+          </cms:imagegroup>
+          <a href="#;" class="a_last" title="上一个"> < </a><a href="#;" class="a_next" title="下一个"> > </a>
+          <ul class="ul_change_rs1">
+           <cms:imagegroup type="Recent" count="4" catalogid="9205">
+          	<z:list>
+            <li><span>&nbsp;</span></li>
+            </z:list>
+           </cms:imagegroup>
+          </ul>
+        </div>
+  </div> 

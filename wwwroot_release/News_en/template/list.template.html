@@ -1,0 +1,43 @@
+<z:config type="ArticleList" name="Artilce List Template" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:ice="http://ns.adobe.com/incontextediting">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>${Site.Name}-${Catalog.Name}</title>
+<cms:include file="include.template.html"></cms:include>
+</head>
+<body>
+<cms:include file="header.template.html"></cms:include>
+<!-- end div#header.header -->
+<div id="main" class="pagewidth main">
+  <div class="side_col">
+    <cms:include file="right.template.html"></cms:include>
+  </div>
+  <!--end div.side_col-->
+  <div class="main_col">
+    <div class="crumb">Current Position: <cms:position /></div>
+    <div class="line_b"></div>
+    <div class="news_list fontsize_14">
+      <h3>${Catalog.Name}</h3>
+      <cms:article catalogid="${Catalog.ID}" level="CurrentAndChild" page="true">
+      <z:list>
+      	<z:if condition="${i%6==0}">
+      	<ul>
+      	</z:if>
+      		<li><em>${Article.PublishDate}</em><a target="_blank" href="${Article.Link}">${Article.Title}</a></li>
+      	<z:if condition="${(i+1)%6==0&&i!=0}">
+      	</ul>
+      	</z:if>
+      	</z:list>
+      </cms:article>
+			<cms:pagebar></cms:pagebar>
+    </div>
+    <!-- end div.news_list -->
+  </div>
+  <!--end div.main_col-->
+</div>
+<!--end div#main.main-->
+<cms:include file="footer.template.html"></cms:include>
+<!-- end div#footer.footer-->
+</body>
+</html>

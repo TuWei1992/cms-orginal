@@ -1,0 +1,265 @@
+<z:config type="ArticleDetail" name="车享宝盒" />
+<!DOCTYPE html>
+<html lang="zh-cn" class="no-js">
+	<head>
+		<meta http-equiv="Content-Type">
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<title>车享宝盒说明书</title>		
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="email=no">
+		<meta name="description" content="车享"/>
+		<meta name="keywords" content="车享宝盒"/>
+		<link rel="stylesheet" type="text/css" href="../resource/baohe/css/index.css" />
+	</head>
+	<body>
+		<div class="landscape">
+			<div class="iphone"></div>
+			<div class="iphone_text">请将屏幕竖向浏览</div>
+		</div>
+		<div>
+			<div class="loading">
+				<div class="area">
+					<div class="ball"></div>
+					<div class="ball1"></div>
+				</div>
+			</div>
+			<div id="page-1-1" class="page page-1-1 hide">
+
+				<div class="wrap">
+                  <a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1 moveFromRight animated delay-0-5" src="../resource/baohe/img/light-right.png" />
+					<img class="img_2 moveFromLeft animated delay-0-5" src="../resource/baohe/img/light-left.png" />
+					<img class="img_3 fadeInUpBig animated delay-1-5" src="../resource/baohe/img/baohe.png" />
+					<div class="txt">
+						<img class="img_4 slideInLeft animated delay-2-5" src="../resource/baohe/img/page-1-txt-1.png" />
+						<div class="img_5 slideInLeft animated delay-3"></div>
+						<img class="img_6 fadeIn animated delay-3-5" src="../resource/baohe/img/page-1-txt-3.png" />
+					</div>
+					<img class="img_7 moveIconUp animated delay-4" src="../resource/baohe/img/arrow_down.png" />
+				</div>
+			</div>
+			<div id="page-2-1" class="page page-2-1 hide">
+				<div class="wrap">
+                  <a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1 slideInLeft animated delay-0-5" src="../resource/baohe/img/page-2-txt-1.png" />
+					<div class="img_2 slideInLeft animated delay-1-5"></div>
+					<img class="img_3 slideInLeft animated delay-2-5" src="../resource/baohe/img/page-2-txt-3.png" />
+					<img class="img_4 slideInLeft animated delay-3" src="../resource/baohe/img/page-2-txt-4-1.png" />
+					<img class="img_5 slideInLeft animated delay-3-5" src="../resource/baohe/img/page-2-txt-4-2.png" />
+					<img class="img_6 slideInLeft animated delay-4" src="../resource/baohe/img/page-2-txt-4-3.png" />
+					<img class="img_7 slideInLeft animated delay-4-5" src="../resource/baohe/img/page-2-txt-4-4.png" />
+					<img class="img_8 moveIconUp animated delay-5" src="../resource/baohe/img/arrow_down.png" />
+				</div>
+			</div>
+			<div id="page-3-1" class="page page-3-1 hide">
+				<a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+				<div id="page-pop" class="page-3-pop animated slideOutDown delay-1">
+					<img class="img_1" src="../resource/baohe/img/page-3-pop-txt.png" />
+				</div>
+				<div id="page-con" class="wrap">
+					<img class="img_1" src="../resource/baohe/img/page-3-1-txt.png" />
+					<span class="arrow-left" style="display:none"></span>
+					<span class="arrow-right"></span>
+				</div>
+			</div>
+			<div class="page page-3-2 hide">
+				<div class="wrap">
+                  <a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1 flipInLeft animated" src="../resource/baohe/img/page-3-2-txt-1.png" />
+					<div class="img_2 flipInLeft animated"></div>
+					<img class="img_3 flipInLeft animated" src="../resource/baohe/img/page-3-2-txt-3.png" />
+					<div class="img_4 imgbox flipInLeft animated"><img src="../resource/baohe/img/page-3-2-img.jpg" /></div>
+					<img class="img_5" src="../resource/baohe/img/page-3-2-txt-4.png" />
+					<span class="arrow-left"></span>
+					<span class="arrow-right"></span>
+				</div>
+			</div>
+			<div class="page page-3-3 hide">
+				<div class="wrap">				
+                  <a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1" src="../resource/baohe/img/page-3-3-txt-1.png" />
+					<div class="img_2"></div>
+					<img class="img_3" src="../resource/baohe/img/page-3-3-txt-3.png" />
+					<ul class="select-box clearfix">
+						<li>
+							<div id="brandselect" class="sel-item">选择品牌</div>
+							<select id="carBrand" class="sel" name="brand" onchange="changeBrand()">
+                              <option value=''>选择品牌</option>
+								 <cms:cxdata code="brands">
+                                  <z:list><option value="${cxdata.data.velBrandId}">${cxdata.data.velBrandChsName}</option></z:list>
+                                 </cms:cxdata>
+							</select>
+						</li>
+						<li>
+							<div id="seriesselect"class="sel-item">选择车系</div>
+							<select id="carSeries" class="sel" name="series" onchange="showOBDIMG()">
+                              <option value=''>选择车系</option>
+							</select>
+						</li>
+					</ul>
+					<div id="imgbox" class="imgbox">
+                     	<div id="loadingImg" class="loading-img"><div class="ball"></div></div>
+						<img id="carPic" src="../resource/baohe/img/default.png" />
+                      	<div id="carMask" class="mask">该车型暂无实拍图</div>
+                  	</div>
+					<img class="img_5" src="../resource/baohe/img/page-3-3-txt-4.png" />
+					<span class="arrow-left"></span>
+					<span class="arrow-right"></span>
+                  	<div id="carBigPic" class="big-img">
+						<div class="img-box"><img src="../resource/baohe/img/default.png" alt="" /></div>
+					</div>
+				</div>
+			</div>
+			<div class="page page-3-4 hide">
+				<div class="wrap">	
+                  <a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1" src="../resource/baohe/img/page-3-4-txt-1.png" />
+					<div class="img_2"></div>
+					<img class="img_3" src="../resource/baohe/img/page-3-4-txt-3.png" />
+					<div class="imgbox"><img src="../resource/baohe/img/page-3-4-img.png" /></div>
+					<span class="arrow-left"></span>
+					<span class="arrow-right"></span>
+				</div>
+			</div>
+			<div class="page page-3-5 hide">
+				<div class="wrap">
+                  <a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1" src="../resource/baohe/img/page-3-5-txt-1.png" />
+					<div class="img_2"></div>
+					<img class="img_3" src="../resource/baohe/img/page-3-5-txt-3.png" />
+					<div class="imgbox"><img src="../resource/baohe/img/page-3-5-img.png" /></div>
+					<span class="arrow-left"></span>
+					<span class="arrow-right"></span>
+				</div>
+			</div>
+			<div class="page page-3-6 hide">
+				<div class="wrap">
+                  <a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1" src="../resource/baohe/img/page-3-6-txt-1.png" />					
+					<img class="img_2 moveIconUp animated" src="../resource/baohe/img/arrow_down.png" />
+					<span class="arrow-left"></span>
+					<span class="arrow-right" style="display:none;"></span>
+				</div>
+			</div>
+			<div id="page-4-1" class="page page-4-1 hide">
+				<div class="wrap">
+                  <a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="stone" width="100%" src="../resource/baohe/img/stone.png" />
+					<img class="lightning animated fadeIn" width="100%" src="../resource/baohe/img/shan-an-bg.png" />
+					<img class="lightning animated delay4 hinge fadeInTwo infinite" width="100%" src="../resource/baohe/img/shan-an-bg-2.png" />
+					<img class="baohe zoomIn animated delay-1" src="../resource/baohe/img/shan-an-baohe.png" />
+					<img class="txt zoomIn animated delay-2" src="../resource/baohe/img/chuanyue.png" />
+                  <a href="${mainBase}/box/sms/faq/faq.shtml"><img class="faq bounceIn animated infinite delay-3" src="../resource/baohe/img/faq1.png" /></a>
+					<img class="img_2 moveIconUp animated" src="../resource/baohe/img/arrow_down.png" />	
+				</div>
+			</div>
+			<div id="page-5-1" class="page page-5-1 hide">
+				<div class="wrap">
+					<a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1" src="../resource/baohe/img/work-con.png" />
+					<img class="img_2 moveIconUp animated" src="../resource/baohe/img/arrow_down.png" />
+					<div class="pop-work slideInUp animated delay-2">
+						<img class="img-pop" src="../resource/baohe/img/work-pop.png" />
+					</div>
+				</div>
+			</div>
+			<div id="page-6-1" class="page page-6-1 hide">
+				<div class="wrap">
+					<a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1 fadeInUpBig animated" src="../resource/baohe/img/page-6-txt.png" />
+					<img class="img_2 moveIconUp animated" src="../resource/baohe/img/arrow_down.png" />
+				</div>
+			</div>
+			<div id="page-7-1" class="page page-7-1 hide">
+				<div class="wrap">
+					<a href="${mainBase}/box/sms/nav/nav.shtml"><i class="i-list"></i></a>
+					<img class="img_1 slideInDown animated delay-1" src="../resource/baohe/img/page-7-txt-1.png" />
+					<img class="img_2 slideInLeft animated delay-1" src="../resource/baohe/img/page-7-txt-2.png" />
+				</div>
+			</div>
+		</div>	
+		<script src="../resource/baohe/js/zepto.min.js"></script>
+		<script src="../resource/baohe/js/touch.js"></script>
+		<script src="../resource/baohe/js/index.js"></script>
+      	<script>
+          function changeBrand() {
+            var elem = document.getElementById("carBrand");
+            var value = elem.options[elem.selectedIndex].value;
+            document.getElementById("brandselect").innerHTML = elem.options[elem.selectedIndex].text;
+            document.getElementById("seriesselect").innerHTML = "选择车系";
+            if (value) {
+              var series = data[value];
+              var options = "<option value=''>选择车系</option>"
+              for (var i=0; i<series.length; i++) {
+                options += "<option value='"+ series[i].OBDIMG +"'>"+series[i].velSeriesChsName+"</option>";
+              }
+              document.getElementById("carSeries").innerHTML = options;
+            }else{
+           		document.getElementById("carSeries").innerHTML = "<option value=''>选择车系</option>";
+            }
+          }
+          
+          function showOBDIMG() {
+            document.getElementById("carMask").style.display= "none";
+            document.getElementById("loadingImg").style.display= "none"; 
+            var elem = document.getElementById("carSeries");
+            var value = elem.options[elem.selectedIndex].value;
+            var text = elem.options[elem.selectedIndex].text;
+            document.getElementById("seriesselect").innerHTML = text;
+            if (value) {
+              	var img = document.getElementById('carPic');   
+                var src = img.getAttribute('src');
+              if(src==value){
+              }else{
+                document.getElementById("loadingImg").style.display= "block";
+                img.setAttribute('src',value);  
+                img.onload = function(){  
+                   document.getElementById("loadingImg").style.display= "none"; 
+                };
+              }
+              
+            } else if(text=="选择车系") {
+              document.getElementById("carPic").src="${surl('/resource/baohe/img/default.png')}";
+            }else{
+          		document.getElementById("carPic").src="${surl('/resource/baohe/img/default.png')}";
+                document.getElementById("carMask").style.display= "block";
+                setTimeout(function(){
+                  document.getElementById("carMask").style.display= "none";
+                },2000);
+            }
+          
+          }
+          
+          <cms:cxdata code="brands">
+            var data = {
+              <z:list>
+              ${i==1?"":","}'${cxdata.data.velBrandId}':[
+                <cms:cxdata code="findSeriesByBrandId" condition="brandId=${cxdata.data.velBrandId}">
+                <z:foreach data="${cxdata.data}">
+                <z:foreach data="${value}">
+                <cms:cxdata code="OBDImage" condition="seriesId=${value.velSeriesId},posId=ns085">${i==0?"":","}<z:if condition="${cxdata.data.imgPath}">{velSeriesChsName:"${value.velSeriesChsName}", OBDIMG:"${commonImg(eval('/420x280${cxdata.data.imgPath}'))}" }</z:if><z:else>{velSeriesChsName:"${value.velSeriesChsName}", OBDIMG:"" }</z:else></cms:cxdata>
+        		</z:foreach>
+       	 	</z:foreach>
+        </cms:cxdata>
+                ]
+        </z:list>
+            }
+        </cms:cxdata>
+      </script>
+
+<script>
+	var _cxProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(decodeURIComponent("%3Cscript src='" + _cxProtocol + "data.chexiang.com/js/cx_analytics.js?t=" + new Date().getTime() + "&type=' id='analyticsScript' type='text/javascript'%3E" + "%3C/script%3E"));
+	
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?37cf568cd7cc8e164f8cb43c8223cea7";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+	</body>
+</html>

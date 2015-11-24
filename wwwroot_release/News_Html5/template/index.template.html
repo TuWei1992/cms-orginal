@@ -1,0 +1,261 @@
+<z:config name="站点首页模板" type="SiteIndex" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320, maximum-scale=2.0, user-scalable=no">
+<title>${Site.name}</title>
+<link type="text/css" rel="stylesheet" href="../css/style.css" >
+<script type="text/javascript" src="../js/common.js" ></script>
+<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tools.1.2.5.min.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+</head>
+<body>
+<!--头部开始-->
+<cms:include file="header.template.html"></cms:include>
+<!--头部结束-->
+<!--main开始-->
+<div class="main">
+  <div class="links">
+    <div class="left fl"><img src="../images/imgleft.gif" class="cursor" id="sl_left1" /></div>
+    <div class="center fl clearself" id="slide_01" >
+        <ul class="link">
+		  <cms:catalog type="Article" level="Root">
+			<z:list>
+			<li><a href="${Catalog.Link}">${Catalog.Name}</a></li>
+			</z:list>
+		  </cms:catalog>
+        </ul>
+    </div>
+    <div class="right fl"><img src="../images/imgright.gif" class="cursor" id="sl_right1"/></div>
+      <script type="text/javascript">
+          var slide_01 = new ScrollPic();
+          slide_01.scrollContId   = "slide_01"; //内容容器ID
+          slide_01.arrLeftId      = "sl_left1"; //左箭头ID
+          slide_01.arrRightId     = "sl_right1";//右箭头ID
+          slide_01.frameWidth     = 263;
+          slide_01.pageWidth      = 263;
+          slide_01.upright        = false;
+          slide_01.speed          = 10;
+          slide_01.space          = 30; 
+          slide_01.initialize(); //初始化
+        </script>
+  </div>
+  <div class="searchWrap">
+    <form>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><input type="text" class="text" /></td>
+          <td><select>
+              <option>新闻</option>
+              <option>图片</option>
+              <option>小说</option>
+              <option>网页</option>
+            </select></td>
+          <td><input type="submit" class="search" value="搜索"/></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div class="Wrap">
+    <ul class="list">
+		<cms:article level="CurrentAndChild" catalogalias=gnxw_szyw count="5">
+		<z:list>
+			<li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+		</z:list>
+		</cms:article>
+    </ul>
+  </div>
+  <div class="pd">
+    <div class="ad">
+		<cms:article level="CurrentAndChild" catalogalias="gnxw_gasxw">
+		<z:list count="1" begin="1">
+			<li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+		</z:list>
+		</cms:article>
+	</div>
+  </div>
+  <div class="pd ">
+    <div class="showimg" style="padding-top:6px;">
+	  <cms:article  level="Root" hasattribute="Image" count="1">
+	  <z:list>
+      <div class="img_hot"> <a href="${Article.Link}"><img src="${Article.LogoFile}" width="260" height="160" style="margin:0 auto;" /></a>
+        <div class="text"><a href="${Article.Link}">${charWidth(Article.Title,35)}</a></div>
+      </div>
+	  </z:list>
+	  </cms:article>
+    </div>
+  </div>
+  <div class="pd">
+    <div class="ad">
+		<cms:article level="CurrentAndChild" catalogalias="gnxw_ndxw">
+		<z:list count="1" begin="2">
+			<li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+		</z:list>
+		</cms:article>
+	</div>
+  </div>
+  <div class="Wrap">
+    <div class="tabs tabssmall modbg">
+      <ul>
+	    <cms:catalog alias="gnxw" type="Article" level="Child" >
+			<z:list count="4">
+			<li><a href="${Catalog.Link}">${Catalog.Name}</a></li>
+			</z:list>
+		</cms:catalog>
+      </ul>
+    </div>
+    <div class="showimg showimgScroll" id="panel">
+      <div class="bigWrap items" id="items">
+        <div class="fl">
+		  <cms:article level="CurrentAndChild" catalogalias="gnxw" hasattribute="Image">
+		  <z:list  count="2" begin="2">
+		  <div class="img"><a href="#;"><a href="${Article.Link}"><img src="${Article.LogoFile}" width="120" height="90" /></a>
+              <div class="text"><a href="${Article.Link}">${charWidth(Article.Title,18)}</a></div>
+          </div>
+		  </z:list>
+		  </cms:article>
+        </div>
+        <div class="fl">
+          <cms:article level="CurrentAndChild" catalogalias="gnxw" hasattribute="Image">
+		  <z:list  count="2" begin="4">
+		  <div class="img"><a href="#;"><a href="${Article.Link}"><img src="${Article.LogoFile}" width="120" height="90" /></a>
+              <div class="text"><a href="${Article.Link}">${charWidth(Article.Title,18)}</a></div>
+          </div>
+		  </z:list>
+		  </cms:article>  
+        </div>
+         <div class="fl">
+          <cms:article level="CurrentAndChild" catalogalias="gnxw" hasattribute="Image">
+		  <z:list  count="2" begin="6">
+		  <div class="img"><a href="#;"><a href="${Article.Link}"><img src="${Article.LogoFile}" width="120" height="90" /></a>
+              <div class="text"><a href="${Article.Link}">${charWidth(Article.Title,18)}</a></div>
+          </div>
+		  </z:list>
+		  </cms:article>
+        </div>
+      </div>
+    </div>
+    <div class="modbg" style="border-top:2px solid #cc0000; height:24px; padding-left:38px; line-height:24px;">
+      <table border="0" cellpadding="0" cellspacing="0" height="24">
+        <tr>
+          <td><img src="../images/iconleftbg.gif" class="prev" id="prev" /></td>
+          <td width="160" align="center">
+          	<div class="listdian navi" id="navi">
+            	<a href="#;" class="active"></a>
+                <a href="#;"></a>
+                <a href="#;"></a>
+            </div>
+          </td>
+          <td><img src="../images/iconrightbg.gif" class="next" id="next"/></td>
+        </tr>
+      </table>
+    </div>
+    <ul class="list" style="padding-top:10px;">
+        <cms:article level="CurrentAndChild" catalogalias="gjxw" count="10">
+		<z:list>
+			<li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+		</z:list>
+		</cms:article>
+    </ul>
+  </div>
+  <div class="pd">
+    <div class="ad"> <a href="#;"><img src="../images/project_2.gif" /></a> </div>
+  </div>
+  <div class="Wrap">
+    <div class="tabs modbg">
+      <ul>
+        <cms:catalog alias="gjxw" type="Article" level="Child" >
+			<z:list>
+			<li><a href="${Catalog.Link}">${Catalog.Name}</a></li>
+			</z:list>
+		</cms:catalog>
+      </ul>
+    </div>
+    <div class="showimg">
+	      <cms:article level="CurrentAndChild" catalogalias="gjxw" hasattribute="Image">
+		  <z:list  count="2">
+		  <div class="img"><a href="#;"><a href="${Article.Link}"><img src="${Article.LogoFile}" width="120" height="90" /></a>
+              <div class="text"><a href="${Article.Link}">${charWidth(Article.Title,18)}</a></div>
+          </div>
+		  </z:list>
+		  </cms:article>
+    </div>
+    <ul class="list">
+        <cms:article level="CurrentAndChild" catalogalias="gjxw" count="10">
+		<z:list>
+			<li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+		</z:list>
+		</cms:article>
+    </ul>
+    <div class="ad">
+	    <cms:article level="CurrentAndChild" catalogalias="gjxw_hqcw">
+		<z:list count="1" begin="3">
+			<a href="${Article.Link}">${charWidth(Article.Title,30)}</a>
+		</z:list>
+		</cms:article>
+	</div>
+  </div>
+  <div class="Wrap">
+    <div class="tabs tabssmall modbg">
+      <ul>
+        <cms:catalog alias="shehuixinwen" type="Article" level="Child" >
+			<z:list>
+			<li><a href="${Catalog.Link}">${Catalog.Name}</a></li>
+			</z:list>
+		</cms:catalog>
+      </ul>
+    </div>
+    <div class="showimg">
+          <cms:article level="CurrentAndChild" catalogalias="shehuixinwen" hasattribute="Image">
+		  <z:list  count="2">
+		  <div class="img"><a href="#;"><a href="${Article.Link}"><img src="${Article.LogoFile}" width="120" height="90" /></a>
+              <div class="text"><a href="${Article.Link}">${charWidth(Article.Title,18)}</a></div>
+          </div>
+		  </z:list>
+		  </cms:article>
+    </div>
+    <ul class="list">
+        <cms:article level="CurrentAndChild" catalogalias="shehuixinwen" count="10">
+		<z:list>
+			<li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+		</z:list>
+		</cms:article>
+    </ul>
+    <div class="ad">
+		<cms:article level="CurrentAndChild" catalogalias="kjxw_hlw">
+		<z:list count="1" begin="4">
+			<li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+		</z:list>
+		</cms:article>
+	</div>
+  </div>
+  <div class="Wrap">
+    <div class="tabs tabssmall modbg">
+      <ul>
+        <cms:catalog alias="jsxw" type="Article" level="Child" >
+			<z:list>
+			<li><a href="${Catalog.Link}">${Catalog.Name}</a></li>
+			</z:list>
+		</cms:catalog>
+      </ul>
+    </div>
+    <ul class="list">
+        <cms:article level="CurrentAndChild" catalogalias="jsxw" count="10">
+		<z:list>
+			<li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+		</z:list>
+		</cms:article>
+    </ul>
+  </div>
+  <div class="Wrap">
+    <div class="linktopWrap"><a href="#top" class="fr">返回顶部</a></div>
+  </div>
+</div>
+<!--main结束-->
+<!--尾部开始-->
+<cms:include file="footer.template.html"></cms:include>
+<!--尾部结束-->
+</body>
+</html>

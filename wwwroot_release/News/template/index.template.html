@@ -1,0 +1,955 @@
+<z:config type="SiteIndex" name="站点首页" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${Site.name}</title>
+<cms:include file="include.template.html"></cms:include>
+<link href="../css/page.css" rel="stylesheet" type="text/css">
+<style>.blockboxB_right .zcms_vote .votecontainer dl dd{display: block;float: none;}</style>
+</head>
+
+<body>
+<!-- 页头开始 -->
+<cms:include file="header.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 页头结束 -->
+
+<!-- 主体开始 -->
+    <div class="main pageWidth clearself">
+      <!-- blockA begin -->
+      <div class="blockboxA clearself">
+        <div class="imgplayerbox fl clearself">
+          <div class="changeBox_a1" id="change_2">
+            <cms:article level="Root" hasattribute="Image" count="4">
+              <z:list>
+                <div class="a_bigImg" style="overflow:hidden;"><a class="playerpic fl" href="${Article.Link}"><img width="500" src="${Article.LogoFile}" alt="" /></a>
+                  <div class="imgplayerinfo fl">
+                    <h3><a href="${Article.Link}">${Article.Title}</a></h3>
+                    <div class="playerinfo"><a href="${Article.Link}">${charWidth(Article.Summary,140,'...')}</a></div>
+                  </div>
+                </div>
+              </z:list>
+            </cms:article>
+            <a href="#;" class="a_last" title="上一个"> < </a><a href="#;" class="a_next" title="下一个"> > </a>
+            <ul class="ul_change_a1">
+              <cms:article level="Root" hasattribute="Image" count="4">
+                <z:list>
+                  <li>&nbsp;</li>
+                </z:list>
+              </cms:article>
+            </ul>
+          </div>
+          <div class="imgplayerlist fr">
+            <ul>
+              <cms:article level="Root" hasattribute="Hot" count="4">
+                <z:list>
+                  <li><a href="${Article.Link}" title="${Article.Title}">&middot;${charWidth(Article.Title,20,'...')}</a></li>
+                </z:list>
+              </cms:article>
+            </ul>
+          </div>
+        </div>
+        <div class="blockboxA_right fr">
+          <cms:article level="Root" type="Recent" count="1">
+            <z:list>
+              <h5 class="redh"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,40,'...')}</a></h5>
+            </z:list>
+          </cms:article>
+          <ul class="redul">
+          	<cms:block code="index_top"></cms:block>
+          </ul>
+          <cms:article level="Root" type="Recent" begin="2" count="1">
+            <z:list begin="1" count="1">
+              <h5 class="blueh"><a href="${Article.Link}" title="${Article.Title}">${Article.Title}</a></h5>
+            </z:list>
+          </cms:article>
+          <ul class="blueul">
+            <cms:article level="Root" type="Recent" begin="3" count="8">
+              <li>
+                <z:list begin="1" count="1"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,28,'...')}</a>&nbsp;</z:list>
+                <z:list begin="2" count="1">&nbsp;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,28,'...')}</a></z:list>
+              </li>
+              <li>
+                <z:list begin="3" count="1"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,28,'...')}</a>&nbsp;</z:list>
+                <z:list begin="4" count="1">&nbsp;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,28,'...')}</a></z:list>
+              </li>
+              <li>
+                <z:list begin="5" count="1"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,28,'...')}</a>&nbsp;</z:list>
+                <z:list begin="6" count="1">&nbsp;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,28,'...')}</a></z:list>
+              </li>
+              <li>
+                <z:list begin="7" count="1"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,28,'...')}</a>&nbsp;</z:list>
+                <z:list begin="8" count="1">&nbsp;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,28,'...')}</a></z:list>
+              </li>
+            </cms:article>
+          </ul>
+        </div>
+      </div>
+      <!-- blockA end -->
+      <!-- blockB begin -->
+      <div class="blockboxB clearself">
+        <!-- blockboxB_left begin -->
+        <div class="blockboxB_left clearself fl">
+          <h3 class="left_titleB">
+            <cms:catalog alias="pl_xgc" type="Article">
+              <z:list> <a href="${Catalog.Link}">今日视点</a> </z:list>
+            </cms:catalog>
+          </h3>
+          <div class="blockLA zoom" id="columnID">
+            <!-- 1 -->
+            <cms:article catalogid="11224" hasattribute="Image" type="Recent" count="4">
+              <z:list>
+                <div class="column zoom">
+                  <div class="conB">
+                    <div class="l"><a href="${Article.Link}"><img src="${imageSize(Article.LogoFile,100,80)}" border="0"/></a><br />
+                      <a href="${Article.Link}"><img src="../images/catalogo.gif" border="0" height="40" width="80" /></a></div>
+                    <div class="c">
+                      <h3><strong>点击今日</strong><a href="${Article.Link}">--${Article.ShortTitle}</a></h3>
+                      <h4><a href="${Article.Link}">${charWidth(Article.Title,40,'...')}</a></h4>
+                      <p>${charWidth(Article.Summary,100,'...')}<a class="more" href="${Article.Link}">[详细]</a></p>
+                    </div>
+                  </div>
+                  <div class="r"></div>
+                </div>
+              </z:list>
+            </cms:article>
+          </div>
+        </div>
+        <!-- blockboxB_left end -->
+        <!-- blockboxB_center begin -->
+        <div class="blockboxB_center fl">
+          <cms:article level="Root" type="Recent" begin="16" count="18">
+            <ul>
+              <z:list begin="1" count="1">
+                <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,40,'...')}</a></li>
+              </z:list>
+              <z:list begin="2" count="5">
+                <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,50,'...')}</a></li>
+              </z:list>
+            </ul>
+            <ul>
+              <z:list begin="7" count="1">
+                <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,40,'...')}</a></li>
+              </z:list>
+              <z:list begin="8" count="5">
+                <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,50,'...')}</a></li>
+              </z:list>
+            </ul>
+            <ul>
+              <z:list begin="13" count="1">
+                <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,40,'...')}</a></li>
+              </z:list>
+              <z:list begin="14" count="5">
+                <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,50,'...')}</a></li>
+              </z:list>
+            </ul>
+          </cms:article>
+        </div>
+        <!-- blockboxB_center end -->
+        <!-- blockboxB_right begin -->
+        <div class="blockboxB_right fr">
+         <ul class="br_tabs">
+         <!-- <li><a class="current" href="#;">图片新闻</a></li> -->
+            <li><strong>图片新闻</strong></li>
+          </ul> 
+          <div class="clearself">
+            <cms:article level="Root" hasattribute="image,Hot" count="5">
+              <div class="br_con">
+                <z:list count="1">
+                  <dl class="clearself">
+                    <dt><a href="${Article.Link}" title="${Article.Title}"><img class="fl" width="90" height="60" src="${Article.logofile}" /></a></dt>
+                    <dd class="br_coninfo fr"><a href="${Article.Link}" title="${Article.Title}"><strong>${charWidth(Article.Title,60,'...')}</strong></a><br />
+                      <a class="redmore" href="${Article.Link}" title="${Article.Title}">[详细]</a></dd>
+                  </dl>
+                </z:list>
+                <ul>
+                  <z:list begin="2" count="3">
+                    <li><a href="${Article.Link}" title="${Article.Title}">&middot;${charWidth(Article.Title,35,'...')}</a></li>
+                  </z:list>
+                </ul>
+              </div>
+            </cms:article>
+          </div>
+          <div class="br_videotabs">
+            <ul class="br_video zbrtab fr">
+              <li class="current">
+                <cms:catalog alias="sp_xw" type="Video">
+                  <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a></z:list>
+                </cms:catalog>
+              </li>
+              <li>
+                <cms:catalog alias="sp_yl" type="Video">
+                  <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a></z:list>
+                </cms:catalog>
+              </li>
+              <li>
+                <cms:catalog alias="sp_ty" type="Video">
+                  <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a></z:list>
+                </cms:catalog>
+              </li>
+            </ul>
+            <cms:catalog alias="sp" type="Video">
+              <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a></z:list>
+            </cms:catalog>
+          </div>
+          <div class="videoconall clearself">
+            <div class="br_videocon zbrcon clearself">
+              <cms:video catalogid="11226" count="2">
+                <div class="videocon clearself">
+                  <z:list>
+                    <dl class="clearself fl">
+                      <dt style="width:115px; height:80px; overflow:hidden;"><a href="${Video.Link}"><img class="fl" width="115" src="${Video.LogoFile}" /></a></dt>
+                      <dd class="br_coninfo fl"><a href="${Video.Link}" title="${Video.Title}">${charWidth(Video.Title,18,'')}</a></dd>
+                    </dl>
+                  </z:list>
+                </div>
+              </cms:video>
+            </div>
+            <div class="br_videocon zbrcon clearself" style="display:none;">
+              <cms:video catalogid="11227" count="2">
+                <div class="videocon clearself">
+                  <z:list>
+                    <dl class="clearself fl">
+                      <dt style="width:115px; height:80px; overflow:hidden;"><a href="${Video.Link}"><img class="fl" width="115" src="${Video.LogoFile}" /></a></dt>
+                      <dd class="br_coninfo fl"><a href="${Video.Link}" title="${Video.Title}">${charWidth(Video.Title,18,'')}</a></dd>
+                    </dl>
+                  </z:list>
+                </div>
+              </cms:video>
+            </div>
+            <div class="br_videocon zbrcon clearself" style="display:none;">
+              <cms:video catalogid="11228" level="CurrentAndChild" count="2">
+                <div class="videocon clearself">
+                  <z:list>
+                    <dl class="clearself fl">
+                      <dt style="width:115px; height:80px; overflow:hidden;"><a href="${Video.Link}"><img class="fl" width="115" src="${Video.LogoFile}" /></a></dt>
+                      <dd class="br_coninfo fl"><a href="${Video.Link}" title="${Video.Title}">${charWidth(Video.Title,18,'')}</a></dd>
+                    </dl>
+                  </z:list>
+                </div>
+              </cms:video>
+            </div>
+          </div>
+          <div class="zcms_vote" style="margin-top:15px;">
+            <cms:vote code="indexvote" ></cms:vote>
+          </div>
+        </div>
+        <!-- blockboxB_right end -->
+      </div>
+      <!-- blockB end -->
+      <!-- blockboxC begin -->
+      <div class="blockboxC clearself">
+        <h3 class="society_war"><span>
+          <cms:catalog alias="gnxw" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="shehuixinwen" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="gjxw" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="jsxw" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+        </span><strong>国内社会 &middot; 国际军事</strong></h3>
+        <!-- blockboxC_left begin -->
+        <div class="imgplayerbox1 fl clearself">
+          <h5>
+            <cms:catalog alias="gnxw_tupian" type="Image">
+              <z:list> <a href="${Catalog.Link}">图刊大观</a> </z:list>
+            </cms:catalog>
+          </h5>
+          <div class="changeBox_s1" id="change_s">
+            <cms:imagegroup type="Recent" count="4" catalogid="9291">
+              <z:list>
+                <div class="a_bigImg">
+                  <div class="imgp_stitle"><a href="${ImageGroup.Link}">${charWidth(ImageGroup.Title,40,'')}</a></div>
+                  <a class="playerpic fl" href="${ImageGroup.Link}"><img height="100" width="145" src="${ImageGroup.LogoFile}" alt="" /></a>
+                  <div class="imgplayerinfo fl">
+                    <div class="playerinfo"><a href="${ImageGroup.Link}">${charWidth(ImageGroup.Summary,78,'..')}</a></div>
+                  </div>
+                </div>
+              </z:list>
+            </cms:imagegroup>
+            <a href="#;" class="a_last" title="上一个"></a><a href="#;" class="a_next" title="下一个"></a>
+            <ul class="ul_change_s1">
+              <cms:imagegroup type="Recent" count="4" catalogid="9291">
+                <z:list>
+                  <li>&nbsp;</li>
+                </z:list>
+              </cms:imagegroup>
+            </ul>
+          </div>
+          <h5>热门看点</h5>
+          <div class="jmjc clearself">
+            <cms:article catalogid="9190" level="Child" hasattribute="image" count="2">
+              <z:list> <a href="${article.Link}"><img src="${imageSize(Article.LogoFile,120,105)}" alt="" /><br />
+                ${charWidth(article.Title,42,'')}</a> </z:list>
+            </cms:article>
+          </div>
+          <ul class="videoconlist">
+            <cms:article catalogid="9190" level="Child" hasattribute="Hot" count="3">
+              <z:list>
+                <li><a href="${article.Link}">&middot;${charWidth(article.Title,35,'..')}</a></li>
+              </z:list>
+            </cms:article>
+          </ul>
+        </div>
+        <!-- blockboxC_left end -->
+        <!-- blockboxC_center begin -->
+        <div class="society_war_center blockboxB_center fl clearself">
+          <h4>
+            <cms:catalog alias="gnxw" type="Article">
+              <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+            </cms:catalog>
+          </h4>
+          <ul class="society_warul">
+            <ul>
+              <cms:article catalogid="9190" count="6" type="Recent" level="CurrentAndChild">
+                <z:list begin="1" count="1">
+                  <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 34,"...")}</a></li>
+                </z:list>
+                <z:list begin="2" count="5">
+                  <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 34,"...")}</a></li>
+                </z:list>
+              </cms:article>
+            </ul>
+            <li class="sw_last">
+              <cms:catalog alias="gnxw" type="Article">
+                <z:list> <a href="${Catalog.Link}">更多>></a> </z:list>
+              </cms:catalog>
+            </li>
+          </ul>
+          <h4>
+            <cms:catalog alias="gjxw" type="Article">
+              <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+            </cms:catalog>
+          </h4>
+          <ul class="society_warul">
+            <ul>
+              <cms:article catalogid="9195" count="6" type="Recent" level="CurrentAndChild">
+                <z:list begin="1" count="1">
+                  <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 34,"...")}</a></li>
+                </z:list>
+                <z:list begin="2" count="5">
+                  <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40,"...")}</a></li>
+                </z:list>
+              </cms:article>
+            </ul>
+            <li class="sw_last">
+              <cms:catalog alias="gjxw" type="Article">
+                <z:list> <a href="${Catalog.Link}">更多>></a> </z:list>
+              </cms:catalog>
+            </li>
+          </ul>
+        </div>
+        <!-- blockboxC_center end -->
+        <!-- blockboxC_right begin -->
+        <div class="blockboxC_right fr clearself">
+          <h4>
+            <cms:catalog alias="jsxw_jsqt" type="Image">
+              <z:list> <a href="${Catalog.Link}">图说军事</a> </z:list>
+            </cms:catalog>
+          </h4>
+          <div class="changeBox_rs1" id="change_rs">
+            <cms:imagegroup type="Recent" count="4" catalogid="9205">
+              <z:list>
+                <div class="a_bigImg">
+                  <div class="imgp_rstitle"><a href="${ImageGroup.Link}">${charWidth(ImageGroup.Title,30,'..')}</a></div>
+                  <a href="${ImageGroup.Link}"><img src="${imageSize(ImageGroup.LogoFile,250,170)}" alt="" /></a></div>
+              </z:list>
+            </cms:imagegroup>
+            <a href="#;" class="a_last" title="上一个"> < </a><a href="#;" class="a_next" title="下一个"> > </a>
+            <ul class="ul_change_rs1">
+              <cms:imagegroup type="Recent" count="4" catalogid="9205">
+                <z:list>
+                  <li><span>&nbsp;</span></li>
+                </z:list>
+              </cms:imagegroup>
+            </ul>
+          </div>
+          <h4>
+            <cms:catalog alias="shehuixinwen" type="Article">
+              <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+            </cms:catalog>
+          </h4>
+          <div class="soci_moodplayer" id="soci_moodplayer">
+            <h3>
+              <cms:catalog alias="sh_shyf" type="Article">
+                <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+              </cms:catalog>
+            </h3>
+            <div>
+              <ul class="soci_type">
+                <cms:article catalogalias="sh_shyf" type="Recent" count="5">
+                  <z:list begin="1">
+                    <z:if condition="${i<=3}">
+                      <li><i class="firtoth1">${i}</i><a href="${Article.Link}">${charWidth(Article.Title, 34,"...")}</a></li>
+                    </z:if>
+                    <z:else>
+                      <li><i>${i}</i><a href="${Article.Link}">${charWidth(Article.Title,34,"...")}</a></li>
+                    </z:else> </z:list>
+                </cms:article>
+              </ul>
+            </div>
+            <h3>
+              <cms:catalog alias="sh_shwx" type="Article">
+                <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+              </cms:catalog>
+            </h3>
+            <div>
+              <ul class="soci_type">
+                <cms:article catalogalias="sh_shwx" count="5" type="Recent">
+                  <z:list begin="1">
+                    <z:if condition="${i<=3}">
+                      <li><i class="firtoth1">${i}</i><a href="${Article.Link}">${charWidth(Article.Title, 34,"...")}</a></li>
+                    </z:if>
+                    <z:else>
+                      <li><i>${i}</i><a href="${Article.Link}">${charWidth(Article.Title, 34,"...")}</a></li>
+                    </z:else> </z:list>
+                </cms:article>
+              </ul>
+            </div>
+            <h3>
+              <cms:catalog alias="sh_zqsk" type="Article">
+                <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+              </cms:catalog>
+            </h3>
+            <div>
+              <ul class="soci_type">
+                <cms:article catalogalias="sh_zqsk" count="5" type="Recent">
+                  <z:list begin="1">
+                    <z:if condition="${i<=3}">
+                      <li><i class="firtoth1">${i}</i><a href="${Article.Link}">${charWidth(Article.Title, 34,"...")}</a></li>
+                    </z:if>
+                    <z:else>
+                      <li><i>${i}</i><a href="${Article.Link}">${charWidth(Article.Title, 34,"...")}</a></li>
+                    </z:else> </z:list>
+                </cms:article>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- blockboxC_right end -->
+      </div>
+      <!-- blockboxC end -->
+      <!-- adblockbox begin -->
+      <div class="adbox clearself"><a href="#;"><img src="../images/adpic.gif" /></a></div>
+      <!-- adblockbox end -->
+      <!-- blockboxD begin -->
+      <div class="blockboxD blockboxC clearself">
+        <h3 class="society_war financial"><span>
+          <cms:catalog alias="caijing" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="kjxw" type="Article">
+            <z:list> <a href="${Catalog.Link}">科技</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="qc" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="fc" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+        </span><strong>财经市场</strong></h3>
+        <!-- blockboxD_left begin -->
+        <div class="imgplayerbox1 fl clearself">
+          <h5>
+            <cms:catalog alias="caijing_licai" type="Article">
+              <z:list><a href="${Catalog.Link}">${Catalog.Name}</a></z:list>
+            </cms:catalog>
+          </h5>
+          <div class="changeBox_s1" id="change_financial">
+            <cms:article catalogid="9283" count="4" type="Recent" hasattribute="Image" level="CurrentAndChild">
+              <z:list>
+                <div class="a_bigImg">
+                  <div class="imgp_stitle"><a href="${Article.Link}">${charWidth(Article.Title, 30,"...")}</a></div>
+                  <a class="playerpic fl" href="${Article.Link}"><img src="${imageSize(Article.LogoFile,145,100)}" width="145" height="100" alt="" /></a>
+                  <div class="imgplayerinfo fl">
+                    <div class="playerinfo"><a href="${Article.Link}">${charWidth(Article.Summary, 60,"...")}</a></div>
+                  </div>
+                </div>
+              </z:list>
+            </cms:article>
+            <a href="#;" class="a_last" title="上一个"></a><a href="#;" class="a_next" title="下一个"></a>
+            <ul class="ul_change_s1">
+              <cms:article catalogid="9283" count="4" type="Recent" hasattribute="Image" level="CurrentAndChild">
+                <z:list>
+                  <li>&nbsp;</li>
+                </z:list>
+              </cms:article>
+            </ul>
+          </div>
+          <h5>
+            <cms:catalog alias="qc_xczx" type="Article">
+              <z:list><a href="${Catalog.Link}">新车推荐</a></z:list>
+            </cms:catalog>
+          </h5>
+          <div class="jmjc newcarreco clearself">
+            <cms:article catalogid="11236" count="4" hasattribute="Image" level="CurrentAndChild">
+              <z:list> <a href="${Article.link}" title="${Article.title}"><img src="${imageSize(Article.LogoFile,130,90)}" alt="" /><span class="recotitle">${charWidth(Article.Title, 20,"...")}</span></a> </z:list>
+            </cms:article>
+          </div>
+          <ul class="videoconlist" style="margin-top:10px;">
+            <cms:article catalogid="11236" count="2" begin="5" hasattribute="Image" level="CurrentAndChild">
+              <z:list>
+                <li><a href="${Article.link}" title="${Article.title}">&middot;${charWidth(Article.Title, 34,"...")}</a></li>
+              </z:list>
+            </cms:article>
+          </ul>
+          <h5>
+            <cms:catalog alias="fc_jj" type="Article">
+              <z:list><a href="${Catalog.Link}">家居</a></z:list>
+            </cms:catalog>
+          </h5>
+          <div class="br_con">
+            <cms:article catalogid="11246" hasattribute="Image" level="CurrentAndChild">
+              <z:list begin="1" count="2">
+                <dl class="clearself">
+                  <dt><a href="${Article.link}" title="${Article.title}"><img class="fl" src="${imageSize(Article.LogoFile,90,60)}" /></a></dt>
+                  <dd class="br_coninfo fr"><a href="${Article.link}" title="${Article.title}"><strong>${charWidth(Article.Title, 30,"...")}</strong></a><br />
+                    ${charWidth(Article.Summary, 50,"...")}<a class="redmore" href="${Article.link}" >[详细]</a></dd>
+                </dl>
+              </z:list>
+              <ul>
+                <z:list begin="3" count="2">
+                  <li><a href="${Article.link}" title="${Article.title}">&middot;${charWidth(Article.Title, 40,"...")}</a></li>
+                </z:list>
+              </ul>
+            </cms:article>
+          </div>
+        </div>
+        <!-- blockboxD_left end -->
+        <!-- blockboxD_center begin -->
+        <div class="society_war_center blockboxB_center fl clearself">
+          <h4>
+            <cms:catalog alias="caijing" type="Article">
+              <z:list><a href="${Catalog.Link}">财经新闻</a></z:list>
+            </cms:catalog>
+          </h4>
+          <ul class="society_warul">
+            <cms:article catalogid="9283" count="6" type="Recent" level="CurrentAndChild">
+              <z:list begin="1">
+                <z:if condition="${i==0}">
+                  <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40,"...")}</a></li>
+                </z:if>
+                <z:else>
+                  <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 46,"...")}</a></li>
+                </z:else> </z:list>
+            </cms:article>
+            <li class="sw_last">
+              <cms:catalog alias="caijing" type="Article">
+                <z:list><a href="${Catalog.Link}">更多>></a></z:list>
+              </cms:catalog>
+            </li>
+          </ul>
+          <h4>
+            <cms:catalog alias="kjxw" type="Article">
+              <z:list><a href="${Catalog.Link}">科技新闻</a></z:list>
+            </cms:catalog>
+          </h4>
+          <ul class="society_warul">
+            <cms:article catalogid="9211" count="6" type="Recent" level="CurrentAndChild">
+              <z:list begin="1">
+                <z:if condition="${i==0}">
+                  <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40,"...")}</a></li>
+                </z:if>
+                <z:else>
+                  <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 46,"...")}</a></li>
+                </z:else> </z:list>
+            </cms:article>
+            <li class="sw_last">
+              <cms:catalog alias="kjxw" type="Article">
+                <z:list><a href="${Catalog.Link}">更多>></a></z:list>
+              </cms:catalog>
+            </li>
+          </ul>
+          <h4>
+            <cms:catalog alias="qc" type="Article">
+              <z:list><a href="${Catalog.Link}">汽车资讯</a></z:list>
+            </cms:catalog>
+          </h4>
+          <ul class="society_warul">
+            <cms:article catalogid="11234" count="6" type="Recent" level="CurrentAndChild">
+              <z:list begin="1">
+                <z:if condition="${i==0}">
+                  <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40,"...")}</a></li>
+                </z:if>
+                <z:else>
+                  <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 46,"...")}</a></li>
+                </z:else> </z:list>
+            </cms:article>
+            <li class="sw_last">
+              <cms:catalog alias="qc" type="Article">
+                <z:list><a href="${Catalog.Link}">更多>></a></z:list>
+              </cms:catalog>
+            </li>
+          </ul>
+        </div>
+        <!-- blockboxD_center end -->
+        <!-- blockboxD_right begin -->
+        <div class="blockboxC_right fr clearself">
+          <h4>
+            <cms:catalog alias="fc_lszx" type="Article">
+              <z:list><a href="${Catalog.Link}">楼市资讯</a></z:list>
+            </cms:catalog>
+          </h4>
+          <div class="changeBox_rs1" id="change_rfinancial">
+            <cms:article catalogalias="fc_lszx" count="4" hasattribute="Image" level="CurrentAndChild">
+              <z:list>
+                <div class="a_bigImg">
+                  <div class="imgp_rstitle"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 30,"...")}</a></div>
+                  <a href="${Article.Link}"><img src="${imageSize(Article.LogoFile,250,170)}" alt="" /></a> </div>
+              </z:list>
+            </cms:article>
+            <a href="#;" class="a_last" title="上一个"> < </a><a href="#;" class="a_next" title="下一个"> > </a>
+            <ul class="ul_change_rs1">
+              <cms:article catalogalias="fc_lszx" count="4" hasattribute="Image" level="CurrentAndChild">
+                <z:list>
+                  <li><span>&nbsp;</span></li>
+                </z:list>
+              </cms:article>
+            </ul>
+          </div>
+          <ul class="videoconlist">
+            <cms:article catalogalias="fc_lszx" count="1" begin="5"  hasattribute="Image" level="CurrentAndChild">
+              <z:list>
+                <li><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 36,"...")}</a></li>
+              </z:list>
+            </cms:article>
+          </ul>
+          <div class="soci_moodplayer" id="financial_moodplayer">
+            <h3><a href="#;">笔记本</a></h3>
+            <div>
+              <ul class="soci_type" style="width:auto;">
+                <cms:article catalogalias="kjxw_sm" count="6"  begin="13" level="CurrentAndChild" loadextend="true">
+                  <z:list>
+                    <z:if condition="${article.MetaValue_proname == '笔记本' && i <= 3}">
+                      <li><i class="firtoth${i}">${i}</i><a href="${article.link}">${article.title}</a></li>
+                    </z:if>
+                    <z:else>
+                      <li><i>${i}</i><a href="${article.link}">${article.title}</a></li>
+                    </z:else> </z:list>
+                </cms:article>
+              </ul>
+            </div>
+            <h3><a href="#;">相机</a></h3>
+            <div>
+              <ul class="soci_type" style="width:auto;">
+                <cms:article catalogalias="kjxw_sm" level="CurrentAndChild" count="6" loadextend="true">
+                  <z:list>
+                    <z:if condition="${article.MetaValue_proname == '相机' &&  i <= 3}">
+                      <li><i class="firtoth${i}">${i}</i><a href="${article.link}">${article.title}</a></li>
+                    </z:if>
+                    <z:else>
+                      <li><i>${i}</i><a href="${article.link}">${article.title}</a></li>
+                    </z:else> </z:list>
+                </cms:article>
+              </ul>
+            </div>
+            <h3><a href="#;">手机</a></h3>
+            <div>
+              <ul class="soci_type" style="width:auto;">
+                <cms:article catalogalias="kjxw_sm" begin="7" count="6" level="CurrentAndChild" loadextend="true">
+                  <z:list>
+                    <z:if condition="${article.MetaValue_proname == '手机' &&  i <= 3}">
+                      <li><i class="firtoth${i}">${i}</i><a href="${article.link}">${article.title}</a></li>
+                    </z:if>
+                    <z:else>
+                      <li><i>${i}</i><a href="${article.link}">${article.title}</a></li>
+                    </z:else> </z:list>
+                </cms:article>
+              </ul>
+            </div>
+            <span class="high_tech fl">科技数码排行榜</span></div>
+          <div class="hot_plate clearself">
+            <!-- <h4><a href="#;">热盘聚焦</a></h4> -->
+            <cms:catalog alias="fc" type="Article">
+            <z:list><h4><a href="${Catalog.Link}">热盘聚焦</a></h4></z:list>
+          </cms:catalog>
+            <table width="250">
+              <cms:article catalogid="11243" count="7" hasattribute="hot" level="CurrentAndChild" loadextend="true">
+                <z:list>
+                  <tr>
+                    <td width="130" class="bluecolor"><a href="${Article.link}">${Article.title}</a></td>
+                    <td width="60" align="right">${Article.MetaValue_price}元</td>
+                    <td width="60" align="right">${Article.MetaValue_address}</td>
+                  </tr>
+                </z:list>
+              </cms:article>
+            </table>
+          </div>
+        </div>
+        <!-- blockboxD_right end -->
+      </div>
+      <!-- blockboxD end -->
+      <!-- blockboxE end -->
+      <div class="blockboxE blockboxC clearself">
+        <h3 class="society_war espn"><span>
+          <cms:catalog alias="ylxw" type="Article">
+            <z:list><a href="${Catalog.Link}">娱乐新闻</a></z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="ty" type="Article">
+            <z:list><a href="${Catalog.Link}">体育新闻</a></z:list>
+          </cms:catalog>
+        </span><strong>娱乐体育</strong></h3>
+        <!-- blockboxE_left begin -->
+        <div class="imgplayerbox1 fl clearself">
+          <h5>
+            <cms:catalog alias="mx_gs" type="Article">
+              <z:list><a href="${Catalog.Link}">港台明星</a></z:list>
+            </cms:catalog>
+          </h5>
+          <div class="changeBox_s1" id="change_espn">
+            <cms:article catalogid="9270" count="4" type="Recent"  hasattribute="Image">
+              <z:list>
+                <div class="a_bigImg">
+                  <div class="imgp_stitle"><a  href="${article.link}" title="${article.title}">${charWidth(Article.title,35,"...")}</a></div>
+                  <a class="playerpic fl" href="${Article.Link}"><img src="${imageSize(Article.LogoFile,145,100)}" width="145" height="100" alt="" /></a>
+                  <div class="imgplayerinfo fl">
+                    <div class="playerinfo"><a href="${article.link}" title="${article.title}">${charWidth(Article.Summary,72,"...")}</a></div>
+                  </div>
+                </div>
+              </z:list>
+            </cms:article>
+            <a href="#;" class="a_last" title="上一个"></a><a href="#;" class="a_next" title="下一个"></a>
+            <ul class="ul_change_s1">
+              <cms:article catalogid="9270" count="4">
+                <z:list>
+                  <li>&nbsp;</li>
+                </z:list>
+              </cms:article>
+            </ul>
+          </div>
+          <ul class="videoconlist">
+            <cms:article catalogid="9270" count="2" type="Recent">
+              <z:list>
+                <li><a href="${article.link}" title="${article.title}">&middot;${charWidth(Article.title,40,"...")}</a></li>
+              </z:list>
+            </cms:article>
+          </ul>
+          <h5>
+            <cms:catalog alias="mx_om" type="Article">
+              <z:list><a href="${Catalog.Link}">欧美明星</a></z:list>
+            </cms:catalog>
+          </h5>
+          <div class="jmjc clearself">
+            <cms:article catalogid="9271" begin="1" count="2" type="Recent"  hasattribute="Image">
+              <z:list> <a href="${article.link}" title="${article.title}"><img src="${imageSize(Article.LogoFile,130,80)}" alt="" /><br />
+                ${charWidth(Article.title,20,"...")}</a> </z:list>
+            </cms:article>
+          </div>
+          <ul class="videoconlist">
+            <cms:article catalogid="9271" begin="3" count="1" type="Recent">
+              <z:list>
+                <li> <a href="${article.link}" title="${article.title}">&middot;${charWidth(Article.title,35,"...")}</a></li>
+              </z:list>
+            </cms:article>
+          </ul>
+        </div>
+        <!-- blockboxE_left end -->
+        <!-- blockboxE_center begin -->
+        <div class="society_war_center blockboxB_center fl clearself">
+          <h4>
+            <cms:catalog alias="ylxw" type="Article">
+              <z:list> <a href="${Catalog.Link}">娱乐新闻</a> </z:list>
+            </cms:catalog>
+          </h4>
+          <ul class="society_warul">
+            <cms:article catalogid="9206" count="6" type="Recent" level="CurrentAndChild">
+              <z:list begin="1">
+                <z:if condition="${i==0}">
+                  <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40,"...")}</a></li>
+                </z:if>
+                <z:else>
+                  <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 46,"...")}</a></li>
+                </z:else> </z:list>
+            </cms:article>
+            <li class="sw_last">
+              <cms:catalog alias="ylxw" type="Article">
+                <z:list> <a href="${Catalog.Link}">更多>></a> </z:list>
+              </cms:catalog>
+            </li>
+          </ul>
+          <h4>
+            <cms:catalog alias="ty" type="Article">
+              <z:list> <a href="${Catalog.Link}">体育新闻</a> </z:list>
+            </cms:catalog>
+          </h4>
+          <ul class="society_warul">
+            <cms:article catalogid="11247" count="6" type="Recent" level="CurrentAndChild">
+              <z:list begin="1">
+                <z:if condition="${i==0}">
+                  <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40,"...")}</a></li>
+                </z:if>
+                <z:else>
+                  <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 46,"...")}</a></li>
+                </z:else> </z:list>
+            </cms:article>
+            <li class="sw_last">
+              <cms:catalog alias="ty" type="Article">
+                <z:list> <a href="${Catalog.Link}">更多>></a> </z:list>
+              </cms:catalog>
+            </li>
+          </ul>
+        </div>
+        <!-- blockboxE_center end -->
+        <!-- blockboxE_right begin -->
+        <div class="blockboxC_right fr clearself">
+          <h4>
+            <cms:catalog alias="ty_sp" type="Article">
+              <z:list> <a href="${Catalog.Link}">体育视频</a> </z:list>
+            </cms:catalog>
+          </h4>
+          <div class="videocon clearself">
+            <cms:article catalogid="11248" count="4" hasattribute="Video">
+              <z:list>
+                <dl class="clearself fl">
+                  <dt><a href="${article.link}" title="${article.title}"><img style="margin:0 auto;" src="${imageSize(Article.LogoFile,115,60)}" /></a></dt>
+                  <dd style="background:none;" class="br_coninfo fl"><a href="${article.link}" title="${article.title}">${charWidth(Article.Title, 18,"")}</a></dd>
+                </dl>
+              </z:list>
+            </cms:article>
+          </div>
+          <h4 class="cppd">
+            <cms:catalog alias="ty_cp" type="Article">
+              <z:list> <a href="${Catalog.Link}">彩票频道</a> </z:list>
+            </cms:catalog>
+          </h4>
+          <ul class="videoconlist">
+            <cms:article catalogid="11274" count="8" type="Recent" level="Current" loadextend="true">
+              <z:list>
+                <li><span>[${article.MetaValue_cname}]</span><a href="${article.link}" title="${article.title}">${charwidth(article.title,30,'...')}</a></li>
+              </z:list>
+            </cms:article>
+          </ul>
+        </div>
+        <!-- blockboxE_right end -->
+      </div>
+      <!-- blockboxE end -->
+      <!-- blockboxF end -->
+      <div class="blockboxF blockboxC clearself">
+        <h3 class="society_war lifeinfo"><span>
+          <cms:catalog alias="nx" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="nx_ss" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="jy" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+          &nbsp;|&nbsp;
+          <cms:catalog alias="jy_gk" type="Article">
+            <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+          </cms:catalog>
+        </span><strong>生活资讯</strong></h3>
+        <!-- blockboxF_left begin -->
+        <div class="blockboxF_left fl clearself">
+          <div class="chinfotitle">
+            <cms:catalog alias="nx_ss" type="Article">
+              <z:list> <a  class="chintitleb fr" href="${Catalog.Link}">>></a> </z:list>
+            </cms:catalog>
+            <cms:catalog alias="nx_ss" type="Article">
+              <z:list> <a class="chintitlea" href="${Catalog.Link}">时尚聚焦</a> </z:list>
+            </cms:catalog>
+          </div>
+          <ul>
+            <cms:article catalogid="11256" count="4" hasattribute="Image">
+              <z:list begin="1">
+                <z:if condition="${i==0}">
+                  <li class="firstli"> <img height="200" src="${Article.LogoFile}" /> <a class="lifepic" title="${article.title}" href="${article.link}"><strong>${article.title}</strong><br />
+                    ${charWidth(article.summary,150,'...')}</a></li>
+                </z:if>
+                <z:else>
+                  <li> <img height="250" src="${Article.LogoFile}" /> <a class="lifepic" title="${article.title}" href="${article.link}"><strong>${article.title}</strong><br />
+                    ${charWidth(article.summary,110,'...')}</a></li>
+                </z:else> </z:list>
+            </cms:article>
+          </ul>
+        </div>
+        <!-- blockboxF_left end -->
+        <!-- blockboxF_right begin -->
+        <div class="blockboxC_right fr clearself">
+          <div class="br_videotabs">
+            <ul class="br_lifeinfotab br_video fr">
+              <li class="current">
+                <cms:catalog alias="jy" type="Article">
+                  <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+                </cms:catalog>
+              </li>
+              <li>
+                <cms:catalog alias="nx" type="Article">
+                  <z:list> <a href="${Catalog.Link}">${Catalog.Name}</a> </z:list>
+                </cms:catalog>
+              </li>
+            </ul>
+            <strong>资讯</strong></div>
+          <div class="blockboxC_right fr clearself">
+            <div class="videoconall br_lifeinfocon clearself">
+              <div class="br_videocon clearself">
+                <div class="videocon clearself">
+                  <cms:article catalogid="11263" count="2" hasattribute="Image" type="Recent" level="Child">
+                    <z:list>
+                      <dl class="clearself fl">
+                        <dt><a title="${article.title}" href="${article.link}"><img src="${imageSize(Article.LogoFile,115,60)}" /></a></dt>
+                        <dd class="br_coninfo fl"><a title="${article.title}" href="${article.link}"> ${charWidth(article.title,18,'...')}</a></dd>
+                      </dl>
+                    </z:list>
+                  </cms:article>
+                </div>
+                <ul class="videoconlist">
+                  <cms:article catalogid="11263" count="5" type="Recent" level="Child">
+                    <z:list>
+                      <li>&middot;<a title="${article.title}" href="${article.link}">${charWidth(article.title,35,'...')}</a></li>
+                    </z:list>
+                  </cms:article>
+                </ul>
+              </div>
+              <div class="br_videocon clearself" style="display:none;">
+                <div class="videocon clearself">
+                  <cms:article catalogid="11255" count="2" hasattribute="Image" type="Recent" level="Child">
+                    <z:list>
+                      <dl class="clearself fl">
+                        <dt><a title="${article.title}" href="${article.link}"><img src="${imageSize(Article.LogoFile,115,60)}" style="margin:0 auto;" /></a></dt>
+                        <dd class="br_coninfo fl"><a title="${article.title}" href="${article.link}"> ${charWidth(article.title,18,'...')}</a></dd>
+                      </dl>
+                    </z:list>
+                  </cms:article>
+                </div>
+                <ul class="videoconlist">
+                  <cms:article catalogid="11255" count="5" type="Recent" level="Child">
+                    <z:list>
+                      <li>&middot;<a title="${article.title}" href="${article.link}">${charWidth(article.title,35,'...')}</a></li>
+                    </z:list>
+                  </cms:article>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- blockboxF_right end -->
+      </div>
+      <!-- blockboxF end -->
+    </div>
+<!-- 主体结束 -->
+
+<!-- 页脚开始 -->
+<cms:include file="footer.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 页脚结束 -->
+<script type="text/javascript" src="../js/jquery.soChange-min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+
+</body>
+</html>

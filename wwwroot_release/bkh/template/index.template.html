@@ -1,0 +1,378 @@
+<z:config type="SiteIndex" name="@{Contentcore.SiteIndexTemplate}" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>${Site.SEOTitle}</title>
+    <meta name="keywords" content="${Site.SEOKeywords}">
+    <meta name="description" content="${Site.SEODescription}">
+    <link href="${surl('assets/image/img/logoicon.png')}" rel="Shortcut Icon">
+    <link rel="stylesheet" href="${surl('assets/css/reset.css')}">
+    <link rel="stylesheet" href="${surl('assets/css/common.css')}">
+    <link rel="stylesheet" href="${surl('assets/css/focus.css')}">
+    <link rel="stylesheet" href="${surl('assets/css/index.css')}">
+    <link rel="stylesheet" href="${surl('assets/css/sidebar.css')}">
+    <link rel="stylesheet" href="${surl('assets/css/imitatescroll.css')}">
+    <link rel="stylesheet" href="${surl('assets/css/dialog.css')}">
+    <script type="text/javascript" src="${surl('assets/js/goodsInfo.js')}"></script>
+    <style type="text/css">
+        #buick_head_user span:hover,#myorder:hover {
+            text-decoration: none;
+            color: #579dc9;
+            cursor: pointer
+        }
+	</style>
+    <script type="text/javascript" src="${surl('assets/js/jquery_1_8_3.js')}"></script>
+    <script type="text/javascript" src="${surl('assets/js/lib/ECar.imitatescroll.js')}"></script>
+</head>
+  <body>
+    <!-- 推荐浮动层 -->
+    <div class="b-sidebar">
+    <div class="b-recommend">
+      <div class="b-recommend-title">
+        <a target="_blank" href="javascript:void(0)" class="b-recommend-title-txt">推荐</a>
+      </div>
+      <div class="dealer-list-content scroll-wrapper" id="box">
+          <div class="scroll-content">
+                <div class="abocontent">
+      				<ul class="recommend-list"></ul>
+                  </div>
+          </div>
+          <div class="scrollbar">
+            <div class="scrollbar-narrow scrollbar-narrow-up"></div>
+            <div class="scrollbar-bg">
+              <div class="scrollbar-handler" >
+                <div class="scrollbar-handler-top"></div>
+                <div class="scrollbar-handler-bottom"></div>
+              </div>
+            </div>
+            <div class="scrollbar-narrow scrollbar-narrow-down"></div>
+          </div>
+         </div>
+    </div>
+  
+    <div class="b-sidebar-tabs">
+      <div class="b-btn-box"><a class="sidebar-icon close-btn" href="javascript:void(0);">关闭</a></div>
+      <div class="b-tabs-mask">
+        <a class="b-tab" style="top:157px;">
+          <i class="sidebar-icon b-tab-logo-recommend"></i>
+          <p class="b-tab-txt">推荐</p>
+        </a>
+        <a class="b-tab-login" href="${Site.url}bklogin.htm" id = "buick_head_login_sidebar" style="top:330px;">
+          <i class="sidebar-icon b-tab-logo-login"></i>
+          <p class="b-tab-txt">登录</p>
+        </a>
+        <a class="b-tab-order" href="#" id="myorder_sidebar" style="top:330px; display:none;">
+          <i class="sidebar-icon b-tab-logo-prof"></i>
+          <p class="b-tab-txt">我的商城订单</p>
+        </a>
+      </div>
+    </div>
+  
+   </div>
+    <!-- 商品详情 -->
+    <!-- 头部 -->
+    <div class="b-top">
+        <div class="b-top-header clearfix">
+          <a href="http://www.mybuick.com.cn/portal/web/buick/toclub" class="back f-left">返回别客汇</a>
+          <span class="tel f-left">客服热线：400-111-1903</span>
+          <span class="integral">
+          <span id = "buick_head_user" style data-url="http://www.mybuick.com.cn/portal/web/buick/toclub">
+            <span id = "buick_head_username"></span>
+            <span id = "buick_head_point" class="num"></span>
+          </span>
+          <span class="num pointer" id="myorder">我的商城订单</span>
+          <a href="${Site.url}bklogin.htm" class="btnlogin" id = "buick_head_login" style = "display:none;">登录</a></span>
+        </div>
+    </div>
+    <div class="b-nav">
+         <div class="w960 auto-nav clearfix">
+           <div class="nav-l">
+             <a href="${Site.url}"><img src="${surl('assets/image/img/logo.png')}" width="197px" height="62px"/></a>
+            </div>
+            <ul class="nav-r f-yahei">
+               <li class="s-br d-ib"><a href="${Site.url}">首页</a></li>
+               <li><a href="${Site.url}channel/attachment.htm">精品附件</a></li>
+               <li><a href="${Site.url}channel/trip.htm">车旅出行</a></li>
+               <li><a href="${Site.url}channel/youpin.htm">生活优品</a></li>
+              <li class="settlement"><a href="${Site.url}cart/enter.htm" class="s-col">去购物车结算</a><i class="icon-index icon-num icon-col" id = "buick_basket_quantity" style = "display:none;"></i>
+            </ul>
+         </div>
+     </div>
+    <script type="text/javascript">
+      $("#buick_head_user span").click(function() {
+        window.open($("#buick_head_user").attr("data-url"))
+      });
+      $("#myorder").click(function() {
+        var a = "${Site.url}order/preOrder.htm";
+          window.open(a)
+      });
+      $.ajax({  
+        async : false,  
+        url : "${Site.url}/indexMemberInfo.htm",  
+        dataType : "jsonp",  
+        jsonp : "callback", 
+        jsonpCallback : "jsonpcallback",
+        success : function(data) { 
+          if (typeof data == 'object' && data.memeberName) {
+            $("#buick_head_username").text(data.memeberName);
+            $("#buick_head_point").text("我的积分:"+data.memberPoints);
+            
+            $("#buick_head_user").show();
+            $("#myorder,#myorder_sidebar").show();
+            $("#buick_head_login,#buick_head_login_sidebar").hide();
+            
+            if (data.carNumber > 0) {
+              $("#buick_basket_quantity").text(data.carNumber);
+              $("#buick_basket_quantity").show();
+            }
+          } else {
+            $("#buick_head_user").hide();
+            $("#myorder,#myorder_sidebar").hide();
+            $("#buick_basket_quantity").hide();
+            $("#buick_head_login,#buick_head_login_sidebar").show();
+          }
+        } 
+      });
+  </script>
+    <!-- 主体 -->
+    <!-- 轮播图-start -->
+    <div class="banner c-focus">
+        <ul class="c-focus-list" style="left: 0px;">
+           <cms:imagegroup count="1" catalogAlias="tplm" name="buickmall-banner">
+             <z:list>
+            <cms:image>
+              <z:list>
+                <li>
+                  <a title="${image.Name}" href="${image.SourceURL}" target="_blank" >
+                    <img src="${image.ImagePath}" height="376"/>
+                   </a>
+                </li>
+              </z:list>
+			</cms:image>
+               </z:list>
+          </cms:imagegroup>
+        </ul>
+    </div>
+    <!-- 轮播图-end -->
+    
+    <div class="content w960">
+      <!-- 分类列表-start -->
+      <ul class="column-anchor">
+        <z:split value="jpfj,clcx,shyp" spliter=",">
+          <z:if condition="${__Total > 0}">
+          <z:list begin="1" count="1">
+            <cms:catalog alias="${Data.Value}" loadExtend="true">
+              <li>
+                  <div class="anchorCount firstOne">
+                      <a href="${catalog.MetaValue_catalogeLink}">
+                          <img src="${prefix(sourceImage(catalog.LogoFile))}" width="300" height="100">
+                          <h3>${catalog.Name}</h3>
+                          <p class="txt-h" title="${catalog.info}">${catalog.info}</p>
+                      </a>
+                  </div>
+              </li>
+            </cms:catalog>
+          </z:list>
+          </z:if>
+          <z:if condition="${__Total > 1}">
+          <z:list begin="2" count="2">
+            <cms:catalog alias="${Data.Value}" loadExtend="true">
+              <li>
+                  <div class="anchorCount border-none">
+                      <a href="${catalog.MetaValue_catalogeLink}">
+                          <img src="${prefix(sourceImage(catalog.LogoFile))}" width="300" height="100">
+                          <h3>${catalog.Name}</h3>
+                          <p class="txt-h" title="${catalog.info}">${catalog.info}</p>
+                      </a>
+                  </div>
+              </li>
+            </cms:catalog>
+          </z:list>
+          </z:if>
+        </z:split>
+        </ul>
+      <!-- 分类列表-end -->
+      
+      <!-- 精品附件-start -->
+        <div class="column-list"  id="column1">
+        <cms:catalog alias="jpfj" loadExtend="true">
+          <h3 class="cloumnTitle1">${catalog.Name}</h3>
+          <div class="column-produce">
+            <a href="${catalog.MetaValue_tponeLink}" target="_blank"><img src="${prefix(catalog.MetaValue_tpone)}" width="121" height="210"/></a>
+             <a href="${catalog.MetaValue_tptwoLink}"target="_blank"><img src="${prefix(catalog.MetaValue_tptwo)}" width="121" height="210"/></a>
+          </div>
+        </cms:catalog>
+        <ul class="produce-list">
+        <cms:customcontent catalogAlias="jpfj">
+          <z:list>
+            <li>
+                <a href="${bkhsy.MetaValue_titleLink}" target="_blank"><img src="${prefix(bkhsy.MetaValue_productImg)}"/></a>
+                <div class="produceTitle">
+                  <a href="${bkhsy.MetaValue_titleLink}" target="_blank" title="${bkhsy.Title}">${bkhsy.Title} </a>
+                    <p>${bkhsy.SubTitle}：<span class="font-bold">${bkhsy.MetaValue_memberPrice}</span>元+<span class="font-bold color-blue">${bkhsy.MetaValue_integral}</span>积分</p>
+                    <p class="color-grey">${bkhsy.ShortTitle}：${bkhsy.MetaValue_marketPrice}元</p>
+                </div>
+            </li>
+          </z:list>
+        </cms:customcontent>
+        </ul>
+        </div>
+      <!-- 精品附件-end -->
+      
+      <!-- 车旅出行-start -->
+      <div class="column-list"  id="column2">
+        <cms:catalog alias="clcx" loadExtend="true">
+          <h3 class="cloumnTitle2">${catalog.Name}</h3>
+          <div class="column-produce">
+             <a href="${catalog.MetaValue_tponeLink}" target="_blank"><img src="${prefix(catalog.MetaValue_tpone)}" width="121" height="210"/></a>
+             <a href="${catalog.MetaValue_tptwoLink}" target="_blank"><img src="${prefix(catalog.MetaValue_tptwo)}" width="121" height="210"/></a>
+          </div>
+        </cms:catalog>
+        <ul class="produce-list">
+        <cms:customcontent catalogAlias="clcx">
+          <z:list>
+            <li>
+                <a href="${bkhsy.MetaValue_titleLink}" target="_blank"><img src="${prefix(bkhsy.MetaValue_productImg)}"/></a>
+                <div class="produceTitle">
+                    <a href="${bkhsy.MetaValue_titleLink}" target="_blank" title="${bkhsy.Title}">${bkhsy.Title} </a>
+                    <p>${bkhsy.SubTitle}：<span class="font-bold">${bkhsy.MetaValue_memberPrice}</span>元+<span class="font-bold color-blue">${bkhsy.MetaValue_integral}</span>积分</p>
+                    <p class="color-grey">${bkhsy.ShortTitle}：${bkhsy.MetaValue_marketPrice}元</p>
+                </div>
+            </li>
+          </z:list>
+        </cms:customcontent>
+        </ul>
+      </div>
+      <!-- 车旅出行-end -->
+      
+      <!-- 生活优品-start -->
+      <div class="column-list"  id="column3">
+        <cms:catalog alias="shyp" loadExtend="true">
+          <h3 class="cloumnTitle3">${catalog.Name}</h3>
+          <div class="column-produce">
+             <a href="${catalog.MetaValue_tponeLink}" target="_blank"><img src="${prefix(catalog.MetaValue_tpone)}" width="121" height="210"/></a>
+             <a href="${catalog.MetaValue_tptwoLink}" target="_blank"><img src="${prefix(catalog.MetaValue_tptwo)}" width="121" height="210"/></a>
+          </div>
+        </cms:catalog>
+        <ul class="produce-list">
+        <cms:customcontent catalogAlias="shyp">
+          <z:list>
+            <li>
+                <a href="${bkhsy.MetaValue_titleLink}" target="_blank"><img src="${prefix(bkhsy.MetaValue_productImg)}"/></a>
+                <div class="produceTitle">
+                    <a href="${bkhsy.MetaValue_titleLink}" target="_blank" title="${bkhsy.Title}">${bkhsy.Title} </a>
+                    <p>${bkhsy.SubTitle}：<span class="font-bold">${bkhsy.MetaValue_memberPrice}</span>元+<span class="font-bold color-blue">${bkhsy.MetaValue_integral}</span>积分</p>
+                    <p class="color-grey">${bkhsy.ShortTitle}：${bkhsy.MetaValue_marketPrice}元</p>
+                </div>
+            </li>
+          </z:list>
+        </cms:customcontent>
+        </ul>
+      </div>
+      <!-- 生活优品-end -->
+      <p class="mt-130"></p>
+    </div>
+    <!-- 微信号-start -->
+    <div class="wenxin" style="visibility: hidden;">
+        <a href="#0" class="wenxin-close"></a>
+    </div>
+    <!-- 微信号-end -->
+    <!-- 尾部 -->
+    <div class="footer">
+        <div class="footer-link w960 f-yahei">
+            <a href="${Site.url}about.htm" target="_blank">关于别客汇</a>
+            <a href="${Site.url}terms.htm" target="_blank">法律声明</a>
+            <a href="${Site.url}member.htm" target="_blank">会员说明</a>
+            <a href="${Site.url}service.htm" target="_blank">售后服务</a>
+            <a href="${Site.url}contact.htm" target="_blank">联系我们</a>
+          <p style="line-height:20px; padding-bottom:20px;">友情链接：
+           <a href="http://mall.chexiang.com" target="_blank">车享汇</a>
+           <a href="http://m.kuaidi100.com" target="_blank">快递查询</a>
+          </p>
+          <p style="line-height:20px; padding-bottom:20px;">CopyRight  2013-2015, All Rights Reserved版权所有 车享<br>沪ICP备14000481号</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="${surl('assets/js/lib/ECar.focus.js')}"></script>
+    <script type="text/javascript" src="${surl('assets/js/lib/ECar.dialog.js')}"></script>
+    <script>
+    $(function(){
+        ECar.focus();
+        $(".wenxin-close").click(function(){
+            $(".wenxin").remove();
+        });
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            if(scrollTop>350){
+                $('.wenxin').css('visibility','visible');
+            } else {
+                $('.wenxin').css('visibility','hidden');
+            }
+
+        });
+    });
+</script>
+<script>
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff8ba65b380f665911ecab4df90bfe056' type='text/javascript'%3E%3C/script%3E"));
+
+var _cxProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); 
+document.write(decodeURIComponent("%3Cscript src='" + _cxProtocol + "data.chexiang.com/js/cx_analytics.js?t=" + new Date().getTime() + "&type=' id='analyticsScript' type='text/javascript'%3E" + "%3C/script%3E"));
+
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48109728-1', 'chexiang.com');
+  ga('send', 'pageview');
+		
+</script>
+<script type="text/javascript">
+	$(function(){
+      var flag=true,
+          b_sidebar=$(".b-sidebar"),
+          b_tn_box=$('.b-btn-box'),
+          btab_btn=$(".b-tab,.b-btn-box");
+      btab_btn.on('click',function(){
+        if(flag){
+          b_sidebar.animate({right:"309px"});
+          b_tn_box.show();
+          flag=false;
+        }else{
+          b_sidebar.animate({right:"0"});
+          b_tn_box.hide();
+          flag=true;
+        }
+      });
+  
+      $('.b-tab-order').click(function(){
+      	$('#myorder').click();
+      });
+      var detailStr="";
+      for(var o in GoodsInfo){
+      	var obj = GoodsInfo[o];
+      	detailStr +='<li class="recommend-item">'
+			      +    '<a href="'+obj.goodsURL +'" class="img-link" target="_blank"><img width="210px" height="140px" src="'+obj.imgURL +'" alt="'+obj.name+'" /></a>'
+			      +    '<h3><a href="'+obj.goodsURL +'" target="_blank">'+obj.name+'</a></h3>'
+			      +    '<p>会员价：'+obj.memberPrice+'</p>'
+			      +   '<p class="txt-color">市场价：'+obj.price+'</p>'
+			      +   ' </li>'
+      }
+      $('#box > div.scroll-content > div.abocontent > ul.recommend-list').html(detailStr)
+      
+                
+      var h=$('.b-recommend').height();
+      $('#box').height(h);
+  
+      new ECar.imitatescroll({
+        id: "#box"
+      });
+      
+      
+      
+	});
+</script>
+  </body>
+</html>

@@ -1,0 +1,255 @@
+<z:config type = "ArticleList" name = "商城首页"/>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<!--#if expr="$index" -->
+<title>车享商城-上汽旗下电商_品牌直销_底价买车_4s店提车_省心省力省钱</title>
+<meta name="keywords" content="车享商城，汽车电商，汽车网站，汽车报价，汽车图片，认证4S店服务" />
+<meta name="description" content="车享商城是上汽集团旗下的汽车电商交易平台，厂家直销信誉保障，全网底价买车半价秒杀!线上一口价预定，线下4s店直接提车，贴心服务，轻松购车" />
+<!--#else -->
+<title>${Catalog.Name}汽车网_${Catalog.Name}汽车报价_${Catalog.Name}汽车销售-上汽车享商城</title>
+<meta name="keywords" content="${Catalog.Name}汽车报价,${Catalog.Name}汽车网，${Catalog.Name}汽车销售" />
+<meta name="description" content="上汽车享商城${Catalog.Name}站提供汽车上路价即线下实际提车价，绝无任何隐性强制消费。绝无任何隐性强制消费。全网底价买车，还有不定时半价秒杀活动哦！客服电话：4008-020-666" />
+<!--#endif -->
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome = 1">
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<link rel="shortcut icon" href="${surl('resource/images/mall/public/favicon.ico')}" type="image/x-icon"/>
+<link rel='canonical' href='${Site.url}${Catalog.Alias}/' />
+<link rel="stylesheet" href="${surl('resource/css/Fastlogin/fastlogin.css')}" media="screen" />
+<link rel="stylesheet" href="${surl('resource/css/mall/global.css')}" media="screen" />
+<link rel="stylesheet" href="${surl('resource/css/mall/index.css')}" media="screen" />
+<script>
+  var pageCityID = '${Catalog.SEOKeywords}';
+  var pageCityName = '${Catalog.Name}';
+</script>
+</head>
+<body>
+<cms:include file='header.template.html'/>
+<!-- 全屏轮播 -->
+<div class="banner-wrapper"  id="banner-wrap">
+	<div class="banner-wrap">
+		<ul class="slideList">
+        	
+		    <cms:cxdata code="getAdvertise" condition="channelCode=CARMALL,plateCode=LUNBOTU,territoryId=${Catalog.SEOKeywords}">
+				<z:list>
+				<li>
+					<a lazyimg = "${commonImg(CXData.data.imgUrl)}" imgsrc = "${surl('resource/images/mall/index/blank.gif')}" title="${CXdata.data.title}" target="_blank" href="${CXData.data.url}" class="img"></a>
+				</li>
+				</z:list>
+			</cms:cxdata>
+			
+		</ul>
+	</div>
+</div>
+<div class="search-home">
+	<div class="search-home-sel">
+		<div class="home-search-box">
+			<div class="home-search-text">
+				<span class="search-text">综合</span>
+				<span class="search-jt"></span>
+			</div>
+			<div class="search-home-list">
+				<a href="javascript:void(0)" title="综合" showSearch = 'sysbol'>综合</a>
+				<a href="javascript:void(0)" class="sel" title="落地价" showSearch = 'price'>落地价</a>
+			</div>
+		</div>
+	</div>
+	<div class="search-home-con">
+		<div class="search-box-long search-box-sel" id="sysbolDiv">
+			<form method="get" target="_blank" action="/multisearch/search.htm">
+				<input type="hidden" name="cat" value="1" />
+				<input type="text" id="attendSymbol" name="kwd" class="search-input-long" autocomplete="off" class="txt" placeholder="请输入品牌、级别、车系、车型" />
+			    <button type="submit" class="submit-home search-submit"><i></i></button>
+			</form>
+		</div>
+		<div class="search-box-long" id="priceDiv">
+			<form method="get" target="_blank" action="/multisearch/search.htm">
+				<input type="hidden" name="cat" value="0" />
+				<input type="text" id="attendPrice" name="kwd" class="search-input-long" autocomplete="off" class="txt" placeholder="请输入购车预算" maxlength="10" />
+			    <button type="submit" class="submit-home search-submit-home"><i></i></button>
+			    <div class="price-unit">
+			    	元
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 全屏轮播  End -->
+
+<!-- 导航 Nav -->
+<div class="hmode-white">
+	<div class="home-nav clearfix">
+        <cms:block code="${Catalog.Alias}_linkGroup" updateBlock = "false"/>
+	</div>
+</div>
+<!-- 导航 Nav End-->
+
+<!-- 车享特供 -->
+<cms:cxdata code="specialCar" condition="hotZone=2,rows=4,cityId=${Catalog.SEOKeywords},sponsor=1">
+<z:if condition="${__Total>=4}">
+<div class="hmode-gray">
+	<div class="home-provide">
+		<div class="modle-title">
+			<h2>
+				车享特供
+				<span class="h2-info">买放心车，选车享特供</span>
+			</h2>
+			<a href="/list/tg-0-0-0-0-0-0-0-0-1-1.html" title="查看更多" target="_blank" class="more">查看更多&nbsp;<span class="more-s">></span></a>
+		</div>
+		<ul class="home-provide-content clearfix">
+			<z:list>
+				<li>
+					<dl class="car-detail car-detail2">
+						<dd class="img-box">
+							<a title="${CXData.data.title}" target="_blank" href="/product/${CXData.data.spuId}.htm">
+								<img class="lazy"  data-original="${commonImg(CXData.data.coverImgUrl)}" alt="${CXData.data.title}" height="180" width="270"/>
+							</a>
+							<div class="img-lab">
+								<z:if condition="${not empty CXData.data.tag}">
+									<span class="lab-zj <z:if condition='${CXData.data.saleType == 1}'>lab-red</z:if><z:else>lab-blue</z:else>">${CXData.data.tag}</span>
+								</z:if>
+							</div>
+							<span class="carnumber">已售:${CXData.data.usedNum}辆</span>
+						</dd>
+						<dt class="name-box">
+							<a class="name-text" href="" title="${CXData.data.title}">${CXData.data.title}</a>
+						</dt>
+						<dd class="info-box">
+							<z:if condition="${CXData.data.saleType == 1}">
+								<strong>&yen;${CXData.data.lowestTotalPrice%1>0?parseInt(CXData.data.lowestTotalPrice)+1:parseInt(CXData.data.lowestTotalPrice)}</strong>
+								<div class="discount discount-green" tooltip='购车全部相关费用'>落地价</div>
+								<i>&yen;${CXData.data.totalPrice%1>0?parseInt(CXData.data.totalPrice)+1:parseInt(CXData.data.totalPrice)}</i>
+							</z:if>
+							<z:else>
+								<strong>&yen;${CXData.data.lowestTotalPrice}</strong>
+								<div class="discount discount-blue" tooltip='首付款+其他购车费用'>提车款</div>
+								<i class="no-i">月供&nbsp;&yen;${CXData.data.monthRepay%1>0?parseInt(CXData.data.monthRepay)+1:parseInt(CXData.data.monthRepay)}&nbsp;/分&nbsp;${CXData.data.repayPeriod}&nbsp;期
+                              </i>
+							</z:else>
+						</dd>
+						<dd class="caption-box" title="${CXData.data.title}">
+							${CXData.data.subTitle}
+						</dd>
+					</dl>
+				</li>
+				</z:list>
+		</ul>
+	</div>
+</div>
+</z:if>
+</cms:cxdata>
+<!-- 车享特供 End -->
+
+<!-- 现金购车 分期购车   | start -->
+<cms:block code="${Catalog.Alias}_buyCar" updateBlock = "false"/>
+<!-- 现金购车 分期购车   | end -->
+
+<!-- sidebar -->
+<!-- sidebar | start -->
+<div id="mall-sidebar" class="sidebar">
+	<ul class="side-abs">
+		<li class="mainsite-im">
+			<span class="tit im-client">
+				<i class="icon-client"></i><span class="icon-text">客服</span>
+			</span>
+			<span class="advice-pop">客服<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="side-calculator">				
+			<a class="tit" href="http://www.chexiang.com/car/tool/buy_0_0_0.htm" target="_blank">
+				<i class="icon-calculator"></i><span class="icon-text">计算器</span>
+			</a>
+			<span class="advice-pop">计算器<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="side-collection">					
+			<a class="mall-my" id="mall-my" href="javascript:void(0)" login-href="/member/myCollect.htm">
+				<i class="icon-collection"></i><span class="icon-text">我的收藏</span>
+			</a>
+			<span class="advice-pop">我的收藏<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<!--  
+		<li class="line"></li>
+		<li class="side-browse">					
+			<a class="mall-my" href="${prefix("template/")}" target="_blank">
+				<i class="icon-browse"></i>最近浏览
+			</a>
+		</li>
+		-->
+	</ul>
+	<ul class="side-fix">
+		<li class="cmp-enter">
+			<span class="tit a-comp" href="/template/" target="_blank"><i class="icon-comp"></i></span>
+			<span class="advice-pop">反馈建议<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+		<li class="line"></li>
+		<li class="backtoTop">
+			<span class="tit a-top"><i class="icon-top"></i></span>
+			<span class="advice-pop">返回顶部<i class="icon-advice ico-advice-arrows"></i></span>
+		</li>
+	</ul>
+</div>
+<div id="feedbook" style="display:none;">
+	<!-- <form name="feedOrder" action="/member/addFeedback.htm" method="post" id="feedOrder">  -->
+		<div class="feedbook">
+			<dl class="clearfix">
+				<dt>反馈类型：</dt>
+				<dd>
+					<label><input type="radio" name="feedbackType" value="2" id="RadioFeed_0" checked="checked" />商品价格</label>
+					<label><input type="radio" name="feedbackType" value="3" id="RadioFeed_1" />购买流程</label>
+					<label><input type="radio" name="feedbackType" value="1" id="RadioFeed_2" />投诉</label>
+					<label><input type="radio" name="feedbackType" value="4" id="RadioFeed_3" />其他</label>
+				</dd>
+			</dl>
+			<dl class="clearfix">
+				<dt>意见：</dt>
+				<dd>
+					<textarea name="question" id="question" cols="" rows="" maxlength = "500"></textarea>
+				</dd>
+			</dl>
+			<div class="submit-error">
+			</div>
+			<div class="submit-feed">
+				<input type="button" value="提交" class="feedbook-btn" id="submitFeed">
+			</div>
+		</div>
+	<!-- </form> -->
+</div>
+<!-- sidebar | end -->
+
+<!-- footer -->
+<!-- begin | Footer -->
+<cms:include file='footer.template.html'/>
+<!-- end | Footer -->
+
+<script>
+var MALL = {};
+MALL.base = "${Site.url}";
+MALL.accountQuickBase = "${Config['ebiz.zcms.web.accountQuickBase']}";
+
+window.accountBase="${Config.AccountBase}";
+window.mainBase = "${Config.MainBase}";
+window.imBase = "${Config.ImBase}";
+window.OrderBase = "${Config.OrderBase}";
+window.memberBase = "${Config.MemberBase}";
+window.imUrl="${Config.imUrl}?arg=admin&style=2";
+</script>
+&nbsp;&nbsp;
+<script src="${surl('resource/js/common/jquery.lazyload.js')}"></script>
+
+<script src="${surl('resource/js/Fastlogin/checkLogin.js')}"></script>
+<script src="${surl('resource/js/Fastlogin/ECar.dialog.js')}"></script>
+
+
+<script src="${surl('resource/js/mall/public/suggest.js')}"></script>
+<script src="${surl('resource/js/mall/public/base.js')}"></script>
+<script src="${surl('resource/js/mall/public/ECar.fullSlide.js')}"></script>
+<script src="${surl('resource/js/mall/public/ECar.easyDialog.js')}"></script>
+<script src="${surl('resource/js/mall/index/index.js')}"></script>
+${("<!--[if lte IE 9]>")}
+	<script src="${surl('resource/js/common/placeholders.js')}"></script>
+${("<![endif]-->")}
+</body>
+</html>

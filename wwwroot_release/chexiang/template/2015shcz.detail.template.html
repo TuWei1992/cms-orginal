@@ -1,0 +1,132 @@
+<z:config type="ArticleDetail" name="2015上海车展" />
+<!DOCTYPE html>
+<html>    <!--<![endif]--> <!--  manifest="../manifest.appcache" -->
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+	<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>	
+	<title>${Article.Title}-${Site.Name}</title>
+	<meta name="keywords" content="${Site.SEOKeywords}"/>
+	<meta name="description" content="${Site.SEODescription}"/>
+	<link rel="stylesheet" href="${surl('resource/2015cz/css/global.css')}">
+	<!-- begin | global javascript -->
+		<script>
+			(function (window, console) {
+			// 	window.base = "${Config.Base}";
+				window.base = "";
+				window.accountBase="${Config.AccountBase}";
+				window.mainBase = "${Config.MainBase}";
+				window.imBase = "${Config.ImBase}";
+				window.OrderBase = "${Config.OrderBase}";
+				window.memberBase = "${Config.MemberBase}";
+				window.imUrl="${Config.imUrl}?arg=admin&style=2";
+			} (window, "undefined" != typeof console ? console : void 0));
+		</script>
+</head>
+<body>
+	<cms:include file="header_index-mini.template.html" />
+	<!-- end | Top Bar -->
+	
+	<!-- begin | menu Bar -->
+	<cms:include file="header_menu.template.html" />
+	<!-- end | menu Bar -->
+	
+<div class="container clearfix">
+<div class="path"><cms:article catalogAlias="cz_2015shcz"><a href="${Article.Link}">车展首页</a><span>&gt;</span></cms:article>正文</div>
+<div class="container-left">
+	<div class="content clearfix">
+		<h3>${Article.Title}</h3>
+		<div class="from">来源：${Article.Source} 编辑：${Article.Editor} ${format(Article.ModifyTime,'yyyy/MM/dd HH:mm')}</div>
+		<div class="con">
+			${(Article.Content)}
+		</div>
+	</div>
+	<div class="tag-info">
+		<ul class="clearfix">
+			<z:if condition="${Article.Keyword != ''}">
+			<z:split spliter=" " value="${Article.Keyword}">
+			<z:list>
+				<li>${Data.Value}</li>
+			</z:list>
+			</z:split>
+			</z:if>
+		</ul>
+	</div>
+	<div class="share">
+		<div class="bdsharebuttonbox">
+  			<span>分享到：</span>
+  			<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信" rel="nofollow">微信</a>
+  			<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" rel="nofollow">新浪微博</a>
+  			<a href="#" class="bds_tqf" data-cmd="tqf" title="分享到腾讯朋友" rel="nofollow">腾讯朋友</a>
+  			<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" rel="nofollow">QQ空间</a>
+  			<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友" rel="nofollow">QQ好友</a>
+			</div>
+	</div>
+	<div class="news-list clearfix">
+		<div class="page-nav clearfix">
+			<ul>
+				<z:set var="articleId" value="${Article.id}"></z:set>
+				<cms:article catalogId="${catalog.ParentID}" level="CurrentAndChild">
+				<z:list>
+					<z:if condition="${Article.id == articleId}"><z:set var="hasPrev" value="true"></z:set><z:set var="prevArticleId" value="${localArticleId}"></z:set></z:if>
+					<z:else><z:if condition="${hasPrev == 'true' && nextArticleId == ''}"><z:set var="nextArticleId" value="${Article.id}"></z:set></z:if></z:else>
+					<z:if condition="${prevArticleId == ''}"><z:set var="localArticleId" value="${Article.id}"></z:set></z:if>
+				</z:list>
+				</cms:article>
+				<li><z:if condition="${prevArticleId != ''}"><cms:article catalogId="${catalog.ParentID}" level="CurrentAndChild" id="${prevArticleId}"><a href="${Article.Link}" title="${Article.Title}">上一篇：${charWidth(Article.Title, 40, "...")} </a></cms:article></z:if></li>
+				<li><z:if condition="${nextArticleId != ''}"><cms:article catalogId="${catalog.ParentID}" level="CurrentAndChild" id="${nextArticleId}"><a href="${Article.Link}" title="${Article.Title}">下一篇：${charWidth(Article.Title, 40, "...")} </a></cms:article></z:if></li>
+			</ul>
+		</div>
+		<div class="news-title">相关文章</div>
+		<div class="list clearfix">
+			<ul>
+				<cms:relacontent>
+				<z:list><li><a href="${Relacontent.Link}" title="${Relacontent.Title}">${charWidth(Relacontent.Title, 48, "...")}</a></li></z:list>
+				</cms:relacontent>	
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="container-right">
+	<div class="news-title">热门文章推荐</div>
+	<div class="images-bulletin">
+		<ul>
+			<cms:article catalogId="${catalog.ParentID}" level="CurrentAndChild" hasAttribute="Recommend">
+				<z:list>
+				<li>
+					<div class="txt"><p><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40, "...")}</a></p></div>
+				</li>
+				</z:list>
+			</cms:article>
+		</ul>
+	</div>
+</div>
+</div>
+		
+<!-- footer -->
+<cms:include file="footer_index.template.html" />
+<!-- end | Footer -->
+
+<!-- footer -->
+
+<script src="${surl('resource/2015cz/js/jquery_1_8_3.js')}"></script>
+<script src="${surl('resource/2015cz/js/header.js')}"></script>
+<script>
+//百度分享
+var shareImg = 'http://s1.cximg.com/promotionweb/images/pc/328/main/share.jpg';
+window._bd_share_config={
+	"common":{
+		"bdSnsKey":{},
+		"bdText":"",
+		"bdMini":"1",
+		"bdMiniList":false,
+		"bdPic":"",
+		"bdStyle":"0",
+		"bdSize":"24"
+	},
+	"share":{}
+};
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<z:config type="Block" name="公用列表页和详细页头部" />
+<div class="header clearself">
+  <div class="topdiv clearself">
+    <div class="toplink homelink pageWidth">
+     <div style="display:none;" id="h_loginbox" class="h_indexLogin">
+        <div class="h_close cGray2"><a style="cursor:pointer;">关闭</a></div>
+        <div class="clear"></div>
+        <form name="l_f" id="h_form1" method="post" action="${FrontAppContext}Member/Login.zhtml?SiteID=${Site.ID}">
+          <ul>
+            <li>
+              <label>账号 </label>
+              <input type="text" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_uname" class="h_text" name="uname">
+            </li>
+            <li>
+              <label>密码 </label>
+              <input type="password" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_pass" class="h_text" name="pass">
+            </li>
+            <li>
+              <input type="button" onclick="javascript:CheckInfo();" value="" class="h_btn04" name="Submit">
+            </li>
+          </ul>
+          <div class="h_indexReg">没有账号？<br>
+            <a target="_blank" href="">立即注册</a></div>
+          <input type="hidden" value="" id="h_backurl" name="backurl">
+        </form>
+      </div>
+     <table width="100%" cellpadding="0" cellspacing="0">
+       <tr>
+         <td class="boederrihgt" width="72"><a href="http://www.zving.com"><img src="../images/small_logo.gif" /></a></td>
+         <td class="boederrihgt" align="center" width="106" style="padding-right:0px;"><a href="${site.url}">泽元新闻网首页</a></td>
+         <td class="boederrihgt hticon" width="144" align="right"><a href="http://www.zving.com">泽元内容管理系统</a></td>
+         <td width="794" align="right"><span id="span_logout" style="display:none">
+      	<a class="login_username" href="${FrontAppContext}member/info?SiteID=${Site.ID}&Current=PersonalInfo"></a><span style="color:#555">,欢迎进入${Site.Name}</span>&nbsp;|&nbsp;<a class="inline-block" href="javascript:logout();">注销</a>&nbsp;|&nbsp;
+      		
+      	</span><span  id="span_login" style="display:none"><a href="${FrontAppContext}member/register?SiteID=${Site.ID}">注册</a>&nbsp;|&nbsp;<a href="${FrontAppContext}member/login?SiteID=${Site.ID}">登录</a>&nbsp;|&nbsp;</span><a title="设为您浏览器的首页,您打开浏览器时默认打开此网站" class="homebg" style="display:inline-block" onclick="setHomepage('http://www.demo.zving.com');return false;" href="javascript:void(0);">设为首页</a>&nbsp;|&nbsp;<a onclick="addFavorite('${Site.URL}','${Site.Name}');return false;" href="javascript:void(0);">收藏本站</a></td>
+       </tr>
+     </table>
+   </div>
+ </div>
+ 
+ <div class="navbox catalogtoplink clearself">
+   <div class="nav pageWidth clearself">
+     <div class="cata_toplink"><cms:catalog level="Root" count="13"><z:list><a href="${Catalog.Link}">${Catalog.Name}</a>|</z:list></cms:catalog></div>
+     <div class="clearself"><div class="cata_ad1 fl"><img src="../images/z_ad1.jpg" /></div><div class="cata_ad2 fr"><img src="../images/z_ad2.jpg" /></div></div>
+     <div class="headtitle clearself">
+       <h1 class="fl"><a href="http://www.demo.zving.com"><img class="fl" src="../images/zvingnewsicon.jpg" /></a><i>|</i><strong>${Catalog.Name}</strong><span><cms:position spliter=" > ">{ZCMS:当前位置}</cms:position>
+</span></h1>
+       <div class="sea_weather fr">
+       <div id="ztime" style="display:none;"></div>
+         <div class="z_time fl">
+           <div style="padding:0px 0px 5px 0px; text-align:center; border-bottom:1px solid #cccccc;">
+		     <script type="text/javascript">
+				var days=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+				var today=new Date();
+				var str= (today.getYear()<1900?1900+today.getYear():today.getYear())+"年" + [today.getMonth()+1]+"月" +today.getDate() +"日 "+ days[today.getDay()];
+				document.write(str);
+			  </script>
+		   </div>
+           <div class="zweather"></div>
+ 	     </div>
+         <div class="cata_search fr">
+         	<form name="form1" method="get" action="${FrontAppContext}search/result" target="_blank">
+                <textarea id="_query" style="display:none">${Request.Query}</textarea>
+                <input type="hidden" name="SiteID" value="${Site.ID}"/>
+                <input class="catasrar_text tex fl" type="text" value="请输入检索关键字" name="Query"  suggest="true" suggestsource="Search.suggest" onclick="soClick(this)" onblur="soBlur(this)" />
+                <input class="catasrar_button fl" type="submit" value="&nbsp;" />
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="cata_mainnav pageWidth clearself">
+     <ul>
+       <z:if condition="${Catalog.ParentID != 0}"> 
+        <cms:catalog level="Current" id="${Catalog.id}">
+        	<z:list>
+       			<li id="${Catalog.InnerCode}"><a href="${Catalog.Link}">${Catalog.Name}</a></li>
+       	    </z:list>
+        </cms:catalog>
+        </z:if>
+        <z:else>
+          <cms:catalog level="Child" id="${Catalog.id}">
+        	<z:list>
+       			<li id="${Catalog.InnerCode}"><a href="${Catalog.Link}">${Catalog.Name}</a></li>
+       	    </z:list>
+        </cms:catalog>
+        </z:else>
+     </ul>
+     
+   </div>
+ </div>
+</div>
+<script type="text/javascript">
+Page.onReady(function() {
+	try {
+	var url = '${FrontAppContext}member/logined?timestamp=' + new Date().getTime();
+    loadJs(url, function(){
+		if(typeof result != 'undefined'){
+			$("#span_login").css("display", result.IsLogin ? "none" : "");
+			$("#a_commonlogin").css("display", result.IsLogin ? "none" : "");
+			$("#span_logout").css("display", result.IsLogin ? "" : "none");
+			if(result.IsLogin){
+			  $("a.login_username").html(result.UserName);
+			}
+		}else{
+			$("#span_login").css("display", "");
+			$("#span_logout").css("display", "none");
+		}
+      });
+	} catch(e) {
+		$("#span_login").css("display", "");
+		$("#span_logout").css("display", "none");
+	}
+	$(".tex").val($V("#_query"));
+});
+
+function logout() {
+	var url = '${FrontAppContext}member/ajaxlogout?'+new Date().getTime();
+	loadJs(url, function(){
+			window.location.href = "${Site.Link}";
+		});
+}
+
+function openAjaxLogin(){
+	$('#popDiv').fadeIn(1000);
+}
+
+function addFavorite(url,title) {
+  	if (window.sidebar) {
+  	  	window.sidebar.addPanel(title, url,"");
+    } else if(document.all) {
+        window.external.AddFavorite(url, title);
+    } else if( window.opera && window.print ) {
+        return true;
+    }
+}
+</script>

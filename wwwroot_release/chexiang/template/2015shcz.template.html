@@ -1,0 +1,298 @@
+<z:config type="Block" name="2015上海车展" />
+<!-- chezhan -->
+<div class="row pos">
+	<div class="line-1"></div>
+	<div class="line-2"></div>			
+	<div class="mod">
+		<div class="mod-tit">
+			<h3 class="tit-txt"><cms:catalog alias="cz_2015shcz_shcz">${catalog.name}</cms:catalog></h3>
+			<span class="tit-time">2015.4.1-4.16</span>
+		</div>
+		<div class="mod-con">
+			<div class="slide-box">
+				<div class="show">
+					<ul id="j-banner-content">
+					<cms:imagegroup catalogAlias="cz_2015shcz_shcz_lbt">
+					<cms:image>
+						<z:list><li <z:if condition="${i==1}">class="cur"</z:if>><a href="${image.LinkURL}" target="_blank" title="${image.name}"><img src="${image.ImagePath}" alt="${image.name}" width="1080" height="380"></a></li></z:list>
+					</cms:image>
+					</cms:imagegroup>
+					</ul>
+				</div>
+				<div id="j-banner-num" class="page-num">
+					<cms:imagegroup catalogAlias="cz_2015shcz_shcz_lbt">
+					<cms:image>
+						<z:list><span <z:if condition="${i==1}">class="cur"</z:if>></span></z:list>
+					</cms:image>
+					</cms:imagegroup>
+				</div>
+			</div>
+			<ul class="article-list">
+				<li class="img-txt-item">
+				<cms:article catalogAlias="cz_2015shcz_shcz_tw">
+					<div class="img-box">
+						<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}" width="340" height="190"></a>
+						<i class="arrow-up"></i>
+					</div>
+					<dl class="txt-summary">
+						<dd class="arrow-up"></dd>
+						<dt>
+							<a href="${Article.Link}" target="_blank">${charWidth(Article.Title, 20, "...")}</a>
+						</dt>
+						<dd class="desc" title="${Article.SourceTitle}">${charWidth(Article.SourceTitle, 120, "...")}</dd>
+						<dd>
+							<a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a>
+						</dd>
+					</dl>
+				</cms:article>
+				</li>
+				<li class="txt-item">
+					<span class="icon-traffic"></span>
+					<cms:article catalogAlias="cz_2015shcz_shcz_cw">
+					<div class="tit-txt">
+						<a href="${Article.Link}" target="_blank" title="${Article.Title}">${charWidth(Article.Title, 100, "...")}</a>
+					</div>
+					<a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a>
+						
+					</cms:article>
+				</li>
+				<li class="img-item">
+				<cms:article catalogAlias="cz_2015shcz_shcz_ct">
+					<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}"></a>
+				</cms:article>
+				</li>
+			</ul>
+			<div class="map-area">
+				<div class="img-box"><img src="${surl('resource/2015cz/images/map.jpg')}" alt="" width="540" height="318" /></div>
+				<ul class="map-info">
+					<li class="place"><i class="icon-place"></i>家会展中心距离虹桥枢纽仅1.5公里,高铁1至2小时可到达长三角各重要城市,航空2至3小时可到达亚太主要经济城市。</li>
+					<li><i class="icon-time"></i><b>展览会时间：</b><span>2015年4月22日-4月29日</span></li>
+					<li><i class="icon-map"></i><b>展览会地点：</b><span>国家会展中心(上海盈港东路168 )</span></li>
+					<li><i class="icon-intro"></i><b>车&nbsp;展&nbsp;介&nbsp;绍：</b>
+						<p>Auto Shanghai 上海国际汽车展,创办于1985年,至今连续成功举了十五届。30年来,见证了中国汽车工业的欣欣向荣和中盛会。而上海国际汽车展本身也逐步成长为中国乃至 全球最具赞誉的汽车大展之一。</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="mod-bt">
+			<div class="bt-left"></div>
+			<div class="bt-right"></div>
+		</div>
+	</div>
+</div>
+
+<!--video  -->
+<div class="row">
+	<div class="mod">
+		<div class="mod-tit">
+			<h3 class="tit-txt"><cms:catalog alias="cz_2015shcz_czsp">${catalog.name}</cms:catalog></h3>
+			<span class="tit-time">2015.4.1-4.16</span>
+		</div>
+		<div class="mod-con">
+			<div class="con-main clearfix">
+				<h4 class="vide-tit">不文明行为记录</h4>
+				<div class="video-box">
+				<cms:imagegroup catalogAlias="cz_2015shcz_czsp_sp">
+				<cms:image>
+					<iframe src="${image.LinkURL}" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" scrolling="no" border="0" frameborder="0" style="width:100%;height:100%;"></iframe>
+				</cms:image>
+				</cms:imagegroup>
+				</div>
+			<div class="comment-box">
+				<cms:catalog alias="cz_2015shcz_czsp_pl" level="Child"><z:list>
+				<cms:article catalogId="${catalog.id}">
+				<div class="c-title <z:if condition='${i!=1}'>displayN</z:if>">最新评论<span>${__Total}评论</span></div>
+				</cms:article></z:list></cms:catalog>
+				<div class="c-list">
+					<cms:catalog alias="cz_2015shcz_czsp_pl" level="Child"><z:list>
+					<ul <z:if condition="${i!=1}">class="displayN"</z:if>>
+					<cms:article catalogId="${catalog.id}">
+					<z:list>
+						<li>${Article.Author}<p>${Article.SourceTitle}</p><span>${Article.ShortTitle}</span></li>
+					</z:list>
+					</cms:article>
+					</ul>
+					</z:list></cms:catalog>
+					<div class="c-comment">
+						<textarea placeholder="随便写两句评论:)"  style="resize:none"></textarea>
+						<div class="button-box">
+							<button class="button">提交</button>
+							<span class="submit-msg" style="display:none"></span>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="con-side clearfix">
+				<ul>
+					<cms:imagegroup catalogAlias="cz_2015shcz_czsp_sp">
+					<cms:image>
+					<z:list>
+						<li <z:if condition="${i == 1}">class="hover"</z:if> video-src="${image.LinkURL}"><img src="${image.ImagePath}" alt="${image.name}"/><p>${image.name}</p></li>
+					</z:list>
+					</cms:image>
+					</cms:imagegroup>
+				</ul>
+			</div>	
+		</div>
+		<div class="mod-bt">
+			<div class="bt-left"></div>
+			<div class="bt-right"></div>
+		</div>
+	</div>
+</div>
+
+<!--chuanyue  -->
+<div class="row pos">
+	<div class="line-3"></div>
+	<div class="line-4"></div>
+	<div class="mod">
+		<div class="mod-tit">
+			<h3 class="tit-txt"><cms:catalog alias="cz_2015shcz_cysh">${catalog.name}</cms:catalog></h3>
+			<span class="tit-time">2015.4.1-4.16</span>
+		</div>
+		<div class="mod-con">
+			<ul class="article-list">
+				<li class="img-txt-item">
+				<cms:article catalogAlias="cz_2015shcz_cysh_tw">
+					<div class="img-box">
+						<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}" width="340" height="190"></a>
+						<i class="arrow-up"></i>
+					</div>
+					<dl class="txt-summary">
+						<dd class="arrow-up"></dd>
+						<dt><a href="${Article.Link}" target="_blank">${charWidth(Article.Title, 20, "...")}</a></dt>
+						<dd class="desc" title="${Article.SourceTitle}">${charWidth(Article.SourceTitle, 120, "...")}</dd>
+						<dd><a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a></dd>
+					</dl>
+				</cms:article>
+				</li>
+				<li class="txt-item">
+					<span class="icon-traffic"></span>
+					<cms:article catalogAlias="cz_2015shcz_cysh_cw">
+					<div class="tit-txt"><a href="${Article.Link}" target="_blank" title="${Article.Title}">${charWidth(Article.Title, 100, "...")}</a></div>
+					<a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a>
+					</cms:article>
+				</li>
+				<li class="img-item">
+				<cms:article catalogAlias="cz_2015shcz_cysh_ct">
+					<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}"></a>
+				</cms:article>
+				</li>
+				<li class="txt-item">
+					<span class="icon-traffic"></span>
+					<cms:article catalogAlias="cz_2015shcz_cysh_cw">
+					<z:list count="1" begin="2">
+					<div class="tit-txt"><a href="${Article.Link}" target="_blank" title="${Article.Title}">${charWidth(Article.Title, 100, "...")}</a></div>
+					<a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a>
+					</z:list>
+					</cms:article>
+				</li>
+				<li class="img-item">
+				<cms:article catalogAlias="cz_2015shcz_cysh_ct">
+				<z:list count="1" begin="2">
+					<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}"></a>
+				</z:list>
+				</cms:article>
+				</li>
+				<li class="img-txt-item">
+				<cms:article catalogAlias="cz_2015shcz_cysh_tw">
+				<z:list count="1" begin="2">
+					<div class="img-box">
+						<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}" width="340" height="190"></a>
+						<i class="arrow-up"></i>
+					</div>
+					<dl class="txt-summary">
+						<dd class="arrow-up"></dd>
+						<dt><a href="${Article.Link}" target="_blank">${charWidth(Article.Title, 20, "...")}</a></dt>
+						<dd class="desc" title="${Article.SourceTitle}">${charWidth(Article.SourceTitle, 120, "...")}</dd>
+						<dd><a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a></dd>
+					</dl>
+				</z:list>
+				</cms:article>
+				</li>
+			</ul>
+		</div>
+		<div class="mod-bt">
+			<div class="bt-left"></div>
+			<div class="bt-right"></div>
+		</div>
+	</div>
+</div>
+
+<!--intro  -->
+<div class="row row-last">
+	<div class="mod">
+		<div class="mod-tit">
+			<h3 class="tit-txt"><cms:catalog alias="cz_2015shcz_cxjs">${catalog.name}</cms:catalog></h3>
+			<span class="tit-time">2015.4.1-4.16</span>
+		</div>
+		<div class="tit-summary">车享平台将以用户为中心,通过线上线下无缝对接的电子商务模式,紧密围绕与汽车息息相关的业务,从用户选车开始到购车、用车、换车的全程 使用周期,为用户提供悉心关怀、卓越服务的一致体验。车享平台还将把关注点从用户的车辆使用延伸到与汽车有关的生活领域,努力为用户打造 全面、卓越的汽车生活与文化的互动体验和享受。</div>
+		<div class="mod-con">
+			<ul class="article-list">
+				<li class="img-txt-item">
+				<cms:article catalogAlias="cz_2015shcz_cxjs_tw">
+					<div class="img-box">
+						<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}" width="340" height="190"></a>
+						<i class="arrow-up"></i>
+					</div>
+					<dl class="txt-summary">
+						<dd class="arrow-up"></dd>
+						<dt><a href="${Article.Link}" target="_blank">${charWidth(Article.Title, 20, "...")}</a></dt>
+						<dd class="desc" title="${Article.SourceTitle}">${charWidth(Article.SourceTitle, 120, "...")}</dd>
+						<dd><a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a></dd>
+					</dl>
+				</cms:article>
+				</li>
+				<li class="txt-item">
+					<span class="icon-traffic"></span>
+					<cms:article catalogAlias="cz_2015shcz_cxjs_cw">
+					<div class="tit-txt"><a href="${Article.Link}" target="_blank" title="${Article.Title}">${charWidth(Article.Title, 100, "...")}</a></div>
+					<a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a>
+					</cms:article>
+				</li>
+				<li class="img-item">
+				<cms:article catalogAlias="cz_2015shcz_cxjs_ct">
+					<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}"></a>
+				</cms:article>
+				</li>
+				<li class="txt-item">
+					<span class="icon-traffic"></span>
+					<cms:article catalogAlias="cz_2015shcz_cxjs_cw">
+					<z:list count="1" begin="2">
+					<div class="tit-txt"><a href="${Article.Link}" target="_blank" title="${Article.Title}">${charWidth(Article.Title, 100, "...")}</a></div>
+					<a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a>
+					</z:list>
+					</cms:article>
+				</li>
+				<li class="img-item">
+				<cms:article catalogAlias="cz_2015shcz_cxjs_ct">
+				<z:list count="1" begin="2">
+					<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}"></a>
+				</z:list>
+				</cms:article>
+				</li>
+				<li class="img-txt-item">
+				<cms:article catalogAlias="cz_2015shcz_cxjs_tw">
+				<z:list count="1" begin="2">
+					<div class="img-box">
+						<a href="${Article.Link}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt="${Article.Title}" width="340" height="190"></a>
+						<i class="arrow-up"></i>
+					</div>
+					<dl class="txt-summary">
+						<dd class="arrow-up"></dd>
+						<dt><a href="${Article.Link}" target="_blank">${charWidth(Article.Title, 20, "...")}</a></dt>
+						<dd class="desc" title="${Article.SourceTitle}">${charWidth(Article.SourceTitle, 120, "...")}</dd>
+						<dd><a href="${Article.Link}" target="_blank">Read More<i class="arrow-right"></i></a></dd>
+					</dl>
+				</z:list>
+				</cms:article>
+				</li>
+			</ul>
+		</div>
+		<div class="mod-bt">
+			<div class="bt-left"></div>
+			<div class="bt-right"></div>
+		</div>
+	</div>
+</div>

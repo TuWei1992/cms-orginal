@@ -1,0 +1,15 @@
+<z:config type="Block" name="点击排行榜区块"/>
+<div class="side_mod">
+  <h4 class="mod_tit">点击排行榜</h4>
+  <div class="mod_con">
+    <div class="top_news">
+      <ul>
+      	<cms:article type="Hot" count="8">
+	      	<z:list>
+	      		<li><span>${Article.HitCount}</span><z:eval expression="${i+1}" />.<a title="${Article.Title}" target="_blank" href="${Article.Link}">${charWidth(Article.Title,30)}</a> </li>
+	      	</z:list>
+        </cms:article>
+      </ul>
+    </div>
+  </div>
+</div>

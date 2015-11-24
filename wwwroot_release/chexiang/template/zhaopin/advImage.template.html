@@ -1,0 +1,12 @@
+<z:config type="Block" name="广告图片" />
+<div class="mod_ad">
+	<cms:imagegroup name="广告位">
+	<z:if condition="${__Total>0}">
+	<cms:image count="1">
+	<z:list>
+		<a href="${image.LinkURL}" target="_blank"><img src="${image.ImagePath}" width="230" height="300" alt="${image.Name}" /></a>
+	</z:list>
+	</cms:image>
+	</z:if>
+	</cms:imagegroup>
+</div>

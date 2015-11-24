@@ -1,0 +1,29 @@
+<z:config type="ArticleDetail" name="文章详细页模板"/>
+<?xml version="1.0" encoding="utf-8" ?> 
+<rss version="2.0">
+<channel>
+  <title>${Article.Title}</title> 
+<image>
+  <title>${Article.Title}</title> 
+  <link>${Site.Url}/${Article.Link}</link> 
+  <url>${Site.Url}/${Article.LogoFile}</url> 
+</image>
+<description>${Article.Title}</description> 
+<link>${Site.Url}/${Article.Link}</link> 
+<language>zh-cn</language> 
+<generator>${Site.Url}</generator> 
+<copyright>opyright(C) 泽元新闻网 2007-2008    All Rights Reserved. 京ICP备06024929号 </copyright> 
+<pubDate>${format(PublishDate,'yyyy-MM-dd')}</pubDate> 
+	<item>
+ 			<title>${Article.Title}</title> 
+ 			<link>${Site.Url}/${Article.Path}</link>
+ 			<author>${Article.Author}</author> 
+ 			<guid>${Site.Url}/${Article.Path}</guid> 
+ 			<category>${Article.Title}</category> 
+ 			<pubDate>${format(Article.PublishDate,'yyyy-MM-dd')}</pubDate> 
+ 			<comments /> 
+ 			<description>${charWidth(Article.Summary,20)}</description> 
+  	</item>
+</cms:article>
+</channel>
+</rss>

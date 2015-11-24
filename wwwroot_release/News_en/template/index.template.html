@@ -1,0 +1,324 @@
+<z:config type="SiteIndex" name="Site Index Template" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:ice="http://ns.adobe.com/incontextediting">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>${Site.Name}</title>
+<cms:include file="include.template.html" />
+<style>
+#marqueeBox {
+	width:266px;
+	overflow:hidden;
+}
+.pagewidth{ width:960px;}
+.pagewidth1 {width:960px;}
+</style>
+</head>
+<body>
+<cms:include file="header.template.html" />
+<div id="main" class="pagewidth main" style="width:960px">
+  <div class="main_box">
+    <div class="col_L">
+      <div style="width:100%; height:225px; overflow:hidden;"><cms:imageplayer code="IndexImagplayer" /></div>
+      <div class="col_L_box clearself" style="height:1065px;">
+        <!-- div.side_mod --> 
+        <div class="side_mod">
+          <h4 class="mod_tit"><a href="#">SCIENCE</a></h4>
+          <div style="margin-top:10px;" class="tvBox">
+          	<cms:catalog name="Weather">
+                <div class="tit15"><a href="${Catalog.Link}" target="_blank" class="more">MORE&gt;&gt;</a><span>
+                <a target="_blank" href="${Catalog.Link}">${Catalog.Name}</a></span></div>
+            </cms:catalog>
+            <div class="clear"></div>
+            <cms:article catalog="Weather" hasAttribute="Image">
+            <z:list>
+            <div style=" margin:10px 0;" class="clearself"><img src="${Article.LogoFile}" width="100" class="fl" style="margin:0 15px 0 0">
+              ${Article.Title} <a class="red" href="${Article.Link}">[Full]</a></div>
+            </z:list>
+            </cms:article>
+            <ul class="news_list">
+            <cms:article catalog="Weather" count="4">
+            <z:list> <li><a target="_blank" href="${Article.Link}">${Article.Title}</a></li></z:list>
+            </cms:article>
+            </ul>
+          </div>
+          <div class="bordA"></div>
+          <div style="margin-top:10px;" class="tvBox">
+          	<cms:catalog name="Space Astronomy">
+                <div class="tit15"><a href="${Catalog.Link}" target="_blank" class="more">MORE&gt;&gt;</a><span>
+                <a target="_blank" href="${Catalog.Link}">${Catalog.Name}</a></span></div>
+            </cms:catalog>
+            <div class="clear"></div>
+            <cms:article catalog="Space Astronomy" hasAttribute="Image">
+            <z:list>
+            <div style=" margin:10px 0;" class="clearself"><img src="${Article.LogoFile}" width="100" class="fl" style="margin:0 15px 0 0">
+              ${Article.Title} <a class="red" href="${Article.Link}">[Full]</a></div>
+            </z:list>
+            </cms:article>
+            <ul class="news_list">
+            <cms:article catalog="Space Astronomy" count="4">
+            <z:list> <li><a target="_blank" href="${Article.Link}">${Article.Title}</a></li></z:list>
+            </cms:article>
+            </ul>
+          </div>
+          <div class="bordA"></div>
+          <div style="margin-top:10px;" class="tvBox">
+          	<cms:catalog name="Animals">
+                <div class="tit15"><a href="${Catalog.Link}" target="_blank" class="more">MORE&gt;&gt;</a><span>
+                <a target="_blank" href="${Catalog.Link}">${Catalog.Name}</a></span></div>
+            </cms:catalog>
+            <div class="clear"></div>
+            <cms:article catalog="Animals" hasAttribute="Image">
+            <z:list>
+            <div style=" margin:10px 0;" class="clearself"><img src="${Article.LogoFile}" width="100" class="fl" style="margin:0 15px 0 0">
+              ${Article.Title} <a class="red" href="${Article.Link}">[Full]</a></div>
+            </z:list>
+            </cms:article>
+            <ul class="news_list">
+            <cms:article catalog="Animals" count="4">
+            <z:list> <li><a target="_blank" href="${Article.Link}">${Article.Title}</a></li></z:list>
+            </cms:article>
+            </ul>
+          </div>
+          <div style="height:1em; overflow:hidden; clear:both;"></div>
+        </div>
+        <!-- div.side_mod -->
+        <div class="side_mod" style="height:260px;">
+        <cms:catalog name="Dinosaurs"><h4 class="mod_tit"><a href="${Catalog.Link}">${Catalog.Name}</a></h4></cms:catalog>
+          <div style="margin-top:10px; height:200px;" class="tvBox clearself">
+            <div id="marqueeBox">
+              <table>
+                <tr>
+                  <td id="marqueeInner" nowrap><table cellpadding="3">
+                      <tr>
+                      <cms:article catalog="Dinosaurs" count="4" hasAttribute="Image">
+                          <z:list>
+                            <td align="center"><a href="${Article.Link}" target="_blank"><img width="55" src="${Article.LogoFile}" alt="${Article.Title}" title="${Article.Title}" /></a></td>
+                        </z:list>
+                      </cms:article>
+                      </tr>
+                    </table></td>
+                  <td id="marqueeClone" nowrap>&nbsp;</td>
+                </tr>
+              </table>
+            </div>
+            <script>
+            	domReady(function(){
+						//marquee('marqueeBox','marqueeInner','marqueeClone')
+				});
+            </script>
+            <div class="clear"></div>
+            <ul class="news_list">
+                <cms:article catalog="Dinosaurs" count="4">
+                <z:list> <li><a target="_blank" href="${Article.Link}">${Article.Title}</a></li></z:list>
+                </cms:article>
+            </ul>
+          </div>
+          <div style="height:1em; overflow:hidden; clear:both;"></div>
+        </div>
+        <!-- div.side_mod --> 
+      </div>
+      <!--end div.col_L_box--> 
+    </div>
+    <!--end div.col_L-->
+    <div class="col_M">
+      <div class="topNew clearself" style="padding-top:5px;height:20px;line-height:20px;"><span>Focus News <em style="font-size:12px;font-weight:normal"><script>
+	arr=new Date().toUTCString().split(' ');
+	arr.shift();
+	arr.pop();
+	arr.pop();
+	arr.join(' ');
+	document.write(arr);
+      </script></em> </span>
+      </div>
+      <cms:article level="Root" count="11">
+          <z:list begin="1" count="1">
+              <h4 style="clear:both; margin:5px 0;"><a target="_blank" href="${Article.Link}" class="m_bold" style="color:#004276;">
+                  ${Article.Title}</a></h4>
+          </z:list>
+          <ul class="list05 h24" style="height:120px;">
+          <z:list begin="2" count="5">
+            <li><h4><a target="_blank" href="${Article.Link}" class="sys_url">${Article.Title}</a></h4></li>
+          </z:list>
+          </ul>
+          <div class="line02"> </div>
+		 <ul class="list05 h24" style="height:120px;">
+          <z:list begin="7" count="5">
+            <li><h4><a target="_blank" href="${Article.Link}" class="sys_url">${Article.Title}</a></h4></li>
+          </z:list>
+          </ul>
+      </cms:article>
+      <div class="boxM01">
+        <div class="tit02"> 
+        <cms:catalog name="Asia"> <span class="ch"><a target="_blank" href="${Catalog.Link}">${Catalog.Name} News</a></span></cms:catalog>
+        <span class="cDGray"></span></div>
+        <div class="picTxt02">
+        <cms:article catalog="Asia" count="6">
+        <z:list begin="1" count="1"><h4><a target="_blank" href="${Article.Link}">${Article.Title}</a></h4></z:list>
+          <ul>
+          <cms:article catalog="Asia" hasAttribute="Image" count="2">
+          <z:list>
+            <li> <a target="_blank" href="${Article.Link}"><img width="165" src="${imageSize(Article.LogoFile,165,165)}"></a>
+              <div class="textbg"></div>
+              <div class="text cWhite"><a target="_blank" href="${Article.Link}">${Article.Title}</a></div>
+            </li>
+            </z:list>
+           </cms:article>
+          </ul>
+        </div>
+        <ul class="list05">
+          <z:list begin="2" count="5">
+          <li><a target="_blank" href="${Article.Link}">${Article.Title}</a></li>
+          </z:list>
+         </ul>
+        </cms:article>
+      </div>
+      <div class="boxM01" style="margin-top:10px;">
+      	<cms:article catalog="Europe" count="10">
+        <div class="tit02"> 
+        <cms:catalog name="Europe"> <span class="ch"><a target="_blank" href="${Catalog.Link}">${Catalog.Name} News</a></span></cms:catalog>
+        <span class="cDGray"></span></div>
+        <div class="picTxt">
+          <div class="picTxt">
+          <cms:article catalog="Europe" hasAttribute="Image" count="1">
+          <z:list>
+             <div class="hotPic"> <a target="_blank" href="${Article.Link}"> <img width="120" alt=" " src="${Article.LogoFile}"></a>
+              <div class="textbg"></div>
+              <div class="text cWhite"> <a target="_blank" href="${Article.Link}">${Article.Title}</a></div>
+            </div>
+            </z:list>
+            </cms:article>
+            <ul class="list03">
+          		<z:list begin="1" count="2">
+              	<li> <a target="_blank" href="${Article.Link}">${Article.Title}</a></li>
+              </z:list>
+            
+            </ul>
+          </div>
+        </div>
+        <ul class="list05">
+          <z:list begin="3" count="5">
+            <li> <a target="_blank" href="${Article.Link}">${charWidth(Article.Title,50)}</a></li>
+          </z:list>
+        </ul>
+        </cms:article>
+      </div>
+      <div class="boxM01" style="margin-top:10px;">
+      	<cms:article catalog="Mid East" count="10">
+        <div class="tit02"> 
+        <cms:catalog name="Mid East"> <span class="ch"><a target="_blank" href="${Catalog.Link}">${Catalog.Name} News</a></span></cms:catalog>
+        <span class="cDGray"></span></div>
+        <div class="picTxt">
+          <div class="picTxt">
+          <cms:article catalog="Mid East" hasAttribute="Image" count="1">
+          <z:list>
+             <div class="hotPic"> <a target="_blank" href="${Article.Link}"> <img width="120" alt=" " src="${Article.LogoFile}"></a>
+              <div class="textbg"></div>
+              <div class="text cWhite"> <a target="_blank" href="${Article.Link}">${Article.Title}</a></div>
+            </div>
+            </z:list>
+            </cms:article>
+            <ul class="list03">
+          		<z:list begin="1" count="2">
+              	<li> <a target="_blank" href="${Article.Link}">${Article.Title}</a></li>
+              </z:list>
+            
+            </ul>
+          </div>
+        </div>
+        <ul class="list05">
+          <z:list begin="3" count="5">
+            <li> <a target="_blank" href="${Article.Link}">${charWidth(Article.Title,54)}</a></li>
+          </z:list>
+        </ul>
+        </cms:article>
+      </div>
+    </div>
+    <!--end div.col_M--> 
+  </div>
+  <!--end div.main_col-->
+  <div class="col_R">
+    <div class="blockRB clearself">
+      <h3><span>Ranking List</span></h3>
+      <cms:article type="Hot" level="Root" hasAttribute="Image" count="1">
+      <z:list><div class="pt">
+        <div><a href="${Article.Link}" target="_blank"><img alt=" " src="${Article.LogoFile}" width="80"></a></div>
+        <h5><a href="${Article.Link}" target="_blank">${Article.Title} </a></h5>
+      </div></z:list>
+      </cms:article>
+     <cms:article type="Hot" level="Root" count="10">
+     <div class="list12" style="margin-top:10px;">
+        <ul>
+          <z:list begin="1" count="5">
+            <li> <a target="_blank" href="${Article.Link}">${Article.Title}</a></li>
+          </z:list>
+        </ul>
+        <div class="bordA"></div>
+        <ul>
+           <z:list begin="6" count="5">
+            <li> <a target="_blank" href="${Article.Link}">${Article.Title}</a></li>
+          </z:list>
+        </ul>
+      </div>
+       </cms:article>
+      <div class="bordA"></div>
+      <h3><span>Recommend</span></h3>
+      <cms:article level="Root" hasAttribute="Recommend,Image" count="1">
+      <z:list><div class="pt">
+        <div><a href="${Article.Link}" target="_blank"><img alt=" " src="${Article.LogoFile}" width="80"></a></div>
+        <h5><a href="${Article.Link}" target="_blank">${Article.Title} </a></h5>
+      </div></z:list>
+      </cms:article>
+     <cms:article level="Root" hasAttribute="Recommend" count="10">
+     <div class="list12" style="margin-top:10px;">
+        <ul>
+          <z:list begin="1" count="5">
+            <li> <a target="_blank" href="${Article.Link}">${Article.Title}</a></li>
+          </z:list>
+        </ul>
+        <div class="bordA"></div>
+        <ul>
+           <z:list begin="6" count="5">
+            <li> <a target="_blank" href="${Article.Link}">${Article.Title}</a></li>
+          </z:list>
+        </ul>
+      </div>
+       </cms:article>
+    </div>
+<div class="blockRB clearself" style="margin-top:10px;">
+    <cms:catalog name="BUSINESS"><h3><span>${Catalog.Name}</span><a href="${Catalog.Link}" target="_blank" class="more">MORE&gt;&gt;</a></h3></cms:catalog>
+      <div class="pt">
+       <cms:article catalog="BUSINESS" level="Child" hasAttribute="Image">
+      <z:list begin="1" count="1">
+        <div><a href="${Article.Link}" target="_blank"><img alt=" " src="${Article.Logo}" height="60" width="80"></a></div>
+            <h5><a href="${Article.Link}" target="_blank">${Article.Title} </a></h5>
+          </div>
+      </z:list>
+      </cms:article>
+      <cms:article catalog="BUSINESS" level="Child">
+      <div class="list12" style="margin-top:10px;">
+        <ul>
+        <z:list begin="1" count="4">
+          <li><a title="" href="${Article.Link}" target="_blank">${charWidth(Article.Title,50)}</a></li>
+          </z:list>
+        </ul>
+        <div class="bordA"></div>
+        <ul>
+         <z:list begin="5" count="4">
+          <li><a title="" href="${Article.Link}" target="_blank">${charWidth(Article.Title,50)}</a></li>
+          </z:list>
+        </ul>
+      </div>
+      </cms:article>
+    </div>
+	<div style="height:1em; overflow:hidden; clear:both;"></div>
+    <div class="side_mod" style="margin-top:10px;">
+       
+     </div>
+  </div>
+  <!--end div.col_R--> 
+</div>
+<!--end div#main.main-->
+<cms:include file="footer.template.html" />
+</body>
+</html>

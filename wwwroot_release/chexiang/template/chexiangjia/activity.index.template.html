@@ -1,0 +1,284 @@
+<z:config type="CatalogIndex" name="车享家活动" />
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+	<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>
+	<meta http-equiv="cache-control" content="public"/>
+	<meta http-equiv="expires" content="max-age"/>
+	<title>车享家</title>
+	<meta name="keywords" content="车享家活动"/>
+	<!-- begin | global javascript -->
+	<script>
+		(function (window, console) {
+			window.base = "";
+			window.accountBase="${Config.AccountBase}";
+			window.mainBase = "${Config.MainBase}";
+			window.imBase = "${Config.ImBase}";
+			window.orderBase = "${Config.OrderBase}";
+			window.memberBase = "${Config.MemberBase}";
+			window.imUrl="${Config.imUrl}?arg=admin&style=2";
+			window.mallBase = "${Config.MallBase}";
+			window.mapMakerIcon = "${surl('resource/chexiangjia/hd/images/icon_map.png')}";
+			window.chexiangjiaAPI="${Config['ebiz.zcms.web.chexiangjiaStoreAPIAddr']}";
+		} (window, "undefined" != typeof console ? console : void 0));
+	</script>
+	<!-- end | global javascript -->
+	<link href="${surl('resource/common/img/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+	<!-- begin | public stylesheet -->
+	<link rel="stylesheet" href="${surl('resource/common/css/reset.css')}">
+	<link rel="stylesheet" href="${surl('resource/common/css/global.css')}">
+	<!-- end | public stylesheet -->
+	<!-- begin | private stylesheet -->
+	<link rel="stylesheet" href="${surl('resource/chexiangjia/hd/css/index.css')}">
+	<!-- end | private stylesheet -->
+
+	  
+	<!-- end | public javascript -->
+</head>
+<body>
+
+<!-- topnav -->
+ <!-- begin | Top Bar -->
+       <cms:include file="../common/top-nav-substation.template.html" />  
+ 		<!-- end | Top Bar -->
+
+<!-- header -->
+<div class="header-wrapper">
+<div class="header">
+<a href="http://jia.chexiang.com/" target='_blank'class="saic-logo">
+<img class="logo" src="${surl('resource/chexiangjia/hd/images/logo.png')}" alt="车享家_服务一步之遥" width="343" height="40" />
+<h1>车享家</h1>
+</a>
+</div>
+<div class="bg bg_fl">&nbsp;</div>
+<div class="bg bg_rg">&nbsp;</div>
+</div>
+<!-- banner -->
+<div class="banner_wrapper">
+<cms:imagegroup catalogAlias="cxj_hd_tj" name="车享家活动">
+<z:list>
+	<cms:image count="1">
+	<z:list>
+		            <a <z:if condition="${not empty Image.ImagePath}"> style="background-image:url('${Image.ImagePath}')" 
+		                           		<z:if condition="${not empty Image.LinkUrl}"> href="${Image.LinkUrl}" target="_blank"</z:if> 
+		                      		</z:if> >
+
+		</a>
+	</z:list>
+	</cms:image>
+</z:list>
+</cms:imagegroup>
+</div>
+
+
+<!-- lookback  -->
+<div class="lookback_wrapper">
+<div class="lookback_cn">
+<h3 class="tit">车享家发布会回顾</h3>
+<div class="lookback_main">
+<div class="img_cn" id="js_scroll_cn">
+<cms:imagegroup catalogAlias="cxj_hd_tj" name="发布会回顾大">
+
+<cms:image >
+	<z:list>
+		<div class="imgcn_img m-c" <z:if condition="${i==1}">style="display:none"</z:if> >
+		<img src="${image.ImagePath}" alt="" />
+		<div class="caption clearfix">
+		<p class="des">${image.Name}</p>
+		<p class="index">${i}/${__Total}</p>
+		</div>
+		</div>
+	</z:list>
+</cms:image>
+
+</cms:imagegroup>
+
+<a href="javascript:;" class="prev"></a>
+<a href="javascript:;" class="next"></a>
+
+</div>
+<ul class="img_list" id="js_scroll_pages">
+<cms:imagegroup catalogAlias="cxj_hd_tj" name="发布会回顾小">
+
+<cms:image>
+	<z:list>
+		<li class="<z:if condition="${i==1}">cur</z:if> m-t"><img src="${image.ImagePath}" alt="" /></li>
+	</z:list>
+</cms:image>
+
+</cms:imagegroup>
+
+</ul>
+</div>
+
+</div>
+</div>
+
+
+<!-- about chexiangjia -->
+<div class="about_wrapper" id="about">
+<div class="about_cn">
+<h3>关于车享家</h3>
+<ul class="txt_lst">
+<li>车享家品牌正式发布于2015年9月，“源自上汽，e站到家”是其服务精髓。</li>
+<li>车享家承接车享平台的互联网业务和品牌势能，集成汽车全生命周期产业资源，构建一体化、专业化、品牌化、社区化的服务能力，为广大用户提供专业、可信赖的维修保养、租赁及二手车等一站式汽车生活服务。</li>
+<li>车享家，为用户带来随心所享的汽车生活新体验。</li>
+</ul>
+<div class="welcome">
+<h3>车享家，欢迎您的光临！</h3>
+<ul class="service_lst">
+<li class="service_wei">
+<i></i>
+<p>维修保养</p>
+</li>
+<li class="service_xi">
+<i></i>
+<p>洗车美容</p>
+</li>
+<li class="service_yong">
+<i></i>
+<p>汽车用品</p>
+</li>
+<li class="service_gai">
+<i></i>
+<p>个性改装</p>
+</li>
+</ul>
+<div class="bot">
+<div class="qrcode qrocde1">
+<img src="${surl('resource/chexiangjia/hd/images/qrcode2.jpg')}" alt="上汽车享家" />
+<div class="qr_txt">
+<p class="des1">通过微信公众号</p>
+<p>扫一扫，马上关注</p>
+<p class="des2">“上汽车享家”微信服务号！</p>
+</div>
+</div>
+<div class="qrcode qrocde2">
+<img src="${surl('resource/chexiangjia/hd/images/qrcode3.jpg')}" alt="车享宝APP" />
+<div class="qr_txt">
+<p class="des1">通过手机App</p>
+<p>扫一扫，马上下载</p>
+<p class="des2">“车享宝”APP</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- seek chexiangjia -->
+<div class="seek_wrapper" id="seek">
+<div class="seek_cn">
+<div class="tit">
+<h3>查找车享家</h3>
+<i class="line"></i>
+<div id="js_dealer_city" class="dealer-city">
+<div class="city-th">
+<a class="a-city" href="javascript:void(0);">
+<i class="icon-map"></i>
+<span class="js-city-name"></span>
+<i class="icon-arrow"></i>
+</a>
+</div>
+<div class="city-tb">
+<ul>
+
+</ul>
+</div>
+</div>
+</div>
+<div class="area_cn">
+
+</div>
+<div class="map_cn">
+<ul class="shops">
+
+</ul>
+<div class="map" id="mapContainer"></div>
+</div>
+</div>
+</div>
+
+<div class="side_wrapper">
+<i class="top"></i>
+<a href="#cha">伴家有礼</a>
+<a href="#about">车享家介绍</a>
+<a href="#seek">服务网点</a>
+<i class="bot"></i>
+</div>
+
+<!-- footer -->
+<div class="footer-main">
+<div class="footer-intro">
+<div class="footer-item">
+<i></i>
+<div class="txt">
+<h3>车享家客服热线</h3>
+<p><strong>400-920-7618</strong></p>
+</div>
+</div>
+<div class="footer-side">
+<div class="ercode-box">
+<img class="weixin-img" src="${surl('resource/chexiangjia/hd/images/qrcode4.jpg')}"  alt="" width="121" height="121">
+<dl class="weixin-info">
+<dt>扫描二维码</dt>
+<dd class="weixinhao">关注上汽车享家服务号</dd>
+<dd class="desc">
+<p>更多品质服务等你来享</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-sub">
+<p class="copyright">CopyRight &copy; 2013-2014, All Rights Reserved 版权所有 车享     沪ICP备14000481号</p>
+</div>
+
+
+
+
+<script src="${surl('resource/js/jquery_1_8_3.js')}"></script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=d732e29467faa481646c94ad9cc01165"></script>
+<script type="text/javascript" src="${surl('resource/chexiangjia/hd/js/index.js')}"></script>
+<script src="${surl('resource/common/js/header.js')}"></script>
+  <script type="text/javascript" src="${surl('resource/chexiangjia/hd/js/index.js')}"></script>
+<script type="text/javascript" src="${surl('resource/chexiangjia/hd/js/gaodemap.js')}"></script>
+  	<script type="text/javascript" src="${surl('resource/chexiangjia/hd/js/ca.js')}"></script>
+<!-- analysis script begin-->
+<script>
+
+//baidu analysis
+var _bdhmProtocol, _cxProtocol, gaTrackID, domainID;
+_bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff8ba65b380f665911ecab4df90bfe056' type='text/javascript'%3E%3C/script%3E"));
+
+//chexiang
+_cxProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(decodeURIComponent("%3Cscript src='" + _cxProtocol + "data.chexiang.com/js/cx_analytics.js?t=" + new Date().getTime() + "&type=' id='analyticsScript' type='text/javascript'%3E" + "%3C/script%3E"));
+
+//google analysis
+gaTrackID = 'UA-48109728-1'; //eg: 'UA-48109728-1'.
+domainID = 'auto'; //eg: 'chexiang.com' / auto.
+(function (i, s, o, g, r, a, m) {
+	i['GoogleAnalyticsObject'] = r;
+	i[r] = i[r] || function () {
+		(i[r].q = i[r].q || []).push(arguments);
+	},
+			i[r].l = 1 * new Date();
+	a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0];
+	a.async = 1; /* 1 */
+	a.defer = 1; /* 1 */
+	a.src = g;
+	m.parentNode.insertBefore(a,m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', gaTrackID, domainID);
+ga('send', 'pageview');
+</script>
+<!-- analysis script begin-->
+
+</body>
+</html>

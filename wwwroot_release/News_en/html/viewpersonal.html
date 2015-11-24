@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:ice="http://ns.adobe.com/incontextediting">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+<script src="../js/common.js"></script>
+</head>
+<body>
+<div id="header" class="header">
+  <div class="h_infoNav">
+    <div class="h_masthead pagewidth">
+      <p><span class="h_s01 cRed"><a target="_blank" href="http://www.zving.com">Zving Software</a></span> <span class="h_s02 cRed"><a target="_blank" href="http://www.zving.com/products/zcms/">Zving Content Manage System</a></span> <span id="h_getDay" class="cGray">2011-12-25 Sunday</span></p>
+      <div class="h_set"> <span class="cGray"><a id="h_sethomea" href="javascript:setHomepage('http://news.ifeng.com/history/')">Home</a> <a href="javascript:AddFavorite('http://news.ifeng.com/history/','泽元新闻网历史');">Add2favorite</a>
+       <a target="_blank" href="#;">Site map</a> <a onclick="hideloginbox();" style="cursor:pointer;">Copyright</a>
+        </span>
+        <div style="display:inline;" id="h_welcome"></div>
+      </div>
+      <div style="display:none;" id="h_loginbox" class="h_indexLogin">
+        <div class="h_close cGray2"><a style="cursor:pointer;" onclick="closeloginbox();">关闭</a></div>
+        <div class="clear"></div>
+        <form name="l_f" id="h_form1" method="post" action="http://my.ifeng.com/?_c=index&amp;_a=login">
+          <ul>
+            <li>
+              <label>账号 </label>
+              <input type="text" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_uname" class="h_text" name="uname">
+            </li>
+            <li>
+              <label>Pass Word </label>
+              <input type="password" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_pass" class="h_text" name="pass">
+            </li>
+            <li>
+              <input type="button" onclick="javascript:CheckInfo();" value="" class="h_btn04" name="Submit">
+            </li>
+          </ul>
+          <div class="h_indexReg">没有账号？<br>
+            <a target="_blank" href="#;">立即注册</a></div>
+          <input type="hidden" value="http://news.ifeng.com/history/" id="h_backurl" name="backurl">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="height:80px;">
+    <div class="pagewidth">
+      <span class="pagewidth1"><img src="../images/head_logo.gif" width="500" height="78" class="fl"></span>
+      <div class="header_top"><a class="fr inline-block login_btn">Login</a><a class="fr inline-block">Registr</a><a href="#">Registration protocol</a> | <a href="#">help center</a> | <a href="#">member center</a>
+        <div style="clear:both">
+          <form name="form1" method="post" action="">
+            <input type="text" name="textfield" id="textfield" style="width:160px">
+            <select name="select2" id="select2" style="width:90px">
+              <option>All Site</option>
+            </select>
+            <input type="submit" name="button" id="button" value="Search" style="width:60px">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagewidth" style="background:#c01410; border-top:2px solid #01478f; overflow:hidden;">
+    <div class="clearself">
+      <div class="headNav cWhite">
+		<ul>
+				<li><strong><a href="#;" target="_blank">World</a></strong> <a href="#;" target="_blank">Asia</a> <a href="#;" target="_blank">Middle East</a> <a href="#;" target="_blank">Americas</a> <a href="#;" target="_blank">Europe</a> <a href="#;" target="_blank">Africa</a> <a href="#;" target="_blank">Int'l Organizations</a></li>
+
+				<li><strong><a href="#;" target="_blank">Lifestyle</a></strong> <a href="#;" target="_blank">Culture</a> <a href="#;" target="_blank">Travel</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Food&amp;Drink</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Health</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Society</a></li>
+			  <li><strong><a href="#;" target="_blank">Sports</a></strong> <a href="#;" target="_blank">Soccer</a> <a href="#;" target="_blank">Basketball</a> <a href="#;" target="_blank">Volleyball</a> <a href="#;" target="_blank">Tennis&amp;Golf</a> <a href="#;" target="_blank">Table Tennis</a> <a href="#;" target="_blank">Badminton</a></li>
+		</ul>
+		<ul>
+			  <li><strong><a href="#;" target="_blank">China</a></strong> <a href="#;" target="_blank">Politics</a> <a href="#;" target="_blank">Mainland</a> <a href="#;" target="_blank">HK/Taiwan</a> <a href="#;" target="_blank">China&amp;World</a></li>
+			  <li><strong><a href="#;" target="_blank">Business</a></strong> <a href="#;" target="_blank">Economy</a> <a href="#;" target="_blank">Market</a> <a href="#;" target="_blank">Industries</a> <a href="#;" target="_blank">Entrepreneur</a> <a href="#;" target="_blank">Career</a></li>
+		  <li><strong><a href="#;" target="_blank">Entertainment</a></strong> <a href="#;" target="_blank">Music</a> <a href="#;" target="_blank">Movie</a> <a href="#;" target="_blank">Celebrity</a> <a href="#;" target="_blank">TV</a></li>
+	    </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end div#header.header -->
+<div id="main" class="pagewidth main">
+  <div class="side_col">
+    <div class="side_mod">
+      <h4 class="mod_tit">Hot Comment List</h4>
+      <div class="mod_con">
+        <div class="top_news">
+          <ul>
+            <li><span>119207</span>1.<a title="拖拉机“校车”塞满学生跑山路(图)" target="_blank" href="#;">Leave Afghanistan now(Pic)</a> </li>
+            <li><span>96604</span>2.<a title="被邻居棉被接住 网友致电表示钦佩" target="_blank" href="#;">Leaked secrets lead to jail time</a> </li>
+            <li><span>89383</span>3.<a title="小伙称扶救伤者子让一家4口瘦80斤" target="_blank" href="#;">Space scientists look to nature</a> </li>
+            <li><span>75697</span>4.<a title="7岁好心邻居用棉被接住救孩子一命" target="_blank" href="#;">Don't abandon women to Taliban</a> </li>
+            <li><span>72458</span>5.<a title=" 十余路人抬起越野车救孩子" target="_blank" href="#;">South China Sea dispute</a> </li>
+            <li><span>58194</span>6.<a title="经理遭员工追赶 被见义勇为者当" target="_blank" href="#;">China launches two navigation...</a> </li>
+            <li><span>40437</span>7.<a title="动物保护者集会抗议皮草工业" target="_blank" href="#;">China, Poland agree to deepen...</a> </li>
+            <li><span>34586</span>8.<a title="女青年放弃高薪投身公益被称微笑" target="_blank" href="#;">Chinese Premier meets Polish PM</a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end div.side_mod -->
+    <!-- end div.side_mod -->
+  </div>
+  <!--end div.side_col-->
+  <div class="main_col">
+    <!--模板-->
+    <div style="display:none" class="template">
+      <!--data-->
+      <div class="userInfo"> <a href="#;" target="_blank"><img width="54" height="54" src="http://my.ifeng.com/upload/62/164/076a9c53d8572b32_1.jpg" id="userface"></a>
+        <h3><a href="#;" target="_blank">昭苏太河</a></h3>
+        <h4></h4>
+      </div>
+      <div class="all"> <span class="f16b">all comment </span>(共<span class="red">{count}</span>条) </div>
+      <!--comments-->
+      <div id="{id}" class="comBlock2 {bgclass}">
+        <h4>{comment_date} publish</h4>
+        <div class="replyList">
+          <!--parentb-->
+          <div class="item {bgclass}">
+            <!--parentb-->
+            <!--parent-->
+            <div class="info2"><span class="num">{index}</span>原帖：{comment_date}&nbsp;&nbsp;&nbsp;&nbsp;{ip_from}网友 <span class="blue2"><strong>{uname}</strong></span></div>
+            <p style="padding-bottom:0;" class="f14 h20">{comment_contents}</p>
+          </div>
+          <!--parent-->
+        </div>
+        <p style="font-size:14px;" class="h18">{comment_contents}</p>
+        <div class="info"><span class="rec"><a href="javascript:updown({id},'{doc_url}','up');" id="{id}">Commend(<span class="fontred" id="up{id}">{uptimes}</span>)</a></span>来自：<a target="_blank" {href_doc_url}="">{doc_name}</a></div>
+      </div>
+      <!--comments-->
+      <!--data-->
+    </div>
+    <!--模板结束-->
+    <div id="comments">
+      <div class="titleBar">
+        <div class="text"><strong>白岩松</strong> (all comment <span class="displayCount"><em>92</em>条</span>)</div>
+        <div class="titleBar_exp"><a title="手机也能看跟贴" target="_blank" href="#;">View comment use mobile phone&gt;&gt;</a></div>
+        <div class="line_b"></div>
+	</div>
+      <div id="61695672" class="comBlock2 {bgclass}">
+        <h4>2012-01-13  06:42 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">这样的公众人物不是不会说话，而是站到了人民的对立面去了。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(61695672,'http://news.ifeng.com/mainland/special/2012difanglianghui/content-3/detail_2012_01/13/11946337_0.shtml','up');" id="61695672">Commend(<span class="fontred" id="up61695672">252</span>)</a></span>来自：<a target="_blank" =""="" href="#;">人民日报评两会“雷语”：公众人物要好好学“说话”</a></div>
+      </div>
+      <div id="61695597" class="comBlock2 bgGray">
+        <h4>2012-01-13  06:40 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">公众人物也不是不会说话，是立场没站对，站到人民的对立面去了。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(61695597,'http://news.ifeng.com/mainland/special/2012difanglianghui/content-3/detail_2012_01/13/11946337_0.shtml','up');" id="61695597">Commend(<span class="fontred" id="up61695597">4360</span>)</a></span>来自：<a target="_blank" =""="" href="#;">人民日报评两会“雷语”：公众人物要好好学“说话”</a></div>
+      </div>
+      <div id="58666081" class="comBlock2 {bgclass}">
+        <h4>2011-12-11  13:52 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">说出了我们早就应该说出的话，别老是憋着！</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(58666081,'http://news.ifeng.com/world/special/deban/content-3/detail_2011_12/11/11246538_0.shtml','up');" id="58666081">Commend(<span class="fontred" id="up58666081">1</span>)</a></span>来自：<a target="_blank" =""="" href="#;">解振华德班怒斥西方国家：你有什么资格给我讲道理</a></div>
+      </div>
+      <div id="55142788" class="comBlock2 bgGray">
+        <h4>2011-11-04  20:54 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">挂假军牌车的不要说如何如何处理，处理之后还挂，处理不完的，今后若再发现一律将车从军。无偿征用，这个办法肯定行。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(55142788,'http://news.ifeng.com/mainland/detail_2011_11/04/10410218_0.shtml','up');" id="55142788">Commend(<span class="fontred" id="up55142788">0</span>)</a></span>来自：<a target="_blank" =""="" href="#;">业内人士称豪华车挂军牌基本为假 最低600元能买到</a></div>
+      </div>
+      <div id="55142371" class="comBlock2 {bgclass}">
+        <h4>2011-11-04  20:50 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">挂假军牌车的不要说如何如何处理，处理之后还挂，处理不完的，今后若再发现一律将车从军。无偿征用，这个办法肯定行。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(55142371,'http://news.ifeng.com/mainland/detail_2011_11/04/10425571_0.shtml','up');" id="55142371">Commend(<span class="fontred" id="up55142371">2</span>)</a></span>来自：<a target="_blank" =""="" href="#;">空军回应广州假军车撞死4人事件</a></div>
+      </div>
+      <div id="52463695" class="comBlock2 bgGray">
+        <h4>2011-10-14  07:34 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">奥巴马疯了，鉴定完毕。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(52463695,'http://news.ifeng.com/world/detail_2011_10/14/9840833_0.shtml','up');" id="52463695">Commend(<span class="fontred" id="up52463695">5</span>)</a></span>来自：<a target="_blank" =""="" href="#;">奥巴马称将对伊朗施以最严厉制裁 不排除任何选项</a></div>
+      </div>
+      <div id="50865700" class="comBlock2 {bgclass}">
+        <h4>2011-09-28  07:49 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">官员竟胆敢这样为豆腐渣工程公开辩护，是没有追责机制，没有监管部门负责。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(50865700,'http://news.ifeng.com/mainland/detail_2011_09/28/9513920_0.shtml','up');" id="50865700">Commend(<span class="fontred" id="up50865700">2</span>)</a></span>来自：<a target="_blank" =""="" href="#;">广西梧州Big桥Big修后现裂缝 官员：质量差但起码通车了</a></div>
+      </div>
+      <div id="50172689" class="comBlock2 bgGray">
+        <h4>2011-09-21  20:39 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">应该从幼儿园开始培养干部。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(50172689,'http://news.ifeng.com/mainland/detail_2011_09/21/9342294_0.shtml','up');" id="50172689">Commend(<span class="fontred" id="up50172689">0</span>)</a></span>来自：<a target="_blank" =""="" href="#;">河北29岁县长3年4次升迁 简历被当地列为机密</a></div>
+      </div>
+      <div id="49667473" class="comBlock2 {bgclass}">
+        <h4>2011-09-16  23:08 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">必须狠狠打黑恶势力！坚决支持！</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(49667473,'http://news.ifeng.com/mainland/detail_2011_09/16/9247860_0.shtml','up');" id="49667473">Commend(<span class="fontred" id="up49667473">14</span>)</a></span>来自：<a target="_blank" =""="" href="#;">孟建柱：最Big限度地防止黑恶势力向政治领域渗透</a></div>
+      </div>
+      <div id="48659237" class="comBlock2 bgGray">
+        <h4>2011-09-08  11:08 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">有点Small病，就忽悠你手术，留你住院，目的就是宰你一刀。有的医生早就钻到钱眼里去了。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(48659237,'http://news.ifeng.com/mainland/detail_2011_09/08/9033101_0.shtml','up');" id="48659237">Commend(<span class="fontred" id="up48659237">0</span>)</a></span>来自：<a target="_blank" =""="" href="#;">深圳市儿童医院：本院诊断正确 拒绝赔偿</a></div>
+      </div>
+      <div id="48157114" class="comBlock2 {bgclass}">
+        <h4>2011-09-03  11:53 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">12亿买个破棒球棒，败家子总是能弄出惊世骇闻的动静来。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(48157114,'http://news.ifeng.com/mainland/detail_2011_09/03/8910038_0.shtml','up');" id="48157114">Commend(<span class="fontred" id="up48157114">0</span>)</a></span>来自：<a target="_blank" =""="" href="#;">美媒：China资本将以12亿美元收购洛山矶道奇棒球队</a></div>
+      </div>
+      <div id="47721183" class="comBlock2 bgGray">
+        <h4>2011-08-30  07:35 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">要是没有监控录像呢？不敢想。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(47721183,'http://news.ifeng.com/society/2/detail_2011_08/30/8775068_0.shtml','up');" id="47721183">Commend(<span class="fontred" id="up47721183">0</span>)</a></span>来自：<a target="_blank" =""="" href="#;">司机扶起摔倒老人被诬肇事者续：获其道歉致谢</a></div>
+      </div>
+      <div id="47410733" class="comBlock2 {bgclass}">
+        <h4>2011-08-26  21:57 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">“假若没有朱德，毛泽东有可能变成土匪”&mdash;&mdash;这样的Title很下贱！</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(47410733,'http://news.ifeng.com/history/zhongguojindaishi/detail_2011_08/26/8697627_0.shtml','up');" id="47410733">Commend(<span class="fontred" id="up47410733">21</span>)</a></span>来自：<a target="_blank" =""="" href="#;">党史学者：假若没有朱德 毛泽东有可能变成土匪</a></div>
+      </div>
+      <div id="47195401" class="comBlock2 bgGray">
+        <h4>2011-08-24  16:27 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">等啊，等，云南高院终于说出了一句人话！办不办人事就不好说了。因为班子没有变动，人还是那些人。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(47195401,'http://news.ifeng.com/mainland/detail_2011_08/24/8629593_0.shtml','up');" id="47195401">Commend(<span class="fontred" id="up47195401">0</span>)</a></span>来自：<a target="_blank" =""="" href="#;">河南高院：不杀不足以平民愤的罪犯坚决依法判死刑</a></div>
+      </div>
+      <div id="47194967" class="comBlock2 {bgclass}">
+        <h4>2011-08-24  16:22 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">等啊，等，云南高院终于说出了一句人话！</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(47194967,'http://news.ifeng.com/mainland/detail_2011_08/24/8629593_0.shtml','up');" id="47194967">Commend(<span class="fontred" id="up47194967">1</span>)</a></span>来自：<a target="_blank" =""="" href="#;">河南高院：不杀不足以平民愤的罪犯坚决依法判死刑</a></div>
+      </div>
+      <div id="46410826" class="comBlock2 bgGray">
+        <h4>2011-08-17  07:34 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">一个地级市说拆就拆，还美其名曰，为了发展经济，其实都是“政绩工程”的变种，是瞎折腾。老百姓心知肚明，就是不说，因为说了也白说。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(46410826,'http://finance.ifeng.com/news/city/20110816/4397651.shtml','up');" id="46410826">Commend(<span class="fontred" id="up46410826">0</span>)</a></span>来自：<a target="_blank" =""="" href="#;">安徽首次确认巢湖市将一拆为三 目前重点是公务员安排</a></div>
+      </div>
+      <div id="46194571" class="comBlock2 {bgclass}">
+        <h4>2011-08-15  08:05 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">云南省体育局用外行当跳水比赛的裁判，勇于“改革创新”的精神，值得云南人骄傲。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(46194571,'http://news.ifeng.com/sports/zonghe/detail_2011_08/15/8399590_0.shtml','up');" id="46194571">Commend(<span class="fontred" id="up46194571">3</span>)</a></span>来自：<a target="_blank" =""="" href="#;">云南跳水锦标赛：司机担任裁判 运动员Big面积获零分</a></div>
+      </div>
+      <div id="45908541" class="comBlock2 bgGray">
+        <h4>2011-08-11  21:40 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">以前是统计系统吹牛逼，现在Median科院也加入吹牛逼的行列，这股吹牛逼的风，谁也挡不住了。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(45908541,'http://news.ifeng.com/mainland/detail_2011_08/11/8336092_0.shtml','up');" id="45908541">Commend(<span class="fontred" id="up45908541">6</span>)</a></span>来自：<a target="_blank" =""="" href="#;">报告称个人年可支配收入1.63万即Median产引质疑 Author回应</a></div>
+      </div>
+      <div id="45019799" class="comBlock2 {bgclass}">
+        <h4>2011-08-02  21:56 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">向追赶Small偷的男人敬礼！</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(45019799,'http://news.ifeng.com/society/2/detail_2011_08/02/8116630_0.shtml','up');" id="45019799">Commend(<span class="fontred" id="up45019799">8</span>)</a></span>来自：<a target="_blank" =""="" href="#;">男子追砍Small偷被绳牵指认现场续：已被关入看守所</a></div>
+      </div>
+      <div id="43142987" class="comBlock2 bgGray">
+        <h4>2011-07-16  07:53 publish</h4>
+        <div class="replyList"> </div>
+        <p style="font-size:14px;" class="h18">云南高院的那个副院长应该出来解释一下，杀一人与杀两人的结果有何不同。</p>
+        <div class="info"><span class="rec"><a href="javascript:updown(43142987,'http://news.ifeng.com/society/1/detail_2011_07/16/7732696_0.shtml','up');" id="43142987">Commend(<span class="fontred" id="up43142987">0</span>)</a></span>来自：<a target="_blank" =""="" href="#;">山西定襄县千万富翁被杀案凶手被执行死刑</a></div>
+      </div>
+    </div>
+    <div style="width:auto;" class="next" id="page"><a href="#;" class="prev">Prev Page</a> <a href="#;">1</a>&nbsp;&nbsp;...&nbsp;&nbsp;<a href="#;">6</a>&nbsp;<a href="#;">7</a> <span class="current">8</span>&nbsp;<a href="#;">9</a>&nbsp;<a href="#;">10</a>&nbsp;&nbsp;...&nbsp;&nbsp;<a href="#;">51</a> <a href="#;" class="next">Next Page</a></div>
+  </div>
+  <!--end div.main_col-->
+</div>
+<!--end div#main.main-->
+<div id="footer" class="footer">
+  <div class="line_red pagewidth"></div>
+  <div class="pagewidth" style="text-align:center; padding:20px 0 5px;"><a href="#">Advertising services</a> | <a href="#">recruitment </a> | <a href="#">privacy policy</a> | <a href="#">disclaimer</a> | <a href="#">feedback</a></div>
+  <div class="pagewidth" style="text-align:center; padding:5px 0 40px;">Copyright(C) Zving News 2007-2008    All Rights Reserved.<br>
+    Tel：010-82895509 E-mail:office@zving.com</div>
+</div>
+<!-- end div#footer.footer-->
+</body>
+</html>

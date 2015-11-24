@@ -1,0 +1,68 @@
+<z:config type="VideoList" name="视频列表" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320, maximum-scale=2.0, user-scalable=no">
+<title>${Site.Name}-${Catalog.Name}</title>
+<link type="text/css" rel="stylesheet" href="../css/style.css" >
+<script type="text/javascript" src="../js/common.js" ></script>
+</head>
+<body>
+<!--头部开始-->
+<cms:include file="header.template.html"></cms:include>
+<!--头部结束-->
+<!--main开始-->
+<div class="main">
+	<div class="position"><cms:position /></div>
+    <div class="news_lists">
+		<cms:video catalogid="${Catalog.ID}" level="Current" page="true" pagesize="15">
+      <z:list>
+      	<z:if condition="${i%5==0}">
+		<div class="newWrap">
+            <div class="modbg listmodbg">
+			   <span class="date">
+				 <script>
+					document.write(new Date().getFullYear()+ "-"+(new Date().getMonth() + 1)+ "-"+ (new Date().getDate() - ${i}));
+				 </script>
+			   </span>
+			</div>
+            <ul class="list">
+      	</z:if>
+      		<li><span>${format(video.PublishDate,'HH:mm')}</span>&nbsp;&nbsp;<a href="${video.Link}">${charWidth(video.Title,30)}</a></li>
+      	<z:if condition="${(i+1)%5==0&&i!=0}">
+		</ul>
+       </div>
+      	</z:if>
+      	</z:list>
+      </cms:video>
+		
+    </div>
+    <div class="page">
+      <cms:pagebar>
+      <div class="nextPage">
+        <div class="l_home"><a href="${FirstFileName}">首页</a></div>
+        <div class="m_page"> 
+        	<z:if condition="${Page.Index>0}">
+        	<z:if condition="${Page.Index>1}">
+        	<span><a href="index_<z:eval expression="${Page.Index-1}" />${FileType}"><img border="0" align="middle" src="../images/list_icon01.gif"> <font color="#686868">上一页</font></a></span>
+        	</z:if>
+        	<z:else>
+        	<span><a href="${FirstFileName}"><img border="0" align="middle" src="../images/list_icon01.gif"> <font color="#686868">上一页</font></a></span>
+        	</z:else>
+        	</z:if>
+        	<z:if condition="${Page.Index<Page.Count-1}">
+        	<span><a href="index_<z:eval expression="${1+Page.Index}" />${FileType}">下一页 <img border="0" align="middle" src="../images/list_icon01a.gif"></a></span> </div>
+        	</z:if>
+        <div class="r_end"><a href="index_<z:eval expression="${Page.Count-1}" />${FileType}">末页</a></div>
+        <div class="clear"></div>
+      </div>
+	  </cms:pagebar>
+    </div>
+</div>
+<!--main结束-->
+<!--尾部开始-->
+<cms:include file="footer.template.html"></cms:include>
+<!--尾部结束-->
+</body>
+</html>

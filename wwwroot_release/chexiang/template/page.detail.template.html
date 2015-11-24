@@ -1,0 +1,131 @@
+<z:config type="ArticleDetail" name="关于车享详细页" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="关于车享" />
+    <meta name="description" content="关于车享" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 	<title>${Article.Title}-${Site.Name}</title>
+    <!-- begin | public stylesheet -->
+
+        <link rel="stylesheet" href="${surl('public/ajax/lib/css/reset_css_saike/1.3/reset.css')}">
+        <link rel="stylesheet" href="${surl('public/ajax/lib/css/saike.main.site/common.css')}">
+    <!-- end | public stylesheet -->
+
+    <!-- begin | private stylesheet -->
+        <link rel="stylesheet" href="${surl('public/ajax/lib/css/saike.main.site/about.css')}">
+    <!-- end | private stylesheet -->
+
+    <link href="${surl('public/ajax/lib/img/saike.main.site/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+    <!-- begin | global javascript -->
+        <script>
+                (function (window, console) {
+                    window.base = "${Config.Base}";
+                    window.accountBase="${Config.AccountBase}";
+                    window.mainBase = "${Config.MainBase}";
+                    window.imBase = "${Config.IMBase}";
+                    window.OrderBase = "${Config.OrderBase}";
+                    window.memberBase = "${Config.MemberBase}";
+                    window.imUrl="${Config.imUrl}?arg=admin&style=2";
+                } (window, "undefined" != typeof console ? console : void 0));
+            </script>
+    <!-- end | global javascript -->
+</head>
+
+<body class="about">
+<!--头部开始-->
+<div class="mainsite-topnav">
+    <div class="mainsite-header"></div>
+</div>
+<div id="nSubNav" class="n-subnav">
+
+    <div class="subnav-cont">
+
+        <div class="saiclogo">
+
+            <a href="${Config.MainBase}">
+
+                <img class="logo-first" src="${surl('public/ajax/lib/img/saike.main.site/s_logo.png')}" width="106" height="46" border="0">
+
+                <img class="logo-first" src="${surl('public/ajax/lib/img/saike.main.site/s_slogan.gif')}" width="106" height="46" border="0">
+
+            </a>
+
+        </div>
+
+        <span class="headerIntro" sytle="margin-top:20px;"><span class="f-24">${(Article.PageTitle)}</span></span>
+
+    </div>
+
+</div>
+<!--头部结束-->
+<div id="breadCrumbs" class="w960 breadcrumbs">
+    <a href="${Config.MainBase}">首页</a>&gt;<span>${(Article.Title)}</span>
+</div>
+<!--主框架开始-->
+<div class="w960 mt-20">
+    <!--侧栏开始-->
+    <div id="sideBar" class="sidebar">
+
+        <ul id="aMenu" class="menu">
+            <z:set var="curAID" value="${Article.ID}" />
+            <cms:article>
+                <z:list>
+                    <li ${Article.ID==curAID?"class=current":""}><a title="${Article.Title}" href="${Article.Link}">${Article.Title}</a> </li>
+                </z:list>
+            </cms:article>
+        </ul>
+
+    </div>
+
+    <!--侧栏结束-->
+    <!--内容区开始-->
+    <div class="main">        	
+        <div>
+            <p>
+                <z:if condition="${not empty Article.LogoFile}"><img src="${Article.LogoFile}"></z:if>
+            </p>
+        </div>
+        <div>
+        ${(Article.Content)}
+        </div>
+  
+
+  <style>
+  	.current {
+  		border: 1px solid #EFEFFF;
+		background: #EFEFEF;
+  	}
+  	.pagebar a, .pagebar span{
+  		margin:3px;
+  		width: 15px;
+		display: inline-block;
+		text-align: center;
+  	}
+  </style>
+<div class="pagebar">
+<cms:articlenavbar>
+	 <z:list>
+	 <z:if condition="${ContentPageIndex==ArticleNavBar.Index}">
+	 <span class="current">${ArticleNavBar.Index+1}</span>
+	 </z:if>
+	 <z:else>
+	 <a href="${ArticleNavBar.Link}" >${ArticleNavBar.Index+1}</a>
+	 </z:else>
+	 </z:list>
+</cms:articlenavbar>    
+   </div>     
+	</div>
+   
+    <!--内容区结束-->
+</div>
+<div>
+
+</div>
+<!--主框架结束-->
+<!--底部开始-->
+ <cms:include file="footer.template.html" />
+<!--底部结束-->
+
+</body>
+</html>

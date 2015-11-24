@@ -1,0 +1,32 @@
+<z:config type="ImageDetail" name="组图详细页" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片详细页</title>
+</head>
+
+<body>
+
+<h1 class="img_gallery_title" style="">${ImageGroup.Title}&nbsp;<span
+	class="img_gallery_num">(1/10)</span></h1>
+<cms:image pagesize="100">
+	<z:list>
+		<div class="bigimg"><a href="#;"><!-- 显示500x500的缩略图 --><img
+			src="${Image.ThumbnailPath2}" bigsrc="${Image.ImagePath}"
+			onerror="this.src='${Prefix('images/picture404.gif')}'"></a></div>
+	</z:list>
+</cms:image>
+<cms:image count="1">
+	<z:list>${Image.Info}</z:list>
+</cms:image>
+
+	<cms:image pagesize="100">
+		<z:list>
+			<li><img info="${Image.Info}" src="${Image.ImagePath}" /></li>
+		</z:list>
+	</cms:image>
+
+<cms:comment contentid="${ImageGroup.ID}"></cms:comment>
+</body>
+</html>

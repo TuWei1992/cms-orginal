@@ -1,0 +1,67 @@
+<z:config type="Block" name="优选推荐" />
+<!-- mod-rec -->
+<div class="mod-row mod-rec">
+  <div class="mod-main">
+    <h2 class="mod-tit">优选推荐</h2>
+    <div class="goods-rec">
+      <ul>
+        <cms:article catalogAlias="cxhxb_yxtj">
+          <z:list>
+            <li>
+              <a href="${Article.SourceURL}" target="_blank">
+                <span class="img-box">
+                  <img src="${sourceImage(Article.LogoFile)}" alt="" width="234" height="156">
+                </span>
+                <span class="tit">${Article.Title}</span>
+                <span class="member-price">会员价：<em>${Article.SourceTitle}</em>积分+<strong>${Article.Author}</strong>元现金</span>
+                <span class="market-price">市场价：${Article.Editor} </span>
+              </a>
+            </li>
+            	
+          </z:list>
+        </cms:article>
+       
+      </ul>
+    </div>
+  </div>
+  <div class="mod-side">
+    <div class="mod-th">
+      <h3 class="mod-tit">活动资讯</h3>
+      <p class="btn-area">
+        <span class="icon-arrow-left"></span>
+        <span class="icon-arrow-right"></span>
+      </p>
+    </div>
+    <ul class="act-img-box">
+      <cms:imagegroup catalogAlias="cxhxb_hdzx">
+        <cms:image>
+          <z:list>
+            <li  <z:if condition="${i==1}">class="show"</z:if> >
+              <a href="${image.LinkURL}" target="_blank"><img src="${image.ImagePath}" alt="" width="228" height="258"></a>
+            </li>
+          </z:list>
+        </cms:image>
+      </cms:imagegroup>
+    </ul>
+    <div class="mod-th">
+      <h3 class="mod-tit rank-tit">兑换排行榜</h3>
+    </div>
+    <ul class="rank-list">
+      
+      <cms:article catalogAlias="cxhxb_dhpx">
+          <z:list>
+             <li>
+                <div class="img-box">
+                  <a href="${Article.SourceURL}" target="_blank"><img src="${sourceImage(Article.LogoFile)}" alt=""></a>
+                </div>
+                <dl class="goods-item">
+                  <dt><strong>${i}. </strong><a href="${Article.SourceURL}" target="_blank">${Article.Title}</a></dt>
+                  <dd class="member-price"><strong>${Article.Author}</strong>积分+<em>${Article.Editor}</em>元现金</dd>
+                </dl>
+              </li>
+          </z:list>
+        </cms:article>
+      
+    </ul>
+  </div>
+</div>

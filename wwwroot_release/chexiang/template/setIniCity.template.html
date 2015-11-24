@@ -1,0 +1,66 @@
+<z:config type="Block" name="初始城市" />
+<html>
+<head>
+<meta charset="utf-8">
+<script src="${surl('public/ajax/lib/js/jquery/1.8.3/jquery_1_8_3.js')}"></script>
+<script>
+// 存储cookie
+function cityCookie(cityId, cityName,domain){
+	var expires = new Date();  
+	if(!domain){
+		domain=document.cookie.match(/(^| )city\.domain=([^;]*)(;|$)/);
+		domain&&(domain=domain[2]);
+	}
+	/* 三个月 x 一个月当作 30 天 x 一天 24 小时 x 一小时 60 分 x 一分 60 秒 x 一秒 1000 毫秒 */  
+	expires.setTime(expires.getTime() + 12 * 30 * 24 * 60 * 60 * 1000);  
+	var domainStr = domain&&domain!="null"?(";domain="+domain):"";
+	document.cookie = "cityId="+encodeURIComponent(cityId)+";expires="+expires.toGMTString()+";path=/"+domainStr;
+	document.cookie = "city.id="+encodeURIComponent(cityId)+";expires="+expires.toGMTString()+";path=/"+domainStr;
+	document.cookie = "city.name="+encodeURIComponent(cityName)+";expires="+expires.toGMTString()+";path=/"+domainStr;
+	document.cookie = "city_id="+encodeURIComponent(cityId)+";expires="+expires.toGMTString()+";path=/"+domainStr;
+	document.cookie = "city_name="+encodeURIComponent(cityName)+";expires="+expires.toGMTString()+";path=/"+domainStr;
+	document.cookie = "city.domain="+encodeURIComponent(domain)+";expires="+expires.toGMTString()+";path=/"+domainStr;
+};
+//var base = '${Config.Base}';
+var base = '';
+var cityId = '310100';
+var cityName = '上海';
+var domain;
+
+if (window.location.host == 'localhost') {
+	cityCookie('310100', '上海');
+	window.location.reload(true);
+}
+$.getJSON("http://api.map.baidu.com/location/ip?ak=F454f8a5efe5e577997931cc01de3974&ip=&callback=?", function(data) {
+			var cityName = "";
+			if(data){
+				if(data.status==0) {
+					cityName = data.address.split("|")[2];
+				}
+			}
+			// 根据城市名获取id
+			
+			$.getJSON(base + "/common/cityid.htm?cityName="+cityName, function(data) {
+				if(data){
+					cityCookie(data.cityId, data.cityName,data.domain);
+					//$('#currentCity').attr({'cityid':data.cityId, 'name':data.cityName}).text(data.cityName);
+				} else {
+					cityCookie('310100', '上海');
+				}
+				window.location.reload(true);
+			});
+	});
+	
+</script>
+</head>
+<body>
+<div class="copyrightbox simplecopy" style="display:none;">
+						<div class="copyright">
+							<div class="copyright-infor">
+								<p>CopyRight © 2013-2014, All Rights Reserved版权所有 车享</p>
+								<p>沪ICP备14000481号</p>
+							</div>
+						</div>
+					</div>
+</body>
+</html>

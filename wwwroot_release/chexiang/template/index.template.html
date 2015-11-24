@@ -1,0 +1,700 @@
+<z:config type="SiteIndex" name="首页" />
+<z:if condition="${not empty cxParam.cityId}">
+<!DOCTYPE html>
+<!--[if IE 7]>          <html class="ie ie7 ie-lt10 ie-lt9 ie-lt8 no-js" lang="zh" data-placeholder-focus="true" data-placeholder-live="true">    <![endif]-->
+<!--[if IE 8]>          <html class="ie ie8 ie-lt10 ie-lt9 no-js" lang="zh" data-placeholder-focus="true" data-placeholder-live="true">    <![endif]-->
+<!--[if IE 9]>          <html class="ie ie9 ie-lt10 no-js" lang="zh" itemscope itemtype="http://schema.org/Organization">    <![endif]-->
+<!--[if gt IE 9]><!-->  <html class="ie-bt9 no-js" lang="zh" itemscope itemtype="http://schema.org/Organization">    <!--<![endif]--> <!--  manifest="../manifest.appcache" -->
+<head>
+	<meta name="baidu-site-verification" content="JOcNZwaioV" />
+	<meta charset="UTF-8">
+	
+			<link rel="dns-prefetch" href="//www.chexiang.com/">
+			<link rel="dns-prefetch" href="//s1.cximg.com/">
+			<link rel="dns-prefetch" href="//s2.cximg.com/">
+			<link rel="dns-prefetch" href="//s3.cximg.com/">
+			<link rel="dns-prefetch" href="//i1.cximg.com/">
+			<link rel="dns-prefetch" href="//i2.cximg.com/">
+			<link rel="dns-prefetch" href="//i3.cximg.com/">
+			<link rel="dns-prefetch" href="//hm.baidu.com/">
+			<link rel="dns-prefetch" href="//data.cx.com/">
+			<link rel="dns-prefetch" href="//g.cn.miaozhen.com/">
+			<link rel="dns-prefetch" href="//sgm.dmp.miaozhen.com/">
+			<link rel="dns-prefetch" href="//s17.cnzz.com/">
+			<link rel="dns-prefetch" href="//www.google-analytics.com/">
+	
+		<title>车享 · 车享平台，打造中国最大的一站式汽车在线生活服务平台</title>
+		<meta name="keywords" content="${Site.SEOKeywords}"/>
+		<meta name="description" content="${Site.SEODescription}"/>
+		<link rel="canonical" href="http://www.chexiang.com"/>
+		<meta name="url" content="http://www.chexiang.com"/>
+		<meta name="identifier-URL" content="http://www.chexiang.com"/>
+		<meta name="linkage" content="http://www.chexiang.com"/>
+		<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+		<meta name="viewport" content="width = 1200, minimal-ui"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="Robots" content="all"/>
+		<meta http-equiv="cache-control" content="public"/>
+		<meta http-equiv="expires" content="max-age"/>
+		<meta http-equiv="windows-Target" contect="_top"/>
+		
+  		<script>
+          var userAgent = (window.navigator.userAgent||window.navigator.vendor||window.opera),
+              isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(userAgent);
+              if(isMobile){
+                  window.location.href="http://m.chexiang.com";
+              }
+          </script>
+		<!-- begin | global javascript --> 
+			<script>
+				(function (window, console) {
+					// 	window.base = "${Config.Base}"; 
+					window.base = "";
+					window.accountBase="${Config.AccountBase}";
+					window.mainBase = "${Config.MainBase}";
+					window.imBase = "${Config.ImBase}";
+					window.OrderBase = "${Config.OrderBase}";
+					window.memberBase = "${Config.MemberBase}";
+					window.imUrl="${Config.imUrl}?arg=admin&style=2";
+					window.carmallBase = "${Config['ebiz.zcms.web.carmallBase']}";
+					window.img2Base = "${durl('/', '/img2')}";
+				} (window, "undefined" != typeof console ? console : void 0));
+			</script>
+		<!-- end | global javascript -->
+		<link href="${surl('resource/img/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+		<!-- begin | private stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/css/index.css')}">
+		<!-- end | private stylesheet -->
+		<!-- begin | public javascript -->
+		<script src="${surl('resource/js/modernizr.js')}"></script>
+  		<script src="${surl('resource/js/jquery_1_8_3.js')}"></script>
+<!-- end | public javascript -->	
+</head>
+<body>
+	<!-- begin | Top Sliding Ad -->
+	<div id="topbanner" class="img-center">
+	<cms:cxdata code="adv" condition="cityId=${cxParam.cityId},blockCodes=SYDDDPB">
+	<z:if condition="${__Total > 0}">
+	   <z:if condition="${CXData.data.picType == 'swf'}">
+			<a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" style="position:absolute;display:block;width:1190px;height:300px;z-index:10;overflow:hidden;font-size:2000px;line-height:2000px;color:transparent" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>>-</a>
+		   <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="1190" height="300" id="adbanner" alt="${CXData.data.picDescribe}">
+				  <param name="quality" value="high">
+				  <param name="movie" value="${commonImg(CXData.data.picUrl)}">
+				  <param name="wmode" value="opaque">
+				  <embed src="${commonImg(CXData.data.picUrl)}" wmode="opaque" width="1190" height="300" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" type="${CXData.data.picDescribe}"></embed>
+		   </object>
+	   </z:if>
+	   <z:else>
+		   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>><img src="${commonImg(eval('/1190x300${CXData.data.picUrl}'))}" width="1190" height="300" id="adbanner" alt="${CXData.data.picDescribe}" /></a>
+	   </z:else>
+
+	<!-- close -->
+	<img src="${surl('public/ajax/lib/img/saike.main.site/bannerclose.png')}" alt="关闭广告" class="bannerclose">
+    </z:if>
+	 </cms:cxdata>
+	</div>	
+	<!-- end | Top Sliding Ad -->
+	
+	<div class="img-center" id="doubleEightAd" data-source="/common/holidayad.htm"></div>
+	
+    
+	<!-- begin | Top Bar -->
+	<div class="ms-topnav-wrapper">
+		<div class="ms-topnav">
+			<ul class="ms-topnav-main">
+				<li class="js-city">
+					<span id="cityPos" class="city-hd"><i class="icon-map"></i><em id="currentCity">上海</em> [切换]</span>
+					<div id="citychage" class="city-bd hide" style="display: none;"></div>
+				</li>
+				<li class="line"></li>
+				<li>
+					<a class="a-icon-txt" href="http://bao.chexiang.com" target="_blank"><i class="icon-bao"></i>车享宝</a>
+				</li>
+			</ul>
+			<ul class="ms-topnav-side">
+				<li>
+					<a href="${Config.MainBase}/dealer/store/polymerization_0.htm" target="_blank">经销商</a>
+				</li>
+				<li class="line"></li>
+				<li>
+					<a href="${Config.ChexiangpaiBase}" target="_blank">我要卖车</a>
+				</li>
+				<li class="line"></li>
+				<li>
+					客服热线: 4008 020 666
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- end | Top Bar -->
+	
+	<!-- header -->
+	<div class="ms-header-wrapper">
+		<div class="ms-header">			
+			<a href="${Config.MainBase}" class="saic-logo">
+				<img class="logo" src="${surl('resource/img/saic.png')}" alt="车享" width="108" height="39">
+				<img src="${surl('resource/img/saic-info.gif')}" alt="上汽品质 全程畅想 专业 专注 信赖 保障" width="102" height="36">
+			</a>
+			<div class="user-info">
+				<dl id="js-unlogin-box" class="user-hd">
+					<dt>
+						<i class="icon-avatar"></i>
+					</dt>
+					<dd>
+						<a class="login-bind" href="#">登录</a>
+						<a class="register-bind" href="#">注册</a>
+					</dd>
+				</dl>
+				<div id="js-login-box" class="login-box" style="display:none;">
+					<dl class="user-hd">
+						<dt class="avatar-box">
+							<img class="js-avatar" src="${surl('resource/img/avatar.png')}" alt="" width="26" height="26" />
+							<span class="avatar-bg"></span>
+						</dt>
+						<dd>Hi！<span class="js-nickkname"></span><i class="icon-arrow"></i></dd>
+					</dl>
+					<div class="user-bd">						
+						<p class="get-rights js-un-certified">获取更多权益进行<a href="${Config.MemberBase}/member/member.htm" target="_blank">爱车认证！</a></p>
+						<p class="get-rights js-certified">车享认证会员！</a></p>
+						<dl class="grade-box">
+							<dt>
+								<p>当前积分</p>
+								<strong class="js-grade-num"></strong>
+							</dt>
+							<dd>
+								<a href="${Config.MemberBase}/member/benefits/orderlistUpgrade.htm" target="_blank">赚积分<i class="icon-arrow"></i></a>
+								<a href="${Config.MemberBase}/member/benefits/orderlistUpgrade.htm" target="_blank">兑换积分<i class="icon-arrow"></i></a>
+							</dd>
+						</dl>
+						<ul class="link-list">
+							<li>
+								<a href="${Config.MemberBase}/member/myAllOrders.htm?currentPage=1" target="_blank">购车订单<i class="icon-arrow"></i></a>
+							</li>
+							<li>
+								<a href="${Config.MemberBase}/member/memberMall/myMallOrders.htm" target="_blank">车享汇订单<i class="icon-arrow"></i></a>
+							</li>
+							<li>
+								<a href="${Config.MemberBase}/member/benefits/orderlistUpgrade.htm" target="_blank">我的权益<i class="icon-arrow"></i></a>
+							</li>
+						</ul>
+						<p class="a-op">
+							<a class="a-mine" href="${Config.MemberBase}/member/member.htm" target="_blank">进入我的车享<i></i></a>
+							<a class="a-logout" href="${Config.LogoutUrl}">退出</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="search-panel">
+				<form id="js-search-form" action="${Config['ebiz.zcms.web.carmallBase']}/multisearch/search.htm" method="get" acceptcharset="UTF-8" accept-charset="UTF-8" target="_blank">
+					<div class="search-tit"><label for="keywords">车享商城</label></div>
+					<div class="search-box">						
+						<input type="hidden" name="cat" value="1"/>					
+						<input id="keywords" class="inp" name="kwd" type="text" autocomplete="off" placeholder="输入您关注的车" />
+						<button class="btn-submit"><i></i></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- nav -->
+	<div class="ms-nav-wrapper">
+		<div class="ms-nav">
+			<div id="j-nav-all-brand" class="nav-all-brand">
+				<div class="hd">
+					<h2 class="tit"><i class="icon-contents"></i>所有品牌</h2><i class="icon-arrow"></i>
+				</div>
+				<div class="bd">
+					<ul class="brand-box">
+					<cms:cxdata code="brands">
+					<z:list>
+						<li class="brand-tit-item" data-brand="${i}">
+							<dl>
+								<dt>
+									<a href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/home.htm" target="_blank">${CXData.data.velBrandChsName}</a>
+								</dt>
+								<dd>
+									<cms:article catalogAlias="sy20150808_ppxc" name="${CXData.data.velBrandChsName}" loadcontent="true">
+								<z:list>
+								<z:match value="${Article.Content}" regex="<a.*?>.+?</a>" count="10">
+									<z:list>${(Data.Value)}</z:list>
+								</z:match>
+								</z:list>
+								</cms:article>
+								</dd>
+							</dl>
+							<i class="icon-arrow"></i>
+						</li>
+					</z:list>
+					</ul>
+					<z:list>
+						<cms:cxdata code="findSeriesListByBrandId" condition="brandId=${CXData.data.velBrandId}">
+						<div class="brand-box-con" data-brand="${i}">
+							<ul class="con-item">
+							<z:list>
+							<z:if condition="${i==11}">
+								</ul>						
+								<ul class="con-item">
+							</z:if>
+								<li class="${i%10==0?"nobr":""}"><a href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/series_${CXData.data.velSeriesId}/home.htm" target="_blank">${CXData.data.velSeriesChsName}</a></li>
+							</z:list>
+							</ul>
+						</div>
+						</cms:cxdata>
+					</z:list>
+					</cms:cxdata>	
+				</div>
+			</div>
+			<ul class="nav-main">
+				<li>
+					<a class="cur" href="${Config.MainBase}">首页</a>
+				</li>
+				<li>
+					<a href="${Config['ebiz.zcms.web.carmallBase']}" target="_blank">车享商城</a>
+					<i class="icon-tip">省</i>
+				</li>
+				<li>
+					<a href="${Config.ChexiangpaiBase}"" target="_blank">二手车</a>
+				</li>
+				<li>
+					<a href="${Config.CarlibBase}/overview/brand_-1.htm" target="_blank">车型库</a>
+				</li>
+				<li>
+					<a href="http://jia.chexiang.com" target="_blank">车享家</a>
+				</li>
+				<li>
+					<a href="${Config.MallBase}"" target="_blank">车享汇</a>
+				</li>
+			</ul>
+			<cms:article catalogAlias="sy20150808_bannerxc" hasAttribute="hot" count="1">
+			<z:list>
+				<p class="nav-side"><a href="${Article.Link}" target="_blank">${Article.Title}</a></p>
+			</z:list>
+			</cms:article>
+			
+		</div>
+	</div>
+
+	<!-- end | menu Bar -->
+	
+	
+	<!-- banner -->
+	<div class="banner-wrapper">
+		<div id="j-banner-wrap" class="banner-wrap">
+			<ul id="j-banner-content">
+			<cms:cxdata code="adv_focusPicture" condition="cityId=${cxParam.cityId},blockCode=SYJDLB">
+			<z:list>
+				<li <z:if condition="${i==1}">class="cur"</z:if>>
+              <a id="indexBanner_${i}" ca="${(CXData.data.picDescribe)}" class="img" href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>  style="background-image:url(${commonImg(eval('/1920x430${CXData.data.picUrl}'))});"></a>
+				</li>
+			</z:list>
+			</ul>
+			
+			<div id="j-banner-num" class="page-num" >
+			<z:list>
+				<span <z:if condition="${i==1}">class="cur"</z:if>></span>
+			</z:list>
+			</div>
+			</cms:cxdata>
+		</div>
+		<cms:block code="bannerBlock_88" updateBlock="false" />
+	</div>
+	
+	<!-- brand-wrapper -->
+	<cms:cxdata code="brands">
+	<div class="brand-wrapper js-brand-show">
+		<ul class="brand-logo tab_menu">
+		<z:list>
+			<li class='${i==1?"first current":(i<7?"mb":"")}'>
+			<a href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/home.htm" title="${CXData.data.velBrandChsName}" target="_blank">
+				<i class="logo-${CXData.data.velBrandEngName=='mg3'?'mg':CXData.data.velBrandEngName}"></i>
+				<p class="brand-name">${CXData.data.velBrandChsName}</p>
+			</a>
+			</li>
+		</z:list>
+		</ul>
+		
+		<div class="brand-data tab_box">
+			<z:list>
+			<cms:cxdata code="findSeriesListByBrandId" condition="brandId=${parent.CXData.data.velBrandId}">
+			<div class="tab_item ${i==1?'':'hide'} ${__Total>6? 'infiniteCarousel' : ''}">
+				<span class="btn-left ${__Total>6? '' : 'btn-left-none'}"></span>
+				<span class="btn-right ${__Total>6? '' : 'btn-right-none'}"></span>
+				<div class="data-wrap">
+					<ul class="data-list">
+						<z:list>
+						<li>
+							<dl class="car-item">
+								<dt class="imgbox">
+								<a href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/series_${CXData.data.velSeriesId}/home.htm" target="_blank">
+								<z:if condition="${CXData.data.coverImg == ''}">
+									<img src="${commonImg('/210x140/1/p.jpg')}" width="150" height="100"/>
+								</z:if>
+								<z:else>
+									<img src="${commonImg(eval('/210x140${CXData.data.coverImg}'))}" alt="${CXData.data.velSeriesChsName}" title="${CXData.data.velSeriesChsName}" width="150" height="100">
+								</z:else>
+								</a>
+								</dt>
+								<dd class="tit">
+									<a href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/series_${CXData.data.velSeriesId}/home.htm" target="_blank">${CXData.data.velSeriesChsName}</a>
+								</dd>
+								<dd class="desc">
+									<p class="op-item"><a id="${CXData.data.velBrandEngName}_${CXData.data.velSeriesEngName}_toDetail" class="a-detail" href="${Config.CarlibBase}/${CXData.data.velBrandEngName}/series_${CXData.data.velSeriesId}/home.htm" target="_blank">了解详情</a>
+									<cms:cxdata api="carmall.PriceRangeService.querySeriesPriceRange" condition="seriesId=${CXData.data.velSeriesId},cityId=${cxParam.cityId}">
+									<z:if condition="${__Total > 0}"><i class="icon-mall"></i></z:if>
+									</p>
+								
+									<z:if condition="${__Total > 0}"><p class="op-item-hover"><i class="icon-view"></i><a id="${parent.parent.CXData.data.velBrandEngName}_${parent.parent.CXData.data.velSeriesEngName}_toCarmall" class="a-mall" href="${Config.CarmallBase}/list/xj-${parent.parent.CXData.data.brandId}-${parent.parent.CXData.data.velSeriesId}-0-0-0-0-0-0-0-0-0-${cxParam.cityId}-0-1-1.html" target="_blank">去商城</a></p> </z:if>
+									</cms:cxdata>
+								</dd>
+							</dl>
+						</li>
+						</z:list>
+					</ul>
+				</div>
+			</div>
+			</cms:cxdata>
+			</z:list>
+		</div>
+	</div>
+	</cms:cxdata>
+	
+	<!-- 通栏1-->
+	<cms:cxdata catalogAlias="gg" condition="cityId=${cxParam.cityId},blockCodes=SYCXKTL">
+	<z:if condition="${__Total>0}">
+	<div class="act-box">
+	   <z:if condition="${CXData.data.picType == 'swf'}">
+		   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" style="position:absolute;display:block;width:1190px;height:100px;z-index:10;overflow:hidden;font-size:2000px;line-height:2000px;color:transparent" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>>$</a>
+		   <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="1190" height="100" alt="${CXData.data.picDescribe}">
+				  <param name="quality" value="high">
+				  <param name="movie" value="${commonImg(CXData.data.picUrl)}">
+				  <param name="wmode" value="opaque">
+				  <embed src="${commonImg(CXData.data.picUrl)}" wmode="opaque" width="1190" height="100" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" alt="${CXData.data.picDescribe}"></embed>
+		   </object>
+		</z:if>
+	   <z:else>
+		   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>><img src="${commonImg(eval('/1190x100${CXData.data.picUrl}'))}" width="1190" height="100" alt="${CXData.data.picDescribe}"/></a>
+	   </z:else>
+	</div>
+	</z:if>
+	</cms:cxdata>
+	
+		
+	<!-- container -->
+	<div class="container">
+		<!-- cx-mall -->
+		<div class="mod-row js-mod-placeholder">
+			<div class="cx-mall">
+				
+					<cms:block code="carmallBlock_88" updateBlock="false"/>
+
+					<div class="mod-main">
+						<ul class="js-mall-list">
+						<cms:cxdata code="adv_focusPicture" condition="cityId=${cxParam.cityId},blockCode=SYSCGGW">
+						<z:if condition="${__Total>0}">
+							<z:list>
+								<li><a href="${CXData.data.picTargetUrl}" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if> target="_blank"><img class="lazy" src="${commonImg(eval('${CXData.data.picUrl}'))}" alt="" width="220" height="220"></a></li>
+							</z:list>
+						</z:if>
+						<z:else>
+							<cms:cxdata code="adv_focusPicture" condition="cityId=310100,blockCode=SYSCGGW">
+								 <z:list>
+									<li><a href="${CXData.data.picTargetUrl}" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if> target="_blank"><img class="lazy" src="${commonImg(eval('${CXData.data.picUrl}'))}" alt="" width="220" height="220"></a></li>
+								</z:list>
+							</cms:cxdata>
+						</z:else>
+						</cms:cxdata>
+						</ul>
+					</div>
+
+
+				</div>
+		</div>
+		
+		<!-- 通栏22 -->
+		<cms:cxdata code="adv" condition="cityId=${cxParam.cityId},blockCodes=SYZBTL1">
+		<z:if condition="${__Total>0}">
+		<div class="act-box">
+		   <z:if condition="${CXData.data.picType == 'swf'}">
+			   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" style="position:absolute;display:block;width:1190px;height:100px;z-index:10;overflow:hidden;font-size:2000px;line-height:2000px;color:transparent" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>>$</a>
+			   <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="1190" height="100" alt="${CXData.data.picDescribe}">
+					  <param name="quality" value="high">
+					  <param name="movie" value="${commonImg(CXData.data.picUrl)}">
+					  <param name="wmode" value="opaque">
+					  <embed src="${commonImg(CXData.data.picUrl)}" wmode="opaque" width="1190" height="100" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" alt="${CXData.data.picDescribe}"></embed>
+			   </object>
+			</z:if>
+		   <z:else>
+			   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>><img src="${commonImg(eval('/1190x100${CXData.data.picUrl}'))}" width="1190" height="100" alt="${CXData.data.picDescribe}"/></a>
+		   </z:else>
+		</div>
+		</z:if>
+		</cms:cxdata>
+
+		<!-- cx-sale -->
+		<cms:block code="chexiangpaiBlock_88" updateBlock="false" />
+		
+		<!-- 通栏3 -->
+		<cms:cxdata catalogAlias="gg" condition="cityId=${cxParam.cityId},blockCodes=SYTL2F">
+		<z:if condition="${__Total>0}">
+		<div class="act-box">
+		   <z:if condition="${CXData.data.picType == 'swf'}">
+			   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" style="position:absolute;display:block;width:1190px;height:100px;z-index:10;overflow:hidden;font-size:2000px;line-height:2000px;color:transparent" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>>$</a>
+			   <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="1190" height="100" alt="${CXData.data.picDescribe}">
+					  <param name="quality" value="high">
+					  <param name="movie" value="${commonImg(CXData.data.picUrl)}">
+					  <param name="wmode" value="opaque">
+					  <embed src="${commonImg(CXData.data.picUrl)}" wmode="opaque" width="1190" height="100" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" alt="${CXData.data.picDescribe}"></embed>
+			   </object>
+			</z:if>
+		   <z:else>
+			   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>><img src="${commonImg(eval('/1190x100${CXData.data.picUrl}'))}" width="1190" height="100" alt="${CXData.data.picDescribe}"/></a>
+		   </z:else>
+		</div>
+		</z:if>
+		</cms:cxdata>
+		
+		<!-- cx-hui -->
+		<cms:block code="chexianghuiBlock_88" updateBlock="false" />
+
+		<!-- 通栏4 -->
+		<cms:cxdata catalogAlias="gg" condition="cityId=${cxParam.cityId},blockCodes=SYZBTL2">
+		<z:if condition="${__Total>0}">
+		<div class="act-box">
+		   <z:if condition="${CXData.data.picType == 'swf'}">
+			   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" style="position:absolute;display:block;width:1190px;height:100px;z-index:10;overflow:hidden;font-size:2000px;line-height:2000px;color:transparent" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>>$</a>
+			   <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="1190" height="100" alt="${CXData.data.picDescribe}">
+					  <param name="quality" value="high">
+					  <param name="movie" value="${commonImg(CXData.data.picUrl)}">
+					  <param name="wmode" value="opaque">
+					  <embed src="${commonImg(CXData.data.picUrl)}" wmode="opaque" width="1190" height="100" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" alt="${CXData.data.picDescribe}"></embed>
+			   </object>
+			</z:if>
+		   <z:else>
+			   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>><img src="${commonImg(eval('/1190x100${CXData.data.picUrl}'))}" width="1190" height="100" alt="${CXData.data.picDescribe}"/></a>
+		   </z:else>
+		</div>
+		</z:if>
+		</cms:cxdata>
+
+		<!-- act-box-list -->
+		<ul class="mod-row act-box-list">
+				<!-- 第一张 -->
+				<cms:cxdata code="adv_focusPicture" condition="cityId=${cxParam.cityId},blockCode=SYCXHDGGW">
+				<z:list count="1">
+					<li><a href="${CXData.data.picTargetUrl}" title="${CXData.data.picDescribe}" target="_blnk"><img class="lazy" data-original="${commonImg(eval('${CXData.data.picUrl}'))}" alt="" width="220" height="340"></a></li>
+				</z:list>
+				</cms:cxdata>
+				<!-- 大图 -->
+				<cms:cxdata code="adv_focusPicture" condition="cityId=${cxParam.cityId},blockCode=SYCXHDGGWD">
+				<z:list count="1">
+					<li><a href="${CXData.data.picTargetUrl}" title="${CXData.data.picDescribe}" target="_blnk"><img class="lazy" data-original="${commonImg(eval('${CXData.data.picUrl}'))}" alt="" width="310" height="340"></a></li>
+				</z:list>
+				</cms:cxdata>
+				<!-- 四张 -->
+				<cms:cxdata code="adv_focusPicture" condition="cityId=${cxParam.cityId},blockCode=SYCXHDGGW">
+				<z:list begin="2">
+					<li><a href="${CXData.data.picTargetUrl}" title="${CXData.data.picDescribe}" target="_blnk"><img class="lazy" data-original="${commonImg(eval('${CXData.data.picUrl}'))}" alt="" width="220" height="340"></a></li>
+				</z:list>
+				</cms:cxdata>
+		</ul>
+		
+		<!-- 通栏5 -->
+		<cms:cxdata catalogAlias="gg" condition="cityId=${cxParam.cityId},blockCodes=SYZBTL3">
+		<z:if condition="${__Total>0}">
+		<div class="act-box">
+		   <z:if condition="${CXData.data.picType == 'swf'}">
+			   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" style="position:absolute;display:block;width:1190px;height:100px;z-index:10;overflow:hidden;font-size:2000px;line-height:2000px;color:transparent" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>>$</a>
+			   <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="1190" height="100" alt="${CXData.data.picDescribe}">
+					  <param name="quality" value="high">
+					  <param name="movie" value="${commonImg(CXData.data.picUrl)}">
+					  <param name="wmode" value="opaque">
+					  <embed src="${commonImg(CXData.data.picUrl)}" wmode="opaque" width="1190" height="100" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" alt="${CXData.data.picDescribe}"></embed>
+			   </object>
+			</z:if>
+		   <z:else>
+			   <a href="${CXData.data.picTargetUrl}" target="_blank" title="${CXData.data.picDescribe}" <z:if condition="${not empty CXData.data.exposureUrl}">exposureUrl="${CXData.data.exposureUrl}"</z:if>><img src="${commonImg(eval('/1190x100${CXData.data.picUrl}'))}" width="1190" height="100" alt="${CXData.data.picDescribe}"/></a>
+		   </z:else>
+		</div>
+		</z:if>
+		</cms:cxdata>
+	</div>
+
+	<!-- footer -->	
+	<div class="ms-footer-main">
+		<div class="ms-footer-intro">
+			<dl class="footer-item">
+				<dt>关于我们</dt>
+				<dd><a href="${Config.MainBase}/gycx/about.shtml" target="_blank">关于车享</a></dd>
+				<dd><a href="${Config.MainBase}/gycx/terms.shtml" target="_blank">法律声明</a></dd>
+				<dd><a href="${Config.MainBase}/gycx/impunity.shtml" target="_blank">免责条款</a></dd>
+				<dd><a href="${Config.MainBase}/gycx/privacy.shtml" target="_blank">隐私权声明</a></dd>
+			</dl>
+			<dl class="footer-item">
+				<dt>联系我们</dt>
+				<dd><a href="${Config.MainBase}/gycx/contact.shtml" target="_blank">联系方式</a></dd>
+				<dd><a href="${Config.JoinBase}" target="_blank">加入我们</a></dd>
+			</dl>
+			<dl class="footer-item">
+				<dt>售后服务</dt>
+			<!-- <dd><a href="${Config.MainBase}/feedback/suggest.htm" target="_blank">投诉建议</a></dd> -->	
+				<dd><a href="${Config.MainBase}/gycx/agreement.shtml" target="_blank">用户服务协议</a></dd>
+			</dl>
+			<dl class="footer-item">
+				<dt>会员说明</dt>
+				<dd><a href="${Config.MallBase}/help.htm?tab=tab-rights" target="_blank">会员权益</a></dd>
+				<dd><a href="${Config.MallBase}/help.htm?tab=tab-integral" target="_blank">积分说明</a></dd>
+				<dd><a href="${Config.MallBase}/help.htm?tab=tab-register" target="_blank">注册流程</a></dd>
+				<dd><a href="${Config.MallBase}/help.htm?tab=tab-problem" target="_blank">常见问题</a></dd>
+			</dl>
+			<div class="footer-side">
+				<div class="ercode-box">
+					<span title="微信订阅号"><img class="weixin-img" src="${surl('resource/img/ercode.png')}" alt="微信订阅号" width="120" height="120"></span>
+					<dl class="weixin-info">
+					<dt>微信订阅号</dt>
+					<dd class="weixinhao">chexiangV</dd>
+					<dd class="desc">
+						<p>扫描二维码关注车享官方账号</p>
+						<p>还有劲爆优惠等你来拿!</p>
+					</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+			
+	<div class="ms-footer-sub">
+		<p class="btn-area">
+			<a class="a-btn" href="${Config.DealerBase}" target="_blanks">经销商登录</a>
+			<i>|</i>
+			<a class="a-btn-b" href="${Config.ChexiangpaiBase}/login/index.htm" target="_blank">二手车商户登录</a>
+		</p>
+		<p class="copyright">CopyRight &copy; 2014-2015, All Rights Reserved 版权所有 车享     沪ICP备14000481号</p>
+
+	</div>
+	<!-- end | Footer -->
+	
+	<!-- sidebar -->
+	<div id="js-sidebar" class="sidebar">
+		<ul class="side-abs">
+			<li class="js-weixin">
+				<div class="tit im-client tit-cur">
+					<i class="icon-client"></i>
+					<span class="txt">客服</span>
+				</div>
+				<div class="weixin-bd im-bd">
+				<span class="close"></span>
+				<div class="th">客服</div>
+				<dl class="tb">
+					<dd>
+						<p>客服热线</p>
+						<strong class="tel">4008 020 666</strong>
+						<p class="time">每天 : 9:00~21:00</p>
+					</dd>
+					<dt>
+						<a class="mainsite-im" href="javascript:void(0);">在线客服<i></i></a>
+					</dt>
+				</dl>
+			  </div>
+			</li>
+			<li class="js-weixin">
+				<div class="tit">
+					<i class="icon-weixin"></i>
+					<span class="txt">订阅号</span>
+				</div>
+				<div class="weixin-bd">
+					<span class="close"></span>
+					<div class="th">车享订阅号</div>
+					<div class="tb"><img width="120" height="120" alt="订阅号" title="订阅号" src="${surl('resource/img/ercode-top-2.png')}"></div>
+				</div>
+			</li>
+			<li class="js-weixin">
+				<div class="tit">
+					<i class="icon-weixin"></i>
+					<span class="txt">服务号</span>
+				</div>
+				<div class="weixin-bd">
+					<span class="close"></span>
+					<div class="th">车享服务号</div>
+					<div class="tb"><img width="120" height="120" alt="服务号" title="服务号" src="${surl('resource/img/ercode-top-3.png')}"></div>
+				</div>
+			</li>
+		</ul>
+		<ul class="side-fix">
+ 			<li>
+ 				<a class="tit" href="" target="_blank">
+					<i class="icon-advice"></i>
+					<span class="txt">改版建议</span>
+				</a>
+			</li>
+			<li class="backtoTop">
+				<div class="tit">
+					<i class="icon-top"></i>
+					<span class="txt">返回顶部</span>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+
+	<!-- pop-mask -->
+	<div id="j-pop-mask" class="pop-mask"></div>
+	<div id="j-pop-win" class="pop-win">
+		<span class="pop-close" data-id="1"></span>
+		<div class="pop-tit">请选择</div>
+		<div class="pop-con">
+			<ul class="pop-info">
+				<li><span class="a-buy" data-id="1">我要买车</span></li>
+				<li><span class="a-owner" data-id="2">我是车主</span></li>
+			</ul>
+			<a class="a-more" data-id="1" href="#">我先逛逛<i></i></a>
+		</div>
+	</div>
+
+	<script src="${surl('resource/js/jquery.lazyload.js')}"></script>
+	<script src="${surl('resource/js/jquery.tabs.js')}"></script>
+	<script src="${surl('resource/js/jquery.fs.selecter.js')}"></script>
+	<script src="${surl('resource/js/jquery.nicescroll.js')}"></script>
+	<script src="${surl('resource/js/jquery.validate.js')}"></script>
+	${("<!--[if lte IE 9]>")}
+	<script src="${surl('resource/js/placeholders.js')}"></script>
+	${("<![endif]-->")}
+  	<script src="${surl('resource/js/index.js')}"></script>
+	
+	<!-- analysis script begin-->
+		<script>
+
+			//baidu analysis
+			var _bdhmProtocol, _cxProtocol, gaTrackID, domainID;
+			_bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff8ba65b380f665911ecab4df90bfe056' type='text/javascript'%3E%3C/script%3E"));
+
+			//chexiang
+			_cxProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(decodeURIComponent("%3Cscript src='" + _cxProtocol + "data.chexiang.com/js/cx_analytics.js?t=" + new Date().getTime() + "&type=' id='analyticsScript' type='text/javascript'%3E" + "%3C/script%3E"));
+
+			//google analysis
+			gaTrackID = 'UA-48109728-1'; //eg: 'UA-48109728-1'.
+			domainID = 'auto'; //eg: 'chexiang.com' / auto.
+			(function (i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function () {
+					(i[r].q = i[r].q || []).push(arguments);
+				},
+				i[r].l = 1 * new Date();
+				a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0];
+				a.async = 1; /* 1 */
+				a.defer = 1; /* 1 */
+				a.src = g;
+				m.parentNode.insertBefore(a,m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+			ga('create', gaTrackID, domainID);
+			ga('send', 'pageview');
+		</script>
+		<!-- analysis script begin-->
+       <script src="${surl('resource/js/ca.js')}"></script>
+</body>
+</html>
+</z:if>

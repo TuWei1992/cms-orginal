@@ -1,0 +1,214 @@
+<z:config type="ArticleDetail" name="车享宝盒" />
+<!DOCTYPE html>
+<html lang="zh-cn" class="no-js">
+	<head>
+		<meta http-equiv="Content-Type">
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<title>车享宝盒说明书</title>		
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="email=no">
+		<meta name="description" content="车享"/>
+		<meta name="keywords" content="车享宝盒"/>
+      <link rel="stylesheet" type="text/css" href="${surl('resource/baohe/css/guide.css')}" />
+	</head>
+	<body>
+		<div class="landscape">
+			<div class="iphone"></div>
+			<div class="iphone_text">请将屏幕竖向浏览</div>
+		</div>
+		<div>
+			<div class="loading">
+				<div class="area">
+					<div class="ball"></div>
+					<div class="ball1"></div>
+				</div>
+			</div>          
+			<div class="page page-1-1 hide">
+				<div class="wrap">
+					<div class="txt-box">
+						<h3 class="tit">智能汽车进化指南</h3>
+						<p class="tit-sub"><span>安装车享宝盒</span><span class="tag-ver">内测尊贵版</span></p>
+					</div>	
+					<img class="moveIconUp animated" src="../resource/baohe/img/arrow.png" />
+				</div>
+			</div>
+			<div class="page page-2-1 hide">
+				<div class="wrap">
+					<div class="txt-box">
+						<h3 class="tit slideInLeft animated delay-0-1">首先</h3>
+						<p class="tit-sub slideInLeft animated delay-0-1">你得下载一个APP...</p>
+					</div>
+					<img class="moveIconUp animated" src="../resource/baohe/img/arrow.png" />
+				</div>
+			</div>
+         	<div class="page page-3-1 hide">
+				<div class="wrap">
+					<div class="txt-box">
+						<h3 class="tit-bg">找到电子身份识别码</h3>
+						<p class="tit-bg-sub">根据APP提示，扫描二维码，添加车享宝盒</p>
+					</div>
+					<div class="img-box slideInLeft animated">
+                      <img src="../resource/baohe/img/guide/img-3-1.jpg" alt="">
+					</div>
+					<p class="desc slideInRight animated">每个盒子都有独一无二的身份识别码<br/>只能被一个车享账户绑定。</p>
+                  	<img class="moveIconUp animated" src="../resource/baohe/img/arrow.png" />
+				</div>
+			</div>          
+			<div class="page page-4-1 hide">
+				<div class="wrap">				
+					<div class="txt-box">
+						<h3 class="tit-bg">安装车享宝盒</h3>
+						<p class="tit-bg-sub">选择车型<br/>查看该车型OBD接口的实拍位置</p>						
+						<ul class="select-box clearfix">
+							<li>
+                              <div id="brandselect" class="sel-item">选择品牌</div>
+                              <select id="carBrand" class="sel" name="brand" onchange="changeBrand()">
+                                <option value=''>选择品牌</option>
+                                   <cms:cxdata code="brands">
+                                    <z:list><option value="${cxdata.data.velBrandId}">${cxdata.data.velBrandChsName}</option></z:list>
+                                   </cms:cxdata>
+                              </select>
+                          </li>
+						<li>
+							<div id="seriesselect"class="sel-item">选择车系</div>
+							<select id="carSeries" class="sel" name="series" onchange="showOBDIMG()">
+                              <option value=''>选择车系</option>
+							</select>
+						</li>
+						</ul>
+					</div>
+					<div class="img-wrap">						
+						<div id="imgbox" class="img-box slideInLeft animated">
+							<div id="loadingImg" class="loading-img" style="display:none"><div class="ball"></div></div>
+							<img id="carPic" src="../resource/baohe/img/guide/default.png"  alt="" />
+							<div id="carMask" class="mask">该车型暂无实拍图</div>
+						</div>
+						<p class="tit-bg-sub txt-hint">图片点击可放大</p>
+					</div>
+					<p class="desc">如果您没有找到该车型OBD接口的实拍图<br/>请查阅您的车辆使用说明书</p>
+					<div id="carBigPic" class="big-img">
+						<div class="big-box"><img src="../resource/baohe/img/guide/default.png" alt="" /></div>
+					</div>
+					<img class="moveIconUp animated" src="../resource/baohe/img/arrow.png" />
+				</div>
+			</div>
+          <div class="page page-5-1 hide">
+				<div class="wrap">
+					<div class="txt-box">
+						<h3 class="tit-bg">启动你的车</h3>
+						<p class="tit-bg-sub">请启动车辆并保持怠速</p>
+					</div>
+					<div class="img-box slideInLeft animated">
+						<img src="../resource/baohe/img/guide/img-5-1.png" alt="">
+					</div>
+					<img class="moveIconUp animated" src="../resource/baohe/img/arrow.png" />
+				</div>
+			</div>
+			<div class="page page-6-1 hide">
+				<div class="wrap">
+					<div class="txt-box">
+						<h3 class="tit-bg">连接你的车</h3>
+						<p class="tit-bg-sub">请打开手机蓝牙</p>
+					</div>
+					<div class="img-wrap slideInLeft animated">
+						<img src="../resource/baohe/img/guide/img-6-1.png" alt="">	
+						<div class="img-box"></div>
+					</div>
+					<img class="moveIconUp animated" src="../resource/baohe/img/arrow.png" />
+				</div>
+			</div>
+			<div class="page page-7-1 hide">
+				<div class="wrap">
+					<div class="txt-box">
+						<h3 class="tit slideInLeft animated delay-0-1">更了解你的车</h3>
+						<p class="sub-tit slideInLeft animated delay-0-1">——设置你的车型信息</p>
+					</div>
+                  <a class="a-qa fadeIn animated delay-1-5" href="${Config['ebiz.zcms.web.wapBase']}/box/sms/faq/faq.shtml">常见问题</a>
+				</div>
+			</div>
+		</div>	
+      <script src="${surl('resource/baohe/js/zepto.js')}"></script>
+		<script src="${surl('resource/baohe/js/touch.js')}"></script>
+		<script src="${surl('/resource/baohe/js/guide.js')}"></script>
+      	<script>
+          function changeBrand() {
+            var elem = document.getElementById("carBrand");
+            var value = elem.options[elem.selectedIndex].value;
+            document.getElementById("brandselect").innerHTML = elem.options[elem.selectedIndex].text;
+            document.getElementById("seriesselect").innerHTML = "选择车系";
+            if (value) {
+              var series = data[value];
+              var options = "<option value=''>选择车系</option>"
+              for (var i=0; i<series.length; i++) {
+                options += "<option value='"+ series[i].OBDIMG +"'>"+series[i].velSeriesChsName+"</option>";
+              }
+              document.getElementById("carSeries").innerHTML = options;
+            }else{
+           		document.getElementById("carSeries").innerHTML = "<option value=''>选择车系</option>";
+            }
+          }
+          
+          function showOBDIMG() {
+            document.getElementById("carMask").style.display= "none";
+            document.getElementById("loadingImg").style.display= "none"; 
+            var elem = document.getElementById("carSeries");
+            var value = elem.options[elem.selectedIndex].value;
+            var text = elem.options[elem.selectedIndex].text;
+            document.getElementById("seriesselect").innerHTML = text;
+            if (value) {
+              	var img = document.getElementById('carPic');   
+                var src = img.getAttribute('src');
+              if(src==value){
+              }else{
+                document.getElementById("loadingImg").style.display= "block";
+                img.setAttribute('src',value);  
+                img.onload = function(){  
+                   document.getElementById("loadingImg").style.display= "none"; 
+                };
+              }
+              
+            } else if(text=="选择车系") {
+              document.getElementById("carPic").src="${surl('/resource/baohe/img/guide/default.png')}";
+            }else{
+              document.getElementById("carPic").src="${surl('/resource/baohe/img/guide/default.png')}";
+                document.getElementById("carMask").style.display= "block";
+                setTimeout(function(){
+                  document.getElementById("carMask").style.display= "none";
+                },2000);
+            }
+          
+          }
+          
+          <cms:cxdata code="brands">
+            var data = {
+              <z:list>
+              ${i==1?"":","}'${cxdata.data.velBrandId}':[
+                <cms:cxdata code="findSeriesByBrandId" condition="brandId=${cxdata.data.velBrandId}">
+                <z:foreach data="${cxdata.data}">
+                <z:foreach data="${value}">
+                <cms:cxdata code="OBDImage" condition="seriesId=${value.velSeriesId},posId=ns084">${i==0?"":","}<z:if condition="${cxdata.data.imgPath}">{velSeriesChsName:"${value.velSeriesChsName}", OBDIMG:"${commonImg(eval('/420x280${cxdata.data.imgPath}'))}" }</z:if><z:else>{velSeriesChsName:"${value.velSeriesChsName}", OBDIMG:"" }</z:else></cms:cxdata>
+        		</z:foreach>
+       	 	</z:foreach>
+        </cms:cxdata>
+                ]
+        </z:list>
+            }
+        </cms:cxdata>
+      </script>
+
+<script>
+	var _cxProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(decodeURIComponent("%3Cscript src='" + _cxProtocol + "data.chexiang.com/js/cx_analytics.js?t=" + new Date().getTime() + "&type=' id='analyticsScript' type='text/javascript'%3E" + "%3C/script%3E"));
+	
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?37cf568cd7cc8e164f8cb43c8223cea7";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+	</body>
+</html>

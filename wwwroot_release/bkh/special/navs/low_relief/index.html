@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body>
+	<ul class="low_relief <%=options.bgColor%> <%=options.direction%>">
+		<%if(items.length==0){%>
+			目前没有导航项!
+		<%}else{%>
+			<%for(var i=0;i<items.length;i++){%>
+			<li class="top<%if(items[i].items&&items[i].items.length){%> hasSubList<%}%>">
+				<a href="<%=items[i].href%>" target="<%=items[i].target%>" <%=zving.Nav.returnFalse%>><span><%=items[i].name%></span></a>
+				
+				<%var list=items[i].items;%>
+				<%if(list&&list.length){%>
+				<ul>
+					<%for(var j=0;j<list.length;j++){%>
+						<%=zving.Nav.genHtmlForItem(list[j])%>
+					<%}%>
+				</ul>
+				<%}%>	
+			</li>
+			<%}%>
+		<%}%>	
+	</ul>
+	<style type="text/css">
+		#<%=options.id%> .low_relief{width:<%=(options.width-zving.Nav.navsRegistered.low_relief.ul_paddingLeft)%>px;}
+		#<%=options.id%> .low_relief .top{width:<%=options.topListItemWidth%>px;}
+		#<%=options.id%> .low_relief .top ul{width:<%=options.topListItemWidth%>px;}
+		#<%=options.id%> .low_relief .top li{width:<%=(options.topListItemWidth-30-36)%>px;}
+		#<%=options.id%> .low_relief .sub  ul{left:<%=options.topListItemWidth%>px;}
+	</style>
+</body>
+</html>

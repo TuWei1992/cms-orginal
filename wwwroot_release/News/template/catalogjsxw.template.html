@@ -1,0 +1,190 @@
+<z:config type="CatalogIndex" name="军事新闻栏目首页" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${Site.Name}--${Catalog.Name}</title>
+<cms:include file="include.template.html"></cms:include>
+<link href="../css/page.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- 页头开始 -->
+<cms:include file="headerblock2.template.html" ssi="false">{ZCMS:文件包含}</cms:include>
+
+<!-- 页头结束 -->
+
+<!-- 主体开始 -->
+<div class="main cata_main pageWidth clearself">
+
+<!-- 第一块开始 -->
+<div class="blockboxB blockboxnobg clearself">
+<!-- 第一块左侧开始 -->
+<div class="blockboxB_left clearself fl">
+<div class="cata_imgplayer clearself">
+  <cms:imageplayer code="jsxwbfq">{ZCMS:图片播放器}</cms:imageplayer>
+</div>
+<div class="imgplayer_bottom clearself">
+  <div class="jmjc picjx clearself">
+     <cms:article catalogid="9204" count="2" hasattribute="Image" level="Current">
+            <z:list>
+     		 <a  href="${Article.Link}" title="${Article.Title}"><img src="${article.logofile}" width="120" height="105" alt="" /><br />${charWidth(Article.Title, 20,"...")}</a>
+            </z:list>
+     </cms:article>
+    </div>
+    <ul class="videoconlist">
+         <cms:article catalogid="9204" count="8" type="Recent" level="Current">
+            <z:list>
+              <li>&middot; <a href="${Article.Link}" title="${Article.Title}"> ${charWidth(Article.Title, 35,"...")}</a></li>
+            </z:list>
+         </cms:article>
+    </ul>
+</div>
+</div>
+<!-- 第一块左侧结束 -->
+
+<!-- 第一块中间开始 -->
+  <div class="blockboxB_center fl">
+  <div class="society_war_center clearself">
+    <h4> <cms:catalog Alias="jsxw_gjjq" type="Article">
+              <z:list> <a href="${Catalog.Link}">国际军情</a> </z:list>
+            </cms:catalog></h4>
+    <ul class="society_warul">
+       <cms:article catalogid="9204" count="9" type="Recent" begin="4" level="CurrentAndChild">
+            <z:list begin="1" count="1">
+              <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 34,"...")}</a></li>
+            </z:list>
+            <z:list begin="2" count="8">
+              <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40,"...")}</a></li>
+            </z:list>
+          </cms:article>
+          <li class="sw_last">
+            <cms:catalog Alias="jsxw_gjjq" type="Article">
+              <z:list> <a href="${Catalog.Link}">更多>></a> </z:list>
+            </cms:catalog>
+          </li>
+    </ul>
+     <h4> <cms:catalog Alias="jsxw_zgjq" type="Article">
+              <z:list> <a href="${Catalog.Link}">中国军情</a> </z:list>
+            </cms:catalog></h4>
+    <ul class="society_warul">
+       <cms:article catalogid="9203" count="9" type="Recent" level="CurrentAndChild">
+            <z:list begin="1" count="1">
+              <li class="first"><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 34,"...")}</a></li>
+            </z:list>
+            <z:list begin="2" count="8">
+              <li>&middot;<a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title, 40,"...")}</a></li>
+            </z:list>
+          </cms:article>
+          <li class="sw_last">
+            <cms:catalog Alias="jsxw_zgjq" type="Article">
+              <z:list> <a href="${Catalog.Link}">更多>></a> </z:list>
+            </cms:catalog>
+          </li>
+    </ul>
+  </div>
+  </div>
+<!-- 第一块中间结束 -->
+
+<!-- 第一块右侧开始 -->
+  <div class="blockboxB_right fr">    
+    <h4 class="new_phtypeh">军事排行</h4>
+    <div class="new_phtype">
+   	 <ul class="soci_type">
+         <cms:article level="Child" catalogid="9202" type="Hot" count="10">
+            <z:list begin="1" count="3">
+              <li><i class="firtoth1">${i+1}</i><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,36,'..')}</a></li>
+            </z:list>
+            <z:list begin="4" count="7">
+              <li><i>${i+4}</i><a href="${Article.Link}" title="${Article.Title}">${charWidth(Article.Title,30,'..')}</a></li>
+            </z:list>
+          </cms:article>
+    </ul>
+    </div>
+    <h4 class="soc_storyh">
+        <cms:catalog Alias="jsxw_jssp" type="Video">
+          <z:list> <a href="${Catalog.Link}">军事视频</a> </z:list>
+        </cms:catalog>
+      </h4>
+    <div class="br_con">
+        <cms:Video level="Current" catalogid="11272" begin="1" count="3">
+         <z:list>
+          <dl class="soc_storydl clearself">
+              <dt><a href="${Video.link}" title="${Video.Title}"><img class="fl" width="90" height="60" src="${Video.logofile}" /></a></dt>
+              <dd class="br_coninfo fr"><a href="${Video.link}" title="${Video.Title}"><strong>${charwidth(Video.Summary,60,'...')}</strong></a></dd>
+          </dl>
+         </z:list>
+        </cms:Video>
+        <cms:Video level="Current" catalogid="9203" type="Recent" count="11">
+          <ul>
+            <z:list>
+              <li><a  href="${Video.link}" title="${Video.Title}">&middot;${charwidth(Video.Title,34,'...')}</a></li>
+            </z:list>
+          </ul>
+        </cms:Video>
+      </div>
+  </div>
+<!-- 第一块右侧结束 -->
+</div>
+<!-- 第一块结束 -->
+
+<!-- adblockbox begin -->
+<div class="adbox clearself"><a href="#"><img src="../images/adpic.gif" /></a></div>
+<!-- adblockbox end -->
+
+<!-- 第二块开始 -->
+  <div class="blockboxC clearself">
+    <h3 class="society_war"><strong><cms:catalog Alias="jsxw_jsqt" type="Image">
+          <z:list> <a href="${Catalog.Link}">军事图片</a> </z:list>
+        </cms:catalog></strong></h3>
+    <!-- 军事热图播放器 begin -->
+    <div class="limit-box fl" id="J-lb">
+      <div class="limit-buy-nav" id="J-lbn"> <a href="javascript:void(0)" class="prev"></a> <span> <em id="J-lbcp">1</em>/4 </span> <a href="javascript:void(0)" class="next"></a> </div>
+      <a href="javascript:void(0);" class="btn-prev"></a>
+      <div class="limit-buy-bd" id="limit-buy">
+         <cms:imagegroup type="Recent" count="1" catalogid="9205">
+          	<z:list>
+            	 <cms:image>
+                    <z:list count="5">
+                      <ul class="products">
+                        <li>
+                            <div class="pic"><a href="${ImageGroup.Link}"><img src="${Prefix}${Image.ImagePath}" alt="" /></a></div>
+                            <div class="price"><a href="${ImageGroup.Link}">${charWidth(ImageGroup.Title,36,'..')}<br />
+                              <span>${charWidth(Image.Name,44,'..')}</span></a></div>
+                          </li>
+                     </ul>
+                    </z:list>
+                </cms:image>      
+            </z:list>
+          </cms:imagegroup>
+      </div>
+      <a href="javascript:void(0);" class="btn-next"></a> </div>
+    <div class="warpic_group clearself fr">
+      <ul>
+       <cms:imagegroup type="Recent" count="8" catalogid="9205">
+          	<z:list>
+             <cms:image>
+                    <z:list count="2">
+                        <li><a href="${ImageGroup.Link}"><img src="${Prefix}${Image.ImagePath}" height="84" alt="" /><br />
+                          ${charWidth(Image.Name,18,'..')}</a></li>
+                  </z:list>
+              </cms:image>
+     		</z:list>
+       </cms:imagegroup>  	
+      </ul>
+    </div>
+  </div>
+<!-- 第二块结束 -->
+
+</div>
+
+<!-- 主体结束 -->
+
+<!-- 页脚开始 -->
+<cms:include file="footer.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 页脚结束 -->
+<script type="text/javascript" src="../js/jquery.soChange-min.js"></script>
+<script type="text/javascript" src="../js/cata_common.js"></script>
+<script type="text/javascript" src="../js/cata_index.js"></script>
+</body>
+</html>

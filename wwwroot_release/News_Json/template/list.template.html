@@ -1,0 +1,21 @@
+<z:config type="ArticleList" name="@{Contentcore.ListTemplate}" />
+<cms:article catalogid="${Catalog.ID}" level="Current" page="true" pagesize="20">
+{
+"prevPageUrl":"",
+"nextPageUrl":"",
+"currentPageIndex":"${PageIndex+1}",
+"pageTotal":${Media.PageCount},
+"listData":[
+	<z:list>${i==1?"":","}
+	{
+		Title:"${Article.Title}",
+		PublishDate:"${Article.PublishDate}",
+		HitCount:"${Article.HitCount}",
+		URL:"${Article.URL}",
+		Link:"${Article.Link}",
+		Content:"${Article.Content}"
+	}
+	</z:list>
+]
+}
+</cms:article>

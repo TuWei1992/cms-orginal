@@ -1,0 +1,97 @@
+<z:config type="FileDetail" name="附件详细页" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${Site.Name}-${Catalog.Name}</title>
+<cms:include file="include.template.html"></cms:include>
+<link href="../css/page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function download() {
+	var dc = {ID:$('#FileID').val()}
+	Server.sendRequest("File.checkDownload",dc,function(response){
+		if(response.Status == 1){
+			window.location = "${FrontAppContext}file/download?ID=" + $('#FileID').val();
+		} else {
+			Dialog.warn(response.Message);
+		}
+	},null,null,'json');
+}
+function addFavorites(id,favtype){
+	var url = '${FrontAppContext}member/logined?t='+new Date().getTime();
+	loadJs(url, function(){
+		if(result.IsLogin){
+			if(!id || !favtype){
+				Dialog.alert("<z:lang id="Memberfavorites.Favorites.ErrorMsg">缺少必须的参数</z:lang>");
+				return;
+			}
+			var dc = {ID:id,FavType:favtype};
+			loadJs("${FrontAppContext}memberFavorites/add?ID="+id+"&FavType="+favtype,function(){
+				Dialog.alert(result.message);
+				});
+		}else{
+			//登录
+			Dialog.alert("还未登录，请先登录");
+			var loginurl ="${FrontAppContext}member/login?SiteID=${Site.ID}&Referer="+encodeURIComponent(window.location.href);
+			window.location.href = loginurl;
+		}
+	});
+}
+</script>
+</head>
+
+<body>
+<!-- 页头开始 -->
+<cms:include file="headerblock2.template.html" ssi="false">{ZCMS:文件包含}</cms:include>
+<!-- 页头结束 -->
+
+<!-- 主体开始 -->
+<div class="main cata_main pageWidth clearself">
+
+<!-- 第一块开始 -->
+<div class="blockboxB blockboxnobg clearself">
+<!-- 第一块左侧开始 -->
+<div class="newslist_left clearself fl">  
+   <div class="detailpage_list">
+    <dl>
+        <dt style="${Content.TitleStyle}">${File.Title}</dt>
+        <dd><input type="hidden" id="FileID" value="${File.ID}">${format(File.PublishDate,'yyyy年MM月dd日 HH:mm')}&nbsp;&nbsp;${File.Source}
+        &nbsp;&nbsp;<a class="scbtn" href="#" onclick="addFavorites('${File.ID}','Content')">收藏</a></dd>
+    </dl>
+  </div>
+  <div class="article_content clearself">
+    <a href="javascript:download();" >点此下载文件</a>
+  </div>
+    <div class="comment clearself">
+   <cms:comment contentid="${File.ID}"></cms:comment>
+
+  </div>
+</div>
+<!-- 第一块左侧结束 -->
+
+<!-- 第一块右侧开始 -->
+<cms:include file="blockright.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 第一块右侧结束 -->
+</div>
+<!-- 第一块结束 -->
+
+</div>
+<!-- 主体结束 -->
+
+<!-- 页脚开始 -->
+<cms:include file="footer.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 页脚结束 -->
+<script type="text/javascript" src="../js/jquery.soChange-min.js"></script>
+<script type="text/javascript" src="../js/cata_index.js"></script>
+<script>
+var curCatalogInnerCode="${Catalog.InnerCode}";//获取当前页面所在栏目的InnerCode，这句不能够写在外部js文件里
+for(var i=1,len=curCatalogInnerCode.length; i<len/6+1; i++){
+    var innerCode=curCatalogInnerCode.substring(0,i*6);
+    var catalogElement=document.getElementById(innerCode);
+    if(catalogElement){
+        catalogElement.className+=" current";
+    }
+}
+</script>
+</body>
+</html>

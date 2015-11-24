@@ -1,0 +1,92 @@
+<z:config type="Block" name="车享汇" />
+<div class="mod-row cx-hui">
+	<div class="mod-side">
+		<div class="mod-tit">
+			<i class="icon-hui"></i>
+			<dl class="tit-name">
+				<dt><a href="${Config.MallBase}/cxh/index.htm" target="_blank">车享汇<ins></ins></a></dt>
+				<dd>全方位体验车享服务</dd>
+			</dl>
+		</div>
+		<ul id="J-hui-list" class="hui-list">
+			<cms:article catalogAlias="sy20150328_cxh_hyqy">
+				<z:list>
+					<li>
+						<z:if condition="${Article.SourceURL != ''}"><a href="${Article.SourceURL}"</z:if><z:else><span</z:else> class="hui-tit" target="_blank"><img src="${Article.LogoFile}" alt="${Article.Title}" width="32" height="32">${Article.Title}<z:if condition="${Article.SourceURL != ''}"></a></z:if><z:else></span></z:else>
+						<p class="intro-txt">${Article.SourceTitle}</p>
+					</li>
+				</z:list>
+			</cms:article>
+		</ul>
+	</div>
+	<div class="mod-main">
+		<div class="mod-act">
+			<div class="mod-act-main">
+				<cms:imagegroup catalogAlias="sy20150328_cxh_jdt" name="左侧图片集">
+				<z:if condition="${__Total>0}">
+					<cms:image>
+						<z:if condition="${__Total>1}">
+						<p class="btn-area">
+							<span class="icon-arrow-left"></span>
+							<span class="icon-arrow-right"></span>
+						</p>
+						</z:if>
+						<ul class="act-img-box">
+							<z:list><li <z:if condition="${i==1}">class="show"</z:if>><a href="${image.LinkURL}" target="_blank" title="${image.name}"><img <z:if condition="${i==1}">class="lazy" data-original</z:if><z:else>src</z:else>="${image.ImagePath}" alt="${image.name}" width="714" height="340"></a></li></z:list>
+						</ul>
+					</cms:image>
+				</z:if>
+				</cms:imagegroup>
+			</div>
+			<div class="mod-act-side">
+				<cms:imagegroup catalogAlias="sy20150328_cxh_jdt" name="右侧图片集">
+				<z:if condition="${__Total>0}">
+					<cms:image>
+					<z:if condition="${__Total>1}">
+					<p class="btn-area">
+						<span class="icon-arrow-left"></span>
+						<span class="icon-arrow-right"></span>
+					</p>
+					</z:if>
+					<ul class="act-img-box">
+						<z:list><li<z:if condition="${i==1}"> class="show"</z:if>><a href="${image.LinkURL}" target="_blank" title="${image.name}"><img <z:if condition="${i==1}">class="lazy" data-original</z:if><z:else>src</z:else>="${image.ImagePath}" alt="${image.name}"  width="234" height="340"></a></li></z:list>
+					</ul>
+					</cms:image>
+				</z:if>
+				</cms:imagegroup>
+				
+			</div>
+		</div>
+		<div class="car-know">
+			<h4 class="tit">车知道</h4>
+			<div class="search-panel">
+				<div class="inp-box">
+					<span class="inp-left"></span>
+					<input id="searchKeyWord" type="text" class="inp inp-place" name="searchkey" placeholderMsg="搜索车的一切" autocomplete="off" onkeydown="enterSearch(this,event)">
+					<a id="J-btn-search" class="btn-search" target="_blank" href="${Config.ClubBase}">搜索答案</a>
+				</div>
+				<a class="a-btn" target="_blank" href="${Config.ClubBase}/index.htm?source=master">我要提问</a>
+			</div>
+		</div>
+		<div class="car-knowledge">
+			<div class="car-knowledge-wrap">
+				<div class="img-box"><cms:imagegroup catalogAlias="sy20150328_cxh_czdtp" name="左侧图片"><z:if condition="${__Total>0}"><cms:image count="1"><a href="${image.LinkURL}" target="_blank" title="${image.name}"><img src="${image.ImagePath}" alt="${image.name}" width="264" height="140"></a></cms:image></z:if></cms:imagegroup></div>
+				<ul class="txt-list">
+				<cms:cxdata code="findQuestList">
+				<z:list count="5">
+					<li><i class="icon-dot"></i><a href="${Config.ClubBase}/question/${CXData.data.id}" target="_blank">${CXData.data.title}</a></li>
+				</z:list>
+				</cms:cxdata>
+				</ul>
+				<div class="img-box"><cms:imagegroup catalogAlias="sy20150328_cxh_czdtp" name="右侧图片"><z:if condition="${__Total>0}"><cms:image count="1"><a href="${image.LinkURL}" target="_blank" title="${image.name}"><img src="${image.ImagePath}" alt="${image.name}" width="264" height="140"></a></cms:image></z:if></cms:imagegroup></div>
+				<ul class="txt-list">
+				<cms:cxdata code="findQuestList">
+				<z:list count="5" begin="6">
+					<li><i class="icon-dot"></i><a href="${Config.ClubBase}/question/${CXData.data.id}" target="_blank">${CXData.data.title}</a></li>
+				</z:list>
+				</cms:cxdata>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

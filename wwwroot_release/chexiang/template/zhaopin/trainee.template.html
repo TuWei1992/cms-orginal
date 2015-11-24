@@ -1,0 +1,166 @@
+<z:config type="ArticleList" name="实习生模板" />
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+	<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+		<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>
+		<meta http-equiv="cache-control" content="public"/>
+		<meta http-equiv="expires" content="max-age"/>	
+		<title>车享招聘</title>
+		<meta name="keywords" content="车享招聘"/>
+		<!-- begin | global javascript -->
+			<script>
+				(function (window, console) {
+//				 	window.base = "${Config.Base}";
+					window.base = "";
+					window.accountBase="${Config.AccountBase}";
+					window.mainBase = "${Config.MainBase}";
+					window.imBase = "${Config.ImBase}";
+					window.OrderBase = "${Config.OrderBase}";
+					window.memberBase = "${Config.MemberBase}";
+					window.mallBase = "${Config.MallBase}";
+					window.imUrl="${Config.imUrl}?arg=admin&style=2";
+					
+				} (window, "undefined" != typeof console ? console : void 0));
+			</script>
+		<!-- end | global javascript -->
+		<link href="${surl('resource/common/img/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+		<!-- begin | public stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/common/css/reset.css')}">
+		<link rel="stylesheet" href="${surl('resource/common/css/global.css')}">
+		<!-- end | public stylesheet -->
+		<!-- begin | private stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/zhaopin/css/index.css')}">
+		<!-- end | private stylesheet -->
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${surl('resource/common/js/jquery_1_8_3.js')}"></script>
+	<!-- end | public javascript -->		
+</head>
+<body>
+	<!-- begin | Top Bar -->
+    <cms:include file="../header_index-mini.template.html" />
+	<!-- end | Top Bar -->
+	
+	<!-- begin | menu Bar -->
+    <cms:include file="header_menu.zhaopin.template.html" />
+	<!-- end | menu Bar -->
+	
+	<!-- container -->
+	<div class="container">
+		<!-- main_b -->
+		<div class="main_b fl">
+
+			<!--  -->
+			<div class="mod-role">
+				<div class="th">
+					<h3 class="tit">找到适合你的职位</h3>
+				</div>
+				<div class="tb">
+					<table class="rend-data">
+					<colgroup>
+						<col class="job-tit">
+						<col class="job-type">
+						<col class="job-place">
+						<col class="job-time">
+						<col class="job-apply">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>职位名称</th>
+							<th>职位性质</th>
+							<th>工作地点</th>
+							<th>发布日期</th>
+							<th></th>
+						</tr>						
+					</thead>
+					<tbody>
+						<cms:article loadExtend="true" orderby="TopFlag>0 desc,PublishDate desc">
+						<z:list>
+						<tr>
+							<td><div class="fix-txt"><a href="${(Article.Link)}" title="${Article.Title}" target="_blank">${charWidth(Article.Title, 30, "...")}</a>
+								${(Article.TopFlag!=0?'<i class="tag-top">顶</i>':'')}
+								${(Article.Attribute==8?'<i class="tag-hot">热</i>':'')}
+								${(Article.Tag=='急'?'<i class="tag-fast">急</i>':'')}
+							</div></td>
+							<td>${Article.SourceTitle}</td>
+							<td>${Article.MetaValue_workPlace}</td>
+							<td>${format(Article.PublishDate, 'yyyy-MM-dd')}</td>
+							<td>
+								<z:if condition="${not empty Article.MetaValue_applyUrl}">
+				                	<a href="${Article.MetaValue_applyUrl}" title="申请职位">申请职位<i></i></a> 
+				                </z:if>
+				                <z:else>
+				                	<a href="mailto:campus@chexiang.com?subject=申请${Article.Title}" title="申请职位">申请职位<i></i></a>
+				                </z:else>
+							</td>
+						</tr>
+					    </z:list>
+						</cms:article>
+					</tbody>
+				</table>
+
+				<div class="txt-warning">
+					<p>有意者请将您的简历发送至：campus@chexiang.com（请勿以附件形式发送简历！）</p>
+					<p>简历中请注明：1.您所申请的职位 2.您目前或期望的薪资范畴</p>
+					<p>一个人最多可以投递两个职位，快来加入我们吧！</p>
+				</div>
+				</div>
+				
+			</div>
+
+			<!--  -->
+			<div class="mod-role">
+				<h3 class="tit tit-other">怎样加入车享</h3>
+				<div class="tb join-progress join-progress-trainee">
+					<ul>
+						<li>网申</li>
+						<li>面试</li>
+						<li>Offer</li>
+						<li>入职</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="side fr">
+        	<!--  关注我们  开始 -->
+        	<div class="mod mod-attention b_mod_attention">
+                <div class="th">
+                    <h3 class="tit">关注我们</h3>
+                    <div class="btn-sina"><wb:follow-button uid="5223430562" type="red_1" width="67" height="24" ></wb:follow-button></div>
+                </div>
+                <dl class="zhaopin-weixin">
+                    <dd class="img-box"><img src="${surl('resource/zhaopin/img/zhaopin-ercode.png')}" alt="招聘微信订阅号" width="170" height="170" /></dd>
+                    <dt>
+					关注车享招聘订阅号
+					<strong>你离车享更近一步</strong>
+					</dt>
+                </dl>
+            </div>
+            <!--  关注我们  结束 -->
+            
+            <!--  广告位  开始 -->
+            <cms:block code="advImage" updateBlock="false" />
+        	<!--  广告位  结束 -->
+        </div>
+	</div>
+
+
+	<!-- footer -->
+	<cms:include file="../footer_index.template.html" />
+	<!-- end | Footer -->
+	
+	<!-- sidebar -->
+	<cms:include file="../sidebar.template.html" />
+	<!-- end | sidebar -->	
+
+	
+	<script>
+	$('.main-nav a').removeClass('cur');$('.main-nav li').eq(3).find('a').addClass('cur');
+	</script>
+	<script src="${surl('resource/common/js/header.js')}"></script>
+	<script src="${surl('resource/zhaopin/js/index.js')}"></script>
+	<cms:include file="../analysis.template.html" />
+</body>
+</html>

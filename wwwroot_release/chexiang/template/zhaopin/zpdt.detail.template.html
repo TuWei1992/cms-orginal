@@ -1,0 +1,129 @@
+<z:config type="ArticleDetail" name="招聘动态详情模板" />
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+	<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+		<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>
+		<meta http-equiv="cache-control" content="public"/>
+		<meta http-equiv="expires" content="max-age"/>	
+		<title>职位详情_车享招聘</title>
+		<meta name="keywords" content="车享招聘"/>
+		<!-- begin | global javascript -->
+			<script>
+				(function (window, console) {
+//				 	window.base = "${Config.Base}";
+					window.base = "";
+					window.accountBase="${Config.AccountBase}";
+					window.mainBase = "${Config.MainBase}";
+					window.imBase = "${Config.ImBase}";
+					window.OrderBase = "${Config.OrderBase}";
+					window.memberBase = "${Config.MemberBase}";
+					window.mallBase = "${Config.MallBase}";
+					window.imUrl="${Config.imUrl}?arg=admin&style=2";
+				} (window, "undefined" != typeof console ? console : void 0));
+			</script>
+		<!-- end | global javascript -->
+		<link href="${surl('resource/common/img/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+		<!-- begin | public stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/common/css/reset.css')}">
+		<link rel="stylesheet" href="${surl('resource/common/css/global.css')}">
+		<!-- end | public stylesheet -->
+		<!-- begin | private stylesheet -->
+        <link rel="stylesheet" href="${surl('resource/zhaopin/css/index.css')}">
+		<link rel="stylesheet" href="${surl('resource/zhaopin/css/recruit.css')}">
+        <link href="http://bdimg.share.baidu.com/static/api/css/share_style0_24.css" rel="stylesheet" />
+		<!-- end | private stylesheet -->
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${surl('resource/common/js/jquery_1_8_3.js')}"></script>
+	<!-- end | public javascript -->		
+</head>
+<body>
+	<!-- begin | Top Bar -->
+    <cms:include file="../header_index-mini.template.html" />
+	<!-- end | Top Bar -->
+	
+	<!-- begin | menu Bar -->
+    <cms:include file="header_menu.zhaopin.template.html" />
+	<!-- end | menu Bar -->
+	
+
+	<!-- container -->
+	<div class="container">		
+		<div class="main_b fl">
+            <div class="main_trends">
+            	<h2>${Article.Title}</h2>
+                <p class="sub_title">发布日期：${format(Article.PublishDate, 'yyyy-MM-dd')}</p>
+                ${(Article.Content)}
+                <div class="bot clearfix">
+                	<div class="share">
+                    	<div data-bd-bind="1430277758139" class="bdsharebuttonbox share-btn bdshare-button-style0-24" style="display: block;">
+                        	<a rel="nofollow" title="分享到QQ好友" data-cmd="sqq" style="margin:6px 6px 6px 0;" class="bds_sqq" href="#"></a>
+                            <a rel="nofollow" title="分享到微信" data-cmd="weixin" style="margin:6px 6px 6px 0;" class="bds_weixin" href="#"></a>
+                            <a rel="nofollow" title="分享到新浪微博" data-cmd="tsina" style="margin:6px 6px 6px 0;" class="bds_tsina" href="#"></a>
+                            <a rel="nofollow" title="分享到QQ空间" data-cmd="qzone" style="margin:6px 6px 6px 0;" class="bds_qzone" href="#"></a>
+                            <a rel="nofollow" title="分享到腾讯微博" data-cmd="tqq" style="margin:6px 6px 6px 0;" class="bds_tqq" href="#"></a>
+                            <a rel="nofollow" title="分享到人人网" data-cmd="renren" style="margin:6px 6px 6px 0;" class="bds_renren" href="#"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+        <div class="side fr">
+        	<!--  关注我们  开始 -->
+        	<div class="mod mod-attention b_mod_attention">
+                <div class="th">
+                    <h3 class="tit">关注我们</h3>
+                    <div class="btn-sina"><wb:follow-button uid="5223430562" type="red_1" width="67" height="24" ></wb:follow-button></div>
+                </div>
+                <dl class="zhaopin-weixin">
+                    <dd class="img-box"><img src="${surl('resource/zhaopin/img/zhaopin-ercode.png')}" alt="招聘微信订阅号" width="170" height="170" /></dd>
+                    <dt>
+					关注车享招聘订阅号
+					<strong>你离车享更近一步</strong>
+					</dt>
+                </dl>
+            </div>
+            <!--  关注我们  结束 -->
+            
+            <!--  广告位  开始 -->
+            <cms:block code="advImage" updateBlock="false" />
+            <!--  广告位  结束 -->
+        
+        </div>
+	</div>
+
+	<!-- footer -->
+	<cms:include file="../footer_index.template.html" />
+	<!-- end | Footer -->
+
+	<!-- sidebar -->
+	<cms:include file="../sidebar.template.html" />
+	<!-- end | sidebar -->
+	
+<script src="${surl('resource/common/js/header.js')}"></script>	
+<z:set var="tabNum" value="3"></z:set>
+<cms:catalog><z:if condition="${catalog.Alias=='zpsy_zpdt'}"><z:set var="tabNum" value="0"></z:set></z:if></cms:catalog>
+<script>
+$('.main-nav a').removeClass('cur');$('.main-nav li').eq(${tabNum}).find('a').addClass('cur');
+
+//百度分享
+var shareImg = 'http://s1.cximg.com/promotionweb/images/pc/328/main/share.jpg';
+window._bd_share_config={
+	"common":{
+		"bdSnsKey":{},
+		"bdText":"",
+		"bdMini":"1",
+		"bdMiniList":false,
+		"bdPic":"",
+		"bdStyle":"0",
+		"bdSize":"24"
+	},
+	"share":{}
+};
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<cms:include file="../analysis.template.html" />
+</body>
+</html>

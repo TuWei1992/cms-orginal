@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+<script src="../js/common.js"></script>
+</head>
+<body>
+<div id="header" class="header">
+  <div class="h_infoNav">
+    <div class="h_masthead pagewidth">
+      <p><span class="h_s01 cRed"><a target="_blank" href="http://www.zving.com">Zving Software</a></span> <span class="h_s02 cRed"><a target="_blank" href="http://www.zving.com/products/zcms/">Zving Content Manage System</a></span> <span id="h_getDay" class="cGray">2011-12-25 Sunday</span></p>
+      <div class="h_set"> <span class="cGray"><a id="h_sethomea" href="javascript:setHomepage('http://news.ifeng.com/history/')">Home</a> <a href="javascript:AddFavorite('http://news.ifeng.com/history/','泽元新闻网历史');">Add2favorite</a>
+       <a target="_blank" href="#;">Site map</a> <a onclick="hideloginbox();" style="cursor:pointer;">Copyright</a>
+        </span>
+        <div style="display:inline;" id="h_welcome"></div>
+      </div>
+      <div style="display:none;" id="h_loginbox" class="h_indexLogin">
+        <div class="h_close cGray2"><a style="cursor:pointer;" onclick="closeloginbox();">关闭</a></div>
+        <div class="clear"></div>
+        <form name="l_f" id="h_form1" method="post" action="http://my.ifeng.com/?_c=index&amp;_a=login">
+          <ul>
+            <li>
+              <label>账号 </label>
+              <input type="text" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_uname" class="h_text" name="uname">
+            </li>
+            <li>
+              <label>Pass Word </label>
+              <input type="password" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_pass" class="h_text" name="pass">
+            </li>
+            <li>
+              <input type="button" onclick="javascript:CheckInfo();" value="" class="h_btn04" name="Submit">
+            </li>
+          </ul>
+          <div class="h_indexReg">没有账号？<br>
+            <a target="_blank" href="#;">立即注册</a></div>
+          <input type="hidden" value="http://news.ifeng.com/history/" id="h_backurl" name="backurl">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="height:80px;">
+    <div class="pagewidth"><img src="../images/head_logo.gif" width="500" height="78" class="fl">
+      <div class="header_top"><a class="fr inline-block login_btn">Login</a><a class="fr inline-block">Registr</a><a href="#">Registration protocol</a> | <a href="#">help center</a> | <a href="#">member center</a>
+        <div style="clear:both">
+          <form name="form1" method="post" action="">
+            <input type="text" name="textfield" id="textfield" style="width:160px">
+            <select name="select2" id="select2" style="width:90px">
+              <option>All Site</option>
+            </select>
+            <input type="submit" name="button" id="button" value="Search" style="width:60px">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagewidth" style="background:#c01410; border-top:2px solid #01478f; overflow:hidden;">
+    <div class="clearself">
+      <div class="headNav cWhite">
+		<ul>
+				<li><strong><a href="#;" target="_blank">World</a></strong> <a href="#;" target="_blank">Asia</a> <a href="#;" target="_blank">Middle East</a> <a href="#;" target="_blank">Americas</a> <a href="#;" target="_blank">Europe</a> <a href="#;" target="_blank">Africa</a> <a href="#;" target="_blank">Int'l Organizations</a></li>
+
+				<li><strong><a href="#;" target="_blank">Lifestyle</a></strong> <a href="#;" target="_blank">Culture</a> <a href="#;" target="_blank">Travel</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Food&amp;Drink</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Health</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Society</a></li>
+			  <li><strong><a href="#;" target="_blank">Sports</a></strong> <a href="#;" target="_blank">Soccer</a> <a href="#;" target="_blank">Basketball</a> <a href="#;" target="_blank">Volleyball</a> <a href="#;" target="_blank">Tennis&amp;Golf</a> <a href="#;" target="_blank">Table Tennis</a> <a href="#;" target="_blank">Badminton</a></li>
+		</ul>
+		<ul>
+			  <li><strong><a href="#;" target="_blank">China</a></strong> <a href="#;" target="_blank">Politics</a> <a href="#;" target="_blank">Mainland</a> <a href="#;" target="_blank">HK/Taiwan</a> <a href="#;" target="_blank">China&amp;World</a></li>
+			  <li><strong><a href="#;" target="_blank">Business</a></strong> <a href="#;" target="_blank">Economy</a> <a href="#;" target="_blank">Market</a> <a href="#;" target="_blank">Industries</a> <a href="#;" target="_blank">Entrepreneur</a> <a href="#;" target="_blank">Career</a></li>
+		  <li><strong><a href="#;" target="_blank">Entertainment</a></strong> <a href="#;" target="_blank">Music</a> <a href="#;" target="_blank">Movie</a> <a href="#;" target="_blank">Celebrity</a> <a href="#;" target="_blank">TV</a></li>
+	    </ul>
+      </div>
+    </div>
+  </div>
+</div><!-- end div#header.header -->
+<div id="main" class="pagewidth main">
+  <div class="side_col">
+    <div class="side_mod">
+      <h4 class="mod_tit">Ranking List</h4>
+      <div class="mod_con">
+        <div class="top_news">
+          <ul>
+            <li><span>119207</span>1.<a title="拖拉机“校车”塞满学生跑山路(图)" target="_blank" href="#;">Leave Afghanistan now(Pic)</a> </li>
+            <li><span>96604</span>2.<a title="被邻居棉被接住 网友致电表示钦佩" target="_blank" href="#;">Leaked secrets lead to jail time</a> </li>
+            <li><span>89383</span>3.<a title="小伙称扶救伤者子让一家4口瘦80斤" target="_blank" href="#;">Space scientists look to nature</a> </li>
+            <li><span>75697</span>4.<a title="7岁好心邻居用棉被接住救孩子一命" target="_blank" href="#;">Don't abandon women to Taliban</a> </li>
+            <li><span>72458</span>5.<a title=" 十余路人抬起越野车救孩子" target="_blank" href="#;">South China Sea dispute</a> </li>
+            <li><span>58194</span>6.<a title="经理遭员工追赶 被见义勇为者当" target="_blank" href="#;">China launches two navigation...</a> </li>
+            <li><span>40437</span>7.<a title="动物保护者集会抗议皮草工业" target="_blank" href="#;">China, Poland agree to deepen...</a> </li>
+            <li><span>34586</span>8.<a title="女青年放弃高薪投身公益被称微笑" target="_blank" href="#;">Chinese Premier meets Polish PM</a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="side_mod">
+      <h4 class="mod_tit"><a href="#">Photo Gallery</a></h4>
+      <div class="clearself">
+        <ul class="pic_newslist">
+          <li><a target="_blank" href="#;"><img width="120" height="90" border="0" title="张咪诈骗案原告展新证据" src="../images/photo.gif"></a>
+            <p><a target="_blank" href="#;">South China Sea dispute</a></p>
+          </li>
+          <li><a target="_blank" href="#;"><img width="120" height="90" border="0" title="张咪诈骗案原告展新证据" src="../images/photo.gif"></a><a target="_blank" href="#;"></a>
+            <p><a target="_blank" href="#;">Leave Afghanistan now</a></p>
+          </li>
+          <li><a target="_blank" href="#;"><img width="120" height="90" border="0" title="张咪诈骗案原告展新证据" src="../images/photo.gif"></a><a target="_blank" href="#;"></a>
+            <p><a target="_blank" href="#;">Leave Afghanistan now</a></p>
+          </li>
+          <li><a target="_blank" href="#;"><img width="120" height="90" border="0" title="张咪诈骗案原告展新证据" src="../images/photo.gif"></a>
+            <p><a target="_blank" href="#;">South China Sea dispute</a></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="side_mod">
+      <h4 class="mod_tit">Focus</h4>
+      <div>
+        <div class="pic_newslist_s">
+          <div class="new">
+            <div><a href="#;" target="_blank">Leave Afghanistan now</a><a href="#;" target="_blank"></a> </div>
+            <p><span>2011-11-23 10:04:40</span></p>
+          </div>
+          <div class="pic"><a href="#;" target="_blank"><img src="../images/photo.gif" border="0" height="45" width="60"></a></div>
+        </div>
+        <div class="pic_newslist_s">
+          <div class="new">
+            <div><a href="#;" target="_blank">Don't abandon women to Taliban</a><a href="#;" target="_blank"></a> </div>
+            <p><span>2011-10-20 17:08:00</span></p>
+          </div>
+          <div class="pic"><a href="#;" target="_blank"><img src="../images/photo.gif" border="0" height="45" width="60"></a></div>
+        </div>
+        <div class="pic_newslist_s">
+          <div class="new">
+            <div><a href="#;" target="_blank">South China Sea dispute</a> <a href="#;" target="_blank"></a> </div>
+            <p><span>2011-09-09 18:32:00</span></p>
+          </div>
+          <div class="pic"><a href="#;" target="_blank"><img src="../images/photo.gif" border="0" height="45" width="60"></a></div>
+        </div>
+        <div class="pic_newslist_s">
+          <div class="new">
+            <div><a href="#;" target="_blank">China, Poland agree to deepen</a><a href="#;" target="_blank"></a> </div>
+            <p><span>2011-09-30 17:08:00</span></p>
+          </div>
+          <div class="pic"><a href="#;" target="_blank"><img src="../images/photo.gif" border="0" height="45" width="60"></a></div>
+        </div>
+        <div class="more02"><a target="_blank" href="#;">MORE</a>
+      </div></div>
+    </div>
+    <div class="side_mod"><a target="_blank" href="#;"><img width="288" height="200" border="0" title="张咪诈骗案原告展新证据" src="../images/photo.gif"></a></div>
+  </div>
+  <!--end div.side_col-->
+  <div class="main_col">
+    <div class="crumb">Current Location：<a href="$">Home</a> > <a href="#">China</a> > <a href="#">Politics</a></div>
+    <div class="line_b"></div>
+    <div class="news_detail">
+      <div class="new_title_wrap clearself">
+        <h3 class="new_title">制造企业：如何实现ERP的第三重境界</h3>
+        <div class="extend">Publish：2009-12-09 15:31 <br>
+          Source：社会观察Median心    Author：佚名</div>
+        <div class="function"><br>
+          【<a href="javascript:doZoom(16)">Big</a> <a href="javascript:doZoom(14)">Median</a> <a href="javascript:doZoom(12)">Small</a>】【<a href="#_print" target="_top">打印</a>】【<a href="javascript:closeMe();">关闭</a>】</div>
+      </div>
+      <div class="news_content">
+        <table border="0">
+          <tr>
+            <td><p>每年江苏无偿献血的采血量在增加，但是，今年献血的增幅跟不上用血的增幅，血液供求矛盾日渐突出。血液供应紧张已从过去阶段性、季节性逐步演变为常态化。昨天，记者在省卫生厅召开的无偿献血宣传月活动泽元发布会上了解到，我国正酝酿修改《献血法》，将献血年龄从18-55周岁，放宽至17-60周岁。 于丹丹</p>
+              <p><b>献血增幅跟不上用血增长</b></p>
+              <p>昨天，省卫生厅公布的数据显示，江苏今年1月&mdash;9月，接受无偿捐献全血648414人次，比去年同期增长4.62%；累计采全血比去年同期增长4.69%；接受无偿捐献成分血46533人次，比去年同期增长4.5%；临床用血比去年同期增长4.89%。但是，江苏省卫生厅医政处处长李少东说，献血增长还是跟不上临床用血增长。随着现代医学科学和医疗技术的进步，一些难度较Big的手术和需要血制品的先进治疗技术日趋常规化，导致我省临床用血量以平均每年10%的速度递增。近年来，全国手术量年均增长18.6%，用血量年均增长12%，而我国血液采集总量年均增长仅7.7%，远远低于用血量和手术量增长速度。　</p>
+              <p><b>&ldquo;郭美美&rdquo;使街头采血量下降</b></p>
+              <p>让省血液Median心工作人员感触颇深的是，无偿献血的Big力宣传却抵不过一些负面信息的影响。省血液Median心一位负责人告诉记者，今年以来&ldquo;郭美美事件&rdquo;导致的社会公信力下降，此外还有如宁波Big学生无偿献血后晕倒，左眼砸到椅背导致失明，这一事件也给无偿献血造成了很Big影响。江苏省血液Median心体采科科长郭东辉坦言，受这些负面泽元的影响，该Median心10月和11月份接待的无偿献血人数明显下降，&ldquo;比去年同期下降了30-40%，现在一天街头采血都采不到100人，如果一天能采到200多人的话，我们就能保证临床的需求。&rdquo;而街头采血满足不了供应，血站就要组织单位团队进行献血。</p></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- end div.news_detail -->
+    <div style="background:url();" class="relateNews">
+      <h4>Related News：</h4>
+      <ul>
+        <li><i>·</i><a target="_blank" href="#;">纪念“献血法”实施企业设立“献血日”</a></li>
+        <li><i>·</i><a target="_blank" href="#;">成都新献血法实施办法实施 将取消献血休假补贴</a></li>
+        <li><i>·</i><a target="_blank" href="#;">苏伟：China政府将保持与NGO和媒体的对话</a></li>
+        <li><i>·</i><a target="_blank" href="#;">闾丘露薇：China的公益媒体始终是官方的 垄断性很强</a></li>
+      </ul>
+    </div>
+    <div class="line_b"></div>
+    <div style="" id="comment2">
+      <div class="tit01">
+        <p id="cmtTitle" class="cblue"><a id="viewAllComment02" href="javascript:void(0);"><span class="t5"><font color="#b9253b" id="cmtuserall01">13</font>participants</span></a>&nbsp;&nbsp;<a id="viewAllComment03" href="javascript:void(0);"><span style="color:#004276;"><font color="#b9253b" id="cmtuser01">3</font>comments(View)</span></a>&nbsp;&nbsp;</p>
+        User comments</div>
+      <div id="commentCon" style="display:none;" class="commentCon">
+        <div id="cmtlistdiv"></div>
+        <div class="view"><a style="color:#004078;" id="viewAllComment06" href="javascript:void(0);">共有<span id="cmtuserall02" class="cRed">13</span>participants</a>　<a onclick="viewAllComment07" href="javascript:void(0);" style="color:#004078;">评论<span id="cmtuser02" class="cRed">3</span>条</a></div>
+      </div>
+      <div class="commentLoginBox clearfix">
+        <div class="commentLogin">
+          <form id="cmt_frm" method="post" action="http://my.ifeng.com/?_c=index&amp;_a=login">
+            <input type="hidden" value="http://gongyi.ifeng.com/news/detail_2011_12/13/11287148_0.shtml" id="cmtBackUrl" name="backurl">
+            <div id="cmtLogin" style="margin-bottom:6px;">
+              <label style="vertical-align:middle">User Name </label>
+              <input name="uname" id="cmt_uname" class="ipt02 inputcheckbox">
+              <label style="vertical-align:middle">Pass Word </label>
+              <input type="password" name="pass" id="cmt_pass" class="ipt02 inputcheckbox">
+              <input type="button" id="cmtfrmbutton" value=" Login " class="btn3 inputcheckbox">
+              <input type="button" id="cmtReg" value="register" class="btn3 inputcheckbox">
+            </div>
+            <div id="cmtLogined" style="display:none" class="userInfo"></div>
+          </form>
+          <form target="_blank" method="post" action="http://comment.ifeng.com/post.php" id="cmtCmt_frm" name="commentForm">
+            <textarea class="textLogin2" id="cmt_content" name="content">Internet civilization, login to comment!</textarea>
+            <input type="hidden" id="cmtdocName" name="docName" value="媒体称中国正酝酿修改《献血法》放宽捐献者年龄">
+            <input type="hidden" id="cmtdocUrl" name="docUrl" value="http://gongyi.ifeng.com/news/detail_2011_12/13/11287148_0.shtml">
+          </form>
+          <div id="num02">
+            <div class="fr">
+              <input type="button" id="cmtSubmit" class="btn2" value="">
+            </div>
+            <p class="">All comments only on behalf of netizen opinions</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:none;"><img width="11" height="8" src="../images/photo.gif"><img width="15" height="14" src="../images/photo.gif">
+        <input type="hidden" id="prid" value="">
+      </div>
+    </div>
+  </div>
+  <!--end div.main_col-->
+</div>  <!--end div#main.main-->
+
+<div id="footer" class="footer">
+  <div class="line_red pagewidth"></div>
+  <div class="pagewidth" style="text-align:center; padding:20px 0 5px;"><a href="#">Advertising services</a> | <a href="#">recruitment </a> | <a href="#">privacy policy</a> | <a href="#">disclaimer</a> | <a href="#">feedback</a></div>
+  <div class="pagewidth" style="text-align:center; padding:5px 0 40px;">Copyright(C) Zving News 2007-2008    All Rights Reserved.<br>
+    Tel：010-82895509 E-mail:office@zving.com</div>
+</div><!-- end div#footer.footer-->
+</body>
+</html>

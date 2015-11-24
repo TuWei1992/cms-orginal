@@ -1,0 +1,9 @@
+<z:config type="ArticleDetail" name="@{Contentcore.DetailTemplate}" />
+{
+	Title:"${Article.Title}",
+	PublishDate:"${Article.PublishDate}",
+	HitCount:"${Article.HitCount}",
+	URL:"${Article.URL}",
+	Link:"${Article.Link}",
+	Content:"${(replace(replace(replace(Article.Content,"\\r\\n?","<br>","regex"),"\\n","<br>","regex"),"\"","'"))}"
+}

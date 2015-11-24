@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:ice="http://ns.adobe.com/incontextediting">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+<script src="../js/common.js"></script>
+</head>
+<body>
+<div id="header" class="header">
+  <div class="h_infoNav">
+    <div class="h_masthead pagewidth">
+      <p><span class="h_s01 cRed"><a target="_blank" href="http://www.zving.com">Zving Software</a></span> <span class="h_s02 cRed"><a target="_blank" href="http://www.zving.com/products/zcms/">Zving Content Manage System</a></span> <span id="h_getDay" class="cGray">2011-12-25 Sunday</span></p>
+      <div class="h_set"> <span class="cGray"><a id="h_sethomea" href="javascript:setHomepage('http://news.ifeng.com/history/')">Home</a> <a href="javascript:AddFavorite('http://news.ifeng.com/history/','泽元新闻网历史');">Add2favorite</a>
+       <a target="_blank" href="#;">Site map</a> <a onclick="hideloginbox();" style="cursor:pointer;">Copyright</a>
+        </span>
+        <div style="display:inline;" id="h_welcome"></div>
+      </div>
+      <div style="display:none;" id="h_loginbox" class="h_indexLogin">
+        <div class="h_close cGray2"><a style="cursor:pointer;" onclick="closeloginbox();">关闭</a></div>
+        <div class="clear"></div>
+        <form name="l_f" id="h_form1" method="post" action="http://my.ifeng.com/?_c=index&amp;_a=login">
+          <ul>
+            <li>
+              <label>账号 </label>
+              <input type="text" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_uname" class="h_text" name="uname">
+            </li>
+            <li>
+              <label>Pass Word </label>
+              <input type="password" onblur="javascript:if (value=='text') {this.className='h_text'};" onfocus="javascript:if (value=='') {this.className='h_text'};" id="h_pass" class="h_text" name="pass">
+            </li>
+            <li>
+              <input type="button" onclick="javascript:CheckInfo();" value="" class="h_btn04" name="Submit">
+            </li>
+          </ul>
+          <div class="h_indexReg">没有账号？<br>
+            <a target="_blank" href="#;">立即注册</a></div>
+          <input type="hidden" value="http://news.ifeng.com/history/" id="h_backurl" name="backurl">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="height:80px;">
+    <div class="pagewidth"><img src="../images/head_logo.gif" width="500" height="78" class="fl">
+      <div class="header_top"><a class="fr inline-block login_btn">Login</a><a class="fr inline-block">Registr</a><a href="#">Registration protocol</a> | <a href="#">help center</a> | <a href="#">member center</a>
+        <div style="clear:both">
+          <form name="form1" method="post" action="">
+            <input type="text" name="textfield" id="textfield" style="width:160px">
+            <select name="select2" id="select2" style="width:90px">
+              <option>All Site</option>
+            </select>
+            <input type="submit" name="button" id="button" value="Search" style="width:60px">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagewidth" style="background:#c01410; border-top:2px solid #01478f; overflow:hidden;">
+    <div class="clearself">
+      <div class="headNav cWhite">
+		<ul>
+				<li><strong><a href="#;" target="_blank">World</a></strong> <a href="#;" target="_blank">Asia</a> <a href="#;" target="_blank">Middle East</a> <a href="#;" target="_blank">Americas</a> <a href="#;" target="_blank">Europe</a> <a href="#;" target="_blank">Africa</a> <a href="#;" target="_blank">Int'l Organizations</a></li>
+
+				<li><strong><a href="#;" target="_blank">Lifestyle</a></strong> <a href="#;" target="_blank">Culture</a> <a href="#;" target="_blank">Travel</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Food&amp;Drink</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Health</a> <a href="#;" target="_blank">Fashion</a> <a href="#;" target="_blank">Society</a></li>
+			  <li><strong><a href="#;" target="_blank">Sports</a></strong> <a href="#;" target="_blank">Soccer</a> <a href="#;" target="_blank">Basketball</a> <a href="#;" target="_blank">Volleyball</a> <a href="#;" target="_blank">Tennis&amp;Golf</a> <a href="#;" target="_blank">Table Tennis</a> <a href="#;" target="_blank">Badminton</a></li>
+		</ul>
+		<ul>
+			  <li><strong><a href="#;" target="_blank">China</a></strong> <a href="#;" target="_blank">Politics</a> <a href="#;" target="_blank">Mainland</a> <a href="#;" target="_blank">HK/Taiwan</a> <a href="#;" target="_blank">China&amp;World</a></li>
+			  <li><strong><a href="#;" target="_blank">Business</a></strong> <a href="#;" target="_blank">Economy</a> <a href="#;" target="_blank">Market</a> <a href="#;" target="_blank">Industries</a> <a href="#;" target="_blank">Entrepreneur</a> <a href="#;" target="_blank">Career</a></li>
+		  <li><strong><a href="#;" target="_blank">Entertainment</a></strong> <a href="#;" target="_blank">Music</a> <a href="#;" target="_blank">Movie</a> <a href="#;" target="_blank">Celebrity</a> <a href="#;" target="_blank">TV</a></li>
+	    </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end div#header.header -->
+<div id="main" class="pagewidth main">
+  <div class="side_col">
+    <div class="side_mod">
+      <h4 class="mod_tit">Search</h4>
+      <div class="mod_con">
+        <form method="get">
+            <table width="90%" border="0" align="center" cellpadding="2" cellspacing="0">
+                        	  <tr>
+                        	    <td>Scope：</td>
+                        	    <td><select name="select" id="select">
+                       	          <option value="1">Title</option>
+                        	        <option value="2">Content</option>
+                   	            </select></td>
+                      	      </tr>
+                        	  <tr>
+                        	    <td>Key Word：</td>
+                        	    <td><input type="text" name="keyword" size="16" id="keywords"/></td>
+                      	      </tr>
+                        	  <tr>
+                              	<td>&nbsp;</td>
+                        	    <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Search" class="search_btn" /></td>
+                       	      </tr>
+       	  </table>
+      </form>
+      </div>
+    </div>
+  </div>
+  <!--end div.side_col-->
+  <div class="main_col">
+    <div class="crumb"> <b>1</b>-<b>3</b> of <b>13</b> results . </div>
+    <div class="line_b"></div>
+    <div class="mainM">
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">许昌村村都有<font color="red">网络评论</font>联络员 为民工追回劳动报酬</a>
+        	</p>
+            <p>（记者刘海涛通讯员赵富忠）12月13日，记者从许昌市司法局获悉，许昌市2342个行政村村村都有了<font color="red">网络评论</font>联络员。 据介绍，今年前11个月，该市司法行政机关依托完善的<font color="red">网络评论</font>网络，共为1103名农民工办理<font color="red">网络评论</font>案件589起，为农民工追回劳动报酬、赢得人身损害赔偿共计668.64万...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-14</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">全省启动为农民工讨薪专项<font color="red">网络评论</font>活动</a>
+        	</p>
+            <p>...钰飞）成都商报记者昨日获悉，为切实维护农民工的合法权益和社会稳定，省司法厅决定，从2011年12月到2012年2月在全省开展为农民工讨薪专项<font color="red">网络评论</font>活动，开辟绿色通道，缩短办案周期，让农民工拿着钱回家过年。省司法厅要求全省各地<font color="red">网络评论</font>机构要简化农民工讨薪<font color="red">网络评论</font>案件的受理程序，快...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-13</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">四川省启动为农民工讨薪专项<font color="red">网络评论</font>活动</a>
+        	</p>
+            <p>成都商报记者昨日获悉，为切实维护农民工的合法权益和社会稳定，省司法厅决定，从2011年12月到2012年2月在全省开展为农民工讨薪专项<font color="red">网络评论</font>活动，开辟绿色通道，缩短办案周期，让农民工拿着钱回家过年。省司法厅要求全省各地<font color="red">网络评论</font>机构要简化农民工讨薪<font color="red">网络评论</font>案件的受理程序，快速办理...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+ 2011-12-13</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">石家庄<font color="red">网络评论</font>Median心助156名农民工讨薪138万</a>
+        	</p>
+            <p>...北日报通讯员李铮 记者牛海英)“刘龙2万元、杨艳丽3万元、张晓丽5千元……”今天上午，石家庄市农民工工资暨工伤赔偿款集Median发放仪式在该市农民工<font color="red">网络评论</font>Median心举行，156名农民工拿到了138万多元欠薪。“农民工挣点钱不容易，有了农民工<font color="red">网络评论</font>Median心，我们心里有了底……”拿到1万元补偿款、...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-13</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">天津市首家乡村（社区）<font color="red">网络评论</font>宣传站落户东丽区</a>
+        	</p>
+            <p>日前，市司法局和天津电视台联合在东丽区华明街范庄村举行乡村（社区）<font color="red">网络评论</font>宣传站挂牌启动仪式。市司法局副局长傅立英、区长助理王庆友、市<font color="red">网络评论</font>Median心负责人出席启动仪式。乡村（社区）<font color="red">网络评论</font>宣传站是天津市首家由<font color="red">网络评论</font>机构和媒体联合设立的宣传站点。它的建立和有效运行，对于<font color="red">网络评论</font>工作...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-13</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">石家庄农民工<font color="red">网络评论</font>Median心向农民工发放追回"欠薪"</a>
+        	</p>
+            <p>...的农民工可能正等待着领取"年薪"回家过年，而欠薪无疑拖延了他们回家的行程。今天上午，在河北石家庄，28名农民工代表领到了迟到的“年薪”，带着<font color="red">网络评论</font>Median心赠送的年货，准备高高兴兴的回家过年。在上午举行的发放仪式上，石家庄<font color="red">网络评论</font>Median心执行主任齐明亮介绍，在2011年1至11月份，Median心...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-12</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">Median央专项彩票公益金<font color="red">网络评论</font>项目一年为群众挽回损失逾20亿元</a>
+        	</p>
+            <p>新华网南宁１２月１２日电（记者刘晓莉）记者１２日从在广西南宁召开的Median央专项彩票公益金<font color="red">网络评论</font>项目工作会议上了解到，Median央专项彩票公益金<font color="red">网络评论</font>项目实施两年来，资助办理各类<font color="red">网络评论</font>案件５５０００多件，受益总人数超过１０万人次，为困难群众挽回经济损失超过２０亿元。China<font color="red">网络评论</font>基金会理事...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-12</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">成都市<font color="red">网络评论</font>条例</a>
+        	</p>
+            <p>目录第一章 总则第二章 <font color="red">网络评论</font>对象和范围第三章 <font color="red">网络评论</font>申请和审查第四章 <font color="red">网络评论</font>实施第五章 <font color="red">法律</font>责任第六章 附则第一章 总则第一条 为了规范和促进<font color="red">网络评论</font>工作，保障经济困难和其他符合法定条件的公民及时获得<font color="red">法律</font>服务和<font color="red">法律</font>救助，根据国务院《<font color="red">网络评论</font>条例》、《四川省<font color="red">网络评论</font>条例》和...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-12</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">河北省将征地拆迁纳入<font color="red">网络评论</font>范围</a>
+        	</p>
+            <p>本站Search近年来，河北省不断降低<font color="red">网络评论</font>门槛，完善服务网络。今后，河北省在重点做好农民工、下岗失业人员、残疾人、妇女儿童等困难群众<font color="red">网络评论</font>工作的基础上，将把MORE的事项纳入<font color="red">网络评论</font>范围，积极承办劳动争议、征地拆迁、环境污染、食品药品安全、企业重组和破产等领域涉及的<font color="red">网络评论</font>案件。</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-12</font></p>
+        </div>
+    	<div class="searchResults">
+        	<p class="fz16 line24"><a target="_blank" href="#;">征地拆迁环境污染入河北省<font color="red">网络评论</font>范围</a>
+        	</p>
+            <p>本站Search河北新闻网讯(河北日报通讯员郭佳、王海燕 记者牛海英)今后，我省在重点做好农民工、下岗失业人员、残疾人、妇女儿童等困难群众<font color="red">网络评论</font>工作的基础上，将把MORE的事项纳入<font color="red">网络评论</font>范围，积极承办劳动争议、征地拆迁、环境污染、食品药品安全、企业重组和破产等领域涉及的<font color="red">网络评论</font>案件。从1...</p>
+            <p><font color="#1a7b2e">	http://wwww.www.www/www - 
+	 2011-12-11</font></p>
+        </div>
+		<div class="next0825">
+		<a href="#;" class="prev">Prev Page</a> <a href="#;">1</a>&nbsp;&nbsp;...&nbsp;&nbsp;<a href="#;">6</a>&nbsp;<a href="#;">7</a> <span class="current">8</span>&nbsp;<a href="#;">9</a>&nbsp;<a href="#;">10</a>&nbsp;&nbsp;...&nbsp;&nbsp;<a href="#;">51</a> <a href="#;" class="next">Next Page</a>
+</div>
+        <div class="termsSearch">
+          <div class="tx">
+        	<form method="get" action="">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tbody><tr>
+                <td width="82%"><input name="q" type="text" class="tex" id="textfield" value="社会观察" size="50"><input type="submit" class="bt" value=" Search " id="button"></td>
+              </tr>
+            </tbody></table>
+            </form>
+          </div>
+       </div>
+    </div>
+    <!-- end div.mainM -->
+  </div>
+  <!--end div.main_col-->
+</div>
+<!--end div#main.main-->
+<div id="footer" class="footer">
+  <div class="line_red pagewidth"></div>
+  <div class="pagewidth" style="text-align:center; padding:20px 0 5px;"><a href="#">Advertising services</a> | <a href="#">recruitment </a> | <a href="#">privacy policy</a> | <a href="#">disclaimer</a> | <a href="#">feedback</a></div>
+  <div class="pagewidth" style="text-align:center; padding:5px 0 40px;">Copyright(C) Zving News 2007-2008    All Rights Reserved.<br>
+    Tel：010-82895509 E-mail:office@zving.com</div>
+</div>
+<!-- end div#footer.footer-->
+</body>
+</html>

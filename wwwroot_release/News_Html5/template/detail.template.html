@@ -1,0 +1,66 @@
+<z:config type="ArticleDetail" name="文章详细页模板"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320, maximum-scale=2.0, user-scalable=no">
+<title>泽元软件新闻详细页</title>
+<link type="text/css" rel="stylesheet" href="../css/style.css" >
+<script type="text/javascript" src="../js/common.js" ></script>
+</head>
+<body>
+<!--头部开始-->
+<cms:include file="header.template.html"></cms:include>
+<!--头部结束-->
+<!--main开始-->
+<div class="main">
+  <div class="position"><cms:position /></div>
+  <div class="newConWrap">
+    <div class="title">${Article.Title}
+      <div class="time">${format(Article.PublishDate,'yyyy年MM月dd日 HH:mm')}</div>
+    </div>
+    <div class="newcon">${(Article.Content)}</div>
+  </div>
+  <div class="share">
+    <div class="fl" style="width:68px;">分享至：</div>
+    <div class="fl" style="width:240px;"><a href="#;"><img src="../images/xl.gif" />新浪微博</a><a href="#;"><img src="../images/qzone.gif" />Qzone</a></div>
+  </div>
+  <div class="Wrap">
+    <div class="modbg" style="padding-left:6px;">相关文章</div>
+    <ul class="list">
+	    <cms:article level="Root" type="Relative" count="5">
+      	<z:list>
+        <li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+        </z:list>
+        </cms:article>
+    </ul>
+  </div>
+  <div class="Wrap" style="padding-top:20px; padding-left:6px; padding-bottom:12px; ">
+    <form>
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><textarea class="textLogin2" id="cmt_content" name="content">文明上网，登录评论！</textarea></td>
+        </tr>
+        <tr>
+          <td align="right"><input type="button" value="发言" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+   <div class="Wrap">
+    <div class="modbg" style="padding-left:6px;">推荐文章</div>
+    <ul class="list">
+      <cms:article level="Root" type="Recent" count="5">
+      	<z:list>
+        <li><a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+        </z:list>
+        </cms:article>
+    </ul>
+  </div>
+</div>
+<!--main结束-->
+<!--尾部开始-->
+<cms:include file="footer.template.html"></cms:include>
+<!--尾部结束-->
+</body>
+</html>

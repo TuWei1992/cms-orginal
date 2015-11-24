@@ -1,0 +1,15 @@
+<z:config type="Block" name="热门图片新闻区块"/>
+<div class="side_mod">
+      <h4 class="mod_tit"><a href="#">热门图片新闻</a></h4>
+      <div class="clearself">
+        <ul class="pic_newslist">
+          <cms:imagegroup level="Root" type="Recent" count="4">
+          <z:list> 
+            <li><a target="_blank" href="${ImageGroup.Link}"><img width="120" height="90" border="0" title="${ImageGroup.Title}" src="${ImageGroup.LogoFile}"></a>
+              <p><a target="_blank" href="${ImageGroup.Link}">${ImageGroup.Title}</a></p>
+            </li>
+            </z:list>
+            </cms:imagegroup>
+        </ul>
+      </div>
+    </div>

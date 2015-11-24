@@ -1,0 +1,45 @@
+<z:config type="CatalogIndex" name="@{Contentcore.CatalogIndexTemplate}" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=320, maximum-scale=2.0, user-scalable=no">
+<title>${Site.Name}-${Catalog.Name}</title>
+<link type="text/css" rel="stylesheet" href="../css/style.css" >
+<script type="text/javascript" src="../js/common.js" ></script>
+</head>
+<body>
+<!--头部开始-->
+<cms:include file="header.template.html"></cms:include>
+<!--头部结束-->
+<!--main开始-->
+<div class="main">
+	<div class="position"><cms:position /></div>
+    <div class="news_lists">
+	<cms:catalog level="Child">
+		<z:list>
+			<div class="newWrap">
+            <div class="modbg listmodbg">
+			   <b>
+				 <a id="${Catalog.ID}" href="${Catalog.Link}">${Catalog.Name}</a>
+			   </b>
+			</div>
+            <ul class="list">
+			<cms:article catalogid="${Catalog.ID}" pagesize="5" count="5">
+				<z:list>
+				<li><span>${format(Article.PublishDate,'MM-dd')}</span>&nbsp;&nbsp;<a href="${Article.Link}">${charWidth(Article.Title,30)}</a></li>
+				</z:list>
+			</cms:article>
+			</ul>
+       </div>
+		</z:list>
+	</cms:catalog>
+    </div>
+</div>
+<!--main结束-->
+<!--尾部开始-->
+<cms:include file="footer.template.html"></cms:include>
+<!--尾部结束-->
+</body>
+</html>
+

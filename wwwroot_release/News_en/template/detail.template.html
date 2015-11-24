@@ -1,0 +1,68 @@
+<z:config type="ArticleDetail" name="Article Detail Template"/>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>${Article.Title}</title>
+<cms:include file="include.template.html" />
+</head>
+<body>
+<cms:include file="header.template.html" />
+<!-- end div#header.header -->
+<div id="main" class="pagewidth main">
+  <div class="side_col">
+  	<cms:include file="right.template.html" />
+  </div>
+  <!--end div.side_col-->
+  <div class="main_col">
+    <div class="crumb">Current Position：<cms:position /></div>
+    <div class="line_b"></div>
+    <div class="news_detail">
+      <div class="new_title_wrap clearself">
+        <h3 class="new_title" style="${(Article.TitleStyle)}">${(Article.Title)}</h3>
+        <div class="extend">PublishDate：${format(Article.PublishDate,'yyyy-MM-dd')} <br>
+          Source：${Article.SourceWord} Author： ${Article.Author} 
+        </div>
+        <div class="function"><br>
+          【<a href="javascript:doZoom(16)">Large</a> <a href="javascript:doZoom(14)">Medium</a> <a href="javascript:doZoom(12)">Small</a>】
+          【<a href="#_print" target="_top">Print</a>】
+          【<a href="javascript:closeMe();">Close</a>】
+        </div>
+      </div>
+      <div class="news_content">
+        ${(Article.Content)}
+      </div>
+	  <z:if condition="${Article.ContentPageSize>1}">
+	  <div class="relateNews">
+	    <h4>Page Nav：</h4>
+	    <ul>
+	   	<cms:articlenavbar>
+	   	<z:list>
+	       <li><i>·</i><a target="_blank" href="${ArticleNavBar.Link}">${ArticleNavBar.Title}</a></li>
+		</z:list>
+		</cms:articlenavbar>
+	    </ul>
+	  </div>
+	  </z:if>
+      <div class="relateNews">
+      <h4>Relate Articles</h4>
+      <ul>
+      	<cms:article type="Relative" count="5">
+      	<z:list>
+        <li><i>·</i><a target="_blank" href="${Article.Link}">${(Article.Title)}</a></li> 
+	      </z:list>
+	    </cms:article>
+      </ul>
+    	</div>
+    </div>
+    <!-- end div.news_detail -->
+    
+  	<cms:comment></cms:comment>
+  </div>
+  <!--end div.main_col-->
+</div>  
+<!--end div#main.main-->
+<cms:include file="footer.template.html" />
+<!-- end div#footer.footer-->
+</body>
+</html>

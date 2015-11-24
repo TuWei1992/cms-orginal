@@ -1,0 +1,79 @@
+<z:config type="AudioList" name="音频列表" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${Site.Name}-${Catalog.Name}</title>
+<cms:include file="include.template.html"></cms:include>
+<link href="../css/page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${prefix}js/play.js"></script>
+</head>
+
+<body>
+<!-- 页头开始 -->
+<cms:include file="headerblock2.template.html" ssi="false">{ZCMS:文件包含}</cms:include>
+<!-- 页头结束 -->
+
+<!-- 主体开始 -->
+<div class="main cata_main pageWidth clearself">
+
+<!-- 第一块开始 -->
+<div class="blockboxB blockboxnobg clearself">
+<!-- 第一块左侧开始 -->
+<div class="newslist_left clearself fl" id="listaudio">
+  <h3>${Catalog.Name}</h3>
+  <div class="buttonsWrap">
+          <div class="fr"><a href="#" class="myAudio" onClick="getSaveList()">我的音频</a></div>
+          <input type="checkbox" name="audio" onClick="allSelect(this)" />
+          &nbsp;全选&nbsp;&nbsp;<a href="#" class="audio_btn" onClick="play()"><span>播放选中音频</span></a>&nbsp;&nbsp;<a href="#" class="audio_btn" onClick="play(null,true)"><span>加入播放列表</span></a></div>
+  <div id="listaudio">
+  	    <cms:audio catalogid="${Catalog.ID}" loadContent=true level="CurrentAndChild" page="true" pagesize="18">
+        <ul>
+      	<z:list>
+   		<li> 
+        	<div>
+                <div style="font-size:12px;" class="fr audio">
+                  <span>大小:${Audio.FileSize}&nbsp;&nbsp;</span>
+                  <span> <a href="#" class="play" onClick="play('${Audio.Name}|${prefix}${Audio.path}${Audio.FileName}',false);return false;">&nbsp;</a></span>&nbsp;&nbsp;<span><a href="#" class="add" onClick="play('${Audio.Name}|${prefix}${Audio.path}${Audio.FileName}',true);return false;">&nbsp;</a></span>
+                  </div>
+                  <input type="checkbox" name="audio" audioid="${Audio.ID}" value="${Audio.Name}|${prefix}${Audio.path}${Audio.FileName}" />
+                  <a href="#" onClick="play('${Audio.Name}|${prefix}${Audio.path}${Audio.FileName}',false);return false;">&nbsp;${Audio._RowNo}.&nbsp;&nbsp;${Audio.Name}</a>
+             </div>
+             <div class="audioInfo">作者:${Audio.Author}&nbsp;&nbsp;&nbsp;&nbsp;时长:${Audio.Duration}&nbsp;&nbsp;&nbsp;&nbsp;更新:${format(Audio.PublishDate, 'yyyy-MM-dd HH:mm:ss')}</div>
+        </li>
+      	</z:list>
+        </ul>
+      </cms:audio>
+      </div>
+  <div class="pagebar clearself">
+    <cms:pagebar></cms:pagebar>
+  </div>
+</div>
+<!-- 第一块左侧结束 -->
+
+<!-- 第一块右侧开始 -->
+<cms:include file="blockright.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 第一块右侧结束 -->
+</div>
+<!-- 第一块结束 -->
+
+</div>
+<!-- 主体结束 -->
+
+<!-- 页脚开始 -->
+<cms:include file="footer.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 页脚结束 -->
+<script type="text/javascript" src="../js/jquery.soChange-min.js"></script>
+<script type="text/javascript" src="../js/cata_index.js"></script>
+<script>
+var curCatalogInnerCode="${Catalog.InnerCode}";//获取当前页面所在栏目的InnerCode，这句不能够写在外部js文件里
+for(var i=1,len=curCatalogInnerCode.length; i<len/6+1; i++){
+    var innerCode=curCatalogInnerCode.substring(0,i*6);
+    var catalogElement=document.getElementById(innerCode);
+    if(catalogElement){
+        catalogElement.className+=" current";
+    }
+}
+</script>
+</body>
+</html>

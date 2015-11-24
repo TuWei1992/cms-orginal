@@ -1,0 +1,54 @@
+<z:config type="Block" name="首页黑色mini导航条" />
+<!-- begin | Top Bar -->
+<div class="topnav-wrapper">
+	<div class="topnav">
+		<ul class="topnav-main">
+			<li>
+				<span id="cityPos" class="city-hd"><i class="icon-map"></i><em id="currentCity" cityid=""></em> [切换]</span>
+				<div class="city-bd hide" id="citychage"></div>
+			</li>
+			<li class="line"></li>
+			<li>
+				<a href="http://bao.chexiang.com" class="weixin-hd" target="_blank"><i class="icon-bao"></i>车享宝</a>
+			</li>
+		</ul>
+		<ul id="box01" class="topnav-side" style="display:none">
+			<li>
+				<a class="login-bind" href="#">登录</a>
+			</li>
+			<li class="line"></li>
+			<li>
+				<a class="register-bind" href="#">注册</a>
+			</li>
+			<li class="line"></li>
+			<li class="last">
+				<a href="http://mall.chexiang.com" target="_blank">优选商城</a>
+			</li>
+		</ul>
+		<ul id="box02" class="topnav-side" style="display:none">
+			<li class="name">Hi，</li>
+			<li id="userCenter">
+				<span class="user-hd"><a class="current" href="${Config.MemberBase}/member/member.htm" target="_blank">我的车享</a></span>
+				<div class="group" id="useGroup">
+					<a href="${Config.MemberBase}/member/testdrv.htm?searchType=DEFAULT&currentPage=1&pageSize=10" target="_blank">试乘试驾</a>
+					<a href="${Config.ClubBase}/people/minisite" target="_blank">我的问答</a>
+			        <a href="${Config.MemberBase}/member/inquiry.htm?searchType=DEFAULT&currentPage=1&pageSize=10" target="_blank">我的询价</a>
+			        <a href="${Config.MemberBase}/member/benefits/orderlistUpgrade.htm" target="_blank">我的权益</a>
+			        <a href="${Config.MemberBase}/member/myAllOrders.htm?currentPage=1" target="_blank">购车订单</a>
+			        <a href="${Config.MemberBase}/member/memberMall/myMallOrders.htm" target="_blank">车享汇订单</a>	
+			        <a href="${Config.LogoutUrl}" target="_self">退出</a>
+				</div>
+			</li>
+			<li class="line gotomsg-item"></li>
+			<li class="gotomsg-item">
+				<a href="${Config.MemberBase}/member/msg.htm?currentPage=1">消息</a>
+				<i class="hidden-num">99+</i>
+				<span class="gotomsg msg-num">99+</span>
+			</li>
+			<li class="line"></li>
+			<li class="last">
+				<a href="http://mall.chexiang.com" target="_blank">优选商城</a>
+			</li>
+		</ul>
+	</div>
+</div>

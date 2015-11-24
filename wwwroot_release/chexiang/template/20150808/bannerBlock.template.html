@@ -1,0 +1,42 @@
+<z:config type="Block" name="banner区块" />
+<div class="container">
+	<div class="info-mask"></div>
+	<div class="banner-mask-con">				
+		<div class="img-txt">
+			<dl>
+				<cms:article catalogAlias="sy20150808_bannerxc" hasAttribute="image" count="1">
+				<z:list>
+					<dd class="img-box">
+						<a href="${Article.Link}" target="_blank"><img src="${Article.LogoFile}" alt="" width="110" height="110"></a>
+					</dd>
+					<dt class="tit">
+						<a href="${Article.Link}" title="${Article.Title}" target="_blank">${Article.Title}</a>
+					</dt>
+					<dd class="tit-sub"><a href="${Article.Link}" title="${Article.Title}" target="_blank">${Article.Summary}</a></dd>
+				</z:list>
+				</cms:article>
+			</dl>
+		</div>
+		<ul class="img-txt-list">
+			<li>
+				<a href="http://cxb.chexiang.com" target="_blank">
+					<img src="${surl('resource/img/chexiangbao.png')}" alt="" width="46" height="46">
+					<span>车享宝</span>
+				</a>
+			</li>
+			<li>
+				<a href="http://pai.chexiang.com/main/mobileApp.htm" target="_blank">
+					<img src="${surl('resource/img/chexiangpai.png')}" alt="" width="46" height="46">
+					<span>车享拍</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="txt-list">
+		<cms:article catalogAlias="sy20150808_bannerxc" noAttribute="hot,image" count="3">
+		<z:list>
+			<li><a href="${Article.Link}" title="${Article.Title}" target="_blank">${Article.Title}</a></li>
+		</z:list>
+		</cms:article>
+		</ul>
+	</div>
+</div>

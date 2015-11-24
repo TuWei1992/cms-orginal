@@ -1,0 +1,154 @@
+<z:config type="CatalogIndex" name="招聘频道栏目首页" />
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+	<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+		<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>
+		<meta http-equiv="cache-control" content="public"/>
+		<meta http-equiv="expires" content="max-age"/>	
+		<title>车享招聘</title>
+		<meta name="keywords" content="车享招聘"/>
+		<!-- begin | global javascript -->
+			<script>
+				(function (window, console) {
+//				 	window.base = "${Config.Base}";
+					window.base = "";
+					window.accountBase="${Config.AccountBase}";
+					window.mainBase = "${Config.MainBase}";
+					window.imBase = "${Config.ImBase}";
+					window.OrderBase = "${Config.OrderBase}";
+					window.memberBase = "${Config.MemberBase}";
+					window.mallBase = "${Config.MallBase}";
+					window.imUrl="${Config.imUrl}?arg=admin&style=2";
+				} (window, "undefined" != typeof console ? console : void 0));
+			</script>
+		<!-- end | global javascript -->
+		<link href="${surl('resource/common/img/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+		<!-- begin | public stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/common/css/reset.css')}">
+		<link rel="stylesheet" href="${surl('resource/common/css/global.css')}">
+		<!-- end | public stylesheet -->
+		<!-- begin | private stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/zhaopin/css/index.css')}">
+		<!-- end | private stylesheet -->
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${surl('resource/common/js/jquery_1_8_3.js')}"></script>
+	<!-- end | public javascript -->		
+</head>
+<body>
+	<!-- begin | Top Bar -->
+    <cms:include file="../header_index-mini.template.html" />
+	<!-- end | Top Bar -->
+	
+	<!-- begin | menu Bar -->
+    <cms:include file="header_menu.zhaopin.template.html" />
+	<!-- end | menu Bar -->
+
+	<!-- banner -->
+	<div class="banner-wrapper">
+		<div id="j-banner-wrap" class="banner-wrap">
+			<ul id="j-banner-content">
+				<cms:imagegroup catalogAlias="zpsy_pdtp" name="轮播图">
+				<z:if condition="${__Total>0}">
+				<cms:image>
+				<z:list>
+					<li ${(i==1?'class="cur"':'')}>
+						<a class="img" href="${image.LinkURL}" target="_blank" style="background-image:url(${image.ImagePath});"></a>
+					</li>
+				</z:list>
+				</cms:image>
+				</z:if>
+				</cms:imagegroup>
+			</ul>
+			<div id="j-banner-num" class="page-num">
+				<cms:imagegroup catalogAlias="zpsy_pdtp" name="轮播图">
+				<z:if condition="${__Total>0}">
+				<cms:image>
+				<z:list>
+					<span ${(i==1?'class="cur"':'')}></span>
+				</z:list>
+				</cms:image>
+				</z:if>
+				</cms:imagegroup>
+			</div>
+		</div>
+	</div>
+
+	<!-- container -->
+	<div class="container">
+		<!-- mod-job -->
+		<div class="mod mod-job">
+			<div class="th">
+				<h3 class="tit">热门职位</h3>
+				<cms:catalog alias="zpsy_szzw"><a href="${indexSuffix(catalog.Link)}" class="a-more" target="_blank">更多<i></i></a></cms:catalog>
+			</div>
+			<ul class="txt-list">
+				<cms:article catalogAlias="zpsy_szzw" level="Child" hasAttribute="Hot" orderby="TopFlag>0 desc,PublishDate desc">
+				<z:list>
+				<li>
+					<i class="dot">•</i>
+					<a href="${(Article.Link)}" title="${Article.Title}" target="_blank">${charWidth(Article.Title, 26, "...")}</a>
+					${(Article.TopFlag!=0?'<i class="tag-top">顶</i>':'')}
+					${(Article.Tag=='急'?'<i class="tag-fast">急</i>':'')}
+				</li>
+				</z:list></cms:article>
+			</ul>
+		</div>
+
+		<!-- mod-news -->
+		<div id="j-mod-news" class="mod mod-news">
+			<div class="th">
+				<h3 class="tit">车享招聘动态</h3>
+				<p class="btn-area" <cms:article catalogAlias="zpsy_zpdt"><z:if condition="${__Total<6}">style="display:none"</z:if></cms:article>>
+					<span class="icon-arrow-left"></span>
+					<span class="icon-arrow-right"></span>
+				</p>
+			</div>
+			<div class="data-wrap">
+				<div class="data-wrapper">
+					<cms:article catalogAlias="zpsy_zpdt" orderby="TopFlag>0 desc,PublishDate desc">
+					<z:list>
+					${(i%5==1?'<ul class="txt-list">':'')}
+						<li>
+							<i class="dot">•</i>
+							<a href="${(Article.Link)}" title="${Article.Title}" target="_blank">${charWidth(Article.Title, 28, "...")}</a>
+							<span class="time">${format(Article.PublishDate, 'yyyy-MM-dd')}</span>
+						</li>
+					${(i%5==0||i==__Total?'</ul>':'')}
+					</z:list>
+					</cms:article>
+				</div>
+			</div>
+		</div>
+
+		<div class="mod mod-attention">
+			<div class="th">
+				<h3 class="tit">关注我们</h3>
+				<div class="btn-sina"><wb:follow-button uid="5223430562" type="red_1" width="67" height="24" ></wb:follow-button></div>
+			</div>
+			<dl class="zhaopin-weixin">
+				<dd class="img-box"><img src="${surl('resource/zhaopin/img/zhaopin-ercode.png')}" alt="招聘微信订阅号" width="138" height="138"></dd>
+				<dt>
+					关注车享招聘订阅号
+					<strong>你离车享更近一步</strong>
+				</dt>
+			</dl>
+		</div>
+	</div>
+
+	<!-- footer -->
+	<cms:include file="../footer_index.template.html" />
+	<!-- end | Footer -->
+
+	<!-- sidebar -->
+	<cms:include file="../sidebar.template.html" />
+	<!-- end | sidebar -->
+	<script>
+	$('.main-nav a').removeClass('cur');$('.main-nav li').eq(0).find('a').addClass('cur');
+	</script>
+	<script src="${surl('resource/common/js/header.js')}"></script>
+	<script src="${surl('resource/zhaopin/js/index.js')}"></script>
+	<cms:include file="../analysis.template.html" />
+</body>
+</html>

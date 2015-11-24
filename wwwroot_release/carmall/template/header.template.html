@@ -1,0 +1,50 @@
+<z:config type="Block" name="页头" />
+<script src="../cityLinks.shtml"></script>
+<script src="${surl('resource/js/common/jquery_1_8_3.js')}"></script>
+<!-- head | header -->
+<div class="topnav-wrapper">
+	<div class="topnav wrapper">
+		<ul class="topnav-main">
+			<li>
+				<span id="cityPos" class="city-hd"><i class="icon-map"></i><em id="currentCity"></em> [切换]</span>
+				<div class="city-bd hide" id="citychage"></div>
+			</li>
+		</ul>
+		<ul id="box01" class="topnav-side" style="">
+			<li>
+				<a class="login-bind" href="#">登录</a>
+			</li>
+			<li class="line"></li>
+			<li>
+				<a class="register-bind" href="#">注册</a>
+			</li>
+		</ul>
+		<ul id="box02" class="topnav-side" style="display:none">
+			<li class="name">Hi，</li>
+			<li id="userCenter">
+				<span class="user-hd"><a class="current" href="#" target="_blank">车享商城</a></span>
+				<div class="group">
+					<a href="/member/myOrders.htm" target="_blank">我的定单</a>
+                  	<a href="${Config.MemberBase}/member/member.htm" target="_blank">我的车享</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<script src="${surl('resource/cms/header_cms.js')}"></script>
+<div class="header">
+	<div class="wrapper">		
+		<div class="logo"><a href="${Site.url}" target="_blank"><img src="${surl('resource/images/mall/public/logo.png')}" alt="车享商城" /></a></div>
+		<ul>
+			<li class="cur"><a href="${Site.url}" target="_blank">首页</a></li><li><a href="/list/tg-0-0-0-0-0-0-0-0-1-1.html" target="_blank">车享特供</a></li><li><a href="/list/xj-0-0-0-0-0-0-0-0-1-1.html" target="_blank">现金购车</a></li><li><a href="/list/fq-0-0-0-0-0-0-0-0-1-1.html" target="_blank">分期付款</a></li>
+		</ul>
+		<dl class="help-tel">
+			<dt class="icon-tel"></dt>
+			<dd>
+				<p class="tel-no">4008 020 666</p>
+				<p class="time">服务时段：周一至周日9：00~21：00</p>
+			</dd>
+		</dl>
+	</div>
+</div>
+<!-- end | header -->

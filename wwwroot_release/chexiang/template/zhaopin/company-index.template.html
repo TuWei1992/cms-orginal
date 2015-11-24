@@ -1,0 +1,309 @@
+<z:config type="CatalogIndex" name="公司介绍栏目首页" />
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+	<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+		<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>
+		<meta http-equiv="cache-control" content="public"/>
+		<meta http-equiv="expires" content="max-age"/>	
+		<title>车享招聘</title>
+		<meta name="keywords" content="车享招聘"/>
+		<!-- begin | global javascript -->
+			<script>
+				(function (window, console) {
+//				 	window.base = "${Config.Base}";
+					window.base = "";
+					window.accountBase="${Config.AccountBase}";
+					window.mainBase = "${Config.MainBase}";
+					window.imBase = "${Config.ImBase}";
+					window.OrderBase = "${Config.OrderBase}";
+					window.memberBase = "${Config.MemberBase}";
+					window.mallBase = "${Config.MallBase}";
+					window.imUrl="${Config.imUrl}?arg=admin&style=2";
+				} (window, "undefined" != typeof console ? console : void 0));
+			</script>
+		<!-- end | global javascript -->
+		<link href="${surl('resource/common/img/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+		<!-- begin | public stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/common/css/reset.css')}">
+		<link rel="stylesheet" href="${surl('resource/common/css/global.css')}">
+		<!-- end | public stylesheet -->
+		<!-- begin | private stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/zhaopin/css/index.css')}">
+		<!-- end | private stylesheet -->
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${surl('resource/common/js/jquery_1_8_3.js')}"></script>
+	<!-- end | public javascript -->		
+</head>
+<body>
+	<!-- begin | Top Bar -->
+    <cms:include file="../header_index-mini.template.html" />
+	<!-- end | Top Bar -->
+	
+	<!-- begin | menu Bar -->
+    <cms:include file="header_menu.zhaopin.template.html" />
+	<!-- end | menu Bar -->
+
+
+	<!-- container -->
+	<div class="container">
+		<!-- main_b -->
+		<div class="main_b fl">
+			<div class="mod-company">
+				<div class="th">
+					<h3 class="tit">玩转车享</h3>
+				</div>
+				<dl class="tb partOne">
+					<dt>快乐工作，快乐生活</dt>
+					<dd>
+						<ul class="img-list">
+							<cms:imagegroup catalogAlias="zpsy_gsjj" name="快乐工作，快乐生活">
+							<z:if condition="${__Total>0}">
+							<cms:image count="6">
+							<z:list>
+							<li>
+								<img src="${image.ImagePath}" alt="${image.Name}" width="290" height="170">
+								<p>${image.Name}</p>
+							</li>
+							</z:list>
+							</cms:image>
+							</z:if>
+							</cms:imagegroup>
+						</ul>
+					</dd>
+					<dt>走进车享</dt>
+					<dd>
+						<ul class="img-list">
+							<cms:imagegroup catalogAlias="zpsy_gsjj" name="走进车享">
+							<z:if condition="${__Total>0}">
+							<cms:image count="3">
+							<z:list>
+							<li>
+								<img src="${image.ImagePath}" alt="${image.Name}" width="290" height="170">
+								<p>${image.Name}</p>
+							</li>
+							</z:list>
+							</cms:image>
+							</z:if>
+							</cms:imagegroup>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="mod-company">
+				<div class="th th-other">
+					<h3 class="tit">薪资福利</h3>
+				</div>
+				<div class="tb salary-info">
+					<div class="img-box">
+						<img src="${surl('resource/zhaopin/img/salary.png')}" alt="" width="494" height="224">
+					</div>
+					<p class="desc">
+						车享关心员工的健康，会进行每年一次的健康体检，科学检测大家身体的最新状况，尽早预防各类健康风险；提供补充医疗保险。
+					</p>
+
+					<div class="mod-salary">
+						<div class="r-th">
+							<h4 class="tit"><i class="icon-social"></i>社会保险</h4>
+						</div>
+						<div class="r-tb">							
+							<p>车享为员工缴纳养老，医疗，工伤，失业和生育保险，让员工在年老，疾病，工伤，失业和生育时能获得一定的物质保障。住房公积金：以有竞争力的标准为员工缴纳住房公积金。
+							</p>
+						</div>
+					</div>
+
+					<div class="mod-salary">
+						<div class="r-th">
+							<h4 class="tit"><i class="icon-medical"></i>医疗保险</h4>
+						</div>
+						<div class="r-tb">							
+							<p>车享为员工缴纳额外的补充医疗保险，全年累计看病超过300元可享90%费用报销。</p>
+						</div>
+					</div>
+					<ul class="img-list">
+						<cms:imagegroup catalogAlias="zpsy_gsjj" name="薪资福利">
+						<z:if condition="${__Total>0}">
+						<cms:image count="6">
+						<z:list>
+						<li>
+							<img src="${image.ImagePath}" alt="${image.Name}" width="290" height="170">
+							<p>${image.Name}</p>
+						</li>
+						</z:list>
+						</cms:image>
+						</z:if>
+						</cms:imagegroup>
+					</ul>
+				</div>
+			</div>
+
+			<div class="mod-company">
+				<div class="th">
+					<h3 class="tit">了解车享</h3>
+				</div>
+				<div class="tb company-intro">
+					<h4 class="tit">上汽品质　全程畅享</h4>
+					<p>车享平台，是上海汽车集团股份有限公司（简称：上汽集团）打造的中国汽车市场首个OTO（即Online To Offline）电子商务平台。车享平台隶属于上海赛可电子商务有限公司，注册资金：2亿元人民币。车享平台将依托上海汽车集团旗下各大品牌及数千家经销商，为用户提供一站式解决方案，提供100%品质保证的商品及售后服务。</p>
+					<p>车享平台将以用户为中心，通过线上线下无缝对接的电子商务模式，紧密围绕与汽车息息相关的业务，从用户选车开始到购车、用车、换车的全程使用周期，为用户提供悉心关怀、卓越服务的一致体验。车享平台还将把关注点从用户的车辆使用延伸到与汽车有关的生活领域，努力为用户打造全面、卓越的汽车生活与文化的互动体验和享受。</p>
+					<p>上海汽车集团是国内汽车产业的领军企业，源于对上汽品质的信赖，逾2000万用户选择了上汽的产品和服务。车享团队将秉承上汽品质，始终以服务、创新和客户价值最大化为发展目标，车享平台将逐步打造成中国最大的汽车生活圈及全程、一站式汽车在线生活服务平台，同时为整个汽车及汽车后生活产业链商家提供共赢的舞台。</p>
+					<h4 class="tit">开放 合作 共赢 创新</h4>
+					<p>向用户开放- 更好地倾听，响应用户的反馈 满足普遍用户的普遍需求是车享网团队贯彻始终的追求。"车享"将零距离接触用户，用心倾听、积极响应用户的需求。</p>
+					<p>向合作伙伴（整车厂、经销商、服务商）开放- 共营共赢 我们是平台的搭建者，服务的提供者，物业的管理者。车享网聚集整车厂、经销商及其他服务商，围绕汽车产业链及汽车后生活链的各个环节，为合作伙伴提供优质服务与高效资源整合，实现多方共营、共赢。</p>
+					<p>向创新思维开放- 成立外脑团，倾听并实践互联网创意 "车享"长期成立外脑团，听取各方专家的意见和创意，快速优化、快速迭代。致力于平台长期稳定的发展。</p>
+					<p>向产品开发者开放- 提供开发基金和孵化平台 车享平台设立开发基金，为互联网开发团队和个人提供资金和助力。以此提升软硬件实力，为用户提供更好的应用服务体验。</p>
+				</div>				
+				<div class="company-event">
+					<img src="${surl('resource/zhaopin/img/company.jpg')}" alt="公司大事件"/>
+				</div>
+			</div>
+
+			<div class="mod-company contact-us">
+				<dl class="contact-info">
+					<dt>联系我们</dt>
+					<dd>联系地址：上海市长宁区华山路1568号9楼</dd>
+					<dd>总机电话：62827272 传真：52305407</dd>
+					<dd>客服电话：4008-020-666</dd>
+				</dl>
+				<div id="dituContent" class="map">
+					
+				</div>
+			</div>
+		</div>
+
+
+		<div class="side fr">
+        	<!--  关注我们  开始 -->
+        	<div class="mod mod-attention b_mod_attention">
+                <div class="th">
+                    <h3 class="tit">关注我们</h3>
+                    <div class="btn-sina"><wb:follow-button uid="5223430562" type="red_1" width="67" height="24" ></wb:follow-button></div>
+                </div>
+                <dl class="zhaopin-weixin">
+                    <dd class="img-box"><img src="${surl('resource/zhaopin/img/zhaopin-ercode.png')}" alt="招聘微信订阅号" width="170" height="170" /></dd>
+                    <dt>
+					关注车享招聘订阅号
+					<strong>你离车享更近一步</strong>
+					</dt>
+                </dl>
+            </div>
+            <!--  关注我们  结束 -->
+            
+            <!--  广告位  开始 -->
+            <cms:block code="advImage" updateBlock="false" />
+        	<!--  广告位  结束 -->
+        </div>
+		
+            
+	</div>
+
+	<!-- footer -->
+	<cms:include file="../footer_index.template.html" />
+	<!-- end | Footer -->
+
+	<!-- sidebar -->
+	<cms:include file="../sidebar.template.html" />
+	<!-- end | sidebar -->
+	<script>
+	$('.main-nav a').removeClass('cur');$('.main-nav li').eq(1).find('a').addClass('cur');
+	</script>
+	<script src="${surl('resource/common/js/header.js')}"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+	<script>
+		//创建和初始化地图函数：
+   function initMap(){
+       createMap();//创建地图
+       setMapEvent();//设置地图事件
+       addMapControl();//向地图添加控件
+       addMarker();//向地图中添加marker
+   }
+   
+   //创建地图函数：
+   function createMap(){
+       var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+       var point = new BMap.Point(121.439832,31.211588);//定义一个中心点坐标
+       map.centerAndZoom(point,18);//设定地图的中心点和坐标并将地图显示在地图容器中
+       window.map = map;//将map变量存储在全局
+   }
+   
+   //地图事件设置函数：
+   function setMapEvent(){
+       map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+       map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+       map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+       map.enableKeyboard();//启用键盘上下左右键移动地图
+   }
+   
+   //地图控件添加函数：
+   function addMapControl(){
+       //向地图中添加缩放控件
+var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+map.addControl(ctrl_nav);
+       //向地图中添加比例尺控件
+var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+map.addControl(ctrl_sca);
+   }
+   
+   //标注点数组
+   var markerArr = [{title:"财瑞大厦",content:"上海长宁区华山路1568号",point:"121.439832|31.211588",isOpen:1,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+  ];
+   //创建marker
+   function addMarker(){
+       for(var i=0;i<markerArr.length;i++){
+           var json = markerArr[i];
+           var p0 = json.point.split("|")[0];
+           var p1 = json.point.split("|")[1];
+           var point = new BMap.Point(p0,p1);
+  var iconImg = createIcon(json.icon);
+           var marker = new BMap.Marker(point,{icon:iconImg});
+  var iw = createInfoWindow(i);
+  var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+  marker.setLabel(label);
+           map.addOverlay(marker);
+           label.setStyle({
+                       borderColor:"#808080",
+                       color:"#333",
+                       cursor:"pointer"
+           });
+ 
+  (function(){
+   var index = i;
+   var _iw = createInfoWindow(i);
+   var _marker = marker;
+   _marker.addEventListener("click",function(){
+       this.openInfoWindow(_iw);
+      });
+      _iw.addEventListener("open",function(){
+       _marker.getLabel().hide();
+      })
+      _iw.addEventListener("close",function(){
+       _marker.getLabel().show();
+      })
+   label.addEventListener("click",function(){
+       _marker.openInfoWindow(_iw);
+      })
+   if(!!json.isOpen){
+    label.hide();
+    _marker.openInfoWindow(_iw);
+   }
+  })()
+       }
+   }
+   //创建InfoWindow
+   function createInfoWindow(i){
+       var json = markerArr[i];
+       var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+       return iw;
+   }
+   //创建一个Icon
+   function createIcon(json){
+       var icon = new BMap.Icon("http://map.baidu.com/image/us_cursor.gif", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+       return icon;
+   }
+   
+   initMap();//创建和初始化地图
+	</script>
+	<cms:include file="../analysis.template.html" />
+</body>
+</html>

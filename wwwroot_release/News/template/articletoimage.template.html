@@ -1,0 +1,442 @@
+<z:config type="SiteIndex" name="文章转图页面" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:wb="http://open.weibo.com/wb" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>${Site.Name}</title>
+<z:if condition="${Site.InteractiveIncludeTemplate}">
+	<cms:include file="${Site.InteractiveIncludeTemplate}" />
+</z:if>
+<link href="http://timg.sjs.sinajs.cn/t35/appstyle/opent/css/app/app_iframe.css" rel="stylesheet" type="text/css"> 
+
+<style>
+BODY {
+	background-color: #ffffff;
+	color: #555;
+}
+A {
+	border-bottom: 0px;
+	border-left: 0px;
+	background-color: transparent;
+	color: #004276;
+	border-top: 0px;
+	border-right: 0px;
+	text-decoration: none;
+}
+BODY {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+DIV {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+FORM {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+UL {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+LI {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+H1 {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+H4 {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+UL {
+	list-style-type: none;
+}
+LI {
+	list-style-type: none;
+}
+IMG {
+	border-bottom: 0px;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+}
+BODY {
+	line-height: 1.5;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+TD {
+	line-height: 1.5;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+TEXTAREA {
+	line-height: 1.5;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+BODY {
+	margin: 0px;
+	font-family: Tahoma, SimSun, sans-serif;
+	font-size: 12px;
+}
+INPUT {
+	margin: 0px;
+	font-family: Tahoma, SimSun, sans-serif;
+	font-size: 12px;
+}
+TEXTAREA {
+	margin: 0px;
+	font-family: Tahoma, SimSun, sans-serif;
+	font-size: 12px;
+}
+DIV {
+	line-height: inherit;
+	font-family: inherit;
+	font-size: 1em;
+}
+P {
+	line-height: inherit;
+	font-family: inherit;
+	font-size: 1em;
+}
+TABLE {
+	line-height: inherit;
+	font-family: inherit;
+	font-size: 1em;
+}
+TD {
+	line-height: inherit;
+	font-family: inherit;
+	font-size: 1em;
+}
+EM {
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+}
+EM {
+	color: #999;
+}
+H1 {
+	color: #444;
+}
+H4 {
+	color: #444;
+}
+H1 A {
+	color: #222;
+}
+H4 A {
+	color: #222;
+}
+H1 {
+	font-family: "Microsoft YaHei", SIMHEI, sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+}
+H4 {
+	font-family: "Microsoft YaHei", Arial, sans-serif;
+	font-size: 14px;
+}
+.fr {
+	float: right;
+	_display: inline;
+}
+.red {
+	color: #ba2635;
+}
+.cRed {
+	color: #ba2636;
+}
+.f14 {
+	font-size: 14px;
+}
+
+I {
+	font-family: "宋体";
+	color: #f60;
+}
+input.textInput {
+  border: 1px solid #7F9CBA;
+  float: left;
+  font-size: 12px;
+  height: 16px;
+  line-height: 14px;
+  padding: 3px;
+  width: 170px;
+}
+FORM .btn {
+	border-bottom: medium none;
+	border-left: medium none;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	width: 69px;
+	padding-right: 0px;
+	background: url(../images/submit.gif) no-repeat left top;
+	border-top: medium none;
+	border-right: medium none;
+	padding-top: 4px;
+}
+.paraphrastic {
+	color: #999;
+}
+.tabs LI {
+	text-indent: 24px;
+}
+.tabs li {
+    text-indent: 24px;
+}
+.tabs a {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F9F9F9;
+    border-color: #F9F9F9;
+    border-style: solid;
+    border-width: 1px 0;
+    display: block;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+}
+.tabs a:hover, .tabs li.current a {
+    background-color: #447c98;
+    border-bottom-color: #FFFFFF;
+    border-top-color: #123;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.tabs a:hover {
+    background-color: #F29400;
+    border-top-color: #F29400;
+}
+.shadowline {
+	background-color: #f9f9f9;
+	border-top: #ccc 1px dotted;
+}
+.m_pageWidth{ width:950px; margin:0 auto;}
+.member_main h1{ height:30px; line-height:30px; background:url(${FrontAppContext}member/images/membertitlebg.gif) repeat-x left center;  padding-left:30px; margin:30px 0 20px;}
+.member_main h1 strong{ background:#F3F7FA; color:#000100; font-size:22px; padding:0px 8px;}
+.memcenter_left{ width:143px; background:#e5f0f6; padding:10px; min-height:700px;height:700px!important;_height:700px;}
+.member_photo{ height:167px; width:143px; display:block; background:#f7f7f7; text-align:center; color:#02488e; font-weight:bold;}
+.member_photo img{ margin-bottom:5px;}
+
+.member_center{ background:#fff; margin-top:16px;}
+.mem_cata{ margin:15px 0;}
+.mem_cata li{ padding:9px 0 9px 20px;  border-top:1px solid #d5e7f3;}
+.mem_cata li a{ color:#02488e; font-weight:bold;}
+.mem_cata li span{ color:#bd0602; font-size:10px;}
+.mem_cata li a:hover{ color:#bd0602;}
+.mem_cata li.first,.mem_fastlink li.first{ border:none;}
+.mem_cata li.current{ background-color:#d5e8f6;}
+.mem_cata li.current a{ color:#bd0602;}
+.memcenter_right{ width:775px;}
+.mynewslist{ padding:15px 15px 0 0px;}
+.mynewslist h3{ font-family:"微软雅黑"; padding:5px 10px 10px; font-size:20px; border-bottom:1px solid #e0e0e0; height:30px; line-height:30px; margin-bottom:15px;}
+.mynewslist h3 a{ font-family:"宋体"; font-size:12px; font-weight:normal; color:#02488e;}
+.mem_fastlink{ margin:10px 0; padding:10px; background:#fff;}
+.mem_fastlink li{ padding:7px 0 6px 15px; border-top:1px dotted #e6e6e6;}
+.mem_fastlink li em{ border:4px solid; border-color:#FFFFFF #FFFFFF #FFFFFF #921902; font-size:0px; display:inline-block; background:none;}
+.mem_fastlink li a{padding-left:4px; color:#02488e; font-weight:bold; font-size:12px;}
+.mem_fastlink li a:hover{ color:#da0602;}
+table tr td{ padding:4px;}
+table tr td .textInput{ padding:6px 2px; border:1px solid #e8e8e8; width:240px; font-size:14px;}
+input.save{ border:none; background:#CD0B01; cursor:pointer; color:#fff; font-weight:bold; width:70px; height:26px; line-height:26px; text-align:center; font-size:16px; display:inline-block; font-family:"微软雅黑"; margin-top:5px; border-radius: 3px 3px 3px 3px; -moz-border-radius: 3px; -webkit-border-radius:3px;}
+input.submit{ border:none; background:#CD0B01; cursor:pointer; color:#fff; font-weight:bold; width:100px; height:26px; line-height:26px; text-align:center; font-size:16px; display:inline-block; font-family:"微软雅黑"; margin-top:5px; border-radius: 3px 3px 3px 3px; -moz-border-radius: 3px; -webkit-border-radius:3px;}
+</style>
+</head>
+<body  style="background:#f3f7fa;">
+<z:if condition="${Site.InteractiveHeaderTemplate}">
+	<cms:include file="${Site.InteractiveHeaderTemplate}" />
+</z:if>
+<div class="member_main m_pageWidth clearself">
+    <div class="container">
+        <h1><strong>文章转图</strong></h1>
+        <a class="pull-left logo" href="http://www.changweibo.com" title="长微博"></a>
+        <div class="weibo pull-left">
+            <wb:follow-button uid="1919730375" type="red_3" width="100%" height="24" ></wb:follow-button>
+        </div>
+    </div>
+    <div>
+      <form id="article_form">
+	    <table border="0" cellSpacing="10" cellPadding="0" width="100%">
+	          <tbody>
+	            <tr valign="top">
+					<td height="*" style="padding: 7px;padding-top:2px" id="editorWrap" colspan="2">
+						<div class="article_content clearself">${Request.Content}</div>
+			 		</td>
+				</tr>
+	         </tbody>
+		</table>
+	  </form>
+    </div>
+    <div class="operation">
+        <div class="status">
+            <div id="id_loading"></div>
+            <div id="id_submit_show" style="display: none">
+                <a id='id_img_preview' href='' target="_blank">预览图片</a>&nbsp;&nbsp;
+                <a id="pic_download" href='' >下载图片</a>
+                <input type="hidden" id="ImagePath" name="ImagePath" />
+            </div>
+            <div id="share" style="display: none">
+                <span>分享到：</span>
+                <!-- 分享到人人 
+                <script type="text/javascript" src="http://widget.renren.com/js/rrshare.js"></script>
+				<a name="renren" onclick="shareClick()" title="分享到人人网" type="button_medium" href="#">人人网</a>
+				<script type="text/javascript">
+					function shareClick() {
+						var rrShareParam = {
+							resourceUrl : '',	//分享的资源Url
+							srcUrl : location.href,	//分享的资源来源Url,默认为header中的Referer,如果分享失败可以调整此值为resourceUrl试试
+							pic : '',		//分享的主题图片Url
+							title : '',		//分享的标题
+							description : ''	//分享的详细描述
+						};
+						rrShareOnclick(rrShareParam);
+					}
+				</script>
+				
+				 分享到腾讯微博 
+                <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+                <script>
+                (function(){
+                	var shareurl = "http://share.v.t.qq.com/index.php?";
+                	shareurl += "&url=" + url;
+                	shareurl += "&pic=" + pic;
+                	shareurl += "&appkey" + appkey;
+                	shareurl += "&title" + title;
+                	shareurl += "&line1" + line1;
+                	shareurl += "&line2" + line2;
+                	shareurl += "&line3" + line3;
+                	var param = {
+                        c:'share',
+                        a:'index',
+       				    url:'',
+       				    appkey:'', /**您申请的应用appkey,显示分享来源(可选)*/
+       				    title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+       				    pic:'', /**分享图片的路径(可选)*/
+       				    line1:'',
+       				    line2:'',
+       				    line3:''
+	  				}
+	  				var temp = [];
+	  				for( var p in param ){
+	  				    temp.push(p + '=' + encodeURIComponent( param[p] || '' ) );
+	  				}
+	  				document.write('<a id="tqq" title="分享到腾讯微博" target="_blank" href="http://share.v.t.qq.com/index.php?'+temp.join('&')+'" target="_blank">腾讯微博</a>');
+                })();
+                </script>
+                -->
+                
+                <!-- 分享到新浪微博 -->
+                <iframe name="weiboshare" allowTransparency="true" style="display: none;" frameborder="0" scrolling="no" 
+                    src="http://hits.sinajs.cn/A1/weiboshare.html">
+                </iframe>
+                <!-- 分享到QQ空间 -->
+                <!--<script type="text/javascript">
+				(function(){
+					var p = {
+						url:'${Site.URL}',
+						showcount:'0',/*是否显示分享总数,显示：'1'，不显示：'0' */
+						//summary:'',/*分享摘要(可选)*/
+						title:'${Article.Title}',/*分享标题(可选)*/
+						site:'${Site.Name}',/*分享来源 如：腾讯网(可选)*/
+						pics:'${Prefix}'+$V('#ImagePath'), /*分享图片的路径(可选)*/
+						style:'101',
+						width:199,
+						height:30
+					};
+					var s = [];
+					for(var i in p){
+						s.push(i + '=' + encodeURIComponent(p[i]||''));
+					}
+					document.write(['<a id="qzone" version="1.0" title="分享到QQ空间" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank">QQ空间</a>'].join(''));
+				})();
+				</script>
+				<script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>-->
+                
+            </div>
+            <input type="button" id="convertToImage" onclick="toimage();" value="转换为图片" />
+        </div>
+    </div>
+</div>
+<z:if condition="${Site.InteractiveFooterTemplate}"> 
+	<cms:include file="${Site.InteractiveFooterTemplate}" />
+</z:if>
+<script>
+function toimage() {
+	var dc = {SiteID:'${Article.SiteID}',ArticleID:'${Article.ID}'};
+	$('#id_loading').html("正在转换......");
+	Server.sendRequest("ArticleToImage.convertToImage", dc, function(response){
+		if(response.Status == 1){
+			$('#id_loading').html(response.Message);
+			$('#id_submit_show').show();
+			$('#share').show();
+			$S('#ImagePath', response.ImagePath);
+			$('#id_img_preview').attr("href", "${Prefix}"+response.ImagePath);
+			$('#pic_download').attr("href", "${FrontAppContext}ArticleToImage/download?SiteID=${Site.ID}&ImagePath="+response.ImagePath);
+			addShareScript();
+		}else{
+			$('#id_loading').html("转换失败："+response.Message);
+			$('#id_submit_show').hide();
+			$('#share').hide();
+			$S('#ImagePath', '');
+			$('#id_img_preview').attr("href", '');
+			$('#pic_download').attr("href", '');
+		}
+	}, null, null, 'json');
+	
+}
+
+function addShareScript(){
+    var sjson  = {"count":"","type":5,"width":"106","heigth":"58","language":"zh_cn","title":"${Article.Title}","pic":"${Site.URL}/"+$V("#ImagePath"),"ralateUid":"1919730375","rnd":new Date().valueOf()};
+	
+    var _w = sjson.width , _h = sjson.heigth;
+    var type = sjson.type;
+    var count = sjson.count; /**是否显示分享数，1显示(可选)*/
+    var appkey = sjson.appkey; /**您申请的应用appkey,显示分享来源(可选)*/
+    var title = sjson.title; /**分享的文字内容(可选，默认为所在页面的title)*/
+    var pic = sjson.pic; /**分享图片的路径(可选)*/
+    var ralateUid = sjson.ralateUid; /**关联用户的UID，分享微博会@该用户(可选)*/
+    var language = sjson.language; /**设置语言，zh_cn|zh_tw(可选)*/
+    var rnd = sjson.rnd;
+    var url = "http://hits.sinajs.cn/A1/weiboshare.html?url="+encodeURIComponent("${Article.Link}")+"&type="+type
+              +"&count="+count+"&appkey="+appkey+"&title="+title+"&pic="+encodeURIComponent(pic)+"&ralateUid="+ralateUid
+              +"&language="+language+"&rnd="+rnd;
+    document.getElementsByName("weiboshare")[0].src = url;
+    document.getElementsByName("weiboshare")[0].width=_w;
+    document.getElementsByName("weiboshare")[0].height=_h;
+    document.getElementsByName("weiboshare")[0].style.display="block";
+}
+</script>
+</script>
+</body>
+</html>

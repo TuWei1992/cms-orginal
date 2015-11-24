@@ -1,0 +1,32 @@
+<z:config type="Block" name="Common Right Template" />
+<div class="side_mod">
+  <h4 class="mod_tit">Ranking List</h4>
+  <div class="mod_con">
+    <div class="top_news">
+      <ul>
+      	<cms:article type="Hot" level="Root" count="8">
+        <z:list>
+          <li>${Article._RowNo}. <a target="_blank" href="${Article.Link}">${charWidth(Article.Title,42)}</a></li>
+        </z:list>
+     	</cms:article>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="side_mod">
+  <h4 class="mod_tit"><a href="#">Photo Gallery</a></h4>
+  <div class="clearself">
+    <ul class="pic_newslist">
+    	<cms:article hasAttribute="Image" level="Root" count="4">
+    	<z:list>
+      <li><a target="_blank" href="${Article.Link}"><img width="120" height="90" border="0" title="${Article.Title}" src="${Article.LogoFile}"></a>
+        <p><a target="_blank" href="${Article.Link}">${charWidth(Article.Title,20)}</a></p>
+      </li>
+      </z:list>
+     	</cms:article>
+    </ul>
+  </div>
+</div>
+<div class="side_mod">
+	<cms:vote code="rightVote" />
+</div>

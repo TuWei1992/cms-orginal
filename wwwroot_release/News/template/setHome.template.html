@@ -1,0 +1,415 @@
+<z:config type="CatalogIndex" name="设为首页栏目页" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>${Site.Name}-${Catalog.Name}</title>
+<meta name="keywords" content="设为首页,设为主页,主页设置">
+<meta name="description" content="把泽元新闻网设置为您的主页">
+<link rel="stylesheet" href="../css/sethome.css">
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	if(window.location.toString().indexOf('#') != -1){
+		var browser = window.location.toString().split("#")[1];
+		$("#"+browser).children(".bd").slideDown("normal");
+	}
+	
+	$(".hd").mouseover(function(){
+		$(this).addClass("hdHover");
+	});
+	$(".hd").mouseout(function(){
+		$(this).removeClass("hdHover");
+	});
+	$(".hd").click(function(){
+		$(this).toggleClass("hdOpen");
+		$(this).next().slideToggle("normal");
+	});
+	$(".soft360").click(function(){
+		$("#weishi360 .bd").slideDown("normal");
+	});
+	$(".softJinshanweishi").click(function(){
+		$("#jinshanweishi .bd").slideDown("normal");
+	});
+	$(".softQQguanjia").click(function(){
+		$("#qqguanjia .bd").slideDown("normal");
+	});
+	$(".softJinshanduba").click(function(){
+		$("#jinshanduba .bd").slideDown("normal");
+	});
+});
+
+function SetHome(obj,vrl){
+	try{
+		obj.style.behavior='url(#default#homepage)';
+		obj.setHomePage(vrl);
+	}catch(e){
+		if(window.netscape){
+			try{
+					netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");  
+			}catch (e){
+					alert("抱歉！您当前使用的浏览器不支持直接设为首页。请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为“true”，点击“加入收藏”后忽略安全提示，即可设置成功。");
+			}
+			var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+			prefs.setCharPref('browser.startup.homepage',vrl);
+		 }else{  
+			alert('抱歉，您当前使用的浏览器不支持自动设置首页, 请使用浏览器菜单手动设置!');
+		 }
+	}
+}
+</script>
+</head>
+<body>
+<div class="layout">
+  <div class="browseLayout">
+    <div class="browseTitle"></div>
+    <div class="ieLayout browse" id="ie">
+      <div class="hd noborder">
+        <p>IE浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg">
+             <a href="#weishi360" class="soft360"></a>
+             <a href="#jinshanweishi" class="softJinshanweishi"></a>
+             <a href="#qqguanjia" class="softQQguanjia"></a>
+             <a href="#jinshanduba" class="softJinshanduba"></a>
+        </div>
+        <div class="step"><a href="javascript:void(0);" class="ieBtn" onclick="SetHome(this,'${site.url}')"></a></div>
+      </div>
+    </div>
+    <div class="qqLayout browse" id="qqbrowser">
+      <div class="hd">
+        <p>QQ浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在右上角菜单选项中点击“QQ浏览器选项“</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/qqbrowse01.png) no-repeat;width:549px;height:564px;"></div>
+            </dd>
+            <dt>第二步，在设置主页中勾选"自定义网页"，并输入${Site.Url}同时勾选启动主页，保存</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/qqbrowse02.png) no-repeat;width:712px;height:539px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="ttLayout browse" id="ttbrowser">
+      <div class="hd">
+        <p>TT浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在浏览器左上角工具菜单栏中点击“TT选项“</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/tt01.png) no-repeat;width:592px;height:346px;"></div>
+            </dd>
+            <dt>第二步，在“TT主页”中输入${Site.Url}，并在启动栏勾选”打开主页“选项，保存</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/tt02.png) no-repeat;width:597px;height:525px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="liebaoLayout browse" id="lbbrowser">
+      <div class="hd">
+        <p>猎豹浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，点击浏览器左上角猎豹头像框，在展开菜单中点击“选项”</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/liebao01.png) no-repeat;width:474px;height:570px;"></div>
+            </dd>
+            <dt>第二步，在“启动浏览器时”中勾选打开主页，并在“主页设置”中输入${Site.Url}</dt>
+            <dd><img src="../images/setHome/liebao02.png"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="chromeLayout browse" id="chrome">
+      <div class="hd">
+        <p>Chrome浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，打开谷歌浏览器-点击浏览器右上角菜单，选择设置项</dt>
+            <dd><img src="../images/setHome/chrome01.png"></dd>
+            <dt>第二步，在设置页卡中，勾选启动时打开特定网页，并点击“设置网页”</dt>
+            <dd><img src="../images/setHome/chrome02.png"></dd>
+            <dt>最后，在打开此页后输入${Site.Url}确定即可。</dt>
+            <dd><img src="../images/setHome/chrome03.png"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="firefoxLayout browse" id="firefox">
+      <div class="hd">
+        <p>Firefox浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在浏览器左上角点击firefox菜单，再点击“选项”栏的“选项”功能</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/firefox01.png) no-repeat;width:749px;height:329px;"></div>
+            </dd>
+            <dt>第二步，在启动栏选择“显示我的主页”，并在“主页”后输入${Site.Url},点击确定即可</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/firefox02.png) no-repeat;width:604px;height:583px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="safariLayout browse" id="safari">
+      <div class="hd">
+        <p>Safari浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，点击浏览器左上角safari菜单，选择"偏好设置"</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/safari01.png) no-repeat;width:416px;height:390px;"></div>
+            </dd>
+            <dt>第二步，在通用页卡下，将新窗口打开方式设置为“主页”，并在主页选项中输入${Site.Url}即可</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/safari02.png) no-repeat;width:669px;height:490px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="baiduLayout browse" id="bidubrowser">
+      <div class="hd">
+        <p>百度浏览器(hao123专用浏览器)</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，点击浏览器右上角菜单——选项</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/baidu01.png) no-repeat;width:566px;height:614px;"></div>
+            </dd>
+            <dt>第二步，在启动栏中勾选“主页”，并在主页栏输入${Site.Url}，保存完成</dt>
+            <dd><img src="../images/setHome/baidu02.png"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="sougouLayout browse" id="sougou">
+      <div class="hd">
+        <p>搜狗浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在浏览器右上角工具菜单中点击“搜狗浏览器选项“</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/sougou01.png) no-repeat;width:577px;height:375px;"></div>
+            </dd>
+            <dt>第二步，在常规页卡的启动设置中勾选“自定义网页”并输入${Site.Url}，保存即可</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/sougou02.png) no-repeat;width:751px;height:635px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="operaLayout browse" id="opera">
+      <div class="hd">
+        <p>Opera浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在浏览器左上角点击opera菜单-设置-首选项</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/opera01.png) no-repeat;width:455px;height:568px;"></div>
+            </dd>
+            <dt>第二步，在常规页卡中，启动栏后选择打开主页，并在主页栏中输入${Site.Url},保存完成</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/opera02.png) no-repeat;width:667px;height:501px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="lvseLayout browse" id="greenbrowser">
+      <div class="hd">
+        <p>绿色浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在浏览器左上角点击工具-GREENBROWSER选项</dt>
+            <dd><img src="../images/setHome/lvse01.png" /></dd>
+            <dt>第二步，点击左侧的启动/退出，然后勾选“自定义主页”，并输入${Site.Url}，点击确定</dt>
+            <dd><img src="../images/setHome/lvse02.png" /></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="krLayout browse" id="krbrowser">
+      <div class="hd">
+        <p>KR浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，点击浏览器左上角工具—修改主页</dt>
+            <dd><img src="../images/setHome/kr01.png" /></dd>
+            <dt>第二步，在空白区输入${Site.Url}点击确定即可</dt>
+            <dd><img src="../images/setHome/kr02.png" /></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="shijiezhichuangjisuLayout browse" id="theworld">
+      <div class="hd">
+        <p>世界之窗极速浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在浏览器右上角工具选项中点击选项</dt>
+             <dd><img src="../images/setHome/shijiezhichuangjisu01.png" /></dd>
+            <dt>第二步，在基本设置的启动栏勾选“打开主页”，并在主页栏输入${Site.Url}即可</dt>
+             <dd><img src="../images/setHome/shijiezhichuangjisu02.png" /></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="shijiezhichuangLayout browse" id="theworld2">
+      <div class="hd">
+        <p>世界之窗浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在浏览器右上角工具选项中点击选项</dt>
+            <dd><img src="../images/setHome/shijiezhichuang01.png"></dd>
+            <dt>第二步，在常规设置中，勾选“启动时“显示主页，并在”主页设置“中输出${Site.Url}即可</dt>
+            <dd><img src="../images/setHome/shijiezhichuang02.png"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="browse360Layout browse" id="browser360">
+      <div class="hd">
+        <p>360浏览器</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="kuaijieBg"> <a href="#weishi360" class="soft360"></a> <a href="#jinshanweishi" class="softJinshanweishi"></a> <a href="#qqguanjia" class="softQQguanjia"></a> <a href="#jinshanduba" class="softJinshanduba"></a> <a href="#" class="softKuaijie"></a> </div>
+        <div class="step">
+          <dl>
+            <dt>第一步，在浏览器右上角工具菜单栏中点击“选项”</dt>
+           <dd><img src="../images/setHome/360browse01.png"></dd>
+            <dt>第二步，在常规页卡的“主页设置”中输入${Site.Url},在“启动时”后勾选上显示主页，保存即可</dt>
+            <dd><img src="../images/setHome/360browse02.png"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="softLayout">
+    <div class="softTitle"></div>
+    <div class="guanjia360Layout soft" id="weishi360">
+      <div class="hd noborder">
+        <p>360安全卫士</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="step">
+          <dl>
+            <dt>第一步， 打开360卫士进入系统修复——IE锁定修改。</dt>
+              <dd><img src="../images/setHome/weishi360_01.png"></dd>
+            <dt>第二步，在主页锁定为里面输入：${Site.Url}, 点击安全锁定即可。</dt>
+              <dd><img src="../images/setHome/weishi360_02.png"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="jinshanweishiLayout soft" id="jinshanweishi">
+      <div class="hd">
+        <p>金山卫士</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="step">
+          <dl>
+            <dt>第一步，打开金山卫士，进入百宝箱——系统优化——实时保护。</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/jinshanweishi01.png) no-repeat;width:850px;height:599px;"></div>
+            </dd>
+            <dt>第二步，打开“浏览器设置”选项卡，在IE设置中输入${Site.Url},保存即可。</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/jinshanweishi02.png) no-repeat;width:848px;height:599px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="qqguanjiaLayout soft" id="qqguanjia">
+      <div class="hd">
+        <p>QQ管家</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="step">
+          <dl>
+            <dt>第一步，打开QQ电脑管家首页，选择右下角“工具箱”。</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/qqguanjia01.png) no-repeat;width:842px;height:620px;"></div>
+            </dd>
+            <dt>第二步，输入框输入${Site.Url}，锁定主页即可。</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/qqguanjia02.png) no-repeat;width:842px;height:601px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="jinshandubaLayout soft" id="jinshanduba">
+      <div class="hd">
+        <p>金山毒霸</p>
+        <em></em> </div>
+      <div class="bd">
+        <div class="step">
+          <dl>
+            <dt>第一步，打开金山毒霸首页后，点击浏览器保护</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/jinshanduba01.png) no-repeat;width:801px;height:572px;"></div>
+            </dd>
+            <dt>第二步，选择默认浏览器后，在IE锁定中输入${Site.Url}，保存即可。</dt>
+            <dd>
+              <div class="imgLayout" style="background:url(../images/setHome/jinshanduba02.png) no-repeat;width:548px;height:435px;"></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+</body>
+</html>

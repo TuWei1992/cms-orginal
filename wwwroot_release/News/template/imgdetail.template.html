@@ -1,0 +1,124 @@
+<z:config type="ImageDetail" name="组图详细页" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${Site.Name}--${Catalog.Name}--${Article.Title}</title>
+<cms:include file="include.template.html"></cms:include>
+<link href="../css/page.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="../css/img_gallery.css" />
+<script type="text/javascript" src="../js/imggallery.js"></script>
+</head>
+
+<body>
+<!-- 页头开始 -->
+<cms:include file="headerblock2.template.html" ssi="false">{ZCMS:文件包含}</cms:include>
+<!-- 页头结束 -->
+
+<!-- 主体开始 -->
+<div class="main cata_main pageWidth clearself"><!-- 第一块开始 -->
+<div class="blockboxB blockboxnobg clearself">
+<div class="img_gallery_wrap">
+<h1 class="img_gallery_title" style="">${ImageGroup.Title}&nbsp;<span
+	class="img_gallery_num">(1/10)</span></h1>
+<div class="img_gallery_tipWrap"><span class="img_gallery_play">幻灯播放</span>
+<div class="img_gallery_tip">提示：支持键盘翻页 ←左 右→</div>
+</div>
+<div class="img_gallery_con">
+<div class="bigimg_info">
+<div class="bigimg_wrap">
+<div class=""><cms:image pagesize="100">
+	<z:list>
+		<div class="bigimg"><a href="#;"><!-- 显示500x500的缩略图 --><img
+			src="${Prefix}${Image.ThumbnailPath2}"
+			onerror="this.src='${Prefix}images/picture404.gif'"></a></div>
+	</z:list>
+</cms:image></div>
+<div class="snext"></div>
+<div class="sprev"></div>
+</div>
+<div class="bigimg_description"><cms:image count="1">
+	<z:list>${Image.Info}</z:list>
+</cms:image></div>
+<div class="bigimg_pdate">${format(ImageGroup.PublishDate,'yyyy年MM月dd日')}
+&nbsp;&nbsp;<a class="scbtn" href="#"
+	onclick="addFavorites('${ImageGroup.ID}','Content')">收藏</a></div>
+</div>
+<div class="img_gallery_Box">
+<div class="img_gallery_nav">
+<div class="img_back"></div>
+<div class="img-thumbs">
+<ul class="img-thumb-list">
+	<cms:image pagesize="100">
+		<z:list>
+			<li><img info="${Image.Info}" src="${Prefix}${Image.ImagePath}" /></li>
+		</z:list>
+	</cms:image>
+</ul>
+</div>
+<div class="img_forward"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="line_b"></div>
+<cms:comment contentid="${ImageGroup.ID}"></cms:comment></div>
+<!-- 第一块结束 -->
+
+</div>
+<!-- 主体结束 -->
+
+<!-- 页脚开始 -->
+<cms:include file="footer.template.html">{ZCMS:文件包含}</cms:include>
+<!-- 页脚结束 -->
+<script type="text/javascript" src="../js/jquery.soChange-min.js"></script>
+<script type="text/javascript" src="../js/cata_index.js"></script>
+<script>
+var curCatalogInnerCode="${Catalog.InnerCode}";//获取当前页面所在栏目的InnerCode，这句不能够写在外部js文件里
+for(var i=1,len=curCatalogInnerCode.length; i<len/6+1; i++){
+    var innerCode=curCatalogInnerCode.substring(0,i*6);
+    var catalogElement=document.getElementById(innerCode);
+    if(catalogElement){
+        catalogElement.className+=" current";
+    }
+}
+function addFavorites(id,favtype){
+	var url = '${FrontAppContext}member/logined?t='+new Date().getTime();
+	loadJs(url, function(){
+		if(result.IsLogin){
+			if(!id || !favtype){
+				Dialog.alert("<z:lang id="Memberfavorites.Favorites.ErrorMsg">缺少必须的参数</z:lang>");
+				return;
+			}
+			var dc = {ID:id,FavType:favtype};
+			loadJs("${FrontAppContext}memberFavorites/add?ID="+id+"&FavType="+favtype,function(){
+				Dialog.alert(result.message);
+				});
+		}else{
+			//登录
+			Dialog.alert("还未登录，请先登录");
+			var loginurl ="${FrontAppContext}member/login?SiteID=${Site.ID}&Referer="+encodeURIComponent(window.location.href);
+			window.location.href = loginurl;
+		}
+	});
+}
+</script>
+<script type="text/javascript">
+	galleryScroll({
+		changeObj : '.bigimg_wrap .bigimg',
+		changeObj_wrap:'.bigimg_wrap',
+		thumbObj_wrap:'.img-thumbs',  
+		thumbObj : 'ul.img-thumb-list li',
+		botPrev : '.img_gallery_wrap .sprev',
+		botNext : '.img_gallery_wrap .snext',
+		description:'div.bigimg_description',
+		allowObj:'div.img_gallery_con',
+		imgcurNum:'span.img_gallery_num',
+		thumbPrev:'div.img_back',
+		thumbNext:'div.img_forward',
+		autoChangeObj: 'div.img_gallery_tipWrap span'
+	});
+</script>
+</body>
+</html>

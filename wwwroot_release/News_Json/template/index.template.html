@@ -1,0 +1,27 @@
+<z:config type="SiteIndex" name="@{Contentcore.SiteIndexTemplate}" />
+[
+<cms:catalog level="root">
+	<z:list>${i==1?"":","}
+	{
+		Name:"${Catalog.Name}",
+		InnerCode:"${Catalog.InnerCode}",
+		Alias:"${Catalog.Alias}",
+		Link:"${Catalog.Link}",
+		ChildCount:"${Catalog.ChildCount}",
+		children:[
+			<cms:catalog&nbsp;level="Child"&nbsp;alias="${Catalog.Alias}">
+				<z:list>${i==1?"":","}
+			{
+				Name:"${Catalog.Name}",
+				InnerCode:"${Catalog.InnerCode}",
+				Alias:"${Catalog.Alias}",
+				Link:"${Catalog.Link}",
+				ChildCount:"${Catalog.ChildCount}"
+			}
+				</z:list>
+			</cms:catalog>
+		]
+	}
+	</z:list>
+</cms:catalog>
+]

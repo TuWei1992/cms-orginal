@@ -1,0 +1,16 @@
+<z:config type="Block" name="招聘顶部菜单栏" />
+<div class="header-wrapper">
+	<div class="header">			
+		<a href="${Config.MainBase}" class="saic-logo">
+			<img class="logo" src="${surl('resource/common/img/saic.png')}" alt="车享" width="112" height="40">
+			<img src="${surl('resource/common/img/saic-info.gif')}" alt="上汽品质 全程畅想 专业 专注 信赖 保障" width="102" height="36">
+		</a>
+		<ul class="main-nav">
+			<cms:catalog alias="zpsy"><li><a href="${indexSuffix(catalog.Link)}">首页</a></li></cms:catalog>
+			<cms:catalog alias="zpsy_gsjj"><li><a href="${indexSuffix(catalog.Link)}">公司介绍</a></li></cms:catalog>
+			<cms:catalog alias="zpsy_szzw"><li><a href="${indexSuffix(catalog.Link)}">社招职位</a></li></cms:catalog>
+			<cms:catalog alias="zpsy_xyzp"><li><a href="${indexSuffix(catalog.Link)}">校园招聘</a></li></cms:catalog>
+			<cms:catalog alias="zpsy_faq"><li class="last"><a href="${indexSuffix(catalog.Link)}">FAQ</a></li></cms:catalog>
+		</ul>
+	</div>
+</div>

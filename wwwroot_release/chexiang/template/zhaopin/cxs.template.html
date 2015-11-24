@@ -1,0 +1,113 @@
+<z:config type="CatalogIndex" name="车享生栏目首页" />
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+	<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+		<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>
+		<meta http-equiv="cache-control" content="public"/>
+		<meta http-equiv="expires" content="max-age"/>	
+		<title>车享招聘</title>
+		<meta name="keywords" content="车享招聘"/>
+		<!-- begin | global javascript -->
+			<script>
+				(function (window, console) {
+//				 	window.base = "${Config.Base}";
+					window.base = "";
+					window.accountBase="${Config.AccountBase}";
+					window.mainBase = "${Config.MainBase}";
+					window.imBase = "${Config.ImBase}";
+					window.OrderBase = "${Config.OrderBase}";
+					window.memberBase = "${Config.MemberBase}";
+					window.mallBase = "${Config.MallBase}";
+					window.imUrl="${Config.imUrl}?arg=admin&style=2";
+				} (window, "undefined" != typeof console ? console : void 0));
+			</script>
+		<!-- end | global javascript -->
+		<link href="${surl('resource/common/img/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+		<!-- begin | public stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/common/css/reset.css')}">
+		<link rel="stylesheet" href="${surl('resource/common/css/global.css')}">
+		<!-- end | public stylesheet -->
+		<!-- begin | private stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/zhaopin/css/index.css')}">
+		<!-- end | private stylesheet -->
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${surl('resource/common/js/jquery_1_8_3.js')}"></script>
+	<!-- end | public javascript -->		
+</head>
+<body>
+	<!-- begin | Top Bar -->
+    <cms:include file="../header_index-mini.template.html" />
+	<!-- end | Top Bar -->
+	
+	<!-- begin | menu Bar -->
+    <cms:include file="header_menu.zhaopin.template.html" />
+	<!-- end | menu Bar -->
+
+
+	<!-- container -->
+	<div class="container">
+		<!-- mod-campus -->
+		<div class="mod mod-campus fl">
+			<div class="th">
+				<ul>
+					<li>
+						<a href="<cms:catalog alias='zpsy_xyzp_xyhd'>${indexSuffix(catalog.Link)}</cms:catalog>">校园活动</a>
+						<i></i>
+					</li>
+					<li class="cur">
+						<a href="<cms:catalog alias='zpsy_xyzp_cxs'>${indexSuffix(catalog.Link)}</cms:catalog>">车享生俱乐部</a>
+						<i></i>
+					</li>
+				</ul>				
+			</div>
+			<div class="chexiangsheng">
+				<p class="item-1">可以是关注学生群体，帮助车享找寻到<br/>更适合人才的一群年轻忠实“追随者”</p>
+				<p class="item-2">每一个爱汽车、爱发明、<br/>爱网络的学生都是车享生</p>
+				<p class="item-3">可以是参加车享<br/>实习的培训生</p>
+				<p class="item-4">可以是帮助车享推广雇主品牌，<br/>策划和执行校园活动的在校大学生</p>
+				<p class="item-5">可以是成为车享院校后备<br/>人才的年轻新生军</p>
+				<p class="item-6">可以是关注或参与车享<br/>校园活动的在校大学生</p>
+				<p class="item-7">车享生是热爱汽车，快乐享受生活<br/>玩转互联网的年轻化人物代表</p>
+			</div>
+		</div>
+
+		<div class="side fr">
+        	<!--  关注我们  开始 -->
+        	<div class="mod mod-attention b_mod_attention">
+                <div class="th">
+                    <h3 class="tit">关注我们</h3>
+                    <div class="btn-sina"><wb:follow-button uid="5223430562" type="red_1" width="67" height="24" ></wb:follow-button></div>
+                </div>
+                <dl class="zhaopin-weixin">
+                    <dd class="img-box"><img src="${surl('resource/zhaopin/img/zhaopin-ercode.png')}" alt="招聘微信订阅号" width="170" height="170" /></dd>
+                    <dt>
+					关注车享招聘订阅号
+					<strong>你离车享更近一步</strong>
+					</dt>
+                </dl>
+            </div>
+            <!--  关注我们  结束 -->
+            
+            <!--  广告位  开始 -->
+            <cms:block code="advImage" updateBlock="false" />
+        	<!--  广告位  结束 -->
+        </div>
+	</div>
+
+	<!-- footer -->
+	<cms:include file="../footer_index.template.html" />
+	<!-- end | Footer -->
+
+	<!-- sidebar -->
+	<cms:include file="../sidebar.template.html" />
+	<!-- end | sidebar -->
+	<script>
+	$('.main-nav a').removeClass('cur');$('.main-nav li').eq(3).find('a').addClass('cur');
+	</script>
+	<script src="${surl('resource/common/js/header.js')}"></script>
+	<script src="${surl('resource/zhaopin/js/index.js')}"></script>
+	<cms:include file="../analysis.template.html" />
+</body>
+</html>

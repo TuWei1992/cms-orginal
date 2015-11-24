@@ -1,0 +1,100 @@
+<z:config type="Block" name="车享拍首页区块" />
+<div class="mod-row cx-sale">
+	<div class="mod-side">
+		<div class="mod-tit">
+			<i class="icon-sale"></i>
+			<dl class="tit-name">
+				<dt><a target="_blank" href="${Config.ChexiangpaiBase}">预约卖车<ins></ins></a></dt>
+				<dd>想卖高价来车享拍</dd>
+			</dl>
+		</div>
+		<fieldset class="field-panel">
+			<legend>填写表单<span>提交卖车申请</span></legend>
+			<form id="frm-sell" class="frm-sell" name="frm-sell" method="post" action="${Config.ChexiangpaiBase}/main/booking.htm" target="_blank">
+				<input type="hidden" name="type" id="type" value="1" />
+				<div class="field sel-item field-item" title="请输入正确的车辆所在地">
+					<select name="cityId" id="sltLocation" class="sltLocation" data-nick="车辆所在地">
+					<cms:cxdata code="paiCitys">
+					<z:list>
+						<option value="${CXData.data.code}">${CXData.data.name}</option>
+					</z:list>
+					</cms:cxdata>						
+					</select>
+				</div>
+				<div class="field field-item" title="请输入正确的车型">
+					<input id="carInfo" class="inp iptModel" name="carInfo" autocomplete="off" type="text" placeholder="车型" data-nick="车型">
+				</div>
+				<div class="field field-item" title="请输入您的姓名">
+					<input id="userName" class="inp iptUser" name="userName" autocomplete="off" type="text" placeholder="姓名" data-nick="姓名">
+				</div>
+				<div class="field field-item" title="请输入您的手机号码">
+					<input id="mobilePhone" class="inp iptPhone" name="mobilePhone" autocomplete="off" type="text" placeholder="手机" data-nick="手机">
+				</div>
+				<div class="msg-area">
+					<div class="msg-hint txt-error hide">
+						<i></i><p class="msg-txt">恭喜你！资料已成功提交！</p>
+					</div>
+				</div>
+				<input type="submit" id="btn-submit-frm-sell" class="btn-submit" value="快速预约">
+			</form>
+		</fieldset>
+		<div class="sale-bot">
+			<ul>
+			<cms:article catalogAlias="sy20150808_cxp_ljz" name="左侧链接" loadcontent="true">
+			<z:list>
+				<z:match value="${Article.Content}" regex="<a.*?>.+?</a>">
+				<z:list count="4">
+					<li <z:if condition="${i%2==0}">class="last"</z:if>>${(Data.Value)}</li>
+				</z:list>
+				</z:match>
+			</z:list>
+			</cms:article>
+			</ul>
+		</div>
+	</div>
+	<div class="mod-play js-mod-play">
+	<cms:imagegroup catalogAlias="sy20150808_cxp_tj" name="中间图集">
+	<z:list>
+		<cms:image count="5">
+		<div class="show-box">
+			<ul class="show-wrap">
+			   <z:list>
+			   <li>
+				 <a <z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if> title="${Image.Name}"><img class="lazy" data-original="${Image.ImagePath}" alt="" width="310" height="440"></a>
+			   </li>
+			   </z:list>
+			</ul>
+		</div>
+		<div class="page-num">
+			<div class="page-in">
+				<ul class="page">
+				<z:list>
+					<li <z:if condition="${i==1}">class="cur"</z:if>><span class="line"></span></li>
+				</z:list>
+				</ul>
+			</div>
+		</div>
+		</cms:image>
+	</z:list>
+	</cms:imagegroup>
+	</div>
+	<div class="mod-main act-list">
+		<ul>
+		<cms:imagegroup catalogAlias="sy20150808_cxp_tj" name="右侧图集">
+			<z:list>
+				<cms:image count="6">
+				   <z:list>
+				   <li>
+					<dl>
+						<dd class="img-box"><a <z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if> title=""><img class="lazy" data-original="${Image.ImagePath}" alt="" width="100" height="100"></a></dd>
+						<dt class="tit"><a <z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if> title="${Image.Name}">${Image.Name}</a></dt>
+						<dd class="desc">${Image.Info}</dd>
+					</dl>
+					</li>
+				   </z:list>
+				</cms:image>
+			</z:list>
+			</cms:imagegroup>
+		</ul>
+	</div>
+</div>

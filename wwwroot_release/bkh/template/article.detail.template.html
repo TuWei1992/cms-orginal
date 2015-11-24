@@ -1,0 +1,140 @@
+<z:config type="ArticleDetail" name="文章详细页" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="文章" />
+    <meta name="description" content="文章" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 	<title>${Article.Title}-${Site.Name}</title>
+    <!--
+
+        <link rel="stylesheet" href="${surl('public/ajax/lib/css/reset_css_saike/1.3/reset.css')}">
+        <link rel="stylesheet" href="${surl('public/ajax/lib/css/saike.main.site/common.css')}">
+    
+        <link rel="stylesheet" href="${surl('public/ajax/lib/css/saike.main.site/about.css')}">
+     -->
+
+    <link href="${surl('public/ajax/lib/img/saike.main.site/favicon.ico')}" type="image/x-icon" rel="shortcut icon">
+    <!--
+        <script>
+                (function (window, console) {
+                    window.base = "${Config.Base}";
+                    window.accountBase="${Config.AccountBase}";
+                    window.mainBase = "${Config.MainBase}";
+                    window.imBase = "${Config.IMBase}";
+                    window.OrderBase = "${Config.OrderBase}";
+                    window.memberBase = "${Config.MemberBase}";
+                    window.imUrl="${Config.imUrl}?arg=admin&style=2";
+                } (window, "undefined" != typeof console ? console : void 0));
+            </script>
+     -->
+</head>
+
+<body class="about">
+<!--头部开始-->
+<div class="mainsite-topnav">
+    <div class="mainsite-header"></div>
+</div>
+<div id="nSubNav" class="n-subnav">
+        <span class="headerIntro" sytle="margin-top:20px;"><span class="f-24">${(Article.Title)}</span></span>
+</div>
+
+<!--头部结束-->
+<div id="breadCrumbs" class="w960 breadcrumbs">
+    <a href="${Config.MainBase}">首页</a>&gt;<span>${(Article.Title)}</span>
+</div>
+<!--主框架开始-->
+<div class="w960 mt-20">
+    
+    <!--内容区开始-->
+
+    <div class="main">        	
+        <div>
+            <p>
+                <z:if condition="${not empty Article.LogoFile}"><img src="${imageSize(Article.LogoFile, 700, 0, 'fit')}"></z:if>
+            </p>
+        </div>
+        <div>
+        ${(Article.Content)}
+        </div><li>${Article.LogoFile}</li>
+      <!--
+        <li>${Article.CKECommentFlag}</li>
+        <li>${Article.CommentEndTime}</li>
+        <li>${Article.CommentEnable}</li>
+        <li>${Article.Attribute}</li>
+        <li>${Article.PlatformAttribute}</li>
+        <li>${Article.ID}</li>
+        <li>${Article.PageTitles}</li>
+        <li>${Article.BodyText}</li>
+        <li>${Article.CopyImageFlag}</li>
+        <li>${Article.SiteID}</li>
+        <li>${Article.CatalogID}</li>
+        <li>${Article.CatalogInnerCode}</li>
+        <li>${Article.TopCatalog}</li>
+        <li>${Article.BranchInnerCode}</li>
+        <li>${Article.ContentTypeID}</li>
+        <li>${Article.Title}</li>
+        <li>${Article.SubTitle}</li>
+        <li>${Article.ShortTitle}</li>
+        <li>${Article.TitleStyle}</li>
+        <li>${Article.ShortTitleStyle}</li>
+        <li>${Article.SourceTitle}</li>
+        <li>${Article.Author}</li>
+        <li>${Article.Editor}</li>
+        <li>${Article.Summary}</li>
+        <li>${Article.LinkFlag}</li>
+        <li>${Article.RedirectURL}</li>
+        <li>${Article.StaticFileName}</li>
+        <li>${Article.Status}</li>
+        <li>${Article.TopFlag}</li>
+        <li>${Article.TopDate}</li>
+        <li>${Article.TemplateFlag}</li>
+        <li>${Article.Template}</li>
+        <li>${Article.OrderFlag}</li>
+        <li>${Article.ReferName}</li>
+        <li>${Article.ReferURL}</li>
+        <li>${Article.Keyword}</li>
+        <li>${Article.RelativeContent}</li>
+        <li>${Article.RecommendBlock}</li>
+        <li>${Article.CopyType}</li>
+        <li>${Article.CopyID}</li>
+        <li>${Article.HitCount}</li>
+        <li>${Article.StickTime}</li>
+        <li>${Article.PublishFlag}</li>
+        <li>${Article.Priority}</li>
+        <li>${Article.IsLock}</li>
+        <li>${Article.LockUser}</li>
+        <li>${Article.PublishDate}</li>
+        <li>${Article.DownlineDate}</li>
+        <li>${Article.ArchiveDate}</li>
+        <li>${Article.LogoFile}</li>
+        <li>${Article.Tag}</li>
+        <li>${Article.Source}</li>
+        <li>${Article.SourceURL}</li>
+        <li>${Article.Weight}</li>
+        <li>${Article.ClusterSource}</li>
+        <li>${Article.ClusterTarget}</li>
+        <li>${Article.ContributeFlag}</li>
+        <li>${Article.ContributeUID}</li>
+        <li>${Article.ConfigProps}</li>
+        <li>${Article.Prop1}</li>
+        <li>${Article.Prop2}</li>
+        <li>${Article.Prop3}</li>
+        <li>${Article.Prop4}</li>
+        <li>${Article.AddUser}</li>
+        <li>${Article.AddTime}</li>
+        <li>${Article.ModifyUser}</li>
+        <li>${Article.ModifyTime}</li>
+        <li>${Article.Name}</li>
+        <li>${Article.Linkpc}</li>
+        <li>${Article.ContentPageSize}</li>
+        <li>${Article.Content}</li>      
+-->
+	</div>
+    
+    <!--内容区结束-->
+</div>
+<!--主框架结束-->
+
+</body>
+</html>

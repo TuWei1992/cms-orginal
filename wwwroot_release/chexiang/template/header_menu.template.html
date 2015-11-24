@@ -1,0 +1,62 @@
+<z:config type="Block" name="顶部菜单栏" />
+<!-- header -->
+	<div class="header-wrapper">
+		<div class="header">			
+			<a href="${Config.MainBase}" class="saic-logo">
+				<img class="logo" src="${surl('resource/img/saic.png')}" alt="车享" width="112" height="40">
+				<img src="${surl('resource/img/saic-info.gif')}" alt="上汽品质 全程畅想 专业 专注 信赖 保障" width="102" height="36">
+			</a>
+			<cms:imagegroup catalogAlias="sy20150328_ddtgw">
+			<z:if condition="${__Total>0}">
+			<cms:image>
+			<z:if condition="${__Total>0}">
+			<div class="header-act"><a href="${image.LinkURL}" target="_blank" title="${image.name}">
+				<img src="${image.ImagePath}" alt="${image.name}"/></a>
+			</div>
+			</z:if>
+			</cms:image>
+			</z:if>
+			</cms:imagegroup>
+			<dl class="help-tel">
+				<dt class="icon-tel"></dt>
+				<dd>
+					<p class="tel-no">4008 020 666</p>
+					<p class="time">服务时段：周一至周日8：00~22：00</p>
+				</dd>
+			</dl>
+		</div>
+	</div>
+	
+	<!-- nav -->
+	<div class="nav-wrapper">
+		<ul class="nav">
+			<li>
+				<a href="${Config.MainBase}">首页</a>
+			</li>
+			<li>
+				<a href="${Config['ebiz.zcms.web.carmallBase']}" target="_blank">车享商城</a>
+				<i class="icon"><b class="icon-arr"></b>省</i>
+			</li>
+			<li>
+				<a href="${Config.CarlibBase}/overview/brand_-1.htm" target="_blank">车型大全</a>
+			</li>
+			<li>
+				<a href="${Config.CarlibBase}/overview/pic_1.htm" target="_blank">精美图库</a>
+			</li>
+			<li>
+				<a href="${Config.CuBase}/brand/promotion/showProm.htm?brand=-1&orderByItem=endingTime&currentPage=1&activity=all&status=all" target="_blank">促销活动</a>
+			</li>
+			<li>
+				<a href="${Config.MainBase}/dealer/store/polymerization_0.htm" target="_blank">经销商</a>
+			</li>
+			<li>
+				<a href="${Config.ChexiangpaiBase}" target="_blank">二手车</a>
+			</li>
+			<li>
+				<a href="http://jia.chexiang.com" target="_blank">车享家</a>
+			</li>
+			<li>
+				<a href="${Config.MallBase}" target="_blank">车享汇</a>
+			</li>
+		</ul>
+	</div>

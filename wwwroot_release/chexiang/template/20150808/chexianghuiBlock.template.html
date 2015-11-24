@@ -1,0 +1,110 @@
+<z:config type="Block" name="车享汇首页区块" />
+
+<div class="mod-row js-mod-placeholder">
+	<div class="cx-hui">
+		<div class="mod-side">
+			<div class="mod-tit">
+				<i class="icon-hui"></i>
+				<dl class="tit-name">
+					<dt><a target="_blank" href="http://mall.chexiang.com">车享汇<ins></ins></a></dt>
+					<dd>全方位体验车享服务</dd>
+				</dl>
+			</div>
+			<cms:imagegroup catalogAlias="sy20150808_cxh_tj" name="左侧图集">
+			<z:list>
+			<cms:image count="7">
+			<div id="js-hui-play" class="hui-play">
+				<span class="arrow-left js-prev"></span>
+				<span class="arrow-right js-next"></span>
+				<div id="js-hui-show" class="show-box">						
+					<ul>
+					   <z:list>
+					   <li class="item cur">
+						<dl>
+							<dd class="img-box">
+								<a <z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if> title="${Image.Name}"><img src="${Image.ImagePath}" alt="" width="94" height="94"></a>
+							</dd>
+							<dt class="tit">
+								<a <z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if> title="${Image.Name}">${Image.Name}</a>
+							</dt>
+							<dd class="desc">
+								${Image.Info}
+							</dd>
+						</dl>
+						</li>
+					   </z:list>
+					</ul>
+				</div>
+				<div id="js-hui-page" class="page-num">
+					<z:list>
+						<span <z:if condition="${i==1}">class="cur"</z:if>></span>
+					</z:list>
+				</div>
+			</div>
+			</cms:image>
+			</z:list>
+			</cms:imagegroup>
+			
+			<div class="hui-bot">
+				<ul>
+				<cms:article catalogAlias="sy20150808_cxh_ljz" name="左侧链接" loadcontent="true">
+				<z:list>
+					<z:match value="${Article.Content}" regex="<a.*?>.+?</a>">
+					<z:list count="4">
+						<li <z:if condition="${i%2==0}">class="last"</z:if>>${(Data.Value)}</li>
+					</z:list>
+					</z:match>
+				</z:list>
+				</cms:article>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="mod-play js-mod-play">
+		<cms:imagegroup catalogAlias="sy20150808_cxh_tj" name="中间图集">
+		<z:list>
+			<cms:image count="5">
+			<div class="show-box">
+				<ul class="show-wrap">
+				   <z:list>
+				   <li>
+					 <a <z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if> title="${Image.Name}"><img class="lazy" data-original="${Image.ImagePath}" alt="" width="310" height="440"></a>
+				   </li>
+				   </z:list>
+				</ul>
+			</div>
+			<div class="page-num">
+				<div class="page-in">
+					<ul class="page">
+					<z:list>
+						<li <z:if condition="${i==1}">class="cur"</z:if>><span class="line"></span></li>
+					</z:list>
+					</ul>
+				</div>
+			</div>
+			</cms:image>
+		</z:list>
+		</cms:imagegroup>
+		</div>
+
+		<div class="mod-main act-list">
+			<ul>
+			<cms:imagegroup catalogAlias="sy20150808_cxh_tj" name="产品图集">
+				<z:list>
+					<cms:image count="6">
+					   <z:list>
+					   <li>
+						<dl>
+							<dd class="img-box"><a <z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if> title=""><img class="lazy" data-original="${Image.ImagePath}" alt="" width="204" height="120"></a></dd>
+							<dt class="tit"><a <z:if condition="${not empty Image.SourceURL}"> href="${Image.LinkUrl}" target="_blank"</z:if> title="${Image.Name}">${Image.Name}</a></dt>
+							<dd class="price">${Image.Info}</dd>
+						</dl>
+						</li>
+					   </z:list>
+					</cms:image>
+				</z:list>
+				</cms:imagegroup>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,260 @@
+<z:config type="SiteIndex" name="首页" />
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1"/>
+		<meta name="viewport" content="width = device-width, initial-scale = 1, minimal-ui"/>
+		<meta http-equiv="cache-control" content="public"/>
+		<meta http-equiv="expires" content="max-age"/>	
+		<title>车享 · 车享平台，打造中国最大的一站式汽车在线生活服务平台</title>
+		<meta name="keywords" content="${Site.SEOKeywords}"/>
+		<meta name="description" content="${Site.SEODescription}"/>
+		<!-- begin | global javascript -->
+			<script>
+				(function (window, console) {
+					window.base = "${Config.Base}";
+					window.accountBase="${Config.AccountBase}";
+					window.mainBase = "${Config.MainBase}";
+					window.imBase = "${Config.ImBase}";
+					window.OrderBase = "${Config.OrderBase}";
+					window.memberBase = "${Config.MemberBase}";
+                 	window.mallBase = "${Config.MallBase}";
+					window.imUrl="${Config.imUrl}?arg=admin&style=2";
+				} (window, "undefined" != typeof console ? console : void 0));
+			</script>
+		<!-- end | global javascript -->
+		<link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+		<!-- begin | public stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/css/reset.css')}">
+		<!-- end | public stylesheet -->
+		<!-- begin | private stylesheet -->
+		<link rel="stylesheet" href="${surl('resource/css/index.css')}">
+		<!-- end | private stylesheet -->
+  		<script src="${surl('resource/js/jquery_1_8_3.js')}"></script>
+	<!-- end | public javascript -->		
+</head>
+<body>
+  
+     <!-- begin | Top Bar -->
+    <cms:include file="header_index-mini.template.html" />
+	<!-- end | Top Bar -->
+  
+  	<!-- container -->
+	<div class="container">
+		<!-- header -->
+		<div class="header">
+			<div class="logo">
+              <a href="${Config.MainBase}" class="saic">
+                  <img src="${surl('resource/img/saic.png')}" alt="车享">
+				</a>
+				<a href="${Config.MallBase}" class="hui">					
+                  <img src="${surl('resource/img/logo_chexianghui.png')}" alt="车享汇">
+				</a>
+			</div>
+			<ul class="main-nav">
+				<li class="cur">
+					<a href="${Config.MallBase}">首页</a>
+				</li>
+				<li>
+                  <a href="${Config.MallBase}/carservice/carservice.htm">车服务</a>
+					<div class="menu-box">
+						<span class="arrow"></span>
+						<div class="menu-list">
+							<a href="${Config.MallBase}/carservice/road/roadHelp.htm">道路救援</a>
+							<a href="${Config.MallBase}/carservice/carCosmetology.htm">汽车美容</a>
+							<a href="${Config.MallBase}/carservice/helpDrive.htm">代驾服务</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="${Config.ClubBase}/index.htm">车知道</a>
+				</li>
+				<li>
+					<a href="${Config['ebiz.zcms.web.rentalcarsBase']}/index/init">租车</a>
+					<div class="menu-box">
+						<span class="arrow"></span>
+						<div class="menu-list">
+							<a href="${Config['ebiz.zcms.web.rentalcarsBase']}/index/init">国内租车</a>
+							<a href="${Config['ebiz.zcms.web.rentalcarsBase']}/index/international">国际租车</a>
+						</div>
+					</div>
+				</li>
+				<li class="last">
+					<a href="${Config.MallBase}/preferred/mdseList.htm">优选</a>
+				</li>
+			</ul>
+		</div>
+
+
+		<!-- main -->
+		<div class="main-box">
+          <div id="userinfo" class="user-info-area">
+              
+            </div>
+			<div class="banner-wrap">
+				<ul id="j-banner-content">
+                  <cms:imagegroup catalogAlias="cxhxb_lunbotu">
+					<cms:image>
+                      <z:list>
+                        <li class="current">
+                          <a href="${image.LinkURL}" target="_blnak"><img src="${image.ImagePath}" alt="" width="730" height="360"></a>
+                        </li>
+                      </z:list>
+					</cms:image>
+					</cms:imagegroup>
+				</ul>
+				<div id="j-banner-num" class="page-num">
+                  <cms:imagegroup catalogAlias="cxhxb_lunbotu" >
+					<cms:image>
+                      <z:list>
+                        <span <z:if condition="${i==1}">class="cur"</z:if>></span>
+                      </z:list>
+					</cms:image>
+					</cms:imagegroup>
+				</div>
+			</div>
+			<div class="search-panel">
+				<fieldset class="field-panel">
+					<legend class="tit">违章查询</legend>					
+					<form  id="illegalForm" class="search-form" method="post">
+                     	<input type="hidden" id="illegalData" name="peccany">
+                    	<input type="hidden" id="errMsg" value="">
+						<label class="label-like">查询城市</label>
+						<div class="field">
+							<div class="sel-item col-a">
+								<select name="province" id="province" class="sel" data-required="required" attr-value="" onchange="">
+								
+								</select>
+							</div>
+							<div class="sel-item col-b">
+								<select name="city" id="city" class="select w120" data-required="required" attr-value="BJ">
+								<option value="">请选择市</option>
+								</select>
+							</div>
+						</div>
+						<label class="label-like">车牌号码</label>
+						<div class="field">
+							<div class="sel-item sel-item-s col-a">
+								<select name="carBelong" id="carBelong" class="select mr10 fl w55" data-required="required">
+	                            <option value="" selected="selected">请选择</option>
+	                            <option value="P1">京</option>
+	                            <option value="P2">沪</option>
+	                            <option value="P3">渝</option>
+	                            <option value="P4">冀</option>
+	                            <option value="P5">晋</option>
+	                            <option value="P6">辽</option>
+	                            <option value="P7">吉</option>
+	                            <option value="P8">黑</option>
+	                            <option value="P9">苏</option>
+	                            <option value="P10">浙</option>
+	                            <option value="P11">皖</option>
+	                            <option value="P12">闽</option>
+	                            <option value="P13">赣</option>
+	                            <option value="P14">鲁</option>
+	                            <option value="P15">豫</option>
+	                            <option value="P16">鄂</option>
+	                            <option value="P17">湘</option>
+	                            <option value="P18">粤</option>
+	                            <option value="P19">川</option>
+	                            <option value="P20">贵</option>
+	                            <option value="P21">云</option>
+	                            <option value="P22">陕</option>
+	                            <option value="P23">甘</option>
+	                            <option value="P24">青</option>
+	                            <option value="P25">蒙</option>
+	                            <option value="P26">桂</option>
+	                            <option value="P27">藏</option>
+	                            <option value="P28">宁</option>
+	                            <option value="P29">新</option>
+	                            <option value="P30">琼</option>
+	                            <option value="P31">港</option>
+	                            <option value="P32">澳</option>
+	                            <option value="P33">台</option>
+	                        	</select>
+							</div>
+							<div class="field-item col-b">
+								<input type="text"  name="carNo" id="carNo" data-required="required" maxlength=6 class="inp inp-s" placeholder="请输入车牌号">
+							</div>
+                           
+						</div>
+						<label id="fadongjihao" class="label-like">发动机号</label>
+						<div class="field field-item engineNo mb10 engineNo">						
+							<input type="text" id="engineNo" name="engineNo" class="inp" placeholder="请输入全部发动机号">
+						</div>
+                      	<label id="chejiahao" class="label-like">车架号</label>
+                      	<div class="field field-item frameNo mb10 frameNo">
+                             <input type="text" id="frameNo" name="frameNo" class="inp input w250" placeholder="请输入全部车架号" value=""/>
+                        </div>
+						<div class="warn"></div>
+						<input type="submit" class="btn-submit" id="illegalSearchBtn" value="查 询">
+					</form>
+				</fieldset>
+			</div>
+		</div>
+
+
+		<!-- owner-rights -->
+		<div class="owner-rights">
+			<h2 class="mod-tit">车主权益</h2>
+			<div id="slideownbox" class="mod-bd  slide-own-box">
+				<div class="slide-box">
+					<span class="btn-left"></span>
+					<span class="btn-right"></span>
+					<div id="chezhuquanyi" class="data-wrap">
+					</div>
+				</div>
+              	<div id ="hintbox" class="hint-box"></div>
+				<div id ="joinbox" class="join-box">
+					<dl class="desc">
+						<dt>已有百万车主成为车享会员</dt>
+						<dd>专享会员权益、便捷会员服务、丰富会员活动等你来体验！</dd>
+					</dl>
+					<a class="a-join register-bind" href="${Config.AccountBase}/account/m_register.htm?backUrl=${Config.MallBase}">马上加入</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- 优选推荐-->
+		<cms:block code="youxuantj" updateBlock = "false"/>
+      
+		<!-- 车知道 -->
+		<cms:block code="chezhidao" updateBlock = "false"/>
+      
+
+	</div>
+  <!-- footer -->
+  <cms:include file="footer_index.template.html" />
+  <!-- end | Footer -->
+
+
+	<div id="j-sidebar" class="sidebar">
+		<span class="close"></span>
+      <img src="${surl('resource/img/side-ercode.png')}" alt="">
+	</div>
+
+  	<script>
+      	var urlHead = "${commonImg('aaaaa')}";
+  	</script>
+  
+	<script src="${surl('resource/js/placeholders.js')}"></script>
+  
+    <script src="${surl('resource/js/index.js')}"></script>
+    <script src="${surl('resource/js/header.js')}"></script>
+    <script src="${surl('resource/js/carservice.js')}"></script>
+  
+
+<script>
+	var _cxProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(decodeURIComponent("%3Cscript src='" + _cxProtocol + "data.chexiang.com/js/cx_analytics.js?t=" + new Date().getTime() + "&type=' id='analyticsScript' type='text/javascript'%3E" + "%3C/script%3E"));
+	
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?37cf568cd7cc8e164f8cb43c8223cea7";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>

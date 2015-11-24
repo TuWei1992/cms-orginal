@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body>
+	<ul class="highlight <%=options.bgColor%> <%=options.direction%>">
+		<%if(items.length==0){%>
+			目前没有导航项!
+		<%}else{%>
+			<%for(var i=0;i<items.length;i++){%>
+			<li class="top<%if(items[i].items&&items[i].items.length){%> hasSubList<%}%>">
+				<a href="<%=items[i].href%>" target="<%=items[i].target%>" <%=zving.Nav.returnFalse%>><span><%=items[i].name%></span></a>
+				
+				<%var list=items[i].items;%>
+				<%if(list&&list.length){%>
+				<ul>
+					<%for(var j=0;j<list.length;j++){%>
+						<%=zving.Nav.genHtmlForItem(list[j])%>
+					<%}%>
+				</ul>
+				<%}%>	
+			</li>
+			<%}%>
+		<%}%>	
+	</ul>
+<style type="text/css">
+	#<%=options.id%> .highlight{width:<%=(options.width-zving.Nav.navsRegistered.highlight.ul_paddingLeft)%>px;}
+	#<%=options.id%> .highlight .top{width:<%=options.topListItemWidth%>px;}
+	#<%=options.id%> .highlight .sub  ul{left:<%=(options.topListItemWidth+zving.Nav.navsRegistered.highlight.lvl0_paddingLeft+zving.Nav.navsRegistered.highlight.lvl0_paddingRight)%>px;}
+</style>
+</body>
+</html>
