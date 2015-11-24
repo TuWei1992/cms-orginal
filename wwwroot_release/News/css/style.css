@@ -1,0 +1,84 @@
+@charset "utf-8";
+
+@import url("papercommon.css");
+.main{ color:both; overflow:hidden;}
+.main .left{ font-size:12px;}
+.main .left .m_info{padding:5px 10px 0px 10px;  line-height:1.8; color:#333333; background:#e6e6e6; }
+.main .left .tree{ padding:14px 6px 14px 12px; background:#F5F5F5;}
+.main .left .tree dl{ color:#333333; line-height:2.0; }
+.main .left .tree dl dt{ height:24px; line-height:24px; }
+.main .left .tree dl dt span{ width:9px; height:9px; margin-right:5px; display:inline-block; line-height:9px; _margin-top:6px; _zoom:1; font-size:0px; background:url(../images/iconplus.gif) no-repeat left center;}
+.main .left .tree dl dt a{ padding-left:13px;}
+.main .left .tree dl dt.current,.main .left .tree dl dd.current{ background:#d4e8f5; }
+.main .left .tree dl dt span.more{ background:url(../images/iconadd.gif) no-repeat left center;}
+.main .left .tree dl dd{ padding-left:10px; cursor:default; }
+.main .left .tree dl dd dl dd{ padding-left:18px; margin-left:13px;}
+	
+.right{ padding-left:10px; padding-bottom:30px;}
+.leftbg{ background:#f5f5f5; }
+.linebg{ background:url(../images/tdline.gif) repeat-y left top;}
+.linebg .iconhide{ height:61px; background:url(../images/iconhide.gif) no-repeat left top; margin-top:68px; vertical-align:top; cursor:pointer;}
+.linebg .iconshow{ background:url(../images/iconshow.gif) no-repeat left top;}
+.right h2{ font-family:"微软雅黑"; font-size:24px; font-weight:bold; padding:18px 0px 14px 3px; color:#333333;}
+.right .info{ background:#efefef; height:28px; line-height:28px; color:#666666; padding:0px 10px; overflow:hidden;}
+.right .info span{ cursor:pointer; margin-left:8px;}
+.right .info .share{ display:inline-block; text-align:center; cursor:pointer; width:56px; height:26px; background:url(../images/share.gif) no-repeat left center;}
+.right .content{ padding:20px 10px; font-size:14px; line-height:1.6;}
+.right .tipWrap{ width:68%; margin:0 auto;  margin-top:10px; background:url(../images/linebg.gif) repeat-x left center;}
+.right .yellowbtn{  padding:0px 6px; text-align:center; vertical-align:middle; color:#ffffff; display:block; width:156px; height:31px; line-height:31px; margin:0px auto; background:url(../images/yellowbtn.gif) no-repeat center top #ffffff;}
+
+.leftWrap { width:404px; }
+.leftWrap .imgBox{ border:1px solid #cccccc; width:397px; padding:2px; margin:18px 0px 15px 0px;}
+.rightWrap{ width:590px; }
+
+
+/*热区的样式*/
+.drawPaperWrap{padding:20px 0 0 80px;}
+.blankBg{ background:url(../images/blank.gif) repeat 0 0; z-index:10;}
+.rect{ border:solid #06c 1px; background:url(../images/blank.png) repeat 0 0;}
+.rectHover{ border:solid #f60 1px; cursor:pointer; background:url(../images/rect_hoverBg.png) repeat 0 0; _background-image:url(../images/rect_hoverBg.gif);}
+.rectCur{ border:solid #f60 1px; cursor:pointer; background:url(../images/rect_hoverBg.png) repeat 0 0; _background-image:url(../images/rect_hoverBg.gif);}
+.editableRect,.editableRectActive{ background:url(../images/rect_editableBg.png) repeat 0 0; _background-image:url(../images/rect_editableBg.gif);}
+.editableRect{ border:solid #06c 1px;}
+.drawing{ border-style:dotted;}
+.editableRectActive{ border:solid #03C 1px;}
+
+.rHandle{position:absolute;	background:#06f; width:7px;	height:7px;	z-index:5;	font-size:0;}
+.editableRect .rHandle{ display:none};
+.editableRectActive .rHandle{ display:block}
+
+.rHandleLeftDown, .rHandleRightUp{cursor:ne-resize;}
+.rHandleRightDown, .rHandleLeftUp{cursor:nw-resize;}
+.rHandleRight, .rHandleLeft{cursor:e-resize;}
+.rHandleUp, .rHandleDown{cursor:n-resize;}
+
+.rHandleLeftDown{left:-4px;bottom:-4px;}
+.rHandleRightUp{right:-4px;top:-4px;}
+.rHandleRightDown{right:-4px;bottom:-4px;background-color:#039;}
+.rHandleLeftUp{left:-4px;top:-4px;}
+.rHandleRight{right:-4px;top:50%;margin-top:-4px;}
+.rHandleLeft{left:-4px;top:50%;margin-top:-4px;}
+.rHandleUp{top:-4px;left:50%;margin-left:-4px;}
+.rHandleDown{bottom:-4px;left:50%;margin-left:-4px;}
+.closeBtn{ width:15px;height:14px;line-height:14px;right:0;top:0;background-color:#F00;color:#fff;cursor: pointer;font-size:14px;text-align: center;}
+.closeBtn:hover{ text-decoration:none;background-color:#09d;}
+
+.titleArea{position:absolute; z-index:2; top:50%; margin-top:-10px; width:100%; text-align:center; font-weight:bold;}
+.editableRect .titleArea span{ background-color:#fff; padding:2px 4px; color:#F0F;}
+.editableRectActive .titleArea span{ background-color:#ff0; padding:2px 4px;color:#000;}
+#contextMenu{ background-color:#fff; border:1px solid #888;padding:2px 3px; text-align:center;z-index:99;display:block;color:#444;cursor:pointer;}
+#contextMenu:hover{ background-color:#67AB00;color:#fff; text-decoration:none;border:1px solid #666;}
+#paper_tip{ position:absolute; border:1px solid #ffb328; font-size:14px; font-weight:bold; padding:3px 5px; color:#321; height:24px; line-height:24px; background-color:#fffccc; z-index:2000;}
+
+.paperPartWrap{min-width:538px; height:572px; padding:12px 30px 20px; overflow:hidden;_zoom:1;}
+.paperPartWrap li{float:left; width:122px; margin:8px 24px 0;font-size:13px; line-height:2.2;position:relative;}
+.paperPartWrap li img.paperPic{width:120px; height:160px;}
+.paperPartWrap li.paperPart img.paperPic{ border:1px solid #ccc;}
+.paperPartWrap li.paperPartSelected a{ color:#F00;}
+.paperPartWrap li.paperPartSelected img.paperPic{ border:1px solid #F00;}
+.paperPartWrap li.paperPartSelected img.selectedIcon{width:19px; height:18px;background:#f00;position:absolute;top:0;right:0;}
+.paperPartWrap li.paperPart a:hover { color:#F80;}
+.paperPartWrap li.paperPart a:hover img.paperPic{ border:1px solid #F80;}
+.paperPartWrap li em{ display:block;}
+
+

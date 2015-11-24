@@ -1,0 +1,152 @@
+@charset "utf-8";
+@import 'common.css';
+
+body{ background:#f3f7fa;}
+.pageWidth{ width:1000px; margin:0 auto;}
+
+/* 会员中心页头 */
+.member_header{ background:#01478f;}
+.headerlink{ height:30px; line-height:30px; color:#fff; padding-left:5px;}
+.headerlink a{ margin:0 5px; color:#9ecaf9;}
+.headerlink span{ color:#9ecaf9;}
+
+/* 会员中心页脚 */
+.member_footer{ color:#989898; text-align:center; line-height:25px; padding:20px 0 30px;}
+.member_footer a{ color:#02468d;}
+.member_footer span{ color:#999; margin:0 10px;}
+
+
+/* 注册页面 */
+.member_main h1{ height:30px; line-height:30px;background:url(../images/membertitlebg.gif) no-repeat 0 0; padding-left:220px; margin:30px 0 20px;}
+.member_main h1 strong{ background:#F3F7FA; color:#000100; font-size:22px;}
+
+.centerbg{ background:url(../images/reg_centerbg.gif) repeat-y 0 0;}
+.topbg{ background:url(../images/reg_topbg.gif) no-repeat 0 0;}
+.bottombg{ background:url(../images/reg_bottombg.gif) no-repeat 0 bottom; padding:30px 0 40px 0px;}
+.bottombg h3{ height:31px; line-height:31px;background:url(../images/reg_icon.gif) no-repeat 0 0; padding-left:35px; margin:10px 60px; font-size:23px;}
+.bottombg h3 a{ color:#02468d;}
+
+.bottombg table tr td{ font-size:14px; color:#343434; height:60px;}
+.bottombg table tr.reg_line td{ border-bottom:1px solid #eee;}
+.bottombg table tr td.regtext_tip{ font-size:12px; color:#666666;}
+.bottombg table tr td span.red{ color:#c1140e; margin-right:5px;}
+.bottombg table tr td .reg_text,.bottombg table tr td select{ padding:8px 2px; border:1px solid #e8e8e8; background:url(../images/reg_textbg.gif) repeat-x 0 0; width:280px; font-size:14px;}
+.bottombg table tr td select.question{ width:285px;}
+.red_submitline{ margin:0px 50px; height:1px; border-bottom:1px dotted #ccc;}
+.reg_submit{ height:35px; line-height:35px; width:105px; background:#cd0b01; font-size:18px; color:#fff; display:inline-block; text-align:center; font-weight:bold; font-family:"微软雅黑";}
+.reg_submit:hover{ color:#fff;}
+.bottombg table tr.s_height td{ height:35px;}
+.bottombg table tr td input.focus,.loginbox table tr td input.focus{ border:1px solid #dae7f0;background:url(../images/reg_textcurbg.gif) repeat-x 0 0;}
+
+.regblue{color:#02468D;}
+
+/* 登录页面 */
+.login_page{ width:900px; margin:0 auto;background:url(../images/loginbg.jpg) repeat-x 0 0; height:500px;}
+.reg_sevise{ width:400px; float:left; margin:100px 0 0 45px; display:inline;}
+.reg_sevise ul li{ line-height:22px; color:#666;}
+.reg_sevise ul li span{ color:#02468d;}
+.reg_sevise ul li.first_title{ font-size:14px; color:#01478f; font-weight:bold; margin-bottom:5px;}
+.reg_sevise ul li.reg_link{ margin-top:10px;}
+.reg_sevise ul li.reg_link a{height:32px; line-height:32px; width:120px; background:#5ac3fe; font-size:16px; color:#fff; display:inline-block; text-align:center; font-weight:bold; font-family:"微软雅黑";}
+.loginbox{ width:350px; margin:80px 43px 0 0;}
+
+.loginbox table tr td{ font-size:14px; color:#343434; height:40px;}
+.loginbox table tr td a{ font-size:12px;}
+.loginbox table tr td .reg_text{ padding:5px 2px; border:1px solid #e8e8e8; background:url(../images/reg_textbg.gif) repeat-x 0 0; width:180px; font-size:14px;}
+.loginbox table tr td a.loginbtn{ background:#01478f; color:#fff; font-weight:bold; width:85px; height:30px; line-height:30px; text-align:center; font-size:16px; display:inline-block; font-family:"微软雅黑"; margin-top:15px;}
+
+/* 个人中心 */
+.member_center{ background:#fff;}
+
+/* 个人中心左侧公用样式 */
+.memcenter_left{ width:143px; background:#e5f0f6; padding:10px; min-height:900px;height:900px!important;_height:900px;}
+.member_photo{ height:167px; width:143px; display:block; background:#f7f7f7; text-align:center; color:#02488e; font-weight:bold;}
+.member_photo img{ margin-bottom:5px;}
+
+.mem_cata{ margin:15px 0;}
+.mem_cata li{ padding:9px 0 9px 20px; background:url(../images/memli_icon.gif) no-repeat 10px 11px; border-top:1px solid #d5e7f3;}
+.mem_cata li a{ color:#02488e; font-weight:bold;}
+.mem_cata li a:hover{ color:#bd0602;}
+.mem_cata li.first,.mem_fastlink li.first{ border:none;}
+.mem_cata li.current{ background-color:#d5e8f6;}
+.mem_cata li.current a{ color:#bd0602;}
+
+.mem_fastlink{ margin:10px 0; padding:10px; background:#fff;}
+.mem_fastlink li{ padding:7px 0 6px 35px; border-top:1px dotted #e6e6e6;background:#fff url(../images/mem_fastlink.gif) no-repeat;}
+.mem_fastlink li.flink1{ background-position:5px -2px;}
+.mem_fastlink li.flink2{ background-position:5px -30px;}
+.mem_fastlink li.flink3{ background-position:5px -60px;}
+.mem_fastlink li.flink4{ background-position:5px -91px;}
+.mem_fastlink li.flink5{ background-position:5px -121px;}
+.mem_fastlink li.flink6{ background-position:5px -152px;}
+.mem_fastlink li.flink7{ background-position:5px -182px;}
+.mem_fastlink li.flink8{ background-position:5px -212px;}
+.mem_fastlink li.flink9{ background-position:5px -242px;}
+.mem_fastlink li.flink10{ background-position:5px -272px;}
+.mem_fastlink li.flink11{ background-position:5px -302px;}
+.mem_fastlink li a{ color:#02488e; font-weight:bold; font-size:14px;}
+.mem_fastlink li a:hover{ color:#da0602;}
+.mem_fastlink li.current a{ color:#da0602;}
+
+/* 个人中心右侧容器宽度 */
+.memcenter_right{ width:825px;}
+
+/* 我的新闻列表 */
+.mynewslist{ padding:15px 15px 0 0px;}
+.mynewslist h3{ font-family:"微软雅黑"; padding:5px 10px 10px; font-size:20px; border-bottom:1px solid #e0e0e0; height:20px; line-height:20px; margin-bottom:5px;}
+.mynewslist h3 a{ font-family:"宋体"; font-size:12px; font-weight:normal; color:#02488e;}
+
+.mynewslist dl{ padding:15px 10px; border-bottom:1px dotted #e0e0e0;}
+.mynewslist dl.hover{background:#F3F7FA;}
+.mynewslist dt{ font-size:14px; padding:5px 0px;}
+.mynewslist dt span{ color:#999999; font-size:12px;}
+.mynewslist dd a{ font-weight:bold; color:#02488e;}
+
+/* 个人中心  新闻列表  分页条 */
+.mynewslist .pagebar{ text-align:center; margin-top:30px;}
+.pagebar a,.pagebar span{ text-align:center; color:#676767; border:1px solid #cccccc; padding:2px 7px 0; height:20px; line-height:20px; display:inline-block; margin:3px; background:#fff; font-weight:bold;}
+.mynewslist .pagebar span,.mynewslist .pagebar a:hover{ background:#02488e; color:#fff; border:1px solid #02488e;}
+.mynewslist .pagebar a{ font-weight:normal;}
+
+/* 个人中心中间区块 */
+.memblock_center{ width:565px;}
+.memblock_right{ width:250px; padding-top:15px;}
+.member_info{ height:52px; padding:10px 0 0px 30px;background:#fff url(../images/member_infobg.gif) no-repeat; margin:15px 0;}
+.name_email{ width:220px; line-height:22px; color:#dddddd;}
+.mem_name{ font-size:18px; color:#585755; margin-right:10px;}
+.login_time{ width:160px; line-height:22px;}
+.mem_weather{ width:140px;}
+.mem_weather img{ margin:0 0 7px 5px;}
+
+.memblock_center h3{ padding:5px 15px 5px 10px; font-size:14px; border-bottom:1px solid #eeeeee; margin-left:5px;}
+.memblock_center h3 a{font-size:12px; font-weight:normal;color:#02468D;}
+
+/* 个人中心  主页  网友动态列表 */
+.dynam{ margin-left:10px; padding:15px 5px; border-bottom:1px dotted #cfcfcf;}
+.dynam img{ width:60px; height:60px; border:1px solid #e4e2e7;}
+.dynam dl{ width:460px; float:right; padding:0 15px 0 0px;}
+.dynam_name{ height:20px; line-height:20px; padding:0 10px; display:inline-block; background:#a1d1f5; color:#fff; margin-right:10px;}
+.dynam dl dt{line-height: 20px; height:40px; margin-top:5px;}
+
+.hotnews{ margin-top:20px;}
+.hotnewslist{ padding:15px 10px;}
+.hotnewslist li{ line-height:23px;color:#02468D;}
+.hotnewslist li a{color:#02468D; font-size:14px;}
+.hotnewslist li span{color:#686868;}
+
+/* 个人中心  主页  右侧样式 */
+.memblock_righttitle{ font-size:14px; margin-bottom:5px; padding-left:10px;}
+
+.popul_user li{ width:82px; float:left; text-align:center; height:100px;}
+.popul_user li a img{ width:65px; height:65px; border:1px solid #cfcfcf; margin-bottom:5px;}
+
+.br_con{ padding:0 10px;}
+.br_coninfo{ width:130px; line-height:20px;}
+.br_coninfo a{ color:#004175;}
+.br_coninfo a.redmore{ color:#c01410; display:inline-block;}
+.br_con dl dt a img{ padding:4px; border:1px solid #cfcfcf;}
+.br_con ul{ margin:10px 0;}
+.br_con ul li{ line-height:23px; color:#004175;}
+.br_con ul li a{ color:#004175;}
+
+.member_ad{ padding-left:10px; width:230px; height:210px; overflow:hidden;}

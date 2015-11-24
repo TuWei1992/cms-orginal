@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>泽元新闻网（ZCMS演示站）</title>
+<style>
+BODY {
+	background-color: #ffffff;
+	color: #555;
+}
+A {
+	border-bottom: 0px;
+	border-left: 0px;
+	background-color: transparent;
+	color: #004276;
+	border-top: 0px;
+	border-right: 0px;
+	text-decoration: none;
+}
+BODY {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+DIV {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+FORM {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+UL {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+LI {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+H1 {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+H4 {
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+UL {
+	list-style-type: none;
+}
+LI {
+	list-style-type: none;
+}
+IMG {
+	border-bottom: 0px;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+}
+BODY {
+	line-height: 1.5;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+TD {
+	line-height: 1.5;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+TEXTAREA {
+	line-height: 1.5;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+BODY {
+	margin: 0px;
+	font-family: Tahoma, SimSun, sans-serif;
+	font-size: 12px;
+}
+INPUT {
+	margin: 0px;
+	font-family: Tahoma, SimSun, sans-serif;
+	font-size: 12px;
+}
+TEXTAREA {
+	margin: 0px;
+	font-family: Tahoma, SimSun, sans-serif;
+	font-size: 12px;
+}
+DIV {
+	line-height: inherit;
+	font-family: inherit;
+	font-size: 1em;
+}
+P {
+	line-height: inherit;
+	font-family: inherit;
+	font-size: 1em;
+}
+TABLE {
+	line-height: inherit;
+	font-family: inherit;
+	font-size: 1em;
+}
+TD {
+	line-height: inherit;
+	font-family: inherit;
+	font-size: 1em;
+}
+EM {
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+}
+EM {
+	color: #999;
+}
+H1 {
+	color: #444;
+}
+H4 {
+	color: #444;
+}
+H1 A {
+	color: #222;
+}
+H4 A {
+	color: #222;
+}
+H1 {
+	font-family: "Microsoft YaHei", SIMHEI, sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+}
+H4 {
+	font-family: "Microsoft YaHei", Arial, sans-serif;
+	font-size: 14px;
+}
+.fr {
+	float: right;
+	_display: inline;
+}
+.red {
+	color: #ba2635;
+}
+.cRed {
+	color: #ba2636;
+}
+.f14 {
+	font-size: 14px;
+}
+
+I {
+	font-family: "宋体";
+	color: #f60;
+}
+input.textInput {
+  border: 1px solid #7F9CBA;
+  float: left;
+  font-size: 12px;
+  height: 16px;
+  line-height: 14px;
+  padding: 3px;
+  width: 170px;
+}
+FORM .btn {
+	border-bottom: medium none;
+	border-left: medium none;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	width: 69px;
+	padding-right: 0px;
+	background: url(../images/submit.gif) no-repeat left top;
+	border-top: medium none;
+	border-right: medium none;
+	padding-top: 4px;
+}
+.paraphrastic {
+	color: #999;
+}
+.tabs LI {
+	text-indent: 24px;
+}
+.tabs li {
+    text-indent: 24px;
+}
+.tabs a {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F9F9F9;
+    border-color: #F9F9F9;
+    border-style: solid;
+    border-width: 1px 0;
+    display: block;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+}
+.tabs a:hover, .tabs li.current a {
+    background-color: #447c98;
+    border-bottom-color: #FFFFFF;
+    border-top-color: #123;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.tabs a:hover {
+    background-color: #F29400;
+    border-top-color: #F29400;
+}
+.shadowline {
+	background-color: #f9f9f9;
+	border-top: #ccc 1px dotted;
+}
+</style>
+</head>
+<body>
+<div style="MARGIN: auto; WIDTH: 950px">
+  <table border="0" cellSpacing="15" cellPadding="0" width="100%">
+    <tbody>
+      <tr vAlign="top">
+        <td width="200"><div style="BORDER-BOTTOM: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; PADDING-BOTTOM: 1px; BACKGROUND-COLOR: #fff; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; BORDER-TOP: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid; PADDING-TOP: 1px; -moz-border-radius: 5px; -webkit-border-radius: 5px">
+            <div style="PADDING-BOTTOM: 20px; BACKGROUND-COLOR: #f9f9f9; -moz-border-radius: 3px; -webkit-border-radius: 3px" class="side">
+              <h4 style="PADDING-BOTTOM: 2px; BACKGROUND-COLOR: #eee; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; MARGIN-BOTTOM: 5px; COLOR: #123; PADDING-TOP: 2px; -moz-border-radius: 3px; -webkit-border-radius: 3px"> Member Center </h4>
+              <div class="sideinner">
+                <ul class="tabs">
+                  <li class="current"> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">Personal information</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">短消息</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">我的好友</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#">我的空间</a> </li>
+                </ul>
+              </div>
+              <hr class="shadowline" />
+              <div class="sideinner">
+                <ul class="tabs">
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">我的文章</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">我的收藏</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">我的订阅</a> </li>
+                </ul>
+              </div>
+              <hr class="shadowline" />
+              <div class="sideinner">
+                <ul class="tabs">
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">积分</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">用户组&amp;权限</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">我的任务</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">勋章</a> </li>
+                </ul>
+              </div>
+              <hr class="shadowline" />
+              <div class="sideinner">
+                <ul class="tabs">
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">个性化设定</a> </li>
+                  <li> <a href="file:///F:/SITE/!ZCMS/会员中心/web/jsp/个人资料.html#;">Pass Word和安全问题</a> </li>
+                </ul>
+              </div>
+              <hr class="shadowline" />
+              <div class="sideinner">
+                <ul class="tabs">
+                  <li> 积分: 0 </li>
+                  <li> 人品: 0 </li>
+                  <li> 金币: <span style="FONT-WEIGHT: bold">0</span> 枚 </li>
+                </ul>
+              </div>
+            </div>
+          </div></td>
+        <td><div style="BORDER-BOTTOM: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; PADDING-BOTTOM: 30px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; ZOOM: 1; BORDER-TOP: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid; PADDING-TOP: 30px">
+            <div style="BORDER-BOTTOM: #ddd 1px solid; PADDING-BOTTOM: 4px; MARGIN-BOTTOM: 10px"> <span class="fr">marked with <span style='FONT-FAMILY: "宋体"; COLOR: #f60'>*</span> is cannot be empty</span>
+              <h4> Personal information </h4>
+            </div>
+            <form method="post">
+              <h4 style="BORDER-BOTTOM: #ccc 1px dotted; PADDING-BOTTOM: 3px; MARGIN: 5px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; COLOR: #333; PADDING-TOP: 3px"> Basic information </h4>
+              <table border="0" cellSpacing="10" cellPadding="0" width="100%">
+                <tbody>
+                  <tr>
+                    <td width="100" align="right"> User Name： </td>
+                    <td width="200"><i>*</i>
+                      <input class="textInput" value="user1" /></td>
+                    <td><div class="paraphrastic"> 4-16个字符(包括4、16)或2-8个汉字， 请用英文Small写、汉字、数字、下划线，以字母开头。 </div></td>
+                  </tr>
+                  <tr>
+                    <td align="right"> Pass Word： </td>
+                    <td><i>*</i>
+                      <input class="textInput" type="password" /></td>
+                    <td><div class="paraphrastic"> 字母有BigSmall写之分。6—16位（包括6、16），限用英文、数字。 </div></td>
+                  </tr>
+                  <tr>
+                    <td align="right"> Pass Word Again： </td>
+                    <td><i>*</i>
+                      <input class="textInput" type="password" /></td>
+                    <td><div class="paraphrastic"> 请您再确认一次Pass Word。 </div></td>
+                  </tr>
+                  <tr>
+                    <td align="right"> E-mail： </td>
+                    <td><i>*</i>
+                      <input class="textInput" value="user1@mail.com" /></td>
+                    <td><div class="paraphrastic"> 您的邮箱是Find Pass Word的重要途径，请您仔细填写。 </div></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 style="BORDER-BOTTOM: #ccc 1px dotted; PADDING-BOTTOM: 3px; MARGIN: 5px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; COLOR: #333; PADDING-TOP: 3px"> Personal information </h4>
+              <table border="0" cellSpacing="10" cellPadding="0" width="100%">
+                <tbody>
+                  <tr>
+                    <td width="100" align="right"> True Name： </td>
+                    <td width="200"><input class="textInput" value="" /></td>
+                    <td><div class="paraphrastic"> 3个以上字母或2个以上汉字。 </div></td>
+                  </tr>
+                  <tr>
+                    <td width="100" align="right"> Sex： </td>
+                    <td width="200"><input id="radio" type="radio" name="radio" />
+                      男
+                      <input id="radio2" type="radio" name="radio" />
+                      女
+                      <input id="radio3" CHECKED type="radio" name="radio" />
+                      保密 </td>
+                    <td><div class="paraphrastic"> &nbsp; </div></td>
+                  </tr>
+                  <tr>
+                    <td width="100" align="right"> Occupation： </td>
+                    <td width="200"><input class="textInput" value="" /></td>
+                    <td><div class="paraphrastic"> &nbsp; </div></td>
+                  </tr>
+                  <tr>
+                    <td align="right"> QQ： </td>
+                    <td><input class="textInput" type="password" value="" /></td>
+                    <td><div class="paraphrastic"> 6位以上数字。 </div></td>
+                  </tr>
+                  <tr>
+                    <td align="right"> Phone number： </td>
+                    <td><input class="textInput" type="password" value="" /></td>
+                    <td><div class="paraphrastic"> 格式如 +8613412345678 或 13412345678。 </div></td>
+                  </tr>
+                  <tr>
+                    <td align="right"> Address： </td>
+                    <td><input style="WIDTH: 180px" class="textInput" value="" /></td>
+                    <td><div class="paraphrastic"> 请按普通邮件收件人格式填写。 </div></td>
+                  </tr>
+                  <tr>
+                    <td align="right"> Zip code： </td>
+                    <td><input class="textInput" value="" /></td>
+                    <td><div class="paraphrastic"> &nbsp; </div></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4 style="BORDER-BOTTOM: #ccc 1px dotted; PADDING-BOTTOM: 3px; MARGIN: 5px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; COLOR: #333; PADDING-TOP: 3px"> </h4>
+              <div style="TEXT-ALIGN: center">
+          <input type="image" src="../images/bg_btn5.gif" /></div>
+            </form>
+          </div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

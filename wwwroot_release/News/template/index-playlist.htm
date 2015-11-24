@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ZCMSplayer</title>
+<style type="text/css">
+html {
+  font-family:"Myriad","Myriad Pro",Georgia,Helvetica,Sans-serif;
+  background:url(zdewplayer.jpg) no-repeat bottom right;
+  height:100%;
+  padding:0;
+  margin:0;
+}
+body {
+  height:100%;
+  padding:0;
+  margin:0;
+}
+</style>
+
+<script>
+function getFlashObj(name) {
+	var flashObj=document[name];
+ 	return flashObj?flashObj:alert('getFlashObj::没有获取到'+name)
+}
+
+function addmp3toplayer(list){
+	var list=list;
+	for(var i=0;i<list.length;i++){
+		getFlashObj('musicplayer').calladd(list[i].split('|')[0],list[i].split('|')[1]); 
+	}
+	getFlashObj('musicplayer').callplay();
+}
+</script>
+</head>
+
+<body>
+
+<div id="content" style="margin:50px;">
+<object id="musicplayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version==8,0,0,0" width="240" height="200">
+        <param name="allowScriptAccess" value="always" />
+		<param name="movie" value="../images/dewplayer-playlist.swf" />
+        <param name="wmode" value="transparent" />
+        <param name="menu" value="false" />
+        <param name="quality" value="best" />
+		<param name="flashvars" value="javascript=on&autoreplay=true" />
+		<embed name="musicplayer" src="../images/dewplayer-playlist.swf" allowScriptAccess="always" quality="best" menu="false" width="240" height="200" wmode="transparent" flashvars="javascript=on&autoreplay=true" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+</object>
+</div>
+
+</body>
+</html>

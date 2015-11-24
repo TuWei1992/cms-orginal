@@ -1,0 +1,171 @@
+@charset "utf-8";
+
+.topMenuWrap{ margin:20px 10px;}
+.topMenuWrap,.topMenuWrap .fl li a{ color:#9a9a9a;}
+.topMenuWrap .fl li{ color:#5C5C5C; float:left; padding:0 10px 0px 32px; }
+.topMenuWrap .fl li.stop{ cursor:pointer; background:url(../images/playorstop.gif) no-repeat left bottom; color:#9a9a9a; padding-left:25px;}
+.topMenuWrap .fl li.play{background:url(../images/playorstop.gif) no-repeat left 2px;}
+.topMenuWrap .fl li.no{ padding:0px;}
+.topMenuWrap .fl li.lookOldImg{background:url(../images/look.gif) no-repeat 8px 1px;}
+.topMenuWrap .fl li.tip{ color:#555555; padding-left:10px;}
+.sharetoqq a span{ color:#9A9A9A;}
+.pbulishdate{ height:30px; line-height:30px; overflow:hidden; text-align:right; padding-right:50px; padding-bottom:20px; color:#B4B4B4; }
+.advBox{ border:1px solid #212121; padding:30px 0px; width:920px; margin:0 auto; height:66px; background:#0D0D0D;}
+.ad_numInfo{ text-align:center; }
+.imageTitle{text-align:center; font-size:24px; padding-top:10px; color:#ffffff;}
+
+.ad-gallery{ width:940px; margin:12px auto; overflow:hidden;}
+  .ad-gallery .ad-image-wrapper {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+	margin:0 auto;
+  }
+    .ad-gallery .ad-image-wrapper .ad-loader {
+      position: absolute;
+      z-index: 10;
+      top: 48%;
+      left: 48%;
+      border: 1px solid #CCC;
+    }
+    .ad-gallery .ad-image-wrapper .ad-next {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      cursor:url(../images/arr_right.cur), auto;	
+      display: block;
+      z-index: 100;
+    }
+    .ad-gallery .ad-image-wrapper .ad-prev {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      cursor:url(../images/arr_left.cur), auto;	 
+      display: block;
+      z-index: 100;
+    }
+    .ad-gallery .ad-image-wrapper .ad-prev, .ad-gallery .ad-image-wrapper .ad-next {
+      /* Or else IE will hide it */
+      background: url(../images/non-existing.jpg)\9
+    }
+    .ad-gallery .ad-image-wrapper .ad-image {
+      position: absolute;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      z-index: 9;
+    }
+      .ad-gallery .ad-image-wrapper .ad-image a img {
+        border: 0;
+      }
+	  .ad-image-description {
+        padding:38px 40px  12px 40px;
+        text-align: left;
+		color:#B4B4B4;
+      }
+  .ad-gallery .ad-controls {
+    height: 50px;
+	line-height:50px;
+	width:600px;
+	margin:0 auto;
+  }
+   .ad-info {
+	  padding-bottom:15px;
+	  color:#ffffff;
+	  font-weight:bold;
+	  font-size:14px;
+    }
+    .ad-gallery .ad-slideshow-controls {
+      float: right;
+	  padding-top:12px;
+	  padding-right:10px;
+    }
+      .ad-gallery .ad-slideshow-controls .ad-slideshow-start, .ad-gallery .ad-slideshow-controls .ad-slideshow-stop {
+        padding-left: 3px;
+        cursor: pointer;
+		width:28px;
+		height:28px;
+		line-height:28px;
+		color:#00673C;
+		display:inline-block;
+      }
+	  .ad-gallery .ad-slideshow-controls .ad-slideshow-start{
+		background:url(../images/playorstop.gif) no-repeat right top;
+	  }
+	  .ad-gallery .ad-slideshow-controls .ad-slideshow-stop {
+		display:none;
+	    background:url(../images/playorstop.gif) no-repeat left top; 
+	  }
+      .ad-gallery .ad-slideshow-controls .ad-slideshow-countdown {
+        padding-left: 5px;
+        font-size: 0.9em;
+      }
+    .ad-gallery .ad-slideshow-running .ad-slideshow-start {
+      cursor: default;
+      font-style: italic;
+    }
+  .ad-gallery .ad-nav {
+    width: 816px;
+	margin:0 auto;
+    position: relative;
+  }
+    .ad-gallery .ad-forward, .ad-gallery .ad-back {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      z-index: 10;
+    }
+
+    .ad-gallery .ad-back {
+      cursor: pointer;
+      left: -25px;
+      width: 23px;
+	  height:65px;
+      display: block;
+      background: url(../images/prevandnext.gif) 0px 2px no-repeat;
+    }
+    .ad-gallery .ad-forward {
+      cursor: pointer;
+      display: block;
+      right: -25px;
+      width: 23px;
+	  height:65px;
+      background: url(../images/prevandnext.gif) right 2px no-repeat;
+    }
+    .ad-gallery .ad-nav .ad-thumbs {
+      overflow: hidden;
+      width: 100%;
+    }
+      .ad-gallery .ad-thumbs .ad-thumb-list {
+        float: left;
+        width: 100000px;
+        list-style: none;
+      }
+        .ad-gallery .ad-thumbs li {
+          float: left;
+          padding:0px 3px;
+        }
+          .ad-gallery .ad-thumbs li a {
+            display: block;
+          }
+            .ad-gallery .ad-thumbs li a img {
+              border: 3px solid #CCC;
+              display: block;
+			   width:90px; height:60px;
+            }
+            .ad-gallery .ad-thumbs li a.ad-active img {
+              border: 3px solid #E0022C;
+			 
+            }
+/* Can't do display none, since Opera won't load the images then */
+.ad-preloads {
+  position: absolute;
+  left: -9000px;
+  top: -9000px;
+}

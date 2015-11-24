@@ -1,0 +1,71 @@
+/* reset: 重设外观 */
+body {color: #333;}
+a { color: #333; text-decoration: none; border: 0; background-color: transparent; }
+a:hover{ text-decoration: none; color:#c01410;}
+body,div,q,iframe,form,
+ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6{ margin: 0; padding: 0;}
+img,fieldset{border: none 0;}
+body,td,textarea{word-break: break-all; line-height:1.2;}
+body,input,textarea,select,button{margin: 0; font-size: 12px;font-family:'宋体', Geneva, sans-serif;}
+div,p,table,th,td{ font-size:1em; font-family:inherit; line-height:inherit;}
+
+ul,dl,li{list-style: none; font-family:'宋体', Geneva, sans-serif;}
+em,i,u,q,s,dl,caption{ font-style: normal; font-weight: normal; text-decoration: none; }
+hr{ clear:both; margin:7px 0; +margin: 0;  border:0 none;font-size: 1px; line-height:1px;color: #ddd; background-color:#ddd; height: 1px;}
+h1,h2,h3,h4,h5,h6{color:#333}
+h1 { font-size: 24px; font-family:'宋体', Geneva, sans-serif; font-weight: normal;}
+h2 { font-size: 20px; font-family:'宋体', Geneva, sans-serif; font-weight: normal;}
+h3 { font-size: 16px; font-family:'宋体', Geneva, sans-serif; font-weight: bold;}
+h4 { font-size: 14px; font-family:'宋体', Geneva, sans-serif; font-weight: bold;}
+h5 { font-size: 13px; font-family:'宋体', Geneva, sans-serif; font-weight: bold;}
+h6 { font-size: 12px; font-family:'宋体', Geneva, sans-serif; font-weight: bold;}
+em,i{color:#669900}
+textarea {line-height:1.2;}
+
+* html textarea,*+html textarea {overflow:auto; overflow-x: hidden; }/* 使多行文本框不显示默认的竖向滚动条 */
+* html iframe, * html frame {overflow:auto; }/* 使浮动窗口不显示默认的竖向滚动条 */
+* html input {overflow: hidden; }/* 使按钮文字不溢出 */
+/* end reset */
+
+/* Global:常用样式 */
+.fl{ float:left; _display:inline;}
+.fr{ float:right; _display:inline;}
+.clearfix{display: block;  *display: inline-block; _height: 1%;}
+.clearfix:after {content:'\20'; display:block; clear:both;}
+.clearself{ overflow:hidden; _overflow:visible; _height:1%;}
+.inline-block{display:inline-block;*zoom: 1;*display: inline;vertical-align:middle;overflow:hidden;}
+.justify{ text-align: justify; text-justify: inter-ideograph;}
+.clear { font-size: 0px; height: 0px; line-height: 0px; overflow: hidden; clear: both;}
+/* end Global */
+
+.pagewidth{  width:1000px; margin:0 auto; margin-bottom:15px; margin-top:12px; display: block; *display: inline-block; *zoom:1; overflow:hidden;}
+.side_mod{margin:0 0 6px 0; border:1px solid #DDDDDD; clear:both; background-color:#FFF;}
+.mod td td { border: none; background: none; }
+.mod_tit { line-height:36px; height:35px; overflow:hidden; border-bottom:1px solid #CC0000; background:url(../images/title_ico.gif) no-repeat 0 0; margin:0 3px; padding-left:16px; }
+.mod_tit .more { float:right; font-weight:normal; }
+.mod_con{ padding:15px;}
+.side_col{ width:290px; float:right; padding:5px; position:relative; background:#f1f2f4;}
+.main_col{ float:left; width:630px; overflow:hidden; position: relative;}
+.main_box{ float:left; width:680px; overflow:hidden; position:relative;}
+.crumb{ padding:0 5px 5px; color:#999;}
+.col_R{ float:right; width:260px; overflow:hidden; position:relative;}
+.col_L{float:left; width:300px; overflow:hidden; position:relative;}
+.col_L_box{margin-top:5px; padding:5px; background:#f1f2f4;}
+.col_M{float:right; width:360px; overflow:hidden; position:relative;}
+.fz16 {
+  font-size: 16px;
+}
+.line24, .line24 a {
+  line-height: 24px;
+}
+.searchResults {
+  line-height: 18px;
+  padding-bottom: 15px;
+}
+.searchResults  p{
+	margin:5px 0;
+}
+.searchResults a {
+  color: #1011CB;
+  text-decoration: underline;
+}
