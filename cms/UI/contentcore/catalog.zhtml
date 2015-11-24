@@ -1,0 +1,277 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html style="overflow:auto">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css"/>
+<style>
+.treeItem_p_tool{ display:inline-block; margin-left:33px; visibility:hidden; white-space: nowrap;}
+.treeItem_p_tool a{display:inline;}
+.treeItem_p_hover .treeItem_p_tool{ visibility:visible;}
+</style>
+<script type="text/javascript" src="../framework/main.js"></script>
+<script>
+Page.onLoad(initHoverEvent);
+function initHoverEvent(){
+	/* 延迟显示预览图标 */
+	$('#tree1').on('mouseover','dt.treeItem_p',function(){
+		this.className+=' treeItem_p_hover';
+	}).on('mouseout','dt.treeItem_p',function(){
+		this.className = this.className.replace(/(^|\s)treeItem_p_hover(?=\s|$)/ig, "");
+	});
+	
+	Tree('tree1').on('lazyLoad',function(evtData){
+		//console.log("$G('tree1').onLazyLoad",this,nodeEl,data)
+		$('dt.treeItem_p', evtData.treeNode).hoverIntent(function(){
+			this.className+=' treeItem_p_hover';
+		},function(){
+			this.className = this.className.replace(/(^|\s)treeItem_p_hover(?=\s|$)/ig, '');
+		})
+	});
+}
+Page.onLoad(function(){
+	var lastCatalog = Cookie.get("Content.LastCatalogCode");
+	if(!isEmpty(lastCatalog)) {
+		loadAndSelectChild(lastCatalog);
+	}
+});
+/* updatecatalogtree: 在其他页面发出  updatecatalogtree 事件时，重载栏目树 */
+function reloadTree(evt){
+	$('#treeItem_p_tool').appendTo($(document.body)).hide();
+	Tree('tree1').loadData(function(){
+		if(evt && evt.cid){
+			Tree('tree1').selectByAttr('cid',evt.cid,true);
+		}
+		initHoverEvent();
+
+		var lastCatalog = Cookie.get("Content.LastCatalogCode");
+		if(!isEmpty(lastCatalog)) {
+			loadAndSelectChild(lastCatalog);
+		}
+		toggleToolContainer();
+	});
+}
+AllDocumentsEvent.on('updatecatalogtree', reloadTree);
+
+/* /updatecatalogtree */
+
+
+function loadAndSelectChild(full){
+	var treeView=Tree('tree1'),found;
+	var scan = function(node) {
+		var nodeEl=node.el;
+		var code=nodeEl.getAttribute('innercode');
+		if(!node.isRoot && !full.startsWith(code)){
+			return;
+		}
+		if (code == full) {
+				treeView.onNodeClick(nodeEl);
+				$G(nodeEl).scrollIntoView(false);
+				return true;
+		}else if(!node.isLeaf){
+			if(node.isRoot || node.expanded){
+				node._children && node._children.some(scan);
+			}else{
+				node.on('expand',function(inode){
+					inode._children && inode._children.some(scan);
+				});
+				node.expand();
+			}
+		}
+	};
+	scan(treeView._rootNode);
+}
+
+
+function publish(catalogid) {
+	if(catalogid && catalogid.nodeType==1){
+		catalogid=$(catalogid).closest('dt').attr('cid');
+	}
+	if(!Application.hasPriv("com.zving.cms.Catalog.Publish." + catalogid)){
+		Dialog.alert("@{Platform.PrivCheckNoPriv}");
+		return;
+	}
+	var e=getEvent();
+	var diag = new Dialog("@{Contentcore.PublishCatalog}","publishDialog.zhtml",350,100);
+	diag.onOk = function(){
+		var dc = {CatalogID:catalogid,
+				CatalogIDs:catalogid,
+				PublishChild:"true" == $DW.$NV("PublishChild"),
+				PublishDetail:"true" == $DW.$NV("PublishDetail"),
+				SiteID:${User.CurrentSite}};
+		dc.PublishStatus=20; // 只发布待发布的内容和文档工作台的发布保持一致
+		Server.sendRequest("CatalogPublisher.publish", dc, function(response) {
+			if(response.Status == 1) {
+				var taskID = response.TaskID;
+				var p = new Progress(taskID,"@{Contentcore.Publishing}...",500,150);
+				$D.close();
+				p.show(function(){
+					$D.close();
+					MsgPop("@{Contentcore.PublishSuccess}");
+				});
+				Node.hide(p.Dialog.okButton);
+				Node.hide(p.Dialog.cancelButton);
+				p.Dialog.cancelButton.onclick = function(){}
+			} else {
+				Dialog.warn(response.Message);
+			}
+		});
+	};
+	diag.onLoad = function(){
+		var c = $DW.$("#PublishChild");
+		c.val(false);
+		c.next().hide();
+		c.hide();
+	};
+	diag.show();
+	stopEvent(e);
+}
+
+var privUrl="";
+function onTreeClick(ele){
+	var cid = ele.getAttribute("cid");
+	if(cid=='null'||!cid){
+		cid = "";
+	}
+	var url = "../"+ele.getAttribute("listURL");
+	if(ele.getAttribute("listURL")){
+		privUrl= url;
+	}else{
+		url=privUrl ;
+	}
+	var code = ele.getAttribute("innercode");
+ 	try{
+		if(!Tree.isRoot(ele)){
+			Cookie.set("Content.LastCatalog",cid,"2100-01-01");
+			Cookie.set("Content.LastCatalogCode",code,"2100-01-01");
+			
+			var src = $G('DetailFrame').src;
+			if(src.indexOf("/"+ele.getAttribute("listURL"))<0){
+				if(url.indexOf("ID=")<0){
+					$G('DetailFrame').src = url+"?ID="+cid;
+				}else{
+					$G('DetailFrame').src = url;
+				}
+			}else{
+				if($G('DetailFrame').contentWindow.changeCatalog){
+			 		$G('DetailFrame').contentWindow.changeCatalog(cid);
+			 	}else{
+					if(url.indexOf("ID=")<0){
+						$G('DetailFrame').src = url+"?ID="+cid;
+					}else{
+						$G('DetailFrame').src = url;
+					}
+			 	}
+			}
+		}else{
+	 		$G('DetailFrame').src = "../contentcore/catalogTabs.zhtml?ID="+cid;
+			Cookie.set("Content.LastCatalog","0","2100-01-01");
+		}
+		
+ 	}catch(ex){alert(ex.message);}
+}
+
+function showMenu(){
+	
+}
+function filter(){
+	Tree.setParam("tree1","ContentType",$V("#ContentType"));
+	//Tree.setParam("tree1","ShowHiddenCatalog",$NV("ShowHiddenCatalog")[0]);
+	Tree.setParam("tree1","SearchKeyWord",$V("#SearchKeyWord"));
+	Tree.loadData("tree1");
+}
+</script>
+</head>
+<body class="z-body-list">
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
+  <tr valign="top">
+    <td width="220" height="100%" class="centerColumnWrap"><table width="100%" border="0" cellspacing="0" cellpadding="0" height="*" class="js_layoutTable">
+        <tr>
+          <td height="37"><div class="z-toolbar">
+              <div class="z-toolbar-ct">
+                <div class="z-toolbar-overflow">
+                  <div class="z-toolbar-nowrap" style="padding-top:3px;"><div style="margin-top:-2px"><z:select method="Catalog.getContentTypes" style="width:60px" value="${ContentType}" id="ContentType" defaultBlank="true" 
+                   name="ContentType" />
+                   <input style="width:80px;" id="SearchKeyWord" placeholder="输入关键字" type="text"/>
+                   <input width="60" value="搜索"   type="button" onclick="filter()"/></div>
+                   </div>
+                   
+                </div>
+              </div>
+            </div></td>
+        </tr>
+        <tr valign="top">
+          <td height="*">
+              <z:tree id="tree1" method="Catalog.bindAdminTree" level="${User.CatalogTreeLevel}" lazy="true" customscrollbar="true">
+								<p cid='${ID}' listURL="${ListURL}" innercode='${InnerCode}' onClick="onTreeClick(this);" class='treeItem_p'>
+										<span style="${VisibleFlag!='Y'?'color:#ACA899':Status<20?'color:red':''}" class="nodeContent" _href="preview.zhtml?path=../catalog/preview&ID=${ID}" _publish="${HasCatalogPublishPriv?publishEnable:publishDisabled}">${Name}</span>										
+										<span class="toolContainer"></span>
+								</p>										
+							</z:tree>
+            </td>
+        </tr>
+      </table></td>
+    <td><div id="splitter1" class="z-splitter-v shadow-v"></div><iframe id='DetailFrame' frameborder="0" width="100%"
+								height="100%" src='catalogTabs.zhtml' scrolling="auto" allowtransparency="true"></iframe></td>
+  </tr>
+</table>
+<span class="treeItem_p_tool" id="treeItem_p_tool"> <a href="#" target="_blank" class="preview"><img title="@{Contentcore.Preview}" src="../framework/images/icon_preview_17px.png"></a> <a class="publishDisabled" href="#" onclick="publish(this)"><img title="@{Contentcore.Publish}" src="../framework/images/icon_publish_17px.png"></a></span>
+<style>
+.publishDisabled{
+	display:none;
+}
+.publishEnable{
+	display:inline;
+}
+.toolContainer{
+	margin-left:15px;
+	display:inline-block;
+	width:40px;
+}
+.treeItem_p_tool{margin:0;display:none;}
+</style>
+<script>
+//考虑到延迟加载节点，必须使用事件委托;使用闭包避免每次处理事件时都定义和解析函数。
+function toggleToolContainer() {
+	$('#tree1').on('mouseover','dt.treeItem_p',function(){
+		var node;
+		var showTool=function(){
+			if($('#treeItem_p_tool').is(':visible')){return;}
+			var $nodeContent=$('span.nodeContent',node);
+			$('#treeItem_p_tool .preview').attr('href',$nodeContent.attr('_href'));
+			$('#treeItem_p_tool .publishDisabled').addClass($nodeContent.attr('_publish'));
+			$('#treeItem_p_tool').appendTo($('.toolContainer',node)).show();
+		}
+		return function(){
+			node=this;
+			if(window.delayShowTool){clearTimeout(window.delayShowTool);}
+			window.delayShowTool=setTimeout(showTool,300);
+		}
+	}()).on('mouseout','dt.treeItem_p',function(evt){
+		//如果是节点内的元素触发的mouseout事件，则还在节点内,不处理。
+		var relatedTarget=evt.relatedTarget;
+		if(relatedTarget===this || $(this).find(relatedTarget).length){return;}
+		clearTimeout(window.delayShowTool);
+		$('#treeItem_p_tool').hide();
+	});
+}
+toggleToolContainer();
+</script>
+<script>
+Page.onLoad(function(){
+
+	splitter=new Zving.Splitter({
+		el:$G('splitter1'),
+		previousSibling:$('#splitter1').parent().prev().get(0),
+		nextSibling:$('#splitter1').parent().get(0),
+		minXAttr:-5,
+		maxXAttr:200
+	});
+});
+</script>
+</body>
+</html>

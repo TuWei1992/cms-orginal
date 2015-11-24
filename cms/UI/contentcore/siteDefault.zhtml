@@ -1,0 +1,438 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:priv priv="ContentCore.EditWorkSpace" />
+<z:init method="CXSiteDefault.initDefault">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<style>
+.searchbar{ width:462px; height:58px; background:url(../platform/images/searchBar_bg.gif) no-repeat 0 0; text-align:left;
+	padding-left:40px;
+}
+#ContentColumnType{
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  font-size: 14px;
+  width:60px;
+  height: 30px;
+  margin-top:12px;
+  height: 24px\9;
+  margin-top:14px\9; 
+}
+#ContentColumnType_textField{
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  font-size: 14px;
+  width:60px;
+  height: 30px;
+  margin-top:12px;
+  height: 24px\9;
+  margin-top:14px\9; 
+}
+#ContentColumnType_spinner{
+	margin-top:12px;
+	margin-top:10px\9;
+	_margin-top:6px;
+}
+#Keyword {
+box-sizing: border-box;
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  font-size: 14px;
+  height: 30px;
+  line-height:30px;
+  margin-top:12px;
+  padding:0;
+  width: 248px;
+  margin-top:14px\9; 
+
+}
+#searchBtn {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  color: #506624;
+  font-size: 14px;
+  font-weight: bold;
+  height: 34px;
+  margin: 12px 0 0;
+  padding: 0;
+  width: 84px;
+  _margin-left:5px;
+  _margin-top:9px;
+}
+</style>
+<style>
+/*
+.searchbar{ width:462px; height:58px; background:url(../platform/images/searchBar_bg.gif) no-repeat 0 0; text-align:left;}
+#Keyword {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  font-size: 14px;
+  height: 30px;
+  margin: 14px 0 0 14px;
+  height: 24px\9;
+  margin-top:20px\9;
+  padding: 0 0 0 40px;
+  width: 313px;
+}
+#searchBtn {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  color: #506624;
+  font-size: 14px;
+  font-weight: bold;
+  height: 34px;
+  margin: 12px 0 0;
+  padding: 0;
+  width: 82px;
+}
+*/
+.hotlink .icon{
+	text-align:center;
+	width:50px;
+	height:50px;
+	background:url(../platform/images/aluminium.png) no-repeat center;
+}
+.hotlink .icon img{
+	margin:16px;
+}
+.hotlink .label{
+	white-space: nowrap;
+
+	color:#666;
+}
+/* 当屏幕窄时，把两列调整成一列 */
+.card{
+	margin-top:100px;
+	_overflow:hidden;
+}
+.cart table.z-datagrid{
+	clear:none;
+}
+.card-left{
+	float:left;
+	width:51%;
+}
+
+.card-right{
+	float:right;
+	width:48%;
+}
+.card-search,.card-hotlink{
+	/*height:215px;*/
+	height:100%;
+}
+.card-docs,.card-hit{
+	min-height:180px;
+}
+
+.ww-lt992 .card-left
+{
+	float:none;
+	width:auto;
+	margin-right:0;
+}
+.ww-lt992 .card-right
+{
+	float:none;
+	width:auto;
+}
+</style>
+<script src="../framework/main.js"></script>
+<script>
+
+function publish(status,increment) {
+	var diag = new Dialog("@{Contentcore.PublishAll}","publishDialog.zhtml",350,100);
+	diag.onLoad = function(){
+		$DW.$('#trCheckbox').hide();
+	};
+	diag.onOk = function(){
+		$D.close();
+		var dc = {SiteID:'${ID}',Increment:increment};
+		dc.PublishStatus = status;
+		Server.sendRequest("Site.publish", dc, function(response) {
+				if(response.Status == 1) {
+					var taskID = response.TaskID;
+					var p = new Progress(taskID,"@{Contentcore.Catalog.Publishing}",500,150);
+					p.show(function(res){
+						MsgPop("@{Contentcore.Catalog.PublishSuccess}");
+						$D.close();
+					});
+				} else {
+					Dialog.alert(response.Message);
+				}
+		});
+	};
+	diag.show();
+}
+
+
+var oneKeyReprintSheet=function(){
+	if(window.oneKeyReprint){
+		oneKeyReprint();
+		return
+	}
+	if(window._clipToken === "")return;
+	e = document.createElement("script");
+	e.id="_oneKeyReprintSheet";
+	e.type = "text/javascript";
+	e.charset = "UTF-8";
+	e.src = "${CMSContextURL}article/oneKeyReprint.js?r="+Math.random();
+	e.onerror = function(){alert("不能访问到服务器${CMSContextURL}")};
+	e.onload = function(){window._clipToken = ""};
+	document.getElementsByTagName("HEAD")[0].appendChild(e);
+};
+//if(!window.ActiveXObject||window.XMLHttpRequest)
+function showOneKeyReprintTool(){
+	var msg;
+	var js=oneKeyReprintSheet.toString().replace(/[\n\r]/mg,'').replace(/\t/g,' ').replace(/ +/g,' ')
+		.replace(/ *([\(\{\}=;]) */g,'$1').replace(/ *([\)\}=;]) */g,'$1').replace(/\{CONTEXTPATH\}/g, CONTEXTPATH).replace(/"/g,"'");
+	if(isIE){
+		//msg='<p>一键转载工具是一个右键菜单按钮，能帮助您快捷转载其他网站的文章。请点击下面的按钮下载并安装此文件。</p><p align="center"><a class="z-btn " href="'+
+		//'tools/oneKeyReprint.reg'+
+		//'"><img width="16" height="16" src="framework/images/icon_downregfile.gif"/><b>下载此文件并安装<i></i></b></a></p>'
+		msg='<p><z:lang id="Contentcore.OneKeyReprintToolFavoritesMsg">一键转载工具是一个收藏夹工具栏按钮，能帮助您快捷转载其他网站的文章。请将下面的链接拖动到您的收藏夹工具栏，或在链接上按右键然后“添加到收藏夹”中。</z:lang></p><p align="center"><a style="cursor: normal; line-height:20px; font-size:14px;" onclick="alert(\"@{Contentcore.OneKeyReprintToolMsg1}\"); return false;" title="@{Contentcore.OneKeyReprintTool}" href="'+
+		'javascript:void(('+js+')());'+
+		'"><img width="20" height="20" src="framework/images/icon_star.gif" /><z:lang id="Contentcore.OneKeyReprint">一键转载</z:lang></a></p>'
+		
+	}else{
+		msg='<p><z:lang id="Contentcore.OneKeyReprintToolBookmarksMsg">一键转载工具是一个书签工具栏按钮，能帮助您快捷转载其他网站的文章。请将下面的链接拖动到您的书签工具栏，或在链接上按右键然后“添加到收藏夹”中。</z:lang></p><p align="center"><a class="z-btn" style="cursor: move" onclick="alert(\'@{Contentcore.OneKeyReprintToolMsg}\'); return false;" title="@{Contentcore.OneKeyReprintToolMsg}" href="'+
+		'javascript:void(('+js+')());'+
+		'"><img width="20" height="20" src="framework/images/icon_star.gif"/><b style="cursor: move"><z:lang id="Contentcore.OneKeyReprint">一键转载</z:lang><i></i></b></a></p>'
+	}
+	var dlg=new Dialog({
+		title:"@{Contentcore.OneKeyReprintTool}",
+		left:'100%',
+		top:88,
+		width:260,
+		modal:false,
+		padding: '10px 10px 15px 15px',
+		html:msg,
+		draggable:false
+		
+	}).show();
+}
+var searchArgs = '${searchConditionParam}';
+function publishIndex() {
+	var diag = new Dialog("@{Contentcore.PublishIndex}","publishDialog.zhtml",350,100);
+	diag.onLoad = function(){
+		$DW.$('#trCheckbox').hide();
+	};
+	/*
+	diag.onOk = function(){
+		$D.close();
+		var waitDlg=Dialog.wait("@{Contentcore.IndexIsPublishing}");
+		var dc = {SiteID:'${ID}'};
+		if (searchArgs) {
+			var searchArgsArray = searchArgs.split(",");
+			for (var i = 0; i < searchArgsArray.length; i++) {
+				if (searchArgsArray[i] != ''){
+					dc[searchArgsArray[i]] = $V(searchArgsArray[i]);
+				}
+			}
+		}
+		Server.sendRequest("Site.publishIndex", dc, function(response) {
+			waitDlg.close();
+			Dialog.alert(response.Message);
+		});
+	};
+	*/
+	diag.onOk = function(){
+		var dc = {SiteID:'${ID}'};
+		if (searchArgs) {
+			var searchArgsArray = searchArgs.split(",");
+			for (var i = 0; i < searchArgsArray.length; i++) {
+				if (searchArgsArray[i] != ''){
+					dc[searchArgsArray[i]] = $V(searchArgsArray[i]);
+				}
+			}
+		}
+		Server.sendRequest("Site.publishIndex", dc, function(response) {
+			if(response.Status == 1) {
+				var taskID = response.TaskID;
+				var p = new Progress(taskID,"@{Contentcore.Publishing}...",500,150);
+				$D.close();
+				p.show(function(){
+					$D.close();
+					MsgPop("@{Contentcore.Catalog.PublishSuccess}");
+				});
+				//Node.hide(p.Dialog.okButton);
+				//Node.hide(p.Dialog.cancelButton);
+				//p.Dialog.cancelButton.onclick = function(){}
+			} else {
+				Dialog.alert(response.Message);
+			}
+		});
+	};
+	diag.show();
+}
+
+
+function publishConditionIndex() {
+	
+		var dc = {SiteID:'${ID}'};
+		var selectCondition = false;
+		if (searchArgs) {
+			var searchArgsArray = searchArgs.split(",");
+			for (var i = 0; i < searchArgsArray.length; i++) {
+				if (searchArgsArray[i] &&  $V(searchArgsArray[i])){
+					dc[searchArgsArray[i]] = $V(searchArgsArray[i]);
+					selectCondition = true;
+				}
+			}
+		}
+		if (!selectCondition) {
+			Dialog.alert("请先选择发布条件！");
+			return;
+		}
+		var waitDlg=Dialog.wait("@{Contentcore.IndexIsPublishing}");
+		Server.sendRequest("CXPublish.publishConditionIndex", dc, function(response) {
+			waitDlg.close();
+			Dialog.alert(response.Message);
+		});
+}
+
+function publishCatalog() {
+	var diag = new Dialog("@{Contentcore.Catalog.Publish}","catalogListForPublish.zhtml",450,430);
+	diag.onOk = function(){
+		var dc = {};
+		var catalogIDs = $DW.Tree('tree1').getCheckedData('cid');
+		if(!catalogIDs || catalogIDs.length == 0) {
+			Dialog.alert("@{Contentcore.selectcatalogsFirst}");
+			return;
+		}
+		dc.CatalogID=catalogIDs[0];
+		dc.CatalogIDs=catalogIDs.join();
+		dc.PublishDetail=$DW.$V("PublishDetail");
+		dc.NoStatus="Y";
+		dc.SiteID='${ID}';
+		Server.sendRequest("CatalogPublisher.publish", dc, function(response) {
+				if(response.Status == 1) {
+					var taskID = response.TaskID;
+					var p = new Progress(taskID,"@{Contentcore.Catalog.Publishing}",500,150);
+					$D.close();
+					p.show(function(){
+						$D.close();
+						MsgPop("@{Contentcore.Catalog.PublishSuccess}");
+					});
+					Node.hide(p.Dialog.okButton);
+					Node.hide(p.Dialog.cancelButton);
+					p.Dialog.cancelButton.onclick = function(){}
+				} else {
+					Dialog.alert(response.Message);
+				}
+		});
+	};
+	diag.show();
+}
+
+function preview(btn){
+
+	var url="preview.zhtml?path="+CONTEXTPATH+"site/preview&ID=${ID}";
+	if (searchArgs) {
+		var searchArgsArray = searchArgs.split(",");
+		for (var i = 0; i < searchArgsArray.length; i++) {
+			if (searchArgsArray[i] != ''){
+				url += "&" + searchArgsArray[i] +"="+ $V(searchArgsArray[i]);
+			}
+		}
+	}
+	btn.href=url;
+	return true;
+}
+
+function fitEmbedWidth(){
+	var $embed=$('#Chart1');
+	if($embed.length){
+		$embed.width(515);
+	}else{
+		setTimeout(fitEmbedWidth,30);
+	}
+}
+
+
+function searchContentColumn(){
+	$S('ContentColumn',$V('#ContentColumnType'));
+}
+
+function search(){}
+</script>
+</head>
+<body class="z-body-list">
+<z:menu id="PublishContentStatus">
+<a id="PUBLISHED" onclick="publish(30,'N')"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Published">发布已发布的文档</z:lang></a>
+<a id="TOPUBLISH" onclick="publish(20,'N')"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Topublish">发布待发布的文档</z:lang></a>
+<a id="DRAFT" onclick="publish(0,'N')"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Draft">发布初稿</z:lang></a>
+<a id="EDITING" onclick="publish(60,'N')"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Editing">发布重新编辑的文档</z:lang></a>
+<a id="OFFLINE" onclick="publish(40,'N')"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Offline">发布已下线的文档</z:lang></a>
+<a id="ALL" onclick="publish(-1,'N')"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.All">发布所有文档</z:lang></a>
+</z:menu>
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0"
+	cellpadding="0" height="100%" class="">
+	<tr>
+		<td align="right" height="37"><z:toolbar>
+		   <span>${(searchCondition)}</span>
+		   <z:if condition="${searchConditionParam != ''}">
+		    <z:button theme="flat" id="PublishConditionIndex" priv="com.zving.cms.Site.Publish.${ID}"  onClick="publishConditionIndex();" priv="com.zving.cms.Site.Publish.${ID}">
+                <img src="../icons/icon040a7.png" />发布此条件首页</z:button>
+		   </z:if>
+			<z:button theme="flat" id="PublishIndex" onClick="publishIndex();" priv="com.zving.cms.Site.Publish.${ID}">
+                <img src="../icons/icon040a7.png" />发布首页</z:button>
+			<z:button type="link" onClick="return preview(this)" target="_blank" theme="flat">
+				<img src="../icons/icon040a9.png" /><z:lang id="Contentcore.SitePreview">站点预览</z:lang></z:button>
+			<z:button type="link" href="${SiteURL}" target="_blank" theme="flat">
+				<img src="../icons/icon040a15.png" /><z:lang id="Contentcore.BrowseSite">站点浏览</z:lang></z:button>
+			<z:button onClick="publish(-1,'Y')" theme="flat" id="IncrementPublishAllSite" priv="com.zving.cms.Site.Publish.${ID}">
+				<img src="../icons/icon028a2.png" /><z:lang id="Contentcore.SiteIncrementalPublish">全站增量发布</z:lang></z:button>
+			<z:button theme="flat" type="select" menu="PublishContentStatus" id="PublishAllSite" priv="com.zving.cms.Site.Publish.${ID}">
+				<img src="../icons/icon028a13.png" /><z:lang id="Contentcore.SiteFullPublish">全站重新发布</z:lang></z:button>
+			<z:button onClick="publishCatalog()" theme="flat">
+				<img src="../icons/icon029a8.png" /><z:lang id="Contentcore.PublishCatalog">发布栏目</z:lang></z:button>
+            <z:button id="btn_showOneKeyReprintTool" onClick="showOneKeyReprintTool()" theme="flat"><img src="../icons/icon002a2.png" title="一键转载工具" /><z:lang id="Contentcore.OneKeyReprintTool">一键转载工具</z:lang></z:button>
+
+		</z:toolbar></td>
+	</tr>
+ 	<tr valign="top">
+      <td height="*" style="padding:10px;" class="z-body-detail">
+<div class="card  card-search">
+			<form action="siteSearchResult.zhtml" method="post">
+	          <table border="0" cellspacing="0" cellpadding="0" style="text-align:center; margin:5px auto 0;">
+	            <tr>
+	              <td height="35"><z:checkbox method="IndexList.getContentTypes" value="Article" id="ContentType" /></td>
+	            </tr>
+	            <tr>
+	              <td height="35"><z:lang id="Contentcore.SearchInCatalog">指定栏目搜索</z:lang>
+	                ：
+	                <z:select id="CatalogID" listWidth="300" listHeight="300" condition="$NV('Type')=='D'" listURL="catalogSelectList.zhtml" /></td>
+	            </tr>
+	            <tr>
+	              <td height="35"><div class="searchbar">
+	              <span style="padding-left:10px;"></span>
+	              <input type="hidden" id="ContentColumn" name ="ContentColumn" value="${ContentColumn}" />
+	              <z:select id="ContentColumnType" onchange="searchContentColumn()">
+						<select>
+							<option value=""><z:lang id="Contentcore.Search.AllField">全部</z:lang></option>
+							<option value="Title"><z:lang id="Contentcore.Basic.Title">标题</z:lang></option>
+							<option value="Author"><z:lang id="Contentcore.Basic.Author">作者</z:lang></option>
+							<option value="Editor"><z:lang id="Contentcore.Edit">编辑</z:lang></option>
+							<option value="Source"><z:lang id="Contentcore.resourceDlg.source">来源</z:lang></option>
+							<option value="KeyWords"><z:lang id="Search.Keyword">关键字</z:lang></option>
+						</select>
+					</z:select>
+					<input type="text" id="Keyword" name="Keyword" placeholder="@{Contentcore.InputKeyword}" ztype="suggest" suggestsource="Search.suggest" /><input type="submit" value="@{Contentcore.SearchInSite}" id="searchBtn" />
+					</div></td>
+	            </tr>
+	          </table>
+			</form>
+            </div>
+</td>
+</tr>
+</table>
+</body>
+</html>
+</z:init>

@@ -1,0 +1,192 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<z:init method="BlockList.initDialog">
+<html style="overflow:auto">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../framework/main.js"></script>
+<script>
+Page.onLoad(function(){
+	$NS("Type","Manual");
+	showWeight($NV("Type"));
+})
+
+function browseTemplate(id,type,tid,platformID){
+	var value = $V(tid);
+	var diag = new Dialog("@{Contentcore.Block.SelectTemplateFile}","../contentcore/templateSelectDialog.zhtml?SiteID=${SiteID}&Type="+type+"&Value="+value +"&PlatformID="+platformID,700,300);
+	diag.onOk = function(){
+		var t = $DW.getTemplate();
+		if(!t){
+			t = "";
+		} 			
+		$S(id,t);
+		$D.close();
+	};
+	diag.show();
+}
+
+function onTypeClick(){
+	var blockType = $NV("Type");
+	if(blockType != "Template"){
+		$('#tr_template').hide();
+	}else{
+		$('#tr_template').show();
+	}
+	showWeight(blockType);
+}
+
+function setPath(){
+	var diag = new Dialog("@{Contentcore.Block.SelectBlockPath}","../contentcore/filePathSelectDialog.zhtml?SelectType=Path&Path="+$V('#Path'),700,400);
+	diag.onOk = function(){
+		var path = $DW.getPath();
+		if(path){
+			if(path=="/"){
+				Dialog.warn("@{Contentcore.Block.WarnRoot}");
+				return;
+			}
+			$('#Path').val(path);
+			$D.close();
+		}
+	};
+	diag.show();
+}
+
+function checkweight(){
+	var minweight = $V('#MinWeight');
+	var maxweight = $V('#MaxWeight');
+	if(minweight <= 0){
+		minweight = 0;
+	}
+	if(minweight >= 100){
+		minweight = 100;
+	}
+	if(maxweight <= 0){
+		maxweight = 0;
+	}
+	if(maxweight >= 100){
+		maxweight = 100;
+	}
+	if((!isNaN(minweight)) && (!isNaN(maxweight)) && (minweight-maxweight>0)){
+		Dialog.alert("@{Block.Weight.ErrorMsg}");
+		return;
+	}
+	$S('#MinWeight',minweight);
+	$S('#MaxWeight',maxweight);
+}
+
+function showWeight(blockType){
+	if(blockType != "Manual"){
+		$('#tr_Weight').hide();
+		$('#tr_recommendType').hide();
+		$S('#MinWeight',0);
+		$S('#MaxWeight',100);
+	}else{
+		$('#tr_Weight').show();
+		$('#tr_recommendType').show();
+	}
+}
+</script>
+</head>
+<body class="z-body-detail">
+<div style="overflow:hidden; height:5px;"></div>
+
+<table width="100%"  border="0" cellspacing="0"
+	cellpadding="0" height="*" >
+	<tr>
+		<td>
+            <form id="form2">
+				<input name="ID" type="hidden" id="ID" value="${ID}" /> 
+				<input name="SiteID" type="hidden" value="${SiteID}"/>
+				<input type="hidden" id="CatalogID" name="CatalogID" value="${CatalogID}"/>
+	<table cellpadding="3" cellspacing="0" align="center">
+		<tr>
+			<td width="12" colspan="2" height="10"></td>
+		</tr>
+
+		<tr>
+			<td align="right"><z:lang id="Common.Name">名称</z:lang>：</td>
+			<td><input name="Name" type="text" value="${Name}"
+				 id="Name" size=35 verify="@{Common.Name}|NotNull&&Length<25" />
+				</td>
+		</tr>
+		<tr>
+			<td height="6" align="right"><z:lang id="Common.Type">类型</z:lang>：</td>
+			<td height="6">
+				 <z:radio onclick="onTypeClick()" id="Type" method="BlockList.getBlockTypes" value="Manual"/>
+				</td>
+		</tr>
+		<tr>
+			<td align="right"><z:lang id="Common.Code">代码</z:lang>：</td>
+			<td><input name="Code" type="text" value="${Code}"
+				 id="Code" size=35 verify="@{Common.Code}|NotNull&&<z:lang id="Contentcore.OnlyNumbersAndLetters">只能是数字和字母组成</z:lang>|Regex=^\w+$&&Length<25" />
+		    </td>
+		</tr>
+		<tr id="tr_sort" style="display:none">
+			<td height="3" align="right"><z:lang id="Contentcore.Block.ArticleSort">文章排序</z:lang>：</td>
+			<td height="3">
+			<z:select id="SortField">
+                <select>
+                <option value="PublishDate"><z:lang id="Contentcore.Block.Time">发布时间</z:lang></option>
+                <option value="HitCount"><z:lang id="Contentcore.Block.HitCount">点击数</z:lang></option>
+                </select></z:select>
+			</td>
+		</tr>
+		<tr id="tr_template" style="display:none">
+			<td align="right"><z:lang id="Contentcore.Block.Template">模板</z:lang>：</td>
+			<td><input name="Template" type="text" 
+				id="Template" value="${Template}" size="35" /> <input name="Button"
+				type="button" class="input2" id="Button" value="@{Common.Browse}..."
+				onClick="browseTemplate('Template','Block','Template', 'pc');">
+				<!-- 其他平台模板浏览 -->
+				<z:list method="platformContentTemplate.getUsedPublishPlatformsExPCList">
+		        	 <input name="Button22" type="button" class="input2" id="Button_${ID}"
+		             value="${Name}..." onClick="browseTemplate('Template', 'Block','Template','${ID}')">
+				</z:list>
+			</td>
+		</tr>
+		<tr>
+			<td align="right"><z:lang id="Common.Width">宽度</z:lang>：</td>
+			<td><input name="Width" type="text" value="${Width}"
+				 id="Width" size=10 verify="Length<5"/>px
+		    </td>
+		</tr>
+		<tr>
+			<td height="6" align="right"><z:lang id="Contentcore.Block.Directory">目录</z:lang>：</td>
+			<td height="6">
+			<p><input name="Path" type="text" 
+				id="Path" value="${Path}" size="35" verify="@{Contentcore.Block.Directory}|NotNull" /><input type="button" value="@{Common.Browse}..." onclick="setPath()">
+			</p>
+			</td>
+		</tr>
+		<tr id="tr_Weight" style="display: none;">
+			<td height="6" align="right"><z:lang id="Block.Weight.WeightRange">权重范围</z:lang>：</td>
+			<td height="6">
+			<p>
+				<input name="MinWeight" type="text" onblur="checkweight();"  id="MinWeight" value="0" size="13" ztype="Number" verify="Int" />  ~  
+				<input name="MaxWeight" type="text" onblur="checkweight();"  id="MaxWeight" value="100" size="13" ztype="Number" verify="Int" />
+			</p>
+			</td>
+		</tr>
+		<tr id="tr_recommendType" style="display: none;">
+		  <td height="6" align="right"><z:lang id="Block.RecommendType">接受推荐</z:lang>：</td>
+		  <td height="6">
+			<p>
+				<z:select id="RecommendType" code="RecommendType" value="${RecommendType}" ></z:select>
+			</p>
+		  </td>
+		</tr>
+
+	</table>
+			</form>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
+</z:init>

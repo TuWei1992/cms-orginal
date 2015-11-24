@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:priv priv="ContentCore.ExtendModelMenu" />
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script src="../framework/main.js"></script>
+</head>
+<body class="z-body">
+
+<form id="F1">
+<table width="100%" border="0" height="100%">
+	<tr height="20"><td></td></tr>
+    <tr>
+      <td align="center" valign="middle">
+      	<table height="*" width="100%" align="center" cellpadding="2" cellspacing="4">
+        <tr>
+          <td width="25%" height="35" align="right">模型名称：</td>
+          <td width="40%" align="left"><input name="Name" type="text" id="Name"
+				value="${Name}" style="width:200px" verify="NotNull" />
+           </td>
+          <td width="35%" align="left" class="gray"></td>
+        </tr>
+        <tr>
+          <td height="35" align="right">模型代码：</td>
+          <td align="left"><input name="Code" type="text" id="Code" verify="NotNull"
+				value="${Code}" style="width:200px" /></td>
+          <td align="left"><span class="gray"></span></td>
+        </tr>
+        
+          <tr>
+          <td height="35" align="right">API接口：</td>
+          <td align="left"><input name="APIName" type="text" id="APINAME" verify="NotNull"
+				value="${APIName}" style="width:200px" /></td>
+          <td align="left"><span class="gray"></span></td>
+        </tr>
+        <!--
+         <tr>
+          <td height="35" align="right">是否分页：</td>
+          <td align="left"><z:radio id="PageFlag" code="YesOrNo" value="${PageFlag}" /></td>
+          <td align="left"><span class="gray"></span></td>
+        </tr>
+     -->
+        <tr>
+          <td height="35" align="right"><z:lang id="Common.Memo">备注</z:lang>：</td>
+          <td align="left"><textarea id="Memo"  style="width:200px">${Memo}</textarea></td>
+          <td align="left"><span class="gray"></span></td>
+        </tr>
+      </table>
+        <br></td>
+    </tr>
+  </table> 
+</form>
+
+</body>
+</html>

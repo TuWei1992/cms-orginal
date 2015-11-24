@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<%@include file="include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:init method="Application.init">
+<html style="overflow: hidden">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>${AppName}</title>
+<link rel="shortcut icon" href="include/favicon.ico" type="image/x-icon" />
+<link href="style/default.css" rel="stylesheet" type="text/css">
+<style>
+
+</style>
+<script src="framework/main.js"></script>
+<script src="tools/spell.js"></script>
+<script>
+var lastWinWidth=0;
+var timeoutID = 0;
+
+Page.onReady(function(){
+	timeoutID = setTimeout(getNewMessageCount, 1000*60);
+	lastWinWidth=$(window).width();
+	
+});
+EventManager.onWindowResize(function(){
+	winWidth=$(window).width();
+	if(lastWinWidth<1000 && (winWidth>1000 || winWidth-lastWinWidth>50)){
+		location.reload();
+	}
+});
+
+//获取短消息 '${Config.RefreshSessionFlag}'
+var meedSession = '${Config.RefreshSessionFlag}'=='Y'?false:true;
+function getNewMessageCount(){
+	var dc = {SessionID:"${SessionID}"};
+	Server.sendRequest("Message.getNewMessage",dc,function(response){
+		var count = response.Count;
+		$('#MsgCount').html(count);
+		<z:if condition="${'N'!=Config.PopupMessageFlag}">
+		if(response.PopFlag=="Y"){
+			MsgPop(response.Message,null,450,null,30);
+		}
+		if(typeof(response.LogoutFlag) == 'undefined' || response.LogoutFlag!="Y"){
+			timeoutID = setTimeout(getNewMessageCount, 1000*60);
+		}
+		</z:if>
+	},null,meedSession,'json');//true表示不需要session，否则页面打开后即会永不失效
+}
+
+function stopGetMessage(){
+	clearTimeout(timeoutID);
+}
+
+//定位到短消息菜单
+function getMessage(){
+	var diag = new Dialog("@{Platform.ShortMessageList}","platform/message/message.zhtml",900,500);
+	diag.show();
+}
+
+Tab=Zving.TabPage;
+
+function onLanguageChange(strLang){
+	var dc = {Language:(strLang?strLang:$('#Language').val())};
+	Server.sendRequest("Application.changeLanguage",dc,function(response){
+		window.location.reload();
+	});
+}
+
+Application.logout = function() {
+	Dialog.confirm("@{Application.LogoutConfirm}", function() {
+		Server.sendRequest("Application.logout");
+	});
+};
+
+function pngfix(img){
+	if(Zving.isIE6&&/\.png$/i.test(img.src)){
+		var imgsrc=img.src;
+		img.style.width=img.offsetWidth;
+		img.style.height=img.offsetHeight;
+		img.src='framework/images/blank.gif';
+		img.style.filter='progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale", src="'+imgsrc+'")';
+	}
+}
+
+function openSettingTabs(func) {
+	var diag = new Dialog({
+		title:"@{Platform.UserSetting}：${User.UserName}",
+		url:"platform/userSettingTabs.zhtml",
+		width:750,
+		height:400
+	});
+	diag.onOk = function(){
+		$DW.save(func);
+	}
+	diag.onCancel=function(){$DW.close();};
+	diag.show();
+}
+
+function changeSkin(skin){
+	Cookie.set("zcms_skin", skin, 60*60*24*100);
+	Config.skin=skin;
+	window.location.reload();
+}
+$(function(){
+	var timer;
+	var $skinSelector=$('#skinSelector');
+	$skinSelector.hover(function(){
+		clearTimeout(timer);
+		$('#skinsMenu').css('left',$skinSelector.offset().left).show();
+	},function(){
+		timer=setTimeout(function(){$('#skinsMenu').hide();},300);
+	})
+	$('#skinsMenu').hover(function(){
+		clearTimeout(timer);
+	},function(){
+		timer=setTimeout(function(){$('#skinsMenu').hide();},300);
+	})
+})
+<z:extend id="com.zving.platform.ApplicationScript" />
+</script>
+<style>
+body {
+	background-color:#DBE8F4;
+	min-width:1000px;
+	min-height:400px;
+}
+.no_text_btn .z-btn b { padding-right:0;}
+#oneKeyReprintTool_div { position:absolute; left:100px; top:100px;}
+#skinsMenu a.z-btn-inmenu{
+	min-width: 66px;
+	text-indent: 0.5em;
+}
+</style>
+<!--[if lte IE 6]>
+<style>
+img { behavior: url(style/iepngfix.htc) }
+body{
+	width:expression(document.documentElement.clientWidth < 1000? "1000px" : "auto");
+	height:expression(document.documentElement.clientHeight < 400? "400px" : "auto");
+}
+</style>
+<![endif]-->
+<style>
+#MsgCount{ font-size:9px; font-family:Tahoma, Geneva, sans-serif; display:inline-block; text-align:center; line-height:11px; padding:1px 4px 1px 4px; border-radius:10px; height:11px; min-width:6px; border:0px solid rgba(255,255,255,0.9); color:#fff; background-color:#FF6F4B; box-shadow:1px 1px 2px rgba(0,0,0,0.1); position:relative; left:-6px; top:-5px;}
+</style>
+<!--<![endif]-->
+</head>
+<body class="z-body-index language-${User.Language}" id="application" style="_overflow:hidden;_height:100%;_width:100%;">
+<div id="skinsMenu" class="z-layer z-menu z-hidden" style="z-index: 10200; position: absolute; left: 1035px; top: 25px;">
+			<a class="z-btn z-btn-inmenu" onClick="changeSkin('zvingclassic')" href="javascript:void(0)"><z:lang id="Platform.BlueTheme">经典蓝色</z:lang></a>
+			<a class="z-btn z-btn-inmenu" onClick="changeSkin('zvinggreen')" href="javascript:void(0)"><z:lang id="Platform.GreenTheme">清新绿色</z:lang></a>
+			<a class="z-btn z-btn-inmenu" onClick="changeSkin('zvingdeep')" href="javascript:void(0)"><z:lang id="Platform.DarkTheme">雅致深色</z:lang></a>
+			<a class="z-btn z-btn-inmenu" onClick="changeSkin('zvingred')" href="javascript:void(0)"><z:lang id="Platform.RedTheme">庄重红色</z:lang></a>
+			<a class="z-btn z-btn-inmenu" onClick="changeSkin('zvingpurple')" href="javascript:void(0)"><z:lang id="Platform.PurpleTheme">优雅紫色</z:lang></a>
+			<a class="z-btn z-btn-inmenu" onClick="changeSkin('zvingflat')" href="javascript:void(0)"><z:lang id="Platform.FlatTheme">扁平明快</z:lang></a>
+</div>
+<table id="js_layoutTable" width="100%" height="*" border="0" cellspacing="0" cellpadding="0" class="js_layoutTable">
+  <tr>
+    <td height="60"><table id="_TableHeader" width="100%" border="0" cellpadding="0"
+		cellspacing="0" class="deepBg">
+        <tr>
+          <td width="217" height="60" valign="middle"><img onClick="location.reload();" id="logo" class="logo_${Language}" src="product/images/logo_${Language}.png" onload="var w=this.clientWidth+'px',h=this.clientHeight+'px';this.style.width=w;this.style.height=h;this.onload=null;this.src='framework/images/blank.gif';" />
+            <div style="display:none; float:left; background:url(platform/images/selectsitebg.gif) no-repeat right top; color:#666666; padding:6px 23px 0 10px; margin-bottom:-2px;">
+            	</div></td>
+          <td><div class="loginInfo"><span class="loginInfo_welcom"><z:lang id="Application.CurrentUser">当前用户</z:lang> : <b> ${User.UserName}</b> 
+          	<a href="javascript:void(0);" onClick="getMessage();return false;" title="@{Application.Message}"><img src="framework/images/blank.gif" class="icon icon_msg"><span id="MsgCount">0</span></a>
+          	<a href="javascript:void(0);" id="skinSelector" title="@{Platform.Theme}"><img src="icons/icon403a7.gif"></a>
+          		<a href="javascript:void(0);" onClick="openSettingTabs();return false;" title="@{Platform.UserSetting}"><img src="icons/icon023a1.gif"></a> <a href="logout"><z:lang id="Application.Logout">退出登录</z:lang></a> | 
+			 	<z:extend id="com.zving.platform.ApplicationWelcome" />
+           	</span></div>
+                	<div id="_Navigation" class="navigation">
+                	<z:list method="Application.bindMainMenus">
+                		<a id='_Menu_${ID}' menuid="${ID}" onclick='return false;' url="${URL}" hidefocus='true'><b>${Name}</b></a>
+                	</z:list>
+                	</div>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td height="*" class="mainArea">
+    	<table width="100%" id="js_layoutTable2" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable" style="table-layout:auto\9;*table-layout:fixed;"><!-- ie8下tableLayout为fixed的表格，就算是隐藏单元格也占有宽度，所以这个表格在ie8下tableLayout设为auto，使可以正常隐藏侧栏 -->
+        <tr valign="top">
+          <td width="160" height="100%" class="leftColumnWrap" id="leftColumnWrap"><table width="100%" id="leftColumn" border="0" cellspacing="0" cellpadding="0" class="">
+               <tr>
+                <td height="37"><div class="z-toolbar no_text_btn">
+              <div class="z-toolbar-ct">
+                <div class="z-toolbar-overflow">
+                  <div class="z-toolbar-nowrap">
+                  <z:extend id="com.zving.platform.ApplicationToolbar" />                 
+                </div>
+                </div>
+              </div>
+            </div></td>
+              </tr>
+              <tr valign="top">
+                <td height="*">
+                	<div id="_sideNavigation">
+                	<z:list method="Application.bindMainMenus">
+                		<ul id="_Child_Menu_${ID}" class="sideNavigation" style="display:none">
+                			<z:list method="Application.bindChildMenus">
+                  			<li><a class="${List.HasChild?'hasChild hasChild_expand':''}" href="${URL}" menuid="${ID}"><b>${(Icon)}${Name}</b></a>
+                  				<z:if condition="${List.HasChild}">
+              						<ul>
+	                  					<z:list method="Application.bindChildMenus">
+		                    				<li><a href="${URL}" menuid="${ID}"><b>${(Icon)}${Name}</b></a></li>
+	                  					</z:list>
+	                    			</ul>
+                  				</z:if>
+                  			</li>
+                  		</z:list>
+                  	</ul>
+                  </z:list>
+                  </div>
+                </td>
+              </tr>
+          </table></td>
+          <td id="rightColumnWrap"><div id="_framesWrap" style="position:relative; height:100%">
+          	<!--<a id="toggleLeftColumn"  href="#;" class="toggleBtn-left"></a>-->
+          	<iframe id='_mainFrame_0' name="_mainFrame_0" frameborder="0" width="100%" height="100%" src='about:blank' scrolling="auto" style="left:-22in;top:-11in;" allowtransparency="true"></iframe>
+          	</div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+
+<script>
+Priv.AdminUserName = "${AdminUserName}";
+Priv.UserName = "${User.UserName}";
+Priv.init(${(Privs)});
+</script>
+</body>
+</html>
+</z:init>

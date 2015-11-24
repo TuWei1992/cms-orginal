@@ -1,0 +1,646 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:init method="Core.File.initAllowTypes">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title><z:lang id="User.Title">文件管理</z:lang></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+
+<script src="../framework/main.js"></script>
+<script src="../cxdata/js/html5Upload.js"></script>
+<script>
+var current = "";
+function changeDir(path,platformID){
+	if(path==null){
+		path = "";
+	}
+	$S("PlatformID",platformID);
+	$S("PlatformPath",path);
+	DataGrid.setParam('dg1', Constant.PageIndex,0);
+	DataGrid.setParam('dg1', "Path",path);
+	DataGrid.setParam('dg1', "SiteID",'${SiteID}');
+	DataGrid.setParam('dg1', "PlatformID",platformID);
+	current = path;
+	DataGrid.loadData('dg1',showPagebar);
+	//更改地址栏
+	var arr = current.split("/");
+	var sb = [];
+	sb.push("<a href='#;' onclick='onAddressClick(-1)'><img src='../icons/extra/icon_folder_other.gif' align='absmiddle' /> / </a>");
+	for(var i=0;i<arr.length;i++){
+		var name = arr[i];
+		if(name==""){
+			continue;
+		}
+		sb.push(" <img src='../framework/images/arrow_inCell.gif' align='absmiddle' /> \n");
+		sb.push("<a style='color:#333' href='#;' onclick='onAddressClick("+i+")'>"+name+"</a>");
+	}
+	$('#Address').html(sb.join(''));
+}
+
+function onAddressClick(level){
+	var arr = current.split("/");
+	var sb = [];
+	for(var i=0;i<=level;i++){
+		sb.push(arr[i]);
+	}
+	var path = sb.join("/");
+	if(level==-1){
+		path = "";
+	}else{
+		path = path+"/";	
+	}
+	changeDir(path,$V("#PlatformID"));
+	window.parent.Tree.selectByAttr("tree1","cid",current);
+	if(current==""){
+		window.parent.Tree.selectRoot("tree1");
+	}
+}
+
+function refreshData(){
+	DataGrid.loadData('dg1',showPagebar);
+	window.parent.Tree.loadData("tree1");
+}
+
+function addFile(type){
+	var diag = new Dialog(type=="File"?"@{Contentcore.NewFile}":"@{Contentcore.NewDirectory}","fileAddDialog.zhtml?Type="+type,480,200);
+	diag.onLoad = function(){
+			$DW.$S("#ParentName", current);
+	};
+	diag.onOk = function(){
+		if($DW.Verify.hasError()){
+			return;
+		}
+		var name = $DW.$V('#Name');
+		var dc = {Name:name,Path:current,Type:type,SiteID:$V("#SiteID"),PlatformID:$V("#PlatformID")};
+		Server.sendRequest("Core.File.addFile",dc,function(response){
+			if(response.Status==1){
+				MsgPop(response.Message)
+				refreshData();
+			} else {
+				Dialog.warn(response.Message);
+			}
+			$D.close();
+		});	
+	}
+	diag.show();
+}
+
+function rename(){
+	var dt = DataGrid.getSelectedData("dg1");
+	if(dt.Values.length==0){
+		Dialog.alert("@{Common.PleaseSelectRowFirst}");
+		return;
+	}
+	var oldName = dt.Rows[0].get("name");
+	var diag = new Dialog({
+		title:"@{Contentcore.Rename}",
+		url:"fileAddDialog.zhtml",
+		width:480,
+		height:100
+	});
+	diag.onLoad = function(){
+		$DW.$S('#ParentName',current);
+		$DW.$S('#Name',oldName);
+	}
+	diag.onOk = function(){
+		if($DW.Verify.hasError()){
+			return;
+		}
+		var name = $DW.$V('#Name');
+		if(name==oldName){
+			Dialog.alert("@{Contentcore.NameNoChanges}");
+			return;
+		}
+		var dc = {OldName:oldName,Name:name.trim(),Path:current,SiteID:$V("#SiteID"),PlatformID:$V("#PlatformID")};
+ 		Server.sendRequest("Core.File.rename",dc,function(response){
+			if(response.Status==0){
+				Dialog.warn(response.Message);
+			}else{
+				refreshData();
+			}
+			$D.close();
+		});	
+	}
+	diag.show(); 
+}
+
+function del(){
+	var arr = DataGrid.getSelectedValue("dg1");
+	if(!arr||arr.length==0){
+		Dialog.alert("@{Common.PleaseSelectToDeleteRowFirst}");
+		return;
+	}
+ 	Dialog.confirm("@{Contentcore.DeleteFileOrDirectoryConfrim}",function(){
+ 		var dc = {Names:arr.join(),Path:current,SiteID:$V("#SiteID"),PlatformID:$V("#PlatformID")};
+ 		Server.sendRequest("Core.File.delete",dc,function(response){
+			if(response.Status==0){
+				Dialog.warn(response.Message);
+			}else{
+				refreshData();
+			}
+		});	
+	});
+}
+
+function openDir(dir){
+	changeDir(dir,$V("#PlatformID"));
+	if(!window.parent.Tree('tree1').currentNode || !window.parent.Tree('tree1').currentNode.el){
+		window.parent.Tree.selectByAttr("tree1","cid",current);
+	}else{
+		if(window.parent.Tree('tree1').currentNode && window.parent.Tree('tree1').currentNode.el.getAttribute("lazy")=="1"){
+			window.parent.Tree.lazyLoad(window.parent.Tree('tree1').currentNode.el,function(){
+				window.parent.Tree.selectByAttr("tree1","cid",current);
+			});
+		}else{
+			window.parent.Tree.selectByAttr("tree1","cid",current);
+		}
+	}
+}
+
+function openFile(){
+	var dt = DataGrid.getSelectedData("dg1");
+	if(dt.Values.length==0){
+		Dialog.alert("@{Common.PleaseSelectRowFirst}");
+		return;
+	}
+	var name = dt.Rows[0].get("name");
+	var dirFlag = dt.Rows[0].get("DirFlag");
+ 	if(dirFlag=="Y"){
+ 		openDir(current+name+"/");
+	}else{
+		if(name.indexOf(".")<0){
+			Dialog.warn("@{Contentcore.NotSupportFileType}");
+			return;
+		}	
+		var ext = name.substring(name.lastIndexOf(".")+1).toLowerCase();
+		if(ext=="html"||ext=="htm"||ext=="shtml"||ext=="txt"||ext=="js"||ext=="css"||ext=="ftl"){
+			var diag = new Dialog({
+				title:"@{Contentcore.EditFile}",
+				url:"fileEditDialog.zhtml?Path="+current+"&Name="+name+"&PlatformID="+$V("#PlatformID")+"&SiteID="+$V("#SiteID"),
+				width:980,
+				height:500
+			});
+			if(Application.hasPriv("ContentCore.FileMenu.Edit")){
+				diag.onOk = function(){
+					var content = $DW.getChanges();;
+					if(content==false){
+						$D.close();
+						return;
+					}
+					var dc = {Name:name,Path:current,Content:content,SiteID:$V("#SiteID"),PlatformID:$V("#PlatformID")};
+					Server.sendRequest("Core.File.save",dc,function(response){
+						$D.close();
+	  					if(response.Status == 1){
+	  						MsgPop(response.Message);
+	  					}else{
+	  						Dialog.warn(response.Message,null,response.Status);
+	  					}
+					});	
+				}
+				diag.okText = "@{Common.Save}";
+			}else{
+				diag.onCancel = function(){
+					$D.close();
+				}
+				diag.cancelText = "@{Common.Close}";
+			}
+			diag.show();
+		}else if(ext=="jpeg"||ext=="jpg"||ext=="bmp"||ext=="gif"||ext=="png"){
+			var diag = new Dialog({
+				title:"@{Common.View}",
+				url:"imageFileViewDialog.zhtml?Path="+current+"&Name="+name+"&SiteID="+$V("#SiteID")+"&PlatformID="+$V("#PlatformID"),
+				width:900,
+				height:500
+			});
+			diag.onCancel = function(){				
+				$D.close();
+			}
+			diag.show();
+		}else{
+			Dialog.warn("@{Contentcore.NotSupportFileType}");
+		}
+	}
+}
+
+function upload(){
+	var diag = new Dialog("@{Contentcore.UploadTemplateFile}","fileUploadDialog.zhtml?Path="+current+"&PlatformID="+$V("#PlatformID")+"&SiteID="+$V("#SiteID"),400,120);
+	diag.onOk = function(){
+		$DW.doUpload();
+	}
+	diag.show();
+}
+
+function exportFile() {
+	var arr = DataGrid.getSelectedValue("dg1");
+	if(!arr||arr.length==0){
+		Dialog.alert("@{Common.PleaseSelectRowFirst}");
+		return;
+	}
+	window.location.href = "../contentcore/file/export?Base="+current+"&Files="+arr.join()+"&PlatformID="+$V("#PlatformID")+"&SiteID="+$V("#SiteID");
+}
+
+function doSearch() {
+	DataGrid.setParam("dg1", Constant.PageIndex, 0);
+	DataGrid.setParam("dg1", "Name", $V("Name").trim());
+	DataGrid.setParam("dg1", "PlatformID", $V("PlatformID").trim());
+	DataGrid.loadData("dg1",function(){
+		DataGrid.setParam("dg1", "Name", "");
+	});
+}
+
+function showPagebar(){
+	/*
+	if(DataGrid.getParam("dg1", Constant.PageTotal)>2){
+		$("#trPagebar").show();
+	}else{
+		$("#trPagebar").hide();
+	}
+	*/
+}
+
+function compressFile(){
+	var arr = DataGrid.getSelectedValue("dg1");
+	if(!arr||arr.length==0){
+		Dialog.alert("选择需要压缩的样式脚本文件");
+		return;
+	}
+ 	Dialog.confirm("确认压缩样式脚本？",function(){
+ 		var dc = {Names:arr.join(),Path:current,SiteID:$V("#SiteID"),PlatformID:$V("#PlatformID")};
+ 		var wait = Dialog.wait("正在执行压缩...");
+ 		Server.sendRequest("FileCompress.compressCSSScript",dc,function(response){
+ 			wait.close();
+			if(response.Status==0){
+				Dialog.warn(response.Message);
+			}else{
+				refreshData();
+				MsgPop(response.Message);
+			}
+		});	
+	});
+}
+var allowedTypes = ',${AllowedTypes},';
+function isAllowedType(fileName) {
+	var index = fileName.lastIndexOf(".");
+	if (index < 0) {
+		return false;
+	}
+	var ext = fileName.substring(index + 1);
+	return allowedTypes.indexOf(","+ext.toLowerCase()+",") != -1;
+}
+function zdoUpload(files, e){
+	if (!files || files.length < 1) {
+		return;
+	}
+    var notAllowedFiles = [];
+    var compressFiles = [];
+    for(var i = 0, f; f = files[i]; i++) {
+    	if (!isAllowedType(f.name)) {
+    		notAllowedFiles.push(f.name);
+    	}
+    	if (f.name.endsWith(".zip")||f.name.endsWith(".rar")) {
+    		compressFiles.push(f.name);
+    	}
+    }
+    if (notAllowedFiles.length > 0) {
+    	Dialog.alert("这些文件类型不允许上传：" + notAllowedFiles);
+    	return;
+    }
+    
+	var dir = current;
+	if (e && e.target && e.target.getAttribute("name") && e.target.getAttribute("name") != "") {
+		dir = current + e.target.getAttribute("name");
+	}
+    
+    var autoUnzip = "Y";
+    if (compressFiles.length > 0) {
+	    //提示是否自动解压缩
+	    var diag =new Dialog();
+		diag.width = 250;
+		diag.height = 100;
+		diag.title = "解压缩确认";
+		diag.html = "自动解压缩：";
+		var html = "<p style='margin-bottom:5px;'>是否自动解压缩：</p>"
+		for (var i = 0; i < compressFiles.length; i++) {
+			html += "<li><b>"+ compressFiles[i] +"</b></li>";
+		}
+		diag.html = html;
+		diag.onOk = function(){
+			_zdoUpload(files, "Y", dir);
+			this.close();
+		};
+		diag.onCancel = function(){
+			_zdoUpload(files, "N", dir);
+		};
+		diag.cancelText="直接上传";
+		diag.okText="解压缩";
+		diag.show();
+    } else {
+    	_zdoUpload(files, "Y", dir);
+    }
+    
+}
+
+function _zdoUpload(files, autoUnzip, dir){
+	var fd = new FormData();
+	fd.append("SiteID", '${SiteID}');
+	fd.append("Path", dir);
+	fd.append("AutoUnzip", autoUnzip);
+	fd.append("PlatformID", $V("#PlatformID"));
+	fd.append("_Method", "Core.File.upload");
+	fd.append("_ZUploder_TaskID", new Date().getTime());
+	for (var i=0;i<files.length;i++) {
+    	fd.append("zfile[]", files[i]);
+	}
+    var xhr = new XMLHttpRequest();
+    //xhr.upload.addEventListener("progress", uploadProgress, false);
+    xhr.addEventListener("load", uploadComplete, false);
+    xhr.addEventListener("error", uploadFailed, false);
+    //xhr.addEventListener("abort", uploadCanceled, false);
+    xhr.open("POST", "/ZUploader.zhtml"); //修改成自己的接口
+    xhr.send(fd);
+}
+
+function zupload() {
+	var files = document.forms["zform"].zfile.files;
+	if (files.length <= 0) {
+		console.log("No File!");
+		return;
+	}
+	zdoUpload(files);
+}
+
+  function uploadProgress(evt) {
+    if (evt.lengthComputable) {
+      var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+      console.log(percentComplete.toString() + '%');
+    } else {
+    	console.log('unable to compute');
+    }
+  }
+  function uploadComplete(evt) {
+    /* 服务器端返回响应时候触发event事件*/
+   // console.log(evt.target.responseText);
+    try {
+    	var xmldoc = $.parseXML(evt.target.responseText);
+    	var dc = new DataCollection();
+    	dc.parseXML(xmldoc)
+    	var status = dc.get("_ZVING_STATUS");
+    	if (status && status == "1") {
+    		MsgPop(dc.get("_ZVING_MESSAGE"));
+    	} else {
+    		Dialog.alert(dc.get("_ZVING_MESSAGE"));
+    	}
+    } catch (e) {
+    	Dialog(e);
+    }
+    
+    refreshData();
+  }
+  function uploadFailed(evt) {
+	  Dialog.alert("上传失败！");
+  }
+  function uploadCanceled(evt) {
+	  //console.log("The upload has been canceled by the user or the browser dropped the connection.");
+  }
+  
+  var count=1;
+  function fileDrop(e) {
+	    e = e || window.event;
+		 e.preventDefault();
+	    if (passDragFilter) {
+	    	if (!passDragFilter(e)) {
+	    		return true;
+	    	}
+	    }
+	    e.stopPropagation(); // 阻止冒泡
+		 $(e.target).removeClass("dragCurrent");
+	    var files = e.dataTransfer.files;   //FileList
+	    //document.getElementById('Lists').innerHTML = '<ul>' + output.join('') + '</ul>';
+	    zdoUpload(files, e);
+	};
+	function dragOver(e) {
+	    e = e || window.event;
+		 e.preventDefault();
+	    if (passDragFilter) {
+	    	if (!passDragFilter(e)) {
+	    		return true;
+	    	}
+	    }
+	    e.stopPropagation();
+	    e.dataTransfer.dropEffect = 'copy'; //指定拖放视觉效果
+	};
+
+	function dragLeave(e){
+		 e = e || window.event;
+		 e.preventDefault();
+		 if (passDragFilter) {
+		    	if (!passDragFilter(e)) {
+		    		return true;
+		    	}
+		    }
+		var target = e.target;
+		$(e.target).removeClass("dragCurrent");
+		e.stopPropagation();
+		//console.log("dragLeave: " + count++);
+	}
+	function dragEnter(e){
+		 e = e || window.event;
+		 e.preventDefault();
+		 if (passDragFilter) {
+		    	if (!passDragFilter(e)) {
+		    		return true;
+		    	}
+		    }
+		 var target = e.target;
+		 $(e.target).addClass("dragCurrent");
+		 e.stopPropagation();
+	     //console.log("dragEnter: " + count++);
+	}
+  function passDragFilter(e) {
+	  var target = e.target;
+	  if (target.nodeType = 1 && (target.getAttribute("dragFlag") == "Y")) {
+		  return true;
+	  }
+	  return false;
+  }
+	
+$(function(){
+	//var d = document.getElementById('DropZone');, ,$("#dg1_outer_body")[0]
+	var d = [$(".dragZone")[0]];
+	for (var i = 0; i < d.length; i++) {
+	    d[i].addEventListener('dragover', dragOver, false);
+	    d[i].addEventListener('drop', fileDrop, false);
+	    d[i].addEventListener('dragenter', dragEnter, false)
+	    d[i].addEventListener('dragleave', dragLeave, false)
+	}
+	
+	document.addEventListener("keydown", function(e){
+		e = e || window.event;
+		console.log(e.which+"---" +e.keyCode + "---" + e.charCode);
+		if (e.keyCode && e.keyCode==8) {
+			var parentDir = "";
+			if (current) {
+				var p = current.lastIndexOf("/", current.length - 2);
+				if (p > 0) {
+					parentDir = current.substring(0, p+1);
+				}
+				openDir(parentDir);
+			}
+			console.log("cdir: |" + current + "|, pdir: |" + parentDir+"|");
+			e.preventDefault();
+			e.stopPropagation();
+		}
+		
+	}, true);
+	/* var d = document.getElementById('dg1');
+	try {
+	    d.addEventListener('dragover', dragOver, false);
+	    d.addEventListener('drop', fileDrop, false);
+	    d.addEventListener('dragenter', dragEnter, false)
+	    d.addEventListener('dragleave', dragLeave, false)
+	} catch(ex) {
+	    document.write('something must be wrong!');
+	} */
+})
+
+</script>
+<style>
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../cxdata/fonts/glyphicons-halflings-regular.eot');
+  src: url('../cxdata/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../cxdata/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../cxdata/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../cxdata/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../cxdata/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.dragZone{
+	font-family: 'Glyphicons Halflings';
+	margin: 1px 10px 0px 10px;
+	height:60px;
+	border:2px dashed #cc66ff;
+	background:white;
+	font-size: 18px;
+	line-height: 60px;
+	text-align:center;
+	color: #999;
+	display: none;
+	content:"\e027";
+}
+.dragZone:before  {
+	font-size: 20px;
+	content:"\e093";
+	vertical-align: top;
+}
+.dragZone img{
+	vertical-align: middle;
+}
+
+.dragCurrent {
+	background:rgb(216, 230, 237) !important;
+}
+
+#dg1_outer_body td.dragCurrent{
+	font-weight:bold;
+	border: 1px dashed #cc66ff;
+}
+
+
+
+</style>
+</head>
+<body class="z-body-detail">
+<input type="hidden" id="PlatformID" value='${PlatformID}' >
+<input type="hidden" id="SiteID" value='${SiteID}' >
+<input type="hidden" id="PlatformPath" value='${PlatformPath}' >
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0"
+	cellpadding="0" height="*" class="js_layoutTable">
+	<tr>
+		<td height="37" style="padding:0;"><z:toolbar>
+			<z:button onClick="refreshData()" priv="ContentCore.FileMenu" theme="flat">
+				<img src="../icons/icon400a13.png" /><z:lang id="Contentcore.Refresh">刷新</z:lang></z:button>
+			<z:button onClick="addFile('File')" theme="flat" priv="ContentCore.FileMenu.Add">
+				<img src="../icons/icon003a2.png" /><z:lang id="Contentcore.NewFile">新建文件</z:lang></z:button>
+			<z:button onClick="addFile('Dir')" theme="flat" priv="ContentCore.FileMenu.Add">
+				<img src="../icons/icon029a2.png" /><z:lang id="Contentcore.NewDirectory">新建目录</z:lang></z:button>
+			<z:button onClick="rename()" theme="flat" priv="ContentCore.FileMenu.Rename">
+				<img src="../icons/icon403a10.png" /><z:lang id="Contentcore.Rename">重命名</z:lang></z:button>
+			<z:button onClick="openFile()" theme="flat" priv="ContentCore.FileMenu.Edit">
+				<img src="../icons/icon029a9.png" /><z:lang id="Contentcore.Open">打开</z:lang></z:button>
+			<z:button onClick="del()" theme="flat" priv="ContentCore.FileMenu.Delete">
+				<img src="../icons/icon018a3.png" /><z:lang id="Common.Delete">删除</z:lang></z:button>
+			<z:button onClick="upload()" theme="flat" priv="ContentCore.FileMenu.Upload">
+				<img src="../icons/icon400a4.png" /><z:lang id="Contentcore.Upload">上传</z:lang></z:button>
+			<z:button onClick="exportFile()" theme="flat" priv="ContentCore.FileMenu.Export">
+				<img src="../icons/icon044a7.png" /><z:lang id="Contentcore.Export">导出</z:lang></z:button>
+				
+			<z:button onClick="compressFile()" theme="flat" priv="ContentCore.FileMenu.compressCSSScript">
+				压缩样式脚本</z:button>
+				
+		</z:toolbar>
+	</td></tr>
+	
+    	<tr><td>
+		<div class="dragZone" dragFlag="Y">拖拽文件到这里上传</div>
+		<script type="text/javascript">
+		   if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData) {
+			   $(".dragZone").show();
+		   }
+		</script>
+		<!-- <form name="zform" action="/ZUploader.zhtml" style="margin:20px;">
+		<input type="hidden" id="PlatformID" name="PlatformID" value='${PlatformID}' >
+		<input type="hidden" id="SiteID" name="SiteID" value='${SiteID}' >
+		<input type="hidden" id="PlatformPath" name="PlatformPath" value='${PlatformPath}' >
+		<input type="hidden" id="_ZUploder_TaskID" name="_ZUploder_TaskID"/>
+		<input type="hidden" id="_Method" name="_Method" value='Core.File.upload' >
+		<input type="file" name="zfile" multiple="true"/>
+		<input type="button" onclick="zupload();" value="上 传"/>
+		</form> -->
+		
+	</td></tr>
+	
+	<tr><td height=33>
+		<div class="gradient" style="padding: 5px 8px;">
+			<div style="float: right;width:200px;"><z:lang id="Branch.Name">名称</z:lang>:
+			<input type="text" id="Name" style="width:77px">
+			<input type="button" name="Submitbutton" id="Submitbutton"
+				value="@{Common.Search}" onClick="doSearch()">
+			</div>
+			<div style="background-color:#fefefe;border:solid 1px #ccc;height:20px;margin-right:200px" id="Address">
+				<a href='#;' onclick='onAddressClick(-1)'><img src="../icons/extra/icon_folder_other.gif" align="absmiddle" /> / </a>
+			</div>
+		</div>
+    	</td>
+    </tr>
+    
+    
+    <tr valign="top">
+    	<td style="padding: 10px;padding-top:2px" height="*">
+    		<div  class="z-overflowPanel" style="height: 100%;">
+    		<z:datagrid id="dg1" method="Core.File.bindGrid" size="1000" autoPageSize="false" >
+	        <table width="100%" cellpadding="0" cellspacing="0" class="z-datagrid">
+	            <tr ztype="head" class="dataTableHead">
+					<td width="7%" ztype="RowNo"></td>
+					<td width="4%" ztype="selector" field="Name">&nbsp;</td>
+					<td width="40%" sortfield="Name"><b><z:lang id="Branch.Name">名称</z:lang></b></td>
+					<td width="15%" sortfield="Size"><b><z:lang id="Contentcore.Size">大小</z:lang></b></td>
+					<td width="18%" sortfield="Type"><b><z:lang id="Common.Type">类型</z:lang></b></td>
+					<td width="24%" sortfield="LastTime"><b><z:lang id="Contentcore.LastModifyTime">最后修改时间</z:lang></b></td>
+ 				</tr>
+				<tr onDblClick="openFile()">
+					<td width="4%">&nbsp;</td>
+ 					<td>&nbsp;</td>
+					<td style="${Name=='template' || Name=='resource'?'font-weight:bold':''}"><img src="../${Icon}" align="absmiddle" />&nbsp;${Name}</td>
+					<td>${Size}</td>
+					<td>${Type}</td>
+					<td>${LastModified}</td>
+				</tr>
+
+			</table>
+		</z:datagrid></div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
+</z:init>

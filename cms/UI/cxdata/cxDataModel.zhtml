@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+
+<z:init method="ExtendModel.init">
+  <html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+  <title></title>
+  <link href="../style/default.css" rel="stylesheet" type="text/css">
+  
+  <script src="../framework/main.js"></script>
+  <script>
+function addModel(){
+	var diag = new Dialog();
+	diag.width = 600;
+	diag.height = 300;
+	diag.title = "添加车享数据模型";
+	diag.url = "cxDataModelAddDialog.zhtml";
+	diag.onOk = cxDataModel_save;
+	diag.show();
+}
+
+
+function cxDataModel_save(){
+	if($DW.Verify.hasError()){
+		return;
+	}
+	var dc = $DW.Form.getData("F1");
+	Server.sendRequest("CXDataModel.add",dc,function(response){
+		if(response.Status == 1){
+			MsgPop(response.Message);
+			DataGrid.clearAllSelected('dg1');
+			AllDocumentsEvent.fire({type:'updatemetamodellist'}); //触发所有iframe内的updatemetamodellist事件
+			showModelInfo(0);
+			$D.close();
+		}else{
+			Dialog.warn(response.Message,null,response.Status);
+		}
+	});
+}
+
+function delModel(){
+	var dt = DataGrid.getSelectedData("dg1");
+	var drs = dt.Rows;
+	if(!drs||drs.length==0){
+		Dialog.alert("请选择需要删除的车享数据模型！");
+		return;
+	}
+	var arr = DataGrid.getSelectedValue("dg1");
+	Dialog.confirm("确认删除所选的车享数据模型？",function(){
+		var dc = {IDs:arr.join()};
+		Server.sendRequest("CXDataModel.del",dc,function(response){
+			if(response.Status == 1){
+				MsgPop(response.Message);
+				AllDocumentsEvent.fire({type:'updatemetamodellist'}); //触发所有iframe内的updatemetamodellist事件
+			}else{
+				Dialog.warn(response.Message,null,response.Status);
+			}
+		});
+	})	
+}
+
+ 
+var newQueryString = null;
+function showModelInfo(id){
+	newQueryString = "ID="+ id;
+	var sv = DataGrid.getSelectedValue("dg1");
+	if (typeof(sv) != 'undefined' && $.inArray(id, sv) == -1) {
+		newQueryString = "N";
+	}
+	TabPage.tryReload(newQueryString);
+}
+
+function setTabPageQuery(tabEl){
+	if(newQueryString !== null){
+		TabPage.tryReload(newQueryString,tabEl);
+	}
+}
+
+function loadData(){
+	DataGrid.loadData("dg1");	
+}
+
+function doSearch(){
+	var name = "";
+	if($V("SearchContent").trim()!= "名称/代码/API"){
+		name = $V("SearchContent");
+	}
+	DataGrid.setParam("dg1",Constant.PageIndex,0);
+	DataGrid.setParam("dg1","SearchContent",name);
+	DataGrid.clearAllSelected('dg1');
+	DataGrid.loadData("dg1");
+}
+
+/* updatemetamodellist: 在其他页面发出  updatemetamodellist 事件时，重载模型列表 */
+AllDocumentsEvent.on('updatemetamodellist', loadData);
+/* updatemetamodellist */
+</script>
+  </head>
+  <body class="z-body-list">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" height="100%" id="extendModel_layoutTable1" class="js_layoutTable">
+    <tr valign="top">
+      <td width="300" height="100%" class="centerColumnWrap"><table width="100%" id="extendModel_layoutTable2" border="0" cellspacing="0"
+	cellpadding="0" height="*" class="js_layoutTable">
+          <tr>
+            <td height="37"><z:toolbar>
+                <z:button onClick="addModel()" id="extendModel_btn_add" priv="ContentCore.ExtendModelMenu.Add" theme="flat"> <img src="../icons/icon024a2.png" />
+                  <z:lang id="Common.New">新建</z:lang>
+                </z:button>
+
+                <z:button onClick="delModel()" id="extendModel_btn_del" priv="ContentCore.ExtendModelMenu.Delete" theme="flat"> <img src="../icons/icon024a3.png" />
+                  <z:lang id="Common.Delete">删除</z:lang>
+                </z:button>
+              </z:toolbar></td>
+          </tr>
+          
+          <tr>
+				<td style="padding: 0 1px">
+				  <div class="gradient" style="padding: 4px;">
+				  <input name="SearchContent" type="text" id="SearchContent" placeholder="名称/代码/API" onFocus="delKeyWord();" style="width: 150px">
+				  <input type="button" name="Submitbutton" id="Submitbutton" value="@{Common.Search}" onClick="doSearch()"></div>
+				</td>
+			</tr>
+			
+          <tr valign="top">
+            <td height="*" style="padding: 0 1px">
+				<z:datagrid id="dg1" method="CXDataModel.bindGrid" size="10" autoPageSize="true" >
+					<table width="100%" cellpadding="0" cellspacing="0" class="z-datagrid" >
+						<tr ztype="head" class="dataTableHead">
+							<td width="10%" ztype="selector" field="id">&nbsp;</td>
+							<td width="40%">名称</td>
+							<td width="50%">代码</td>
+						</tr>
+						<tr onClick="showModelInfo('${ID}',${i});" >
+							<td>&nbsp;</td>
+							<td>${Name}</td>
+							<td>${Code}</td>
+						</tr>
+						<tr ztype="pagebar">
+							<td colspan="3">${PageBar}</td>
+						</tr>
+					</table>
+				</z:datagrid>
+				</td>
+          </tr>
+        </table></td>
+      <td class="z-body-detail"><div id="splitter1" class="z-splitter-v shadow-v"></div>
+        <z:tab>
+          <z:childtab id="Info" src="cxDataModelInfo.zhtml" onclick="setTabPageQuery(this)" selected="true"><img src="../icons/icon002a1.png" /><b>
+            <z:lang id="Common.BasicInfo">基本信息</z:lang>
+            </b></z:childtab>
+          <z:childtab id="Column" src="cxDataModelSearchColumn.zhtml" onclick="setTabPageQuery(this)"><img src="../icons/icon018a7.png" /><b>
+             查询字段
+            </b></z:childtab>
+            
+            <z:childtab id="Data" src="cxDataModelSearchData.zhtml" onclick="setTabPageQuery(this)"><img src="../icons/icon018a19.png" /><b>
+                查询数据
+            </b></z:childtab>
+            <!--   
+          <z:childtab id="Data" src="extendModelData.zhtml" onclick="setTabPageQuery(this)"><img src="../icons/icon018a19.png" /><b>
+            <z:lang id="Contentextend.DataManager">数据管理</z:lang>
+            </b></z:childtab>
+          <z:childtab id="Template" src="extendModelTemplate.zhtml" onclick="setTabPageQuery(this)"><img src="../icons/icon002a6.png" /><b>
+            <z:lang id="Contentextend.TemplateConfig">模板设置</z:lang>
+            </b></z:childtab>
+            -->
+        </z:tab></td>
+    </tr>
+  </table>
+  </body>
+  </html>
+</z:init>

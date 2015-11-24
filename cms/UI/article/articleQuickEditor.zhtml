@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%> <%@ taglib uri="controls" prefix="z"%>
+<html style="overflow:auto">
+<z:init method="Article.initQuickEditor">
+ <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<link href="articleEditor.css" rel="stylesheet" type="text/css">
+ <%@include file="../contentcore/contentScript.zhtml"%>
+ <script>
+ 	var disableExtendUeditor = true;
+ </script>
+ </head>
+ <body class="z-body-detail" style="background-color: white">
+ 
+  <z:menu id="ContentPreviewType">
+  <a id="Preview" target="_blank" href="../contentcore/preview.zhtml?path=../content/preview&ContentType=${ContentType}&ID=${ContentID}"><img src="../icons/icon403a3.png" /><z:lang id="Platform.Preview">预览</z:lang></a>
+  <a id="View" target="_blank" href="${Link}"><img src="../icons/icon040a7.png" /><z:lang id="Common.Browse">浏览</z:lang></a>
+  </z:menu>
+
+  <form id="contentform">
+   <input type="hidden" id="ContentType" value="${ContentType}"/>
+   <input type="hidden" id="Method" value="${Method}"> <input type="hidden" id="SiteID" value="${SiteID}" /> <input type="hidden"
+    id="CatalogID" value="${CatalogID}" /> <input type="hidden" id="ContentID" value="${ContentID}" /> <input type="hidden" id="ID"
+    value="${ID}" /> <input type="hidden" id="UpdateType" value="quick" /> <input type="hidden" id="LogoFile" value="${LogoFile}" /> <input
+    type="hidden" id="RelativeContent" value="${RelativeContent}" /> <input type="hidden" id="ArticleImageWidth"
+    value="${ArticleImageWidth}"> <input type="hidden" id="ArticleImageHeight" value="${ArticleImageHeight}"> <input
+    type="hidden" id="_PageTitles" value="${PageTitles}"> <input type="hidden" id="PreviewPrefix" value="${PreviewPrefix}">
+   <input type="hidden" id="OpenArticleAutoSave" value="${OpenArticleAutoSave}"> <input type="hidden" id="LogoFileRelaID"
+    value="${LogoFileRelaID}"> <input type="hidden" id="ShowImageName" value="${ShowImageName}"> <input type="hidden"
+    id="ShortTitle" value="${ShortTitle}" /> <input type="hidden" id="SubTitle" value="${SubTitle}" /> <input type="hidden" id="Author"
+    value="${Author}" /> <input type="hidden" id="Keyword" value="${Keyword}" /> <input type="hidden" id="Source" value="${Source}" /> <input
+    type="hidden" id="Summary" value="${Summary}" /> <input type="hidden" id="Attribute" value="${Attribute}" /> <input type="hidden"
+    id="IsLock" value="${IsLock}" /> <input type="hidden" id="LockUser" value="${LockUser}" /> <input type="hidden" id="UserName"
+    value="${UserName}" /> <input type="hidden" id="ArticleImageWhetherOriginal" value="${ArticleImageWhetherOriginal}" />
+     <input type="hidden" id="PlatformAttribute" value="${PlatformAttribute}" />
+     
+     <!-- 独立模板 -->
+     <div style="display:none;">
+        <z:checkbox id="TemplateFlag" value="${TemplateFlag}" options="PC:Y" onclick="showTemplate()" />
+        <z:checkbox id="PlatformContentTemplateFlag"  method="platformContentTemplate.getUsedPublishPlatformsExPC" value="${PlatformContentTemplateFlag}" onclick="showTemplate()"/><br />
+	    <input type="checkbox"  checked="true"  name="PlatformContentTemplateFlag" value="NO" style="display:none" />
+	    
+	    <input name="Template" type="text" id="Template" style="width: 87px;" value="${Template}"
+             verify="NotNull" condition="$NV('TemplateFlag')=='Y'" /> 
+             <z:list method="platformContentTemplate.getUsedPublishPlatformsExPCList">
+            <input type="text" id="platformContentTemplate_${ID}" style="width: 87px;" name="platformContentTemplate_${ID}" value="${eval(eval('platformContentTemplate_${ID}'))}" 
+            verify="NotNull" condition="$NV('PlatformContentTemplateFlag_${i-1}')=='${ID}'"/>
+			</z:list>
+     </div>
+     
+   <table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="*" class="js_layoutTable">
+    <tr>
+     <td height="37" id="trToolbar" align="right"><z:toolbar id="Toolbar">
+       <z:if condition="${!DisableEdit}">
+        <!--  
+        <z:button onClick="quickadd()" id="BtnQuickAdd" priv="com.zving.cms.Catalog.Content.Add.${CatalogID}" theme="flat">
+         <img src="../icons/icon003a2.png" />
+         <z:lang id="Common.New">新建</z:lang>
+        </z:button>
+        -->
+        <z:button onClick="edit()" id="BtnSave2" type="quick" theme="flat" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}">
+         <img src="../icons/icon003a4.png" />
+         <z:lang id="Article.QuickEdit">快速编辑</z:lang>
+        </z:button>
+        <z:button onClick="save()" id="BtnSave" theme="flat" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}">
+         <img src="../icons/icon003a16.png" />
+         <z:lang id="Common.Save">保存</z:lang>
+        </z:button>
+        <z:button id="BtnFullEdit" onClick="openEditor()" theme="flat" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}">
+         <img src="../icons/icon012a4.png" />
+         <z:lang id="Article.FullScreenEdit">全屏编辑</z:lang>
+        </z:button>
+        <z:button onClick="publish()" theme="flat" id="BtnPublish" priv="com.zving.cms.Catalog.Content.Publish.${CatalogID}">
+         <img src="../icons/icon003a13.png" />
+         <z:lang id="Contentcore.Publish">发布</z:lang>
+        </z:button>
+        <z:button onClick="topublish()" theme="flat" id="BtnToPublish" priv="com.zving.cms.Catalog.Content.Publish.${CatalogID}">
+         <img src="../icons/icon003a13.png" />
+         <z:lang id="Contentcore.WaitToPublish">待发布</z:lang>
+        </z:button>
+        
+        <z:button theme="flat" type="select" menu="ContentPreviewType" id="BtnPreview">
+		<img src="../icons/icon403a3.png" /><z:lang id="Contentcore.Preview">预览</z:lang></z:button>
+
+        <z:if condition="${IsLock=='N' || IsLock==''}">
+	        <z:button priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}" id="Lock" onClick="lockEdit('Y')" theme="flat">
+	         <img src="../icons/icon014a2.png" />
+	         <z:lang id="Contentcore.EditLock">锁定编辑</z:lang>
+	        </z:button>
+        </z:if>
+        <z:else>
+	        <z:button priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}" id="ReleaseLock" onClick="lockEdit('N')" theme="flat">
+	         <img src="../icons/icon014a18.png" />
+	         <z:lang id="Contentcore.ReleaseLock">解除锁定</z:lang>
+	        </z:button>
+        </z:else>
+        <z:if condition="${TopFlag}">
+         <z:button onClick="setNotTop()" theme="flat" id="BtnSetNotTop" priv="com.zving.cms.Catalog.Content.SetTop.${CatalogID}">
+          <img src="../icons/icon400a15.png" />
+          <z:lang id="Search.CancelTop">取消置顶</z:lang>
+         </z:button>
+        </z:if>
+        <z:else>
+         <z:button onClick="setTop()" theme="flat" id="BtnSetTop" priv="com.zving.cms.Catalog.Content.SetTop.${CatalogID}">
+          <img src="../icons/icon400a14.png" />
+          <z:lang id="Contentcore.SetTop">置顶</z:lang>
+         </z:button>
+        </z:else>
+        <z:button theme="flat" onClick="version()" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}" >
+					<img src="../icons/icon026a12.png" /> <z:lang id="Article.Version">版本</z:lang>
+				</z:button>
+        <z:button id="BtnRelaContent" onClick="relative()" theme="flat" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}">
+         <img src="../icons/icon003a17.png" />
+         <z:lang id="Contentcore.RelaContent">相关内容</z:lang>
+        </z:button>
+        <z:button id="BtnContentLog" onClick="contentLog('Article',[${ContentID}][0])" theme="flat"
+         priv="com.zving.cms.Catalog.Content.${CatalogID}">
+         <img src="../icons/extra/icon_column.gif" />
+         <z:lang id="Contentcore.ContentLog">操作记录</z:lang>
+        </z:button>
+       </z:if>
+      </z:toolbar>
+     </td>
+    </tr>
+    <tr>
+     <td height="36" style="vertical-align:middle;">
+      <div class="gradient" style="padding: 2px 12px;">
+       <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr id="trTitle_text">
+         <td colspan="4" align="left" valign="middle"><strong><z:lang id="Article.Title">标　题</z:lang>：</strong><span id="tdTitle"
+          style="${TitleStyle}">${Title}</span>
+         </td>
+        </tr>
+        <tr id="trTitle_input" style="display: none;">
+         <td width="40" align="right" valign="middle"><strong><z:lang id="Article.Title">标　题</z:lang>：
+         </strong>
+         </td>
+         <td colspan="3" align="left"><input type="text" id="Title" value="${Title}" verify="NotNull&&Length<120"
+          onBlur="verifySameTitle();" style="width: 390px; background: url(images/rule.gif) repeat-x left bottom;${TitleStyle}" /> <span
+          id="titleLength"></span>
+         </td>
+        </tr>
+        <tr id="trVerifyTitle" style="display: none;">
+         <td height="28" align="right" style="padding-right: 5px;">&nbsp;</td>
+         <td colspan="3" align="left" valign="middle">
+          <div id="catalognotice" class="notice" style="margin: 0px; border-width: 1px; width: 80%; padding-top: 2px; padding-bottom: 2px">
+           <font color="#FF6600">&nbsp;&nbsp;&nbsp;<z:lang id="Contentcore.Title.Notice">注意：当前栏目下已有相同标题的记录</z:lang>
+           </font>
+          </div>
+          <div id="sitenotice" class="notice"
+           style="margin: 0px; border-width: 1px; width: 80%; padding-top: 2px; padding-bottom: 2px; display: none;">
+           <font color="#FF6600">&nbsp;&nbsp;&nbsp;<z:lang id="Contentcore.Title.SiteNotice">注意：当前站点下已经存在相同标题的记录</z:lang>
+           </font>
+          </div></td>
+        </tr>
+       </table>
+      </div></td>
+    </tr>
+    
+    <!-- //zq 2015/05/14 处理扩展数据丢失问题 -->
+    <tr id="trExtend" style="visibility:hidden">
+         <td  align="left" valign="middle"><z:extend id="com.zving.contentcore.ContentExtendUI" /></td>
+     </tr>
+        
+    
+    
+    <tr valign="top">
+   
+     <td id="editorWrap" height="*" style=" border: 1px solid #eee; background: #f9f9f9;">
+     
+   
+      <div id="EditorPanel" style="">
+       <div class="content" id="Content" style="padding: 0 0 0 12px;" ondblclick="$('#BtnSave2').click();">
+      	 	${CName}
+        <!--iframe src="about:blank" scrolling="no" id="contentFrame" width="100%"></iframe-->
+       </div>
+       <div class="content" id="DivRedirect" ondblclick="$('#BtnSave2').click();" style="display: none">
+        <strong><z:lang id="Article.RedirectURL">转向链接</z:lang>
+        </strong> <input type="text" readonly="readonly" verify="NotNull" id="CName" value="${CName}" style="width: 295px"> <input
+         name="RedirectURL" type="hidden" id="RedirectURL" size="50" value="${RedirectURL}" /> <input type="button"
+         onclick="selectContent()" value="@{Contentcore.LinkToContent}" /> <input type="button" onclick="selectCatalog()"
+         value="@{Contentcore.LinkToCatalog}" /> <input type="button" onclick="inputUrl()" value="@{Contentcore.ExternalURL}" />
+       </div>
+       <div id="editorToolbarWrap"></div>
+       <div id="overflowPannel" style="overflow: auto; display: none;">
+        <div class="divPageTitle" id="divPageTitle_1" style="display: none;">
+         <span class="dye"><z:lang id="Article.PageTitle">分页标题</z:lang>：</span>&nbsp;&nbsp;<input name="PageTitle" type="text"
+          id="PageTitle" size="50" value="${PageTitle}" />
+        </div>
+        <textarea id="_Contents" style="display: none;">${(BodyText)}</textarea>
+        <div id="UEditorContainer">
+         <div id="Content_1"></div>
+        </div>
+       </div>
+      </div>
+  
+      </td>
+  
+    </tr>
+   </table>
+  </form>
+  <script>
+var locals=locals||{};
+locals['articleQuickEditor']={
+		CatalogID:'${CatalogID}',
+		StatusName:"${StatusName}",
+		LinkFlag:"${LinkFlag}",
+		TitleStyle:'${TitleStyle}',
+		ShortTitleStyle:'${ShortTitleStyle}',
+		ContentID:'${ContentID}',
+		ArticleUEEditorImportCSS:'${ArticleUEEditorImportCSS}',
+		$ConfigProps:'${(ConfigProps)}',
+		Status:'${Status}',
+		UserLanguage:'${User.Language}'
+};
+(function(){
+	var map=Zving.Lang.Map[Lang.getCurrentLang()];
+	
+	map['Article.Search.Type.Published']="@{Article.Search.Type.Published}";
+	map['Article.CheckContentEmpty']="@{Article.CheckContentEmpty}";
+	map['Article.QuickEditor.SaveFirst']="@{Article.QuickEditor.SaveFirst}";
+	map['Article.CheckContentEmpty']="@{Article.CheckContentEmpty}";
+
+}());
+</script>
+  <script src="articleQuickEditor.js" type="text/javascript"></script>
+  <script>
+//增加扩展点
+<z:extend id="com.zving.contentcore.ContentEditorScirpt" />
+</script>
+  <script>
+//锁定按钮显示隐藏js方法
+Page.onReady(function(){
+	var isLock = $V("IsLock");
+	var lockUser = $V("LockUser");
+	var userName = $V("UserName");
+	if(isLock=='Y'){
+		if(userName==lockUser){
+			$('#Lock').hide();
+			$('#ReleaseLock').show();
+		}else{
+			$('#Lock').hide();
+			//直接禁用，不再判断权限
+			$('#ReleaseLock').attr('priv','').disable();
+			$('#BtnSave').attr('priv','').disable();
+			$('#BtnPublish').attr('priv','').disable();
+			$('#BtnToPublish').attr('priv','').disable();
+		}
+	}else{
+		$('#ReleaseLock').hide();
+		$('#Lock').show();
+	}
+});
+</script>
+ </body>
+</z:init>
+</html>

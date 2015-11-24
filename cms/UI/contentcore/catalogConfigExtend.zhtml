@@ -1,0 +1,226 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<style>
+#hotarea{width:120px; height:100px; background:#ca6 url(../platform/images/picture.jpg) no-repeat; position:relative}
+#hotarea  a{ position:absolute; display:block; width:30px; height:20px; line-height:20px; border:#fff 1px dashed; text-align:center; color:#fff;}
+#hotarea  a:hover{ text-decoration:none; border:#fff 1px solid; color:#fff}
+#hotarea  a.selected{ background-color:#fff; color:#ccc;}
+</style>
+<script>
+Page.onLoad(function(){
+	if($("#WaterImagePath")!=undefined && $("#WaterImageSrc")!=undefined){
+		var path = $V("#WaterImagePath");
+		if(isEmpty(path)) {
+			path = '../platform/images/addpicture.png';
+		} else {
+			path = "${Prefix}" + path;
+		}
+		$("#WaterImageSrc").attr("src", path);
+	}
+	$("#hotarea a").each(function(){
+			if($(this).attr("value") == $V("WaterImagePosition")) {
+				this.className = 'selected';
+			}
+		});
+	onCronPublishEnableChange();
+});
+function selectposition(ele){
+	$("#hotarea a").removeClass('selected');
+	ele.className='selected';
+	$S("WaterImagePosition",ele.getAttribute("value"));
+}
+function onCronPublishEnableChange(){
+	if($NV("CronPublishEnable")=="N"){
+ 		$('#CronPublishStartTime').disable();
+ 		$('#CronPublishPeriod').disable(); 
+ 		$('#CronPublishPeriodType').disable(); 
+ 		$('input[name=CronPublishDetailEnable]').disable(); 
+	}else{
+ 		$('#CronPublishStartTime').enable();
+ 		$('#CronPublishPeriod').enable(); 
+ 		$('#CronPublishPeriodType').enable(); 
+ 		$('input[name=CronPublishDetailEnable]').enable(); 
+ 	}
+}
+</script>
+<div class="z-legend"><b><z:lang id="Platform.Plugin.Schedule">定时任务</z:lang></b></div>
+<div class="z-card">
+<table width="500" border="1" cellpadding="4" cellspacing="0" bordercolor="#eeeeee" class="formTable">
+	<tr>
+	  <td width="160"><z:lang id="Contentcore.PublishTimedEanbleState">定时发布启用状态</z:lang>：</td>
+	  <td><z:radio value="${CronPublishEnable}" id="CronPublishEnable" 
+	  	onClick="onCronPublishEnableChange()" defaultCheck="N" code="Enable" /></td>
+	</tr>
+	<tr>
+		<td><z:lang id="Contentcore.PublishStartTime">定时发布起始时间</z:lang>：</td>
+		<td> 
+     <input type="text" id="CronPublishStartTime" ztype="DateTime" style="width:140px" value="${CronPublishStartTime}" disabled="true" size="20" />
+    </td>
+	</tr>
+	<tr>
+		<td><z:lang id="Contentcore.PblishCycleTime">定时发布执行周期</z:lang>：</td>
+		<td> 
+			<z:lang id="Cron.Per">每隔</z:lang><input type="text" id="CronPublishPeriod" value="${CronPublishPeriod}" disabled="true" size="1" />
+        <z:select id="CronPublishPeriodType" style="width:50px;" disabled="true"
+        	options='@{Common.Hours}:Hour,@{Common.Days}:Day,@{Common.Months}:Month,@{Common.Minutes}:Minute' value="${CronPublishPeriodType}" />
+     </td>	
+	</tr>
+	
+	<tr>
+	  <td width="180">定时发布是否生成详细页：</td>
+	  <td><z:radio value="${CronPublishDetailEnable}" id="CronPublishDetailEnable" code="YesOrNo" defaultCheck="N" /></td>
+	</tr>
+	
+	<tr>
+	  <td width="160"><z:lang id="Contentcore.OffLineEnable">启用定时下线</z:lang>：</td>
+	  <td><z:radio value="${OffLineEnable}" id="OffLineEnable"  code="Enable" defaultCheck="N"/></td>
+	</tr>
+	<tr>
+		<td height="28"><z:lang id="Contentcore.ArchiveTimeLimit">归档期限</z:lang>：</td>
+	  <td><input type="text" id="ArchiveTimeType" value="${ArchiveTimeType}" ztype="Number" verify="Int&&Length<=3" > <z:lang id="Common.Months">月</z:lang></td>
+	</tr> 
+</table>
+</div>
+<div class="z-legend"><b><z:lang id="Contentcore.PublishConfig">发布配置</z:lang></b></div>
+<div class="z-card">
+<table width="500" border="1" cellpadding="4" cellspacing="0" bordercolor="#eeeeee" class="formTable">
+	<tr>
+	  <td width="180"><z:lang id="Contentcore.AlwaysGenerateFile">发布时总是重新生成文件</z:lang>：</td>
+	  <td><z:radio value="${AlwaysGenerateFile}" id="AlwaysGenerateFile" code="YesOrNo" defaultCheck="Y" /></td>
+	</tr>
+</table>
+</div>
+<div class="z-legend"><b><z:lang id="Contentcore.WaterImageConfig">栏目资源水印图片设置</z:lang></b></div>
+<div class="z-card">
+<table width="500" border="1" cellpadding="4" cellspacing="0" bordercolor="#eeeeee" class="formTable">
+	<tr>
+		<td width="160"><z:lang id="Contentcore.WaterImage">水印图片</z:lang>：</td>
+		<td align="left">
+			<a href="#" onclick="uploadWaterImage();"><img src=""onerror="src='../platform/images/picture404.gif';this.onerror=null;" style="max-width:120px;max-height:120px;" border="0" align="absmiddle"
+               id="WaterImageSrc"></a>
+            <input type="hidden" ID="WaterImagePath" value="${WaterImagePath}">
+            <z:if condition="${ID&&ID!='0'}">
+			<script>
+			function uploadWaterImage(){
+				var queryString = "SiteID=${SiteID}&FileName=/upload/_waterimages/catalog_${ID}&Rewrite=N";
+				var diag = new Dialog("@{Contentcore.ImageCutting.UploadWaterMarkImage}", "commonImageUploadDialog.zhtml?"+queryString, 500, 50);
+				diag.onLoad = function() {
+					$DW.$("#trDirectory").hide();
+					$DW.$("#trFileName").hide();
+					$DW.$("#trTip").hide();
+				};
+				diag.onOk = function(){
+					 $DW.upload(function(fileName, absolutePath, previewPath){
+					 		$D.close();
+							$("#WaterImageSrc").attr("src", previewPath + "?" + new Date().getTime());
+					 		$S('#WaterImagePath', removeSizeSuffix(fileName));
+					 });
+				};
+				diag.show();
+			}
+			function removeSizeSuffix(url){
+				var i1 = url.lastIndexOf("_");
+				var i2 = url.lastIndexOf("x",url.lastIndexOf("."));	
+				if(i2>0&&i1>0&&i2>i1){
+					return url.substring(0,i1)+url.substring(url.lastIndexOf("."));	
+				}
+				return url;	
+			}
+			function cleanWaterImage(){
+					$("#WaterImageSrc").attr("src",'../platform/images/addpicture.png');
+					$S("#WaterImagePath",'');
+			}
+			function editWaterImage() {
+				var diag = new Dialog("CuttingDiag");
+				diag.width = 800;
+				diag.height = 500;
+				diag.title = "@{Contentcore.ImageCutting.Title}";
+				var path = $V("WaterImagePath");
+				if(!path){
+					return;
+				}
+				path = removeSizeSuffix(path);
+				diag.url = "../contentcore/commonImageCuttingDialog.zhtml?SiteID=${SiteID}&Path="+path;
+				diag.onOk = function(){
+					$D.close();
+					var src = $("#WaterImageSrc").attr("src");
+					if(src.indexOf("?") > 0) {
+						src = src.substring(0, src.indexOf("?"));
+					}
+					src += "?" + new Date().getTime();
+					$("#WaterImageSrc").attr("src", src);
+				};
+				diag.show();
+			}
+			Page.onReady(function(){
+					if(!Application.hasPriv("com.zving.cms.Catalog.ExtendAdmin.${ID}")){
+						$("._btnWater").hide();
+					}
+				});
+			Page.onLoad(function(){
+				var src = $("#WaterImageSrc").attr("src");
+				if(src.indexOf("?") < 0) {
+					$("#WaterImageSrc").attr("src", src += "?" + new Date().getTime());
+				}
+			});
+			</script>
+			<a class="_btnWater" href="#"><img onclick="uploadWaterImage();" title="@{Common.Edit}" alt="edit" src="../framework/images/icon_edit15.gif"></a>
+			<a class="_btnWater" href="#;"><img onclick="cleanWaterImage();" title="@{Common.Clear}" alt="clear" src="../framework/images/icon_delete15.gif"></a>
+			<a class="_btnWater" href="#;"><img onclick="editWaterImage();" title="@{Contentcore.ImageCutting.Title}" alt="cutting" src="../framework/images/icon_clip15.gif"></a>
+			</z:if>
+		</td>
+	</tr>
+	<tr>
+		<td height="28"><z:lang id="Contentcore.WaterImagePositionLabel">水印位置</z:lang>：</td>
+	  	<td>
+	  		<input type="hidden" id="WaterImagePosition" value="${WaterImagePosition}" />
+			<div id="hotarea"><a value="1"
+							onClick="selectposition(this);" href="#;"
+							style="left:5px; top:5px;">左上</a> <a value="2"
+							onClick="selectposition(this);" href="#;"
+							style="left:37%; top:5px;">上</a> <a value="3"
+							onClick="selectposition(this);" href="#;"
+							style="right:5px; top:5px;">右上</a> <a value="4"
+							onClick="selectposition(this);" href="#;"
+							style="left:5px; top:40%">左</a> <a value="5"
+							onClick="selectposition(this);" href="#;"
+							style="left:37%; top:40%">中</a> <a value="6"
+							onClick="selectposition(this);" href="#;"
+							style="top:40%; right:5px;">右</a> <a value="7"
+							onClick="selectposition(this);" href="#;"
+							style=" left:5px; bottom:5px;">左下</a> <a value="8"
+							onClick="selectposition(this);" href="#;"
+							style="left:37%; bottom:5px;">下</a> <a value="9"
+							onClick="selectposition(this);" href="#;"
+							style="right:5px; bottom:5px;">右下</a></div>
+	  	</td>
+	</tr> 
+</table>
+</div>
+<div class="z-legend"><b><z:lang id="Contentcore.IndexConfiguration">全文检索配置</z:lang></b></div>
+<div class="z-card">
+<table width="500" border="1" cellpadding="4" cellspacing="0" bordercolor="#eeeeee" class="formTable">
+	<tr>
+	  <td width="160"><z:lang id="Contentcore.IndexEnable">是否开启索引</z:lang>：</td>
+	  <td><z:radio value="${IndexEnable}" id="IndexEnable" code="YesOrNo" defaultCheck="Y" /></td>
+	</tr>
+</table>
+</div>
+<div class="z-legend"><b><z:lang id="Contentcore.ConfigExtend.KeywrodAndRelaContent">关键字和相关内容设置</z:lang></b></div>
+<div class="z-card">
+<table width="500" border="1" cellpadding="4" cellspacing="0" bordercolor="#eeeeee" class="formTable" style="margin-bottom:6px">
+	<tr>
+	  <td width="160"><z:lang id="Contentcore.Properties.AutoKeywords">自动计算关键字</z:lang>：</td>
+	  <td><z:radio value="${AutoKeyword}" id="AutoKeyword" code="Enable" /></td>
+	</tr>
+	<tr>
+	  <td width="160"><z:lang id="Contentcore.Properties.AutoRela">自动计算相关内容</z:lang>：</td>
+	  <td><z:radio value="${AutoRelaContent}" id="AutoRelaContent" code="Enable" /></td>
+	</tr>
+	<tr>
+	  <td width="160"><z:lang id="Contentcore.Properties.AutoRelatedOptions">自动计算相关内容选项</z:lang>：</td>
+	  <td>
+	  <z:select id="AutoRelaType" options="@{Contentcore.AutoRelaType.Self}:Self,@{Contentcore.AutoRelaType.Parent}:Parent,@{Contentcore.AutoRelaType.Site}:Site"  value="${AutoRelaType}"></z:select></td>
+	</tr>
+</table>
+</div>

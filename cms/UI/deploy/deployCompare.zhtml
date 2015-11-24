@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:priv priv="DataChannel.Deploy" />
+<html style="overflow:auto">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script src="../framework/main.js"></script>
+</head>
+<z:init method="Deploy.init">
+<body class="z-body-detail">
+<script>
+function refreshSource() {
+	if(!isEmpty($V('#SourceSearchName'))) {
+		DataGrid.setParam("dgSource", "SearchName", $('#SourceSearchName').val());
+	} else {
+		DataGrid.setParam("dgSource", "SearchName", "");
+	}
+	DataGrid.setParam("dgSource", Constant.PageIndex,0);
+	DataGrid.loadData("dgSource");
+}
+
+function openSourceDir(path, isDir) {
+	if(isDir != "Y") {
+		return;
+	}
+	DataGrid.setParam("dgSource", Constant.PageIndex,0);
+	DataGrid.setParam("dgSource", "Path", path);
+	DataGrid.loadData("dgSource");
+}
+
+function refreshTarget() {
+	if(!isEmpty($V('#TargetSearchName'))) {
+		DataGrid.setParam("dgTarget", "SearchName", $('#TargetSearchName').val());
+	} else {
+		DataGrid.setParam("dgTarget", "SearchName", "");
+	}
+	DataGrid.setParam("dgTarget", Constant.PageIndex,0);
+	if($("#HostIndex")){
+		DataGrid.setParam("dgTarget", "HostIndex", $V("#HostIndex"));
+	}
+	DataGrid.loadData("dgTarget");
+}
+
+
+var currentTargetPath;
+function openTargetDir(path, isDir) {
+	if(isDir != "Y") {
+		return;
+	}
+	currentTargetPath = path;
+	DataGrid.setParam("dgTarget", Constant.PageIndex,0);
+	DataGrid.setParam("dgTarget", "Path", path);
+	if($("#HostIndex")){
+		DataGrid.setParam("dgTarget", "HostIndex", $V("#HostIndex"));
+	}
+	DataGrid.loadData("dgTarget");
+}
+
+function upload() {
+	var arr = DataGrid.getSelectedValue("dgSource");
+	if(!arr || arr.length == 0) {
+		Dialog.alert("@{Deploy.Compare.SelectFirst}");
+		return;
+	}
+	var dc = {UploadFiles:arr.join(),ConfigID:'${ID}'};
+	var wait = Dialog.wait("@{Deploy.WaitForUpload}");
+	Server.sendRequest("DeployCompare.upload", dc, function(response) {
+		wait.close();
+		if(response.Status == 0) {
+			Dialog.alert(response.Message);
+		} else {
+			MsgPop(response.Message);
+			DataGrid.setParam("dgTarget", Constant.PageIndex,0);
+			DataGrid.setParam("dgTarget", "Path", currentTargetPath);
+			if($("#HostIndex")){
+				DataGrid.setParam("dgTarget", "HostIndex", $V("#HostIndex"));
+			}
+			DataGrid.loadData("dgTarget");
+		}
+	});
+}
+
+function deleteTarget() {
+	var arr = DataGrid.getSelectedValue("dgTarget");
+	if(!arr || arr.length == 0) {
+		Dialog.alert("请选择要删除的服务器文件");
+		return;
+	}
+	Dialog.confirm("确认删除选中文件", function(){
+		var dc = {UploadFiles:arr.join(),ConfigID:'${ID}'};
+		var wait = Dialog.wait("@{Deploy.WaitForUpload}");
+		Server.sendRequest("CXDeployCompare.deleteTarget", dc, function(response) {
+			wait.close();
+			if(response.Status == 0) {
+				Dialog.alert(response.Message);
+			} else {
+				MsgPop(response.Message);
+				DataGrid.setParam("dgTarget", Constant.PageIndex,0);
+				//DataGrid.setParam("dgTarget", "Path", currentTargetPath);
+				if($("#HostIndex")){
+					DataGrid.setParam("dgTarget", "HostIndex", $V("#HostIndex"));
+				}
+				DataGrid.loadData("dgTarget");
+			}
+		});
+	} );
+}
+</script>
+
+<table id="js_layoutTable1" width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" class="js_layoutTable">
+  <tr valign="top">
+    <td width="560" height="100%">
+    	<!-- 源目录文件列表 -->
+    	<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="*" class="js_layoutTable">
+			<tr>
+				<td><z:toolbar theme="flat">
+					<z:button onClick="refreshSource()" theme="flat" priv="DataChannel.Deploy">
+						<img src="../icons/icon400a13.png" /><z:lang id="Deploy.Compare.Refresh">刷新</z:lang></z:button>
+						<z:if condition="${Method!='sersync'}">
+					<z:button onClick="upload()" theme="flat" priv="DataChannel.Deploy.Add">
+						<img src="../icons/icon403a22.png" /><z:lang id="Common.Upload">上传</z:lang></z:button>
+						</z:if>
+				</z:toolbar>
+	</td></tr><tr><td>
+				<div class="gradient" style="padding: 2px 8px;"><span><z:lang id="Deploy.SourceDirectory">源目录文件列表</z:lang></span></div>
+				<div class="gradient" style="padding: 5px 8px;">
+					<div><z:lang id="Common.Name">名称</z:lang>：
+					<input type="text" id="SourceSearchName" style="width:120px">
+					<input type="button" name="btnSearch"
+						value="@{Common.Search}" onClick="refreshSource()">
+					</div>
+				</div>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td style="padding: 10px; padding-top:5px;" height="*">
+				<div class="z-overflowPanel" style="height: 100%;">
+					<z:datagrid id="dgSource" method="DeployCompare.bindGrid" size="1000000" page="true">
+					<table width="100%" cellpadding="2" cellspacing="0" class="z-datagrid">
+						<tr ztype="head" class="dataTableHead">
+							<td width="8%" ztype="RowNo"></td>
+							<td width="8%" ztype="selector" field="Path">&nbsp;</td>
+							<td width="40%"><z:lang id="Common.Name">名称</z:lang></td>
+							<td width="15%"><z:lang id="Deploy.Compare.Size">大小</z:lang></td>
+							<td width="24%"><z:lang id="Deploy.Compare.LastModifyTime">最后修改时间</z:lang></td>
+		 				</tr>
+						<tr onDblClick="openSourceDir('${Path}', '${DirFlag}')">
+							<td width="4%">&nbsp;</td>
+		 					<td>&nbsp;</td>
+							<td><img src="../${Icon}" align="absmiddle" />&nbsp;${Name}</td>
+							<td>${Size}</td>
+							<td>${LastModified}</td>
+						</tr>
+						<tr style="display:none" ztype="pagebar">
+							<td colspan="6">${PageBar}</td>
+						</tr>
+					</table>
+				</z:datagrid></div>
+				</td>
+			</tr>
+		</table>
+    </td>
+    <td>
+    	<div id="splitter2" class="z-splitter-v shadow-v"></div>
+    	<!-- 目标目录文件列表 -->
+    	<table width="100%" id="js_layoutTable" border="0" cellspacing="0"
+			cellpadding="0" height="*" class="js_layoutTable">
+			<tr>
+				<td height="37"><z:toolbar theme="flat">
+					<z:button onClick="refreshTarget();" theme="flat">
+						<img src="../icons/icon400a13.png" /><z:lang id="Deploy.Compare.Refresh">刷新</z:lang></z:button>
+						<z:if condition="${isMoreHost}">
+						<z:select id="HostIndex" method="Deploy.getHostList?Host=${Host}" onChange="refreshTarget()"  ></z:select>
+						</z:if>
+						<z:button onClick="deleteTarget()" theme="flat" priv="ContentCore.FileMenu.DeleteServer">
+						<img src="../icons/icon018a3.png" /><z:lang id="Common.Delete">删除</z:lang></z:button>
+				</z:toolbar>
+                </td></tr>
+            <tr><td>
+				<div class="gradient" style="padding: 2px 8px;"><span><z:lang id="Deploy.TargetDirectory">目标目录文件列表</z:lang></span></div>
+				<div class="gradient" style="padding: 2px 8px;"><z:lang id="Common.Name">名称</z:lang>：
+					<input type="text" id="TargetSearchName" style="width:120px">
+					<input type="button" name="btnSearch"
+					 onClick="refreshTarget()" value="@{Common.Search}">
+				</div>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td style="padding: 10px; padding-top:5px;" height="*">
+				<div class="z-overflowPanel" style="height: 100%;">
+					<z:datagrid id="dgTarget" method="DeployCompare.bindTargetGrid" size="1000000" page="true">
+					<table width="100%" cellpadding="2" cellspacing="0" class="z-datagrid">
+						<tr ztype="head" class="dataTableHead">
+							<td width="8%" ztype="RowNo"></td>
+							<td width="8%" ztype="selector" field="Path">&nbsp;</td>
+							<td width="40%"><z:lang id="Common.Name">名称</z:lang></td>
+							<td width="15%"><z:lang id="Deploy.Compare.Size">大小</z:lang></td>
+							<td width="24%"><z:lang id="Deploy.Compare.LastModifyTime">最后修改时间</z:lang></td>
+		 				</tr>
+						<tr onDblClick="openTargetDir('${ParentDir}/${Name}', '${DirFlag}')">
+							<td width="4%">&nbsp;</td>
+							<td>&nbsp;</td>
+							<td><img src="../${Icon}" align="absmiddle" />&nbsp;${Name}</td>
+							<td title="${Size}">${Size}</td>
+							<td title="${LastModified}">${LastModified}</td>
+						</tr>
+						<tr style="display:none" ztype="pagebar">
+							<td colspan="6">${PageBar}</td>
+						</tr>
+					</table>
+				</z:datagrid></div>
+				</td>
+			</tr>
+		</table>
+    </td>
+  </tr>
+</table>
+<script>
+Page.onLoad(function(){
+
+	splitter=new Zving.Splitter({
+		el:$G('splitter2'),
+		previousSibling:$('#splitter2').parent().prev().get(0),
+		nextSibling:$('#splitter2').parent().get(0),
+		minXAttr:-10,
+		maxXAttr:200
+	});
+	var id="${ID}";
+	if(!id){
+		$("#js_layoutTable1 a").disable();
+		$("#js_layoutTable1 input").disable();
+	} 
+});
+</script>
+</body>
+</z:init>
+</html>

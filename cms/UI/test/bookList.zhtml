@@ -1,0 +1,21 @@
+<%@include file="../contentcore/contentList.zhtml"%>
+<script>
+function add() {
+	var diag = new Dialog();
+	diag.width = 680;
+	diag.height = 520;
+	diag.title = "添加书籍";
+	diag.url = 'bookDialog.zhtml?SiteID=${SiteID}&CatalogID=${CatalogID}';
+	diag.onOk = dialogSave;
+	diag.onLoad = function(){
+		try{
+			$DW.$('#Title').focus();
+		}catch(e){}
+	};
+	diag.show();
+}
+
+function dialogSave() {
+	$DW.save();
+}
+</script>

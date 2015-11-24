@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:priv priv="ContentCore.ExtendModelMenu" />
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script src="../framework/main.js"></script>
+<script>
+function optionList(ele){
+	var diag = new Dialog("Options");
+	diag.width = 600;
+	diag.height = 300;
+	diag.title = "@{Metadata.ColumnOptions}";
+	diag.url = "../platform/metaModelColumnOptions.zhtml";
+	diag.onLoad = function(){
+		var options = $V('ListOptions');
+		if(options==null||options.indexOf(":")<0){
+			return;
+		}
+		var type = options.substring(0,options.indexOf(":"));
+		options = options.substring(options.indexOf(":")+1);
+		if(type=="Code"){
+			$DW.$S('#Code',options);
+		} else if(type=="Input"){
+			$DW.$S('#ListOptions',options.replace(new RegExp('<br>', "gm"), "\n"));
+		} else {
+			$DW.$S('#Method',options);
+		}
+		$DW.$NS("Type",type);
+		$DW.onTypeClick();
+	}
+	diag.onOk = function(){
+		var options;
+		if($DW.$NV("Type")=="Code") {
+			options = "Code:"+$DW.$V('#Code');
+		} else if($DW.$NV("Type")=="Input") {
+			options = "Input:"+$DW.$V('#ListOptions').replace(new RegExp('\n', "gm"), "<br>");
+		} else {
+			options = "Method:"+$DW.$V('#Method');
+		}
+		$S('ListOptions',options);
+		$D.close();
+	}
+	diag.show();
+}
+
+function selectVerify(ele){
+	var diag = new Dialog("VerfiySelector");
+	diag.width = 580;
+	diag.height = 430;
+	diag.title = "<z:lang id="Contentextend.SelectValidationRules">选择校验规则</z:lang>";
+	diag.url = "../platform/metaModelColumnVerify.zhtml";
+	diag.onLoad = function(){
+		$DW.init($V("VerifyRule"));
+	}
+	diag.onOk = function(){
+		if($DW.Verify.hasError()) {
+			return;
+		}
+		$S("VerifyRule", $DW.getVerify());
+		$D.close();
+	}
+	diag.show();
+}
+
+function mandatoryChange() {
+	if($NV("MandatoryFlag")[0] == "Y") {
+		if($V("VerifyRule").indexOf("NotNull") > -1) {
+			return;
+		}
+		$S("VerifyRule", $V("VerifyRule").length > 0 ? $V("VerifyRule")+"&&NotNull" : "NotNull")
+	} else {
+		$S("VerifyRule", $V("VerifyRule").replace("NotNull", ""));
+		$S("VerifyRule", $V("VerifyRule").replace("&&&&", "&&"));
+		if($V("VerifyRule").endsWith("&&")) {
+			$S("VerifyRule", $V("VerifyRule").substring(0, $V("VerifyRule").length - 2));
+		}
+		if($V("VerifyRule").startsWith("&&")) {
+			$S("VerifyRule", $V("VerifyRule").substring(2));
+		}
+	}
+}
+
+
+</script>
+</head>
+<body>
+<z:init method="CXDataModel.initColumnDialog">
+
+<form id="F1">
+<table width="90%" border="0" height="100%" align="center" cellpadding="10">
+    <tr>
+      <td valign="top" width="50%" style="padding-top:15px;">
+      	<div class="z-legend"><strong><z:lang id="Common.BasicInfo">基本信息</z:lang></strong></div>
+      	<table width="100%" cellpadding="2" cellspacing="2">
+        <tr>
+          <td width="100" height="30"><z:lang id="Common.Name">名称</z:lang>：</td>
+          <td><input name="Name" type="text" id="Name" value="${Name}" style="width:150px" verify="NotNull" />
+             <input type="hidden" id="ID" value="${ID}" />
+             <input type="hidden" id="ModelID" value="${ModelID}" />
+            </td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Common.Code">代码</z:lang>：</td>
+          <td><input name="Code" type="text" id="Code" value="${Code}" verify="NotNull" style="width:150px" /></td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Metadata.ControlType">控件类型</z:lang>：</td>
+          <td><z:select id="ControlType" value="${ControlType}" onChange="changeControlType(this);" method="MetaColumn.getControlTypes" verify="NotNull" style="width:150px" /></td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Platform.Metadata.RequiredOrNot">是否必填</z:lang>：</td>
+          <td><z:radio id="MandatoryFlag" defaultCheck="N" value="${MandatoryFlag}" code="YesOrNo" onClick="mandatoryChange()" /></td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Metadata.DefaultValue">默认值</z:lang>：</td>
+          <td id="tr_defaultvalue">
+          <z:if condition="${ControlType=='DateTime'}"><input ztype="datetime" type="text" id="DefaultValue" value="${DefaultValue}" style="width:150px" /></z:if>
+          <z:else>
+          	<z:if condition="${ControlType=='Date'}"><input ztype="date" type="text" id="DefaultValue" value="${DefaultValue}" style="width:150px" /></z:if>
+          	<z:else><input type="text" id="DefaultValue" value="${DefaultValue}" style="width:150px" /></z:else>
+          </z:else>
+          </td>
+         </tr>
+         
+         <tr>
+        
+         <tr>
+          <td height="30">参数类型：</td>
+          <td> <z:radio id="ArrayFlag" value="${ArrayFlag}" defaultCheck="N" options="基本类型:N,集合:Y,JSON串:J"/></td>
+         </tr>
+      </table>
+    </td><td valign="top" style="padding-top:15px;">
+      	<div class="z-legend"><strong><z:lang id="Platform.Metadata.PageProperties">界面属性</z:lang></strong></div>
+      	<table width="100%" cellpadding="2" cellspacing="2">
+         <tr>
+          <td height="30"><z:lang id="Platform.Metadata.OptionList">选项列表</z:lang>：</td>
+          <td><input type="text" id="ListOptions" value="${ListOptions}" style="width:150px" disabled />
+          	<input type="button" value="@{Platform.Metadata.SetUp}..." onclick="optionList()" />
+          </td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Metadata.VerifyRule">校验规则</z:lang>：</td>
+          <td><input type="text" id="VerifyRule" value="${VerifyRule}" style="width:150px" />
+          	<input type="button" value="@{Platform.Metadata.SetUp}..." onclick="selectVerify()" />	
+          </td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Platform.Metadata.VerifyCondition">校验条件</z:lang>：</td>
+          <td><input type="text" id="VerifyCondition" value="${VerifyCondition}" style="width:150px" /></td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Metadata.StyleClass">CSS样式类</z:lang>：</td>
+          <td><input type="text" id="StyleClass" value="${StyleClass}" style="width:150px" /></td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Metadata.StyleText">CSS样式文本</z:lang>：</td>
+          <td><input type="text" id="StyleText" value="${StyleText}" style="width:150px" /></td>
+         </tr>
+         <tr>
+          <td height="30"><z:lang id="Metadata.MemoText">说明文本</z:lang>：</td>
+          <td><textarea id="Memo" style="width:220px;height:40px">${Memo}</textarea></td>
+         </tr>
+      </table>
+        </td>
+    </tr>
+  </table> 
+</form>
+</z:init>
+</body>
+</html>

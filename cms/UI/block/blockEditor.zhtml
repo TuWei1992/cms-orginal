@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<z:init method="BlockList.initDialog">
+<html style="overflow-x:hidden;overflow-y:hidden;height:100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../framework/main.js"></script>
+<style>
+table.z-datagrid td.linkitem_wrap{
+	overflow:visible;
+}
+table.z-datagrid td.linkitem_wrap .linkitem_tool{
+	visibility:hidden;
+}
+table.z-datagrid td.linkitem_wrap:hover .linkitem_tool .linkitem_tool_insert,
+table.z-datagrid td.linkitem_wrap .linkitem:hover .linkitem_tool a,
+table.z-datagrid td.linkitem_wrap:hover .linkitem_first .linkitem_tool a{
+	visibility: visible;
+}
+
+.linkitem{
+	margin-right:5px;
+	display:inline-block; *zoom: 1; *display: inline;
+	position: relative;
+	padding:1px 20px 1px 6px;
+	border:1px solid #eee;
+	border-radius:10px;
+	min-width:36px;
+}
+.linkitem:hover{
+	border-color:#ffcc99;
+	background:#FFFCD9;
+}
+.linkitem_tool{
+	border-radius:10px;
+	position:absolute;
+	background:#fff;
+	right:3px;
+}
+.linkitem_first{
+	min-width:6px;
+	margin-left:-5px;
+	margin-right:1px;
+	padding-right:6px;
+}
+.linkitem_first .linkitem_tool{ right:1px;}
+.linkitem_tool_insert{
+	position:absolute;
+	top:-15px;
+}
+</style>
+<script>
+function save(func) {
+	var dc = Form.getData("form2");
+	if (Verify.hasError()) {
+		return;
+	}
+	var minweight = $V('#MinWeight');
+	var maxweight = $V('#MaxWeight');
+	if((!isNaN(minweight)) && (!isNaN(maxweight)) && (minweight-maxweight>0)){
+		Dialog.alert("@{Block.Weight.ErrorMsg}");
+		return ;
+	}
+	if(prepareData){
+		//prepareData方法由各区块类型提供
+		if(prepareData(dc)===false){
+			return false;
+		} 
+	}
+	Server.sendRequest("BlockList.save", dc, function(response) {
+		if(response.Status==1){
+			MsgPop(response.Message);
+			if(func){
+				func(response.ID);//专题等处需要这个
+			}
+		}else{
+			Dialog.warn(response.Message);
+		}
+		parent.DataList.loadData("list1");
+	});
+}
+
+function preview(btn) {
+	var currentID= $V("#ID");
+	if (!currentID || currentID == null) {
+		Dialog.alert("@{Contentcore.Block.SelectFirst}");
+		return false;
+	}
+	var url = "../contentcore/preview.zhtml?path=../block/preview&ID="+currentID;
+	btn.href=url;
+	return true;
+}
+
+function publish() {
+	var currentID= $V("#ID");
+	if (!currentID || currentID == null) {
+		Dialog.alert("@{Contentcore.Block.SelectFirst}");
+		return;
+	}
+	var dc = {BlockIDs:currentID};
+	Server.sendRequest("BlockList.publish",dc,function(response){
+		if(response.Status == 1) {
+			MsgPop(response.Message);
+		} else {
+			Dialog.alert(response.Message);
+			return;
+		}
+		parent.DataList.loadData("list1",function(){
+			parent.$("table tr").each(function(){
+				if(this.id=='tr_'+currentID){
+					parent.onRowClick(this);
+					$(this).addClass("selected");
+					parent.$("input[value='"+currentID+"']").attr('checked',true);
+				} 
+			});
+		});
+	});
+}
+
+function setPath() {
+	var dir = $V('Path');
+	if(dir && !dir.endsWith("/")) {
+		dir = dir.substring(0, dir.lastIndexOf("/")+1);
+	}
+	var diag = new Dialog("@{Contentcore.Block.SelectPath}", "../contentcore/filePathSelectDialog.zhtml?SelectType=Path&Path=" + dir, 700, 400);
+	diag.onOk = function() {
+		var path = $DW.getPath();
+		if (path) {
+			if (path == "/") {
+				Dialog.warn("@{Contentcore.Block.WarnRoot}");
+				return;
+			}
+			$S('Path', path);
+			$D.close();
+		}
+	};
+	diag.show();
+}
+
+function checkweight(){
+	var minweight = $V('#MinWeight');
+	var maxweight = $V('#MaxWeight');
+	if(minweight <= 0){
+		minweight = 0;
+	}
+	if(minweight >= 100){
+		minweight = 100;
+	}
+	if(maxweight <= 0){
+		maxweight = 0;
+	}
+	if(maxweight >= 100){
+		maxweight = 100;
+	}
+	if((!isNaN(minweight)) && (!isNaN(maxweight)) && (minweight-maxweight>0)){
+		Dialog.alert("@{Block.Weight.ErrorMsg}");
+		return;
+	}
+	$S('#MinWeight',minweight);
+	$S('#MaxWeight',maxweight);
+}
+
+Page.onLoad(function(){
+	if('${Type}' == 'Manual'){
+		$('#tr_Weight').show();
+		$('#tr_recommendType').show();
+	}else{
+		$('#tr_Weight').hide();
+		$('#tr_recommendType').hide();
+	}
+});
+</script>
+</head>
+<body class="z-body-detail" style="height:100%;overflow:auto;">
+
+<z:toolbar>
+		<z:button onClick="save()" id="ButtonQuick" theme="flat" priv="com.zving.cms.Block.Edit.${ID}" > <img src="../icons/icon038a16.png" /><z:lang id="Common.Save">保存</z:lang></z:button>
+		<z:button onClick="publish()" priv="com.zving.cms.Block.Publish.${ID}" theme="flat"> <img src="../icons/icon038a13.png" /><z:lang id="Contentcore.Publish">发布</z:lang></z:button>
+		<z:button type="link" target="_blank" onClick="return preview(this)" theme="flat"> <img src="../icons/icon038a15.png" /><z:lang id="Contentcore.Preview">预览</z:lang></z:button>
+	  </z:toolbar>
+		<div id="SP1" class="z-contentBorder" style="height:auto;min-height:90%;overflow:auto;">
+		<form id="form2" style="height:90%">
+		<input name="ID" type="hidden" id="ID" value="${ID}" />
+	  <input name="SiteID" id="SiteID" type="hidden" value="${SiteID}"/>
+	  <input type="hidden" id="CatalogID" name="CatalogID" value="${CatalogID}"/>
+	  <input type="hidden" id="PreviewPath" name="PreviewPath" value="${PreviewPath}"/>
+	  <textarea style="display:none" id="Content" name="Content">${(Content)}</textarea>
+	  <textarea style="display:none" id="_TemplateContent">${TemplateContent}</textarea>
+	  <div id="container" style="">
+	  <div id="DivBasic">
+		<z:panelheader><strong><z:lang id="Common.BasicInfo">基本信息</z:lang></strong></z:panelheader>
+		  <table width="100%" cellpadding="3" cellspacing="0" style="margin-top:5px">
+		  	<tr>
+			  <td align="right"><z:lang id="Common.Type">类型</z:lang>：</td>
+			  <td><z:radio disabled="true" id="Type" method="BlockList.getBlockTypes" value="${Type}"/></td>
+			</tr>
+			<tr>
+			  <td align="right" width="80"><z:lang id="Common.Name">名称</z:lang>：</td>
+			  <td><input name="Name" type="text" value="${Name}"
+			   id="Name" size=35 verify="@{Common.Name}|NotNull" /></td>
+			</tr>
+
+			<tr>
+			  <td align="right"><z:lang id="Common.Code">代码</z:lang>：</td>
+			  <td><input name="Code" type="text" value="${Code}"
+			   id="Code" size=35 verify="@{Common.Code}|NotNull&&&&<z:lang id="Contentcore.OnlyNumbersAndLetters">只能是数字和字母组成</z:lang>|Regex=^\w+$&&Length<25" /></td>
+			</tr>
+			<tr>
+			  <td align="right"><z:lang id="Common.Width">宽度</z:lang>：</td>
+			  <td><input name="Width" type="text" value="${Width}"
+			   id="Width" size=10/> px</td>
+			</tr>
+			<tr>
+			  <td height="6" align="right"><z:lang id="Contentcore.Path">路径</z:lang>：</td>
+			  <td height="6"><p>
+				  <input name="Path" type="text" 
+			  			id="Path" value="${Path}" size="35" verify="@{Contentcore.Block.Path}|NotNull" />
+				  <input type="button" value="@{Common.Browse}..." onclick="setPath()">
+				  <a href="javascript:void(0);" class="tip"
+                    onMouseOut="Tip.close(this)"
+                    onMouseOver='Tip.show(this,"@{Block.Tip.CustomBlockFileName}");'><img
+                    src="../framework/images/icon_tip.gif" width="16" height="16"></a>
+				</p></td>
+			</tr>
+			<tr id="tr_Weight" style="display: none;">
+			  <td height="6" align="right"><z:lang id="Block.Weight.WeightRange">权重范围</z:lang>：</td>
+			  <td height="6">
+				<p>
+					<input name="MinWeight" type="text" onblur="checkweight()"  id="MinWeight" value="${MinWeight}" size="13" ztype="Number" max="100" verify="Int" />  ~  
+					<input name="MaxWeight" type="text" onblur="checkweight()"  id="MaxWeight" value="${MaxWeight}" size="13" ztype="Number" max="100" verify="Int" />
+				</p>
+			  </td>
+			</tr>
+			<tr id="tr_recommendType" style="display: none;">
+			  <td height="6" align="right"><z:lang id="Block.RecommendType">接受推荐</z:lang>：</td>
+			  <td height="6">
+				<p>
+					<z:select id="RecommendType" code="RecommendType" value="${RecommendType}" ></z:select>
+				</p>
+			  </td>
+			</tr>
+		  </table>
+			</div>
+			<script>
+//专题编辑中块
+//这个脚本必须放在扩展点之前，内容块编辑页面的布局需要使用调整高度后的#SP1
+if(window.location.pathname.indexOf('/special/blockContents.zhtml')!=-1){
+	$("#DivBasic").hide();
+	$("#trToolbar").hide();
+	$(".z-toolbar").hide();
+	$(".z-toolbar-anchor").hide();
+	$("#Code").attr("verify","");
+	$("#Name").attr("verify","");
+
+	var $div=$('#SP1');
+	var height=$('body').height()-(
+			(parseInt($div.css('padding-top'))||0)+
+			(parseInt($div.css('margin-top'))||0)+
+			(parseInt($div.css('border-top-width'))||0));
+	$div.height(height);
+	
+	var specialBlock = true;
+	
+	//保存方法
+	window.save=function(func){
+		var dc = Form.getData('form2');
+		dc.SpecialID='${SpecialID}';
+		if (Verify.hasError()) {
+			return;
+		}
+		if(prepareData){
+			//prepareData方法由各区块类型提供
+			if(prepareData(dc)===false){
+				return false;
+			}
+		}
+		Server.sendRequest("SpecialBlockContents.save", dc, function(response) {
+			if(response.Status == 1) {
+				MsgPop(response.Message);
+				if(func){
+					func(response.ID);//专题等处需要这个
+				}
+			} else {
+				Dialog.alert(response.Message);
+			}
+		});
+	};
+	
+}else{
+	Page.onLoad(function(){
+		var div=$('#container');
+		if(div){
+			//$('#SP1').css('height','100%');
+			var parent=$('#SP1').parent();
+			var heightFix=div.offset().top-(parent.offset().top+
+					(parseInt(parent.css('padding-top'))||0)+
+					(parseInt(parent.css('margin-top'))||0)+
+					(parseInt(parent.css('border-top-width'))||0));
+			div.height(parent.height()-heightFix-2);//减去边框2px
+			$(div).css('overflow','auto');//hack IE10，本来这个样式是直接写在标签中在，但IE10在即使没指定高度时也会出现滚动条。
+		}	
+	});
+}
+</script>
+			<z:extend id="com.zving.block.BlockEditorUI" />
+			</div>
+ 		</form>
+	  </div>
+
+</body>
+</html>
+</z:init>

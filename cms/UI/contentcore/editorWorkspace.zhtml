@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<html style="overflow:auto">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<style>
+.treeItem_p_tool {
+	display:inline-block;
+	margin-left:6px;
+	visibility:hidden;
+	white-space: nowrap;
+}
+.treeItem_p_tool a {
+	display:inline;
+}
+.treeItem_p_hover .treeItem_p_tool {
+	visibility:visible;
+}
+ul.tabSwitch {
+	margin: 2px 0 0;
+	border-bottom: 0px solid #99A7B1;
+	
+}
+
+ul.tabSwitch li {
+    margin: 0 0 0 0px;
+}
+ul.tabSwitch li a{
+    background: none;
+	background-position: 0 0;
+	padding-left: 5px;
+    height: 27px;
+	opacity: 0.7;
+	filter: Alpha(Opacity = 70);/* IE5+ */
+}
+ul.tabSwitch li a b{
+    background: none;
+	background-position: right 0;
+	min-width:0;
+	min-width:auto;
+	padding: 2px 5px 2px 0px;
+}
+ul.tabSwitch li a:hover, ul.tabSwitch li a:hover b {
+	text-decoration: none;
+	background-image: url(../framework/images/tabBtnBg_cur.png);
+}
+ul.tabSwitch li a.current {
+	background-image: url("../framework/images/tabBtnBg_cur.png");
+    height: 27px;
+	padding-left: 6px;
+	opacity: 1;
+	filter: none;/* IE5+ */
+}
+ul.tabSwitch li a.current b{
+	background-image: url("../framework/images/tabBtnBg_cur.png");
+	padding: 2px 5px 2px 0;
+}
+#btn_treeSetting i{ display: none;}
+#btn_treeSetting img{vertical-align: inherit;}
+</style>
+<script type="text/javascript" src="../framework/main.js"></script>
+<script>
+Page.onLoad(function(){
+	var lastView = Cookie.get("Content.LastEditorView");
+	if(isEmpty(lastView)){
+		lastView = "Default";
+	}
+	var viewSelectBtn = $("#ViewSelect #"+lastView).click();
+	initHoverEvent();
+});
+var contentID;
+Page.onLoad(function(){
+	var lastCatalog = Cookie.get("Content.LastCatalogCode");
+	var catalogID = '${CatalogInnerCode}';
+	contentID = '${ContentID}';
+	if(!isEmpty(catalogID)) {
+		lastCatalog = catalogID;
+	}
+	if(!isEmpty(lastCatalog)) {
+		loadAndSelectChild(lastCatalog);
+	}
+	contentID = null;
+});
+
+
+function initHoverEvent(){
+	/* 延迟显示预览图标 */
+	$('#tree1').on('mouseover','dt.treeItem_p',function(){
+		this.className+=' treeItem_p_hover';
+	}).on('mouseout','dt.treeItem_p',function(){
+		this.className = this.className.replace(/(^|\s)treeItem_p_hover(?=\s|$)/ig, "");
+	});
+	
+	Tree('tree1').on('lazyLoad',function(evtData){
+		//console.log("$G('tree1').onLazyLoad",this,nodeEl,data)
+		$('dt.treeItem_p', evtData.treeNode).hoverIntent(function(){
+			this.className+=' treeItem_p_hover';
+		},function(){
+			this.className = this.className.replace(/(^|\s)treeItem_p_hover(?=\s|$)/ig, '');
+		})
+	});
+}
+/* updatecatalogtree: 在其他页面发出  updatecatalogtree 事件时，重载栏目树 */
+function reloadTree(evt){
+	$('#treeItem_p_tool').appendTo($(document.body)).hide();
+	Tree('tree1').loadData(function(){
+		if(evt && evt.cid){
+			Tree('tree1').selectByAttr('cid',evt.cid,true);
+		}
+		initHoverEvent();
+		var lastCatalog = Cookie.get("Content.LastCatalogCode");
+		if(!isEmpty(lastCatalog)) {
+			loadAndSelectChild(lastCatalog);
+		}
+		toggleToolContainer();
+	});
+}
+AllDocumentsEvent.on('updatecatalogtree', reloadTree);
+/* /updatecatalogtree */
+
+
+function loadAndSelectChild(full){
+	var treeView=Tree('tree1'),found;
+	var scan = function(node) {
+		var nodeEl=node.el;
+		var code=nodeEl.getAttribute('innercode');
+		if(!node.isRoot && !full.startsWith(code)){
+			return;
+		}
+		if (code == full) {
+			treeView.onNodeClick(nodeEl);
+			$G(nodeEl).scrollIntoView(false);
+			return true;
+		}else if(!node.isLeaf){
+			if(node.isRoot || node.expanded){
+				if(!node._children){
+					console.log('!node._children',node)
+				}
+				node._children && node._children.some(scan);
+			}else{
+				node.on('expand',function(inode){
+					if(!inode._children){
+						console.log('!inode._children',inode)
+					}
+					inode._children && inode._children.some(scan);
+				});
+				node.expand();
+			}
+		}
+	};
+	scan(treeView._rootNode);
+}
+
+function onTreeClick(ele){
+	var evt=getEvent();
+	//当点击的是预览图标时，不再执行节点上事件
+	if(evt && evt.srcElement && evt.srcElement.tagName=='IMG' && evt.srcElement.src.indexOf('preview')!=-1){
+		return true;
+	}
+	var cid = ele.getAttribute("cid");
+	var code = ele.getAttribute("innercode");
+	if(cid=='null'||!cid){
+		cid = 0;
+	}
+	if(!Tree.isRoot(ele)){
+		Cookie.set("Content.LastCatalog",cid,"2100-01-01");
+		Cookie.set("Content.LastCatalogCode",code,"2100-01-01");
+	}else{
+		Cookie.set("Content.LastCatalog","0","2100-01-01");
+		Cookie.set("Content.LastCatalogCode","","2100-01-01");
+	}
+	$("#ViewSelect a.current").click();
+}
+
+function getCurrentID(){
+	var ele = Tree('tree1').currentNode && Tree('tree1').currentNode.el;
+	if(ele==null){
+		return 0;
+	}
+	var cid = ele.getAttribute("cid");
+	var code = ele.getAttribute("innercode");
+	if(cid=='null'||!cid){
+ 		cid = Cookie.get("Content.LastCatalog"); 
+	}
+	if(cid=='null'||!cid){
+ 		cid = 0; 
+	}
+	return cid;
+}
+
+function showView(siteURL,catalogURL){
+ 	var win = $("#listWindow")[0].contentWindow;
+ 	var cid = getCurrentID();
+ 	Cookie.set("Content.LastEditorView",$("#ViewSelect a.current").prop('id'),"2100-01-01");
+ 	if(cid==0){
+		win.location.href = CONTEXTPATH+siteURL+"?SiteID=${User.CurrentSite}&CatalogID="+cid;
+	}else{
+		var url = CONTEXTPATH+catalogURL+"?SiteID=${User.CurrentSite}&CatalogID="+cid;
+		if(!isEmpty(contentID)) {
+			 url += "&ContentID=" + contentID;	
+		}
+		win.location.href = url;
+	}
+}
+
+function preview(catalogid) {
+	var e=getEvent();
+	var width  = screen.availWidth-10;
+	var height = screen.availHeight-50;
+	var leftm  = 0;
+	var topm   = 0;
+	var args = "toolbar=0,location=0,maximize=1,directories=0,status=0,menubar=0,scrollbars=1, resizable=1,left=" + leftm+ ",top=" + topm + ", width="+width+", height="+height;
+	var url="preview.zhtml?path=catalog/preview&ID=" + catalogid;
+	var w = window.open(url,"",args);
+	if(!w){
+		Dialog.alert( "@{Contentcore.WindowBlocked}!" ) ;
+		return ;
+	}
+	stopEvent(e);
+}
+
+function publish(catalogid) {
+	if(catalogid && catalogid.nodeType==1){
+		catalogid=$(catalogid).closest('dt').attr('cid');
+	}
+	if(!Application.hasPriv("com.zving.cms.Catalog.Publish." + catalogid)){
+		Dialog.alert("@{Platform.PrivCheckNoPriv}");
+		return;
+	}
+	var e=getEvent();
+	var diag = new Dialog("@{Contentcore.PublishCatalog}","publishDialog.zhtml",350,100);
+	diag.onOk = function(){
+		var dc = {CatalogID:catalogid,
+				CatalogIDs:catalogid,
+				PublishChild:"true" == $DW.$NV("PublishChild"),
+				PublishDetail:"true" == $DW.$NV("PublishDetail"),
+				SiteID:${User.CurrentSite}};
+		dc.PublishStatus=20; // 此处只发布待发布的内容
+		Server.sendRequest("CatalogPublisher.publish", dc, function(response) {
+			if(response.Status == 1) {
+				var taskID = response.TaskID;
+				var p = new Progress(taskID,"@{Contentcore.Publishing}...",500,150);
+				$D.close();
+				p.show(function(){
+					$D.close();
+					MsgPop("@{Contentcore.PublishSuccess}");
+				});
+				Node.hide(p.Dialog.okButton);
+				Node.hide(p.Dialog.cancelButton);
+				p.Dialog.cancelButton.onclick = function(){}
+			} else {
+				Dialog.alert(response.Message);
+			}
+		});
+	};
+	diag.onLoad = function(){
+		var c = $DW.$("#PublishChild");
+		c.val(false);
+		c.next().hide();
+		c.hide();
+	};
+	diag.show();
+	stopEvent(e);
+}
+
+function filterConfig(){
+	var diag = new Dialog("过滤集设置","catalogFilter.zhtml",850,550);
+	diag.show();
+}
+<z:extend id="com.zving.contentcore.EditorWorkspaceScript" />
+</script>
+<!--[if lte IE 6]>
+<style>
+img { behavior: url(../style/iepngfix.htc) }
+</style>
+<![endif]-->
+</head>
+<body class="z-body-index">
+<z:menu id="treeSetting">
+<a id="Filter_All" onclick="alert('Default')"><img src="../icons/extra/icon_check_all.png" />显示全部</a>
+<a id="Filter_1" onclick="alert('Default')"><img src="../icons/extra/icon_check_visible.png" />过滤器：一</a>
+<a id="Filter_2" onclick="alert('Default')"><img src="../icons/extra/icon_check_visible.png" />过滤器：只显示文章栏目</a>
+<a id="Filter_Config" onclick="filterConfig()"><img src="../framework/images/icon_pass.png" />设置...</a>
+</z:menu>
+
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
+  <tr valign="top">
+    <td width="220" height="100%" class="centerColumnWrap"><table width="100%" border="0" cellspacing="0" cellpadding="0" height="*" class="js_layoutTable">
+        <tr>
+          <td height="37"><z:toolbar id="toolbar_viewselect">
+          <ul class="tabSwitch" id="ViewSelect">
+			    <z:list method="EditorWorkspace.bindViewList">
+					    <li><a id="${ID}" class="${i==0?'current':''}" href="javascript:void(0);" onclick="Switchable.tabs_onClick(this,'.tabSwitch a', '');showView('${SiteURL}','${CatalogURL}');return false;"
+					    onMouseOut="Tip.close(this)"
+                    	onMouseOver='Tip.show(this,{msg:"${Name}",clock:11});' title=""><img src="../${Icon}" /><b></b></a></li>
+					</z:list>
+          </ul>
+         	</z:toolbar></td>
+        </tr>
+        <tr valign="top">
+          <td height="*"><div style="position:relative; height:0px; overflow:visible;"><span style="position:absolute; right:17px; top:0px;">
+         <!-- <z:button id="btn_treeSetting" theme="flat" type="menu" menu="treeSetting"><img src="../framework/images/icon_setting_17px.png"/></z:button>-->
+          </span></div><z:tree id="tree1" method="EditorWorkspace.bindTree" level="${User.CatalogTreeLevel}" lazy="true" customscrollbar="true">
+              <p cid="${ID}" pid="${ParentID}" innercode="${InnerCode}" icon="../${Icon}" onClick="onTreeClick(this);" class="treeItem_p">
+              <span class="nodeContent" _href="preview.zhtml?path=../catalog/preview&ID=${ID}" _publish="${HasCatalogPublishPriv?publishEnable:publishDisabled}">${Name}</span>
+              	<span class="toolContainer"></span>
+              </p>
+            </z:tree></td>
+        </tr>
+      </table></td>
+    <td><div id="splitter1" class="z-splitter-v shadow-v"></div>
+      <iframe id='listWindow' frameborder="0" width="100%"
+								height="100%" src='about:blank' scrolling="auto" allowtransparency="true"></iframe></td>
+  </tr>
+</table>
+<span class="treeItem_p_tool" id="treeItem_p_tool"> <a href="#" target="_blank" class="preview"><img title="@{Contentcore.Preview}" src="../framework/images/icon_preview_17px.png"></a> <a class="publishDisabled" href="#" onclick="publish(this)"><img title="@{Contentcore.Publish}" src="../framework/images/icon_publish_17px.png"></a></span>
+<style>
+.publishDisabled{
+	display:none;
+}
+.publishEnable{
+	display:inline;
+}
+.toolContainer{
+	margin-left:15px;
+	display:inline-block;
+	width:40px;
+}
+.treeItem_p_tool{margin:0; display:none;}
+</style>
+<script>
+//考虑到延迟加载节点，必须使用事件委托;使用闭包避免每次处理事件时都定义和解析函数。
+function toggleToolContainer() {
+	$('#tree1').on('mouseover','dt.treeItem_p',function(){
+		var node;
+		var showTool=function(){
+			if($('#treeItem_p_tool').is(':visible')){return;}
+			var $nodeContent=$('span.nodeContent',node);
+			$('#treeItem_p_tool .preview').attr('href',$nodeContent.attr('_href'));
+			$('#treeItem_p_tool .publishDisabled').addClass($nodeContent.attr('_publish'));
+			$('#treeItem_p_tool').appendTo($('.toolContainer',node)).show();
+		}
+		return function(){
+			node=this;
+			if(window.delayShowTool){clearTimeout(window.delayShowTool);}
+			window.delayShowTool=setTimeout(showTool,200);
+		}
+	}()).on('mouseout','dt.treeItem_p',function(evt){
+		//如果是节点内的元素触发的mouseout事件，则还在节点内,不处理。
+		var relatedTarget=evt.relatedTarget;
+		if(relatedTarget===this || $(this).find(relatedTarget).length){return;}
+		clearTimeout(window.delayShowTool);
+		$('#treeItem_p_tool').hide();
+	});
+}
+toggleToolContainer();
+</script>
+<script>
+Page.onLoad(function(){
+
+	splitter=new Zving.Splitter({
+		el:$G('splitter1'),
+		previousSibling:$('#splitter1').parent().prev().get(0),
+		nextSibling:$('#splitter1').parent().get(0),
+		minXAttr:-10,
+		maxXAttr:200
+	});
+});
+</script>
+</body>
+</html>

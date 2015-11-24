@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<z:priv priv="Platform.SystemInfo" />
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>投诉建议</title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<style>
+#systemUpgradeMessage{ position:absolute; width:98%; display:none;}
+</style>
+<script src="../framework/main.js"></script>
+<script type="text/javascript">
+	function test() {
+		var data = DataGrid.getSelectedValue("dg1");
+		console.log(data);
+	}
+	
+	function del(){
+		var arr = DataGrid.getSelectedValue("dg1");
+		if(!arr||arr.length==0){
+			Dialog.alert("@{Common.PleaseSelectToDeleteRowFirst}");
+			return;
+		}
+	 	Dialog.confirm("@{Contentcore.DeleteFileOrDirectoryConfrim}",function(){
+	 		var dc = {ids:arr.join()};
+	 		Server.sendRequest("Suggest.delete", dc, function(response){
+				if(response.Status==0){
+					Dialog.warn(response.Message);
+				}else{
+					refreshData();
+				}
+			});	
+		});
+	}
+
+	function refreshData(){
+		DataGrid.loadData('dg1');
+	}
+</script>
+</head>
+<body class="z-body-list">
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="*" class="js_layoutTable">
+	<tr>
+		<td height="37"><z:toolbar>
+			<!--   
+			<z:button id="b1" onClick="test()"  theme="flat">
+				<img src="../icons/icon400a13.png" />
+				测试
+			</z:button>
+			-->
+			<z:button onClick="del()" theme="flat">
+				<img src="../icons/icon018a3.png" /><z:lang id="Common.Delete">删除</z:lang></z:button>
+			</z:toolbar>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td style="padding:10px;padding-top:5px;" height="*"><div id="SP1" class="z-overflowPanel" style="height:100%;">
+			<z:datagrid id="dg1" method="Suggest.bindData" page="true" size="15">
+				<table width="100%" cellpadding="2" cellspacing="0" class="z-datagrid">
+					<tr ztype="head" class="dataTableHead">
+						<td width="4%" ztype="RowNo"><z:lang id="Common.SN">序号</z:lang></td>
+						<td width="6%" ztype="selector" field="suggest_id">&nbsp;</td>
+	
+						<td width="45%">内容</td>
+						<td width="15%">联系方式</td>
+						<td width="15%">来源地址</td>
+						<td width="15%">提交时间</td>
+
+					</tr>
+					<tr  class1="dg-row-odd" class2="dg-row-even">
+						<td >&nbsp;</td>
+						<td >&nbsp;</td>
+ 
+						<td style="white-space:normal">${suggest_content}</td>
+						<td>${contact_mobile}</td>
+						<td title="${source_url}"><a href="${source_url}" target="_blank">${source_url}</a></td>
+						<td>${create_time}</td>
+
+					</tr>
+					<tr ztype="pagebar">
+						<td colspan="5">${PageBar}</td>
+					</tr>
+				</table>
+			</z:datagrid>
+      </div></td>
+	</tr>
+</table>
+
+</body>
+</html>

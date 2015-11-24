@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:init method="CXDataList.init">
+<html style="overflow:auto">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../framework/main.js"></script>
+<script src="../editor/ueditor.config.js"></script>
+<script src="../editor/ueditor.all.js"></script>
+<script src='editorplugins/editor.config.js'></script>
+<script type="text/javascript" src="../framework/components/styleToolbar.js"></script>
+<%@include file="contentScript.zhtml"%>
+<script>
+	var searchArgs = '${searchConditionParam}';
+	function search() {
+		if (searchArgs) {
+			var searchArgsArray = searchArgs.split(",");
+			for (var i = 0; i < searchArgsArray.length; i++) {
+				if (searchArgsArray[i] != ''){
+					DataList.setParam("contentlist", searchArgsArray[i], $V(searchArgsArray[i]))
+				}
+			}
+		}
+		DataList.loadData("contentlist");
+	}
+	
+	
+	function test() {
+		alert("t");
+		DataList.loadData("contentlist");
+	}
+	
+	function publishCX(catalogid) {
+		if(!Application.hasPriv("com.zving.cms.Catalog.Publish." + catalogid)){
+			Dialog.alert("权限校验时发生错误，当前用户没有相应的权限");
+			return;
+		}
+		var e=getEvent();
+		var diag = new Dialog("发布栏目","publishDialog.zhtml",350,100);
+		diag.onOk = function(){
+			var dc = {CatalogID:catalogid,CatalogIDs:catalogid,SiteID:${SiteID}};
+
+			Server.sendRequest("CatalogPublisher.publish", dc, function(response) {
+				if(response.Status == 1) {
+					var taskID = response.TaskID;
+					var p = new Progress(taskID,"正在发布...",500,150);
+					$D.close();
+					p.show(function(){
+						$D.close();
+						MsgPop("发布成功！");
+					});
+					Node.hide(p.Dialog.okButton);
+					Node.hide(p.Dialog.cancelButton);
+					p.Dialog.cancelButton.onclick = function(){}
+				} else {
+					Dialog.alert(response.Message);
+				}
+			});
+		};
+		diag.show();
+		stopEvent(e);
+	}
+
+	function previewCX(catalogid) {
+		var e=getEvent();
+		var width  = screen.availWidth-10;
+		var height = screen.availHeight-50;
+		var leftm  = 0;
+		var topm   = 0;
+		var args = "toolbar=0,location=0,maximize=1,directories=0,status=0,menubar=0,scrollbars=1, resizable=1,left=" + leftm+ ",top=" + topm + ", width="+width+", height="+height;
+		var url="preview.zhtml?path=catalog/preview&ID=" + catalogid;
+		if (searchArgs) {
+			var searchArgsArray = searchArgs.split(",");
+			for (var i = 0; i < searchArgsArray.length; i++) {
+				if (searchArgsArray[i] != ''){
+					url +=  "&" + searchArgsArray[i] + "=" + $V(searchArgsArray[i]);
+				}
+			}
+		}
+		var w = window.open(url,"");
+		if(!w){
+			Dialog.alert( "发现弹出窗口被阻止，请更改浏览器设置，以便正常使用本功能!" ) ;
+			return ;
+		}
+		stopEvent(e);
+	}
+
+	function searchCXData() {
+		if(Verify.hasError()){
+			return;
+		}
+		var conditions = Form.getData('conditionForm');
+		DataList.setParam("contentlist", "searchConditions", conditions);
+		DataList.setParam("contentlist", "searchFlag", "Y");
+		DataList.loadData("contentlist");
+	}
+</script>
+</head> 
+<body class="z-body-list">
+
+<style type="text/css">
+.z-body-list .z-overflowPanel{ background:#f7f7f7; }
+.ui-sortable-placeholder{
+	height:49px; 
+}
+</style>
+<z:menu id="SortType">
+<a id="Contents" onclick="orderList('Default')"><img src="../framework/images/icon_sort.png" /><z:lang id="Content.Sort.Default">默认排序</z:lang></a>
+<a id="AddTime" onclick="orderList('AddTime')"><img src="../framework/images/icon_add.png" /><z:lang id="Content.Sort.AddTime">按添加日期</z:lang></a>
+<a id="PublishDate" onclick="orderList('PublishDate')"><img src="../framework/images/icon_pass.png" /><z:lang id="Content.Sort.PublishDate">按发布日期</z:lang></a>
+</z:menu>
+<input type="hidden" id="SortOrderType" value="Default" />
+<table id="js_layoutTable" width="100%" height="100%" border="0"
+	cellspacing="0" cellpadding="0" class="js_layoutTable">
+  <tr valign="top">
+    <td width="550" height="100%" class="centerColumnWrap"><table id="js_layoutTable" width="100%" height="*" border="0"
+			cellspacing="0" cellpadding="0" class="js_layoutTable">
+        <tr>
+          <td height="37"><z:toolbar id="ContentListToolbar">
+          <!-- <z:button id="BtnAdd" onClick="test()"  theme="flat"> <img src="../icons/icon003a2.png" />TEST </z:button> -->
+        
+	      </z:toolbar></td>
+        </tr>
+        <tr>
+          <td style="padding: 2px;background: #eeeeee;">
+           <form id="conditionForm">
+			  ${(Conditions)}
+		  </form>
+		  <div style="margin-bottom: 5px; margin-top: 2px;"><input type="button" onclick="searchCXData()"  value="查 询" /> </div>
+           <z:if condition="false">
+            <z:button id="BtnCxPreview" onClick="previewCX(${CatalogID})"  theme="flat"> 预览 </z:button>
+            <z:button id="BtnCxPublish" onClick="publishCX()"  theme="flat"> 发布</z:button>
+            <z:button id="BtnCxPublishAll" onClick="publishAllCX()"  theme="flat"> 发布全部 </z:button>
+           </z:if>
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#dddddd" class="dataList">
+              <thead>
+                <tr ztype="head">
+                  <td style="padding:0 7px;"></td>
+                </tr>
+              </thead>
+            </table></td>
+        </tr>
+        <tr>
+          <td height="*" style="padding: 0 2px"><div class="dataList-wrap" id="dl1_wrap">
+              <table width="100%" border="0" align="center" cellpadding="0"
+					cellspacing="0" bordercolor="#dddddd" class="dataList" id="dl1">
+                <tbody>
+                  <z:datalist id="contentlist" method="CXDataList.bindList" >
+                    <tr id="tr_${ID}" class="datarow" onclick="onRowClick(this)">
+                      <td>
+                      <input type="hidden" name="ID" selector="true" value="${ID}" />
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="inTd-main">
+                      	<tr>
+	                        <td style="padding:5px 1px" width="15">
+	                        	<!--  <input type="checkbox" value="${ID}" id="SelectedID_${ID}" name="SelectedID" style="width:13px;height:13px;" />  -->
+                                <div><!--[if !IE]><!--><span class="sn" style="margin-top:4px;"><!--<![endif]--><!--[if IE]><span class="sn" style="margin-top:-2px;margin-left:3px;"><![endif]-->${_RowNo}</span></div>
+	                        </td>
+	                        <td>
+	                        	<dl class="article_list">
+		                        	<dt>${data}</dt>
+	                        	</dl>
+                       		</td>
+	                  	</tr>
+                    	</table>
+                        </td>
+                    </tr>
+                  </z:datalist>
+                </tbody>
+              </table>
+            </div></td>
+        </tr>
+        <tr>
+          <td style="padding: 0 4px" height="26" background="#F9F9F9"></td>
+        </tr>
+      </table></td>
+    <td><div id="splitter1" class="z-splitter-v shadow-v" style="z-index:100"></div>
+     <div class="z-body-detail" style="background:#ffffff; height:100%; overflow:auto;"><div class="ui-page-container"></div></div></td>
+  </tr>
+</table>
+<script>
+Page.onLoad(function(){
+	splitter=new Zving.Splitter({
+		el:$G('splitter1'),
+		previousSibling:$('#splitter1').parent().prev().get(0),
+		nextSibling:$('#splitter1').parent().get(0),
+		minXAttr:-10,
+		maxXAttr:200
+	});
+});
+
+</script>
+</body>
+</html>
+</z:init>

@@ -1,0 +1,245 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html style="overflow:auto">
+<z:init method="SpecialDialog.init">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<style>
+body { color: #666666; }
+#contentform table td { padding-right: 5px; }
+</style>
+<script type="text/javascript" src="../framework/main.js"></script>
+<script>
+
+function checkFileName(){
+	verifySameTitle();
+	var name = $V('#FileName');
+	if(name.length > 0){
+		if(name.indexOf(".")<=0 || name.lastIndexOf(".")==name.length-1){
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
+function onFileNameBlur(){
+	if(!checkFileName()){
+		Dialog.alert("@{Special.FileNameCheck.ErrorMsg}");
+	}
+}
+
+function setFileName(){
+	if($V('#FileName') != ""){
+			return;
+	}
+		if(($V('#FileName') == "" || !checkFileName())&&$V('#Title')!=""){
+		  var str = rootWin.getSpell($V('#Title'),true);
+		  $S('FileName',str,true);
+ 		 }
+
+}
+
+function changeSpecialType() {
+	if($V('LinkFlag')=="Y") {
+		$(".linkspecial").show();	
+		$(".simplespecial").hide();	
+	} else {
+		$(".linkspecial").hide();	
+		$(".simplespecial").show();	
+	}
+}
+
+Page.onLoad(function(){
+	changeSpecialType();
+})
+</script>
+<%@include file="../contentcore/contentScript.zhtml"%>
+</head>
+<body>
+<form id="contentform">
+<input type="hidden" id="ID" value="${ID}" />
+<input type="hidden" id="ContentID" value="${ContentID}" />
+<input type="hidden" id="CatalogID" value="${CatalogID}" />
+<input type="hidden" id="SiteID" value="${SiteID}" />
+<input type="hidden" id="Method" value="${Method}" />
+	<table width="100%" border="0" align="center" style="padding: 4px">
+		<tr>
+			<td width="90">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td height="30" align="right"><span class="dye"><z:lang id="Special.Name">专题名称</z:lang>：</span></td>
+			<td>
+				<input type="text" id="Title" name="Title" style="width:390px;" value="${Title}" onChange="setFileName();"
+						onBlur="setFileName();" verify="NotNull" />
+				<z:checkbox id="LinkFlag"
+						value="${LinkFlag}" onclick="changeSpecialType();"
+						options="@{Special.LinkSpecial}:Y" />
+			</td>
+		</tr>
+		<tr id="trVerifyTitle" style="display: none;">
+			<td height="28" align="right" style="padding-right: 5px;">&nbsp;</td>
+			<td align="left" valign="middle">
+			<div id="catalognotice" class="notice"
+				style="margin: 0px; border-width: 1px; width: 376px; padding-top: 2px; padding-bottom: 2px"><font
+				color="#FF6600">&nbsp;&nbsp;&nbsp;<z:lang id="Contentcore.Title.Notice">注意：当前栏目下已有相同标题的记录</z:lang></font></div>
+			<div id="sitenotice" class="notice"
+				style="margin: 0px; border-width: 1px; width: 376px; padding-top: 2px; padding-bottom: 2px; display: none;"><font
+				color="#FF6600">&nbsp;&nbsp;&nbsp;<z:lang id="Contentcore.Title.SiteNotice">注意：当前站点下已经存在相同标题的记录</z:lang></font></div>
+			</td>
+		</tr>
+		<tr class="simplespecial">
+			<td height="30" align="right"><span class="dye"><z:lang id="Special.GeneratedFileName">生成文件名</z:lang>：</span></td>
+			<td>
+				<input type="text" id="FileName" name="FileName" style="width:390px;" value="${FileName}" verify="NotNull&&&&@{Contentcore.FileNameContain}|Regex=^[a-zA-Z0-9_-]+$" />
+			</td>
+		</tr>
+		<tr id="Tr_schema" class="simplespecial">
+			<td height="30" align="right"><span class="dye"><z:lang id="Special.LayoutSchema">布局方案</z:lang>：</span></td>
+			<td>
+				<z:select id="Schema" style="width:390px;" defaultblank="true" method="Special.getSchemaList" />
+			</td>
+		</tr>
+		<tr class="linkspecial" style="display:none;">
+			<td height="30" align="right"><span class="dye"><z:lang id="Article.RedirectURL">转向链接</z:lang>：</span></td>
+			<td>
+				<input type="text" readonly
+					id="CName" verify="NotNull" condition="$V('LinkFlag')=='Y'"
+					value="${CName}" style="width: 295px"/> <input
+					name="RedirectURL" type="hidden" id="RedirectURL" size="50"
+					value="${RedirectURL}" /> <input type="button"
+					onclick="selectContent()"
+					value="@{Contentcore.LinkToContent}" />
+				<input type="button" onclick="selectCatalog()"
+					value="@{Contentcore.LinkToCatalog}" />
+				<input type="button" onclick="inputUrl()"
+					value="@{Contentcore.ExternalURL}" />
+			</td>
+		</tr>
+		
+		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.Site.PublishPlatform">发布平台</z:lang>：</span></td>
+ 			<td><z:checkbox id="PlatformAttribute" method="PublishPlatform.getUsedPublishPlatforms" value="${PlatformAttribute}" onClick="hasChangePlatFormAttribute($('#platFormAttributeChange'))"/><input type="hidden" id="platFormAttributeChange" name="platFormAttributeChange" value="false"></td>
+ 		</tr>
+		
+		<tr>
+			<td height="30" align="right"><span class="dye"><z:lang id="Contentcore.Logo">Logo图片</z:lang>：</span></td>
+			<td>
+	<a href="#"><img  style="max-width:120px;max-height:120px;" onclick="${!DisableEdit?'uploadLogo();':''}" src="${LogoSrc}"onerror="src='../platform/images/picture404.gif';this.onerror=null;" border="0" align="absmiddle" id="LogoSrc"></a>
+		<input type="hidden"  ID="LogoFile" value="${LogoFile}">
+	<script>
+	function uploadLogo(){
+		var diag = new Dialog();
+		diag.width = 805;
+		diag.height = 450;
+		diag.title = "@{Special.Add.LogoFile}";
+		diag.url = "../contentcore/resourceDialog.zhtml?InputType=radio&SiteID="+$V("#SiteID")+"&DataType=CatalogLogo&DataID="+$V("#ID")+"&CatalogID="+$V("#CatalogID")+"&ResourceType=image&ImageType=logo&ImageWidth=120&ImageHeight=120";
+		diag.onReady = function() {
+			$DW.$( document ).on("pageinit", ".ui-page", function() {
+				$DW.$("#trSourceType").hide();
+			});
+		}
+		diag.onOk = function(){
+			$DW.getImage(function(src,path,resourceID){
+				path=path.substring(0,path.lastIndexOf("."))+path.substring(path.lastIndexOf("."));
+				$("#LogoSrc").attr("src",src);
+				$S("#LogoFile",path);
+				canCutting();
+				});
+			};
+		diag.show();
+	}
+	function hasSizeSuffix(url){
+		var i1 = url.lastIndexOf("_");
+		var i2 = url.lastIndexOf("x",url.lastIndexOf("."));
+		if(i2>0&&i1>0&&i2>i1){
+			return true;
+			}
+		return false;
+	}
+	function removeSizeSuffix(url){
+		var i1 = url.lastIndexOf("_");
+		var i2 = url.lastIndexOf("x",url.lastIndexOf("."));
+		if(i2>0&&i1>0&&i2>i1){
+			return url.substring(0,i1)+url.substring(url.lastIndexOf("."));
+			}
+		return url;	
+		}
+	function cleanLogo(){
+		$("#LogoSrc").attr("src",'../platform/images/addpicture.png');
+		$S("#LogoFile",'');
+		}
+	function editLogo() {
+		var diag = new Dialog("CuttingDiag");
+		diag.width = 800;
+		diag.height = 500;
+		diag.title = "@{Contentcore.ImageCutting.Title}";
+		var path = $V("LogoFile");
+		if(!path){
+			return;
+			}
+		path = removeSizeSuffix(path);
+		diag.url = "../contentcore/commonImageCuttingDialog.zhtml?SiteID="+$V("SiteID")+"&Path="+path;
+		diag.onOk = function(){
+			var dc = {SiteID:$V("SiteID"),Path:path};
+			var wait = Dialog.wait("@{Contentcore.WaitingTip}");
+			Server.sendRequest("CatalogResources.cuttingSave", dc, function(response){
+				wait.close();
+				if(response.Status == 1) {
+					$D.close();
+					var src = $("#LogoSrc").attr("src");
+					if(src.indexOf("?") > 0) {
+						src = src.substring(0, src.indexOf("?"));
+					}
+					src += "?" + new Date().getTime();
+					$("#LogoSrc").attr("src", src);
+				} else {
+					Dialog.warn(response.Message);
+				}
+			});
+		};
+		diag.show();
+	}
+	function canCutting(){
+		var src = $V("#LogoFile");
+		if(src && src.toLowerCase().startsWith("http")) {
+			$("img.btn_cutting").hide();
+		}else{
+			$("img.btn_cutting").show();
+		}
+	}
+	Page.onLoad(function(){
+		canCutting();
+	});			</script>
+			<z:if condition="${!DisableEdit}">
+			<a href="#"><img onclick="uploadLogo();" title="@{Common.Edit}" alt="edit" src="../framework/images/icon_edit15.gif"></a>
+			<a href="#;"><img onclick="cleanLogo();" title="@{Common.Clear}" alt="clear" src="../framework/images/icon_delete15.gif"></a>
+				<z:if condition="${!startsWith(LogoSrc,'http')}" >
+				<a href="#;"><img onclick="editLogo();" title="@{Contentcore.ImageCutting.Title}" alt="cutting" src="../framework/images/icon_clip15.gif"></a>
+	            </z:if>
+            </z:if>
+			</td>
+		</tr>
+		<tr>
+			<td height="30" align="right" valign="top"><span class="dye"><z:lang id="Media.Info">简介</z:lang>：</span></td>
+			<td>
+				<textarea id="Summary" name="Summary" style="width:390px;height:65px;" verify="Length<=200">${Summary}</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td align="right"><span class="dye"><z:lang id="Contentcore.Weight" >权重</z:lang>：</span></td>
+			<td><z:slider id="Weight" value="${Weight}" /></td>
+		</tr>
+		
+	</table>
+	<z:extend id="com.zving.contentcore.ContentExtendUI" />
+	</form>
+</body>
+</z:init>
+</html>

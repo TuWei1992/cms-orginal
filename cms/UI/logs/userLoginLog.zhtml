@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+
+<script src="../framework/main.js"></script>
+<script>
+function _search(){
+	if($V("StartDate") && $V("EndDate") && $V("StartDate")>$V("EndDate")){
+		Dialog.alert("@{Comment.endTimeAfterStarTime}");
+		return;
+	}
+	DataGrid.setParam('dg1', Constant.PageIndex,0);
+	DataGrid.setParam('dg1', "UserName",$V("UserName"));
+	DataGrid.setParam('dg1', "IP",$V("IP"));
+	DataGrid.setParam('dg1', "Message",$V("Message"));
+	DataGrid.setParam('dg1', "StartDate",$V("StartDate").trim());
+	DataGrid.setParam('dg1', "EndDate",$V("EndDate").trim());
+	DataGrid.loadData('dg1');
+}
+</script>
+</head>
+<body class="z-body-detail">
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="100%" class="js_layoutTable">
+  <tr>
+    <td height="37">
+    	<z:toolbar>
+				<span style="padding-left:4px;">
+				<z:lang id="Common.UserName">用户名</z:lang>: <input type="text" name="UserName" id="UserName">
+				
+				从&nbsp;<input value="" type="text" id="StartDate" size="24" name="StartDate" ztype="DateTime"  class="inputText">
+				至&nbsp;<input value="" type="text" id="EndDate" size="24" name="EndDate" ztype="DateTime"  class="inputText"  >	
+					<z:lang id="Common.IP">IP地址</z:lang>: <input type="text" id="IP" style="width:80px" />
+					<z:lang id="Logs.OriginalMessage">原始消息</z:lang>: <input type="text" id="Message" style="width:120px" />
+	     		<z:button onClick="_search()">
+						<img src="../icons/icon003a1.png" /><z:lang id="Common.Search">搜索</z:lang>
+					</z:button>
+				</span>
+     	</z:toolbar>
+    </td>
+  </tr>
+  <tr valign="top">
+		<td style="padding: 10px;" height="*">
+		<z:datagrid id="dg1" method="Log.bindUserLoginGrid" size="30" autoPageSize="true" >
+			<table width="100%" cellpadding="2" cellspacing="0" class="z-datagrid">
+				<tr ztype="head" class="dataTableHead">
+					<td width="4%" ztype="RowNo"><z:lang id="Common.SN">序号</z:lang></td>
+					<td width="15%"><z:lang id="Common.Time">时间</z:lang></td>
+					<td width="10%"><z:lang id="Common.UserName">用户名</z:lang></td>
+					<td width="10%"><z:lang id="Common.IP">IP地址</z:lang></td>
+					<td width="25%"><z:lang id="Logs.OriginalMessage">原始消息</z:lang></td>
+					<td width="20%"><z:lang id="Common.Memo">备注</z:lang></td>
+				</tr>
+				<tr>
+					<td align="center">&nbsp;</td>
+					<td>${format(AddTime, 'yyyy-MM-dd HH:mm:ss')}</td>
+					<td>${UserName}</td>
+					<td>${IP}</td>
+					<td title="${LogMessage}">${LogMessage}</td>
+					<td title="${LogMessageName}">${LogMessageName}</td>
+				</tr>
+				<tr ztype="pagebar">
+					<td colspan="4">${PageBar}</td>
+				</tr>
+			</table>
+		</z:datagrid>
+		</td>
+ 	</tr>
+</table>
+</body>
+</html>

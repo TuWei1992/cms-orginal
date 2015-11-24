@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+
+<%@ page isELIgnored="true" %>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script src="../framework/main.js"></script>
+</head>
+<body class="z-body-detail">
+<script>
+function addColumn(){
+	var diag = new Dialog("添加查询列","cxDataModelSearchColumnDialog.zhtml?ModelID="+$V('#ID'),850,330);
+	diag.onLoad = function(){
+		try{
+			$DW.$('#Name').focus();
+		}catch(e){}	
+	};
+	diag.onOk = saveColumn;
+	diag.show();
+}
+
+function edit(){
+	var arr = DataGrid.getSelectedValue("dgl_col");
+	if(!arr||arr.length==0){
+		Dialog.alert("@{Framework.DataGrid.PleaseSelectFirst}");
+		return;
+	}
+	var diag = new Dialog("编辑查询列","cxDataModelSearchColumnDialog.zhtml?ModelID="+$V('#ID')+"&ID="+arr[0],850,330);
+	diag.onLoad = function(){
+		try{
+			$DW.$('#Name').focus();
+		}catch(e){}	
+	};
+	diag.onOk = saveColumn;
+	diag.show();
+}
+
+function saveColumn(){
+	if($DW.Verify.hasError()){
+		return;
+	}
+	var dc = $DW.Form.getData("F1");
+	if(!isEmpty($DW.$V("ListOptions"))) {
+		dc.ListOptions=$DW.$V("ListOptions").replace(new RegExp('<br>', "gm"), "\n");
+	}
+	var keyword="date,datetime,order";
+	var keycode=$DW.$V("#Code").trim();
+	if(keyword.indexOf(keycode.toLowerCase())!=-1){
+		Dialog.alert("@{Contentextend.ResetCode}");
+		return;
+	}
+	Server.sendRequest("CXDataModel.saveSearchColumn",dc,function(response){
+		if(response.Status == 1) {
+			MsgPop(response.Message);
+			DataGrid.clearAllSelected("dgl_col");
+			DataGrid.loadData("dgl_col");
+			$D.close();
+		} else {
+			Dialog.alert(response.Message);
+		}
+	});
+}
+
+function delColumn(){
+	var arr = DataGrid.getSelectedValue("dgl_col");
+	if(!arr||arr.length==0){
+		Dialog.alert("@{Common.PleaseSelectToDeleteRowFirst}");
+		return;
+	}
+	Dialog.confirm("@{Common.ConfirmDelete}",function(){
+		var dc = {IDs:arr.join()};
+		Server.sendRequest("CXDataModel.deleteColumn",dc,function(response){
+			if(response.Status==1){
+				MsgPop(response.Message);
+				DataGrid.clearAllSelected("dgl_col");
+				DataGrid.loadData("dgl_col");
+			} else {
+				Dialog.warn(response.Message);
+			}
+		});
+	})
+}
+
+Page.onLoad(function(){
+	if(!$V('#ID')){
+		$("#extendModelColumn_toolbar a").disable();
+		$("#extendModelColumn_layoutTable").disable();
+	} 
+});
+
+function afterRowSortEnd(evt, ui, ele){
+    var oldRowIndex, newRowIndex;
+    var $row=ui.item;
+    oldRowIndex=$row.data('originalIndex');
+    newRowIndex=DataGrid.getRowIndex(ele,$row);
+    var pageIndex=DataGrid.getParam(ele, Constant.PageIndex);
+    if(newRowIndex==oldRowIndex){
+        return;
+    }
+    var dc = {oldRowIndex:oldRowIndex,newRowIndex:newRowIndex,pageIndex:pageIndex,ID:$(ele).getComponent('DataGrid').DataSource.get(oldRowIndex,"ID")};
+
+    /* 如果有排序字段，把排序字段的值也传到后台*/
+    var orderFlag = $(ele).getComponent('DataGrid').DataSource.get(oldRowIndex,"OrderFlag");//原有的排序权值
+    targetOrderFlag = $(ele).getComponent('DataGrid').DataSource.get(newRowIndex,"OrderFlag");//要排到这一行的后面
+    dc.TargetOrderFlag=targetOrderFlag;
+    dc.OrderFlag=orderFlag;
+    
+    DataGrid.showLoading(ele);
+    Server.sendRequest("CXDataModel.sortColumn",dc,function(response){
+    	if(response.Status==1){
+			MsgPop(response.Message);
+			DataGrid.clearAllSelected("dgl_col");
+			DataGrid.loadData(ele);
+		} else {
+			Dialog.warn(response.Message);
+		}
+    });
+}
+</script>
+
+<form id="F2">
+<input type="hidden" id="ID" value="${ID}" />
+<table width="100%" id="extendModelColumn_layoutTable" border="0" cellspacing="0"
+	cellpadding="0" height="*" class="js_layoutTable">
+	<tr>
+		<td height="37" id="extendModelColumn_toolbar">
+			<z:toolbar theme="flat">
+			<z:button onClick="addColumn()" priv="ContentCore.ExtendModelMenu.Save" theme="flat"><img src="../icons/icon005a2.png" /><z:lang id="Metadata.AddColumn">添加字段</z:lang></z:button> 
+			<z:button onClick="edit()" priv="ContentCore.ExtendModelMenu.Save" theme="flat"><img src="../icons/icon005a4.png" /><z:lang id="Platform.EditField">修改字段</z:lang></z:button>
+			<z:button onClick="delColumn()" priv="ContentCore.ExtendModelMenu.Save" theme="flat"><img src="../icons/icon005a3.png" /><z:lang id="Metadata.DeleteColumn">删除字段</z:lang></z:button>
+			</z:toolbar>
+			</td>
+	</tr>
+	<tr valign="top">
+		<td style="padding: 10px;" height="*">
+		<div class="z-overflowPanel" style="height: 100%;">
+		<z:init>
+			<z:datagrid id="dgl_col"
+				method="CXDataModel.bindSearchColumnGrid"
+				page="true" size="15">
+				<table width="100%" cellpadding="2" cellspacing="0" class="z-datagrid" sortEnd="afterRowSortEnd">
+					<tr ztype="head" class="dataTableHead">
+						<td width="3%" ztype="rowno"  drag="true"><img src="../framework/images/icon_drag.gif" width="16" height="16"></td>
+						<td width="3%" ztype="selector" field="ID">&nbsp;</td>
+						<td width="17%"><z:lang id="Common.Name">名称</z:lang></td>
+						<td width="17%"><z:lang id="Common.Code">代码</z:lang></td>
+						<td width="16%"><z:lang id="Metadata.ControlType">控件类型</z:lang></td>
+						<td width="8%" align="center"><z:lang id="Metadata.Mandatory">必填</z:lang></td>
+					</tr>
+					<tr ondblclick="edit()">
+						<td align="center">&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>${Code}</td>
+						<td>${Name}</td>
+						<td>${ControlType}</td>
+ 						<td>${MandatoryFlagName}</td>
+					</tr>
+				</table>
+			</z:datagrid>
+		</z:init></div></td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

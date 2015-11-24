@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script src="../framework/main.js"></script>
+</head>
+<z:init method="CXDataModel.init">
+<body class="z-body-detail">
+<script>
+Page.onLoad(function(){
+	if(!$V('#ID')){
+		$("#extendModelInfo_toolbar1 a, #extendModelInfo_toolbar2 a").disable();
+		$("#extendModelInfo_layoutTable input, #extendModelInfo_layoutTable textarea").disable();
+	} 
+});
+	
+function save(){
+	if(Verify.hasError()){
+		return;
+	}
+	var dc = Form.getData("F1");
+	Server.sendRequest("CXDataModel.save",dc,function(response){
+		if(response.Status == 1) {
+			MsgPop(response.Message);
+			loadData();
+		} else {
+			Dialog.warn(response.Message);
+		}
+	});
+}
+
+</script>
+
+<table width="100%" id="extendModelInfo_layoutTable" border="0" cellspacing="0"
+	cellpadding="0" height="*" class="js_layoutTable">
+	<tr>
+		<td height=33 id="extendModelInfo_toolbar1">
+			<z:toolbar theme="flat">
+				<z:button onClick="save()" priv="ContentCore.ExtendModelMenu.Save" theme="flat">
+					<img src="../icons/icon005a16.png" /><z:lang id="Common.Save">保存</z:lang></z:button>
+			</z:toolbar> 
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style="padding: 6px;">
+			<div class="z-contentBorder" style="background:#fcfcfc;">
+			<form id="F1">
+			<table width="100%" align="center" style="margin-top:6px;margin-bottom:6px;" cellpadding="2" cellspacing="4">
+        <tr>
+          <td width="30%" height="28" align="right">模型名称：</td>
+          <td width="70%"><input type="text" id="Name" 
+          	value="${Name}" style="width:200px" verify="NotNull" />
+           			<input type="hidden" id="ID" value="${ID}" />
+				  </td>
+        </tr>
+        <tr>
+          <td height="28" align="right">模型代码：</td>
+          <td><input type="text" id="Code" value="${Code}" style="width:200px" verify="NotNull" /> </td>
+        </tr>
+         <tr>
+          <td height="35" align="right">API接口：</td>
+          <td align="left"><input name="APIName" type="text" id="APINAME" verify="NotNull"
+				value="${APIName}" style="width:200px" /></td>
+          <td align="left"><span class="gray"></span></td>
+        </tr>
+        <!--  
+         <tr>
+          <td height="35" align="right">是否分页：</td>
+          <td align="left"><z:radio id="PageFlag" code="YesOrNo" value="${PageFlag}" /></td>
+          <td align="left"><span class="gray"></span></td>
+        </tr>
+        -->
+        <tr>
+          <td height="28" align="right"><z:lang id="Common.Memo">备注</z:lang>：</td>
+          <td><textarea id="Memo"  style="width:200px">${Memo}</textarea></td>
+        </tr>
+      </table>
+    	</form>
+		</div>
+		</td>
+	</tr>
+</table>
+</body>
+</z:init>
+</html>

@@ -1,0 +1,55 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+
+<div class="z-legend"><b>车享配置</b></div>
+<div class="z-card">
+	<table width="500" border="1" cellpadding="4" cellspacing="0" bordercolor="#eee" class="formTable">
+	    <tr>
+		  <td nowrap width="160">数据模型：</td>
+		  <td colspan="3"><z:select  id="CXDataModelProp"  defaultBlank="true" method="CXDataModel.getAllModels" value="${CXDataModelProp}" ></z:select></td>
+		</tr>
+		<!--  
+		<tr>
+		  <td nowrap width="160">发布条件：</td>
+		  <td colspan="3"><z:select  id="CXDataPublishConditionProp"   defaultBlank="true"  method="CXData.getAllCXDataConditions" value="${CXDataPublishConditionProp}" ></z:select></td>
+		</tr>
+		
+		<tr>
+	  <td width="160">车享定时发布启用状态</z:lang>：</td>
+	  <td><z:radio value="${CXDataCronPublishEnable}" id="CXDataCronPublishEnable" 
+	  	onClick="onCXDataCronPublishEnableChange()" defaultCheck="N" code="Enable" /></td>
+	</tr>
+	<tr>
+		<td>车享定时发布起始时间：</td>
+		<td> 
+     <input type="text" id="CXDataCronPublishStartTime" ztype="DateTime" style="width:140px" value="${CXDataCronPublishStartTime}" disabled="true" size="20" />
+    </td>
+	</tr>
+	<tr>
+		<td>车享定时发布执行周期：</td>
+		<td> 
+			<z:lang id="Cron.Per">每隔</z:lang><input type="text" id="CXDataCronPublishPeriod" value="${CXDataCronPublishPeriod}" disabled="true" size="1" />
+        <z:select id="CXDataCronPublishPeriodType" style="width:50px;" disabled="true"
+        	options='@{Common.Minutes}:Minute,@{Common.Hours}:Hour,@{Common.Days}:Day,@{Common.Months}:Month' value="${CXDataCronPublishPeriodType}" />
+     </td>	
+	</tr>
+	 -->
+	</table>
+</div>
+
+<script>
+Page.onLoad(function(){
+	onCXDataCronPublishEnableChange();
+});
+function onCXDataCronPublishEnableChange(){
+	if($NV("CXDataCronPublishEnable")=="N"){
+ 		$('#CXDataCronPublishStartTime').disable();
+ 		$('#CXDataCronPublishPeriod').disable(); 
+ 		$('#CXDataCronPublishPeriodType').disable(); 
+	}else{
+ 		$('#CXDataCronPublishStartTime').enable();
+ 		$('#CXDataCronPublishPeriod').enable(); 
+ 		$('#CXDataCronPublishPeriodType').enable(); 
+ 	}
+}
+</script>

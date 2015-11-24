@@ -1,0 +1,40 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<script>
+function browseTemplate(id, type, tid, platformID) {
+	var value = $V(tid)
+	var diag = new Dialog("@{Contentcore.Block.SelectTemplateFile}", "../contentcore/templateSelectDialog.zhtml?SiteID=" + $V('SiteID') + "&Type=" + type + "&Value=" + value+"&PlatformID="+platformID, 700, 300);
+	diag.onOk = function() {
+		var t = $DW.getTemplate();
+		if(!t){
+			t = "";
+		} 			
+		$S(id,t);
+		$D.close();
+	};
+	diag.show();
+}
+
+function prepareData(dc){
+	//不需要处理
+}
+</script>
+<div id="DivTemplate">
+<z:panelheader><strong><z:lang id="Contentcore.TemplateFile">模板文件</z:lang></z:panelheader>
+<table border="0" cellpadding="3" cellspacing="0"  style="margin-top:5px">
+<tr>
+  <td align="right" width="80"><z:lang id="Contentcore.Block.Template">模板</z:lang>：</td>
+  <td><input name="Template" type="text" 
+  id="Template" value="${Template}" size="35" />
+	<input name="Button"
+  type="button" class="input2" id="Button" value="@{Common.Browse}..."
+  onClick="browseTemplate('Template','Block','Template','pc');">
+  <!-- 其他平台模板浏览 -->
+	<z:list method="platformContentTemplate.getUsedPublishPlatformsExPCList">
+       	 <input name="Button22" type="button" class="input2" id="Button_${ID}"
+            value="${Name}..." onClick="browseTemplate('Template', 'Block','Template','${ID}')">
+	</z:list>
+  </td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,38 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<z:init method="BlockList.initDialog">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../framework/main.js"></script>
+</head>
+<body>
+<table width="100%" height="100%"  border="0" cellspacing="0"
+	cellpadding="0" height="*" >
+	<tr>
+		<td valign="middle" align="center">
+			<table width="95%" cellpadding="3" cellspacing="0" style="text-align:left;">
+				<tr>
+					<td valign="top" width="40"><z:lang id="Contentcore.Prompt">提示</z:lang>：</td>
+					<td><z:lang id="Contentcore.PublishConfrim">本次生成的静态页面将覆盖原有页面，确认生成所有静态页面吗</z:lang></td>
+				</tr>
+				<tr id="trCheckbox">
+					<td></td>
+					<td>
+						<input type="checkbox" id="PublishChild" checked="checked" name="PublishChild" value="true"><label for="PublishChild"><z:lang id="Contentcore.IncludeChildCatalog">包含子栏目</z:lang></label>
+						<input type="checkbox" id="PublishDetail"  name="PublishDetail" value="true"><label for="PublishDetail"><z:lang id="Contentcore.GenerateDetailPage">生成详细页</z:lang></label>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
+</z:init>

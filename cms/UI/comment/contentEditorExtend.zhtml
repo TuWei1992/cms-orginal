@@ -1,0 +1,41 @@
+<z:init method="Comment.initContentEditExtend">
+<!--//zq 2015/05/14 ${IsCommentEnable} -->
+<z:if condition="false">
+<table width="100%" cellpadding="2" cellspacing="0">
+<tbody>
+	<tr>
+		<td width="90" height="28" align="right"><span class="dye"><z:lang id="Comment.EnableCommentInArticle">允许评论</z:lang>：</span></td>
+		<td align="left" nowrap>
+			<z:radio code="YesOrNo" onclick="isDisplayComment(this.value);" value="${CommentEnable}" id="CommentEnable" defaultCheck="Y"></z:radio>
+		</td>
+		<td class="commentTime" align="right" nowrap><z:lang id="Comment.CommentStartTime">评论开始时间</z:lang>：</td>
+		<td class="commentTime" align="left"><input type="text" id ="CommentStartTime" ztype="dateTime" value="${format(CommentStartTime, 'yyyy-MM-dd HH:mm:ss')}" style="width:140px;"/></td>
+	    <td class="commentTime" align="right" nowrap><z:lang id="Comment.CommentEndTime">评论结束时间</z:lang>：</td>
+		<td class="commentTime" align="left"><input type="text" id ="CommentEndTime" ztype="dateTime" value="${format(CommentEndTime, 'yyyy-MM-dd HH:mm:ss')}" style="width:140px;"/></td>
+	</tr>
+</tbody>
+</table>
+</z:if>
+</z:init>
+<script type="text/javascript">
+//是否显示评论时间
+function isDisplayComment(value){
+	var commentTime_1 = $G('#commentTime_1');
+	var commentTime_2 = $G('#commentTime_2');
+	var commentTime_3 = $G('#commentTime_3');
+	var commentTime_4 = $G('#commentTime_4');
+	if(value == "N"){
+		$(".commentTime").hide();
+	}else{
+		$(".commentTime").show();  
+	}
+}
+
+Page.onLoad(function(){ 
+ var commentEnable  = '${CommentEnable}';
+ if(${IsCommentEnable}){
+	 	isDisplayComment(commentEnable);
+    }
+
+},1);
+</script>

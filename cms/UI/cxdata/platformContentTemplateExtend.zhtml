@@ -1,0 +1,25 @@
+<%@include file="../../include/init.zhtml"%>
+<tr>
+	<td align="right"><z:lang id="Contentcore.Block.Template">模板</z:lang>：</td>
+	<td>
+		<!-- 独立模板标记 -->
+		<z:checkbox id="TemplateFlag" value="${TemplateFlag}" options="PC:Y" onclick="showTemplate()" />
+		<z:checkbox id="PlatformContentTemplateFlag"  method="platformContentTemplate.getUsedPublishPlatformsExPC" value="${PlatformContentTemplateFlag}" onclick="showTemplate()"/><br />
+		<input type="checkbox"  checked="true"  name="PlatformContentTemplateFlag" value="NO" style="display:none" />
+		
+		<!-- 独立模板文件 -->
+		<div id="spanTemplate" style="display:none;margin-top:5px;">
+			<input type="text" id="Template" value="${Template}" verify="NotNull" condition="$NV('TemplateFlag')=='Y'" /> 
+			<input type="button" class="input2" id="Button22" value="@{Common.Browse}..." onClick="browseTemplate('Template','${SiteID}','${DetailTemplateType}','Template')">
+		</div>
+		
+		<z:list method="platformContentTemplate.getUsedPublishPlatformsExPCList">
+            <div id="spanTemplate_${ID}" style="display: none;margin-top:3px;">
+            <input type="text" id="platformContentTemplate_${ID}" name="platformContentTemplate_${ID}" value="${eval(eval('platformContentTemplate_${ID}'))}" 
+            verify="NotNull" condition="$NV('PlatformContentTemplateFlag_${i-1}')=='${ID}'"/>
+        	 <input name="Button22" type="button" class="input2" id="Button_${ID}"
+             value="${Name}..." onClick="browseTemplateByPlatform('platformContentTemplate_${ID}', '${SiteID}','${DetailTemplateType}','${ID}')">
+			</div>
+		</z:list>
+	</td>
+</tr>

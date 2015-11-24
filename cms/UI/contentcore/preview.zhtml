@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:init method="PlatformPreview.init">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<!-- h5 -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<title>预览</title>
+<link href="../style/default.css" rel="stylesheet" type="text/css" />
+<script src="../framework/main.js"></script>
+<script>
+
+function showView(id,configURL){
+	Cookie.set("Content.LastPlatformID", id, 60*60*24*300);
+ 	_showView(id, configURL);
+}
+
+function changeViewMode()  {
+	var platformID="${defaultPlatform}";
+	var lastPlatformID = Cookie.get("Content.LastPlatformID");
+	if (lastPlatformID && $("#"+lastPlatformID)) {
+		platformID = lastPlatformID;
+	}
+	Cookie.set("Content.LastPreviewMode_" + platformID, "none_platform", 60*60*24*300);
+	$(".viewMode").each(function(){
+		if ($(this).attr("checked")) {
+			Cookie.set("Content.LastPreviewMode_" + platformID, $(this).val(), 60*60*24*300);
+			return false;
+		}
+	});
+	_changeViewMode();
+}
+
+function _changeViewMode(id) {
+	$('#EditView').attr("class", "");
+	if (id) {
+		$(".viewMode").each(function(){
+			$(this).attr("checked", false);
+		});
+		var viewMode = document.getElementById("viewMode_" + id);
+		var lastPreviewMode = Cookie.get("Content.LastPreviewMode_" + id);
+		if (lastPreviewMode) {
+			viewMode =  document.getElementById("viewMode_" + lastPreviewMode);
+		}
+		if (viewMode){
+			viewMode.checked=true;
+		}
+
+
+	}
+	$(".viewMode").each(function(){
+		if ($(this).attr("checked")) {
+			$('#EditView').attr("class", $(this).val());
+			return false;
+		}
+	});
+}
+
+function _showView(id,configURL){
+	try  {
+		$("#EditView").contents().find("body").html("");
+	} catch (e) {
+
+	}
+	
+	var url = $V("previewURL")+"&platformID="+id;
+ 	$("[name=platform]").each(function(){
+ 		$(this).removeClass('z-btn-checked');
+ 	});
+ 	$("#" + id).addClass('z-btn-checked');
+	_changeViewMode(id);
+	$('#EditView').attr("src",url);
+	
+}
+
+Page.onLoad(function(){
+	var platformID="${defaultPlatform}";
+	var lastPlatformID = Cookie.get("Content.LastPlatformID");
+	if (lastPlatformID && $("#"+lastPlatformID)) {
+		platformID = lastPlatformID;
+	}
+	_showView(platformID);  
+});
+</script>
+</head>
+<style type="text/css">
+#tempTags .z-btn b { padding:0 6px 0 0px}
+#tempTags .z-toolbar .z-btn{ padding-left:6px; }
+.Html5{	
+	background: url(../cxdata/images/mobile.png) no-repeat;
+	width: 378px;
+	height: 628px;padding: 51px 11px;
+	margin: 2px 10px;
+}
+.Html5 body{
+	
+}
+.mobileView {
+	font-weight:bold;
+	margin-left:20px;
+}
+</style>
+<body class="z-body-detail" style="background-color: white">
+<input type="hidden" value="${previewURL}" id="previewURL">
+<table width="100%" border="0" cellspacing="0" cellpadding="0"
+     class="">
+	<tr>
+		<td height="37">
+            <z:toolbar>
+            	<b><z:lang id="Contentcore.PublishPlatformList">所属平台</z:lang>：</b>
+			   <z:list method="PublishPlatform.getUsedPlatforms">
+			    <z:button type="radio" onclick="showView('${ID}','${ConfigURL}')" theme="flat" id="${ID}" name="platform"> 
+	        		<img src="../${Icon}" />${Name}
+	        	</z:button> 
+			  </z:list>
+	           <label class="mobileView"><input id="viewMode_Html5" onclick="changeViewMode()" class="viewMode"  name="viewMode" value="Html5" type="checkbox" />手机视图 </label>
+			 </z:toolbar>
+</td>
+	</tr>
+</table>
+
+<iframe src="about:blank"
+	width="100%" height="90%" frameborder="0" name="EditView"
+	id="EditView"></iframe>
+
+</body>
+</html>
+</z:init>

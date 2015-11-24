@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<z:init method="Login.init">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>${Title}</title>
+<link rel="shortcut icon" href="include/favicon.ico" type="image/x-icon" />
+<link href="style/default.css" rel="stylesheet" type="text/css">
+<style>
+.lable {
+	padding-top: 3px;
+	width: 90px;
+	float: left;
+	color: #333333;
+	font-size: 14px;
+	text-align: right;
+}
+
+.inputWrap {
+	line-height: 16px;
+	border: none;
+	width: 200px;
+	float: left;
+}
+
+.selectWrap {
+	background: url(platform/images/loginSelectWrapbg.gif) no-repeat left
+		top;
+}
+
+.verifyCodeWrap {
+	display: none;
+}
+
+.verifyCode {
+	float: left;
+}
+
+.verifyCodeWrap .inputWrap {
+	
+}
+
+.welcome {
+	color: #2477b3;
+	font-family: "微软雅黑", Tahoma, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 0;
+	padding-top: 10px;
+	padding-left: 20px;
+	letter-spacing: 1px;
+	text-align: center;
+}
+
+img {
+	vertical-align: middle;
+}
+
+input.inputText {
+	background: transparent none;
+	border: none;
+	margin-top: 3px;
+	_margin-top: 1px;
+}
+
+.inputWrap .inputText {
+	width: 192px;
+	height: 20px;
+	font-size: 14px;
+	padding-left: 6px;
+	margin-top: 0px;
+	padding-top: 4px;
+}
+
+input.inputTextHover {
+	background: transparent none;
+	border: none;
+}
+
+input.inputTextFocus {
+	background: transparent none;
+	border: none;
+}
+
+input[type="text"]:focus,input[type="password"]:focus {
+	background: transparent none;
+	border: none;
+}
+
+#loginBtnWrap {
+	padding: 12px 0px;
+	text-align: center;
+}
+
+#Language_outer .z-combox-spinner,#skin_outer .z-combox-spinner {
+	background: transparent;
+	border: none;
+}
+
+#Language_outer .z-combox-spinner b,#skin_outer .z-combox-spinner b {
+	border-top-color: #888;
+}
+
+.loginLogo {
+	width: 266px;
+	height: 45px;
+	margin: 0 auto;
+	background: url(product/images/logo_login.png);
+d	_filter: progid: DXImageTransform.Microsoft.AlphaImageLoader( src= 
+		'product/images/logo_login.png', sizingMethod=   'scale');
+	_background: none;
+}
+</style>
+<!--script>
+	window.onerror = function(message, file, line) {
+		alert('脚本错误：行:' + line + '  错误:' + message + '  文件:' + file);
+		var oFun=window.onerror.caller;
+		var oArgs=Array.prototype.slice.call(oFun.arguments);
+		alert('函数执行时的参数:\n' + oArgs +'\n抛出错误的函数:\n' + oFun);
+	};
+</script-->
+
+<script src="framework/main.js"></script>
+<script type="text/javascript">
+function needVerifyCode(userName,callBack){//验证是否需要验证码，参数:用户名,回调函数
+	if(showVerifyCode.showTimes){
+		callBack&&(typeof(callBack)=='function')&&callBack();
+	}else if(userName.trim()!==''){
+		var dc={UserName:userName};
+		Server.sendRequest("Login.needVerifyCode",dc,function(response){
+			if(response.Need){
+				showVerifyCode(callBack);
+			}else{
+				callBack&&(typeof(callBack)=='function')&&callBack();
+			}
+		});
+	}
+}
+function showVerifyCode(callBack){
+	if($G("verifyCodeWrap").innerText.trim()==""){
+		var sb = [];
+		sb.push('<div class="lable verifyCode">');
+      	sb.push("@{Login.VerifyCode}：");
+    	sb.push('</div>');
+    	sb.push('<div class="inputWrap"> <img id="imgCode" src="framework/images/blank.gif" alt="@{Login.RefreshVerifyCode}" height="28" width="80" align="absmiddle"');
+		sb.push(' style="cursor:pointer;background:url(authCode.zhtml?'+new Date().getTime()+') no-repeat center center;"');
+		sb.push(' onClick="this.style.backgroundImage=\'url(authCode.zhtml?\'+new Date().getTime()+\')\'" />');
+		sb.push('<input name="VerifyCode" type="text" class="inputText" style="width:110px;" id="VerifyCode" onFocus="this.select();">');
+    	sb.push('</div>');
+		$('#verifyCodeWrap').html(sb.join(''));
+		$("#verifyCodeWrap").show();
+		$("#imgCode").css("background","url(authCode.zhtml?"+new Date().getTime()+") no-repeat center center");
+		$(".fieldWrap").css('padding-top','7px');
+		$("#loginBtnWrap").css('padding-top','2px');
+	}else{
+		$('#imgCode').click();
+		$("#VerifyCode").val("");
+	}
+	callBack&&(typeof(callBack)=='function')&&callBack();
+	showVerifyCode.showTimes=showVerifyCode.showTimes?showVerifyCode.showTimes+1:1;
+}
+
+function login(){
+	Cookie.set("loginType", $V("#loginType_ldap"), 60*60*24*300);
+	if($V('#UserName').trim()==""||$V('#Password').trim()==""){
+		Dialog.alert("@{Login.InputUserNameOrPassword}");
+		return;
+	}
+	var codeInput=$("#VerifyCode");
+	if(codeInput.length>0&&codeInput.val().trim()===""){
+		Dialog.alert("@{Platform.PleaseInputVerifyCode}",function(){codeInput.focus();});
+		return;
+	}
+	var isVerifyCode = showVerifyCode.showTimes?true:false;
+	var dc = Form.getData('form1');
+	dc.IsVerifyCode = isVerifyCode;
+	Server.sendRequest("Login.submit",dc,function(response){
+		if(response&&response.Status==0){
+			Dialog.warn(response.Message,function(){
+				showVerifyCode();
+				if(response.Focus){
+					$("#"+response.Focus).focus();
+				}
+			});
+		}else if(response&&response.Status==408){
+			Dialog.alert('连接超时，可能的原因为网络中断或服务器错误，请稍后再试。')
+		}else if(response&&response.Status==10000){
+			Dialog.confirm("@{Platform.UserIsLogin}",function(){
+				var dc = Form.getData('form1');
+				dc.IsVerifyCode = isVerifyCode;
+				dc.logout ="Y";
+				Server.sendRequest("Login.submit",dc,function(response){
+					if(response&&response.Status==0){
+						$D.close();
+						Dialog.warn(response.Message);
+						showVerifyCode();
+					}else if(response&&response.Status==408){
+						$D.close();
+						Dialog.alert('连接超时，可能的原因为网络中断或服务器错误，请稍后再试。')
+					}
+				});
+				
+			});
+		}
+	});
+}
+
+
+function byebyeIE6(){
+	if(isIE && ieVersion<8){
+		var ie={
+				'6':{
+					y: new Date().getFullYear() - 2001
+				},
+				'7':{
+					y: new Date().getFullYear() - 2006
+				}
+			}
+		var msg;
+		if(Lang.getCurrentLang()=='en'){
+			msg='Find that you are using IE'+ieVersion+', the browser was released in '+ie[''+ieVersion].y+' years ago, the script execution is very low in it, We suggest you install a newer browsers to get the better operation experience.<br>'
+			msg+='<br> download <a target="_blank" href="http://www.google.com.hk/chrome/">chrome</a>';
+			msg+='&nbsp; download <a target="_blank" href="http://www.firefox.com.cn/download/">firefox</a>';
+			msg+='&nbsp; download <a target="_blank" href="http://windows.microsoft.com/zh-cn/internet-explorer/downloads/ie-8/">IE8</a>';
+			
+		}else{
+			msg='向您致以歉意：<br>　　发现您正在使用IE'+ieVersion+'浏览器，此浏览器已发布'+ie[''+ieVersion].y+'年，性能和兼容性较差，在此浏览器下本系统运行较慢。建议您安装最新的浏览器以获得流畅的使用体验。<br>';
+			msg+='<br> 下载<a target="_blank" href="http://www.google.com.hk/chrome/">谷歌浏览器</a>';
+			msg+='&nbsp; 下载<a target="_blank" href="http://www.firefox.com.cn/download/">火狐浏览器</a>';
+			msg+='&nbsp; 下载<a target="_blank" href="http://windows.microsoft.com/zh-cn/internet-explorer/downloads/ie-8/">微软IE8</a>';
+		}
+		new Dialog({
+			html:msg,
+			width:500,
+			left:'51%',
+			top:'40%',
+			modal:false
+			}).show();
+		//$('#loginBar').html(msg);
+		//$('#loginBar').css("padding-top","90px");
+	}
+	if(isIE && isLiebao){
+		Dialog.alert('发现你正在使用猎豹浏览器的IE兼容模式，请在页面空白处点击右键并选择“切换到极速模式”，以获得更好的用户体验。')
+	}
+	if(is360Old){
+		Dialog.alert('发现你正在使用低版本的360浏览器，请使用最新的360浏览器，以获得更好的用户体验。')
+	}
+}
+
+Page.onLoad(function(){
+ 	if("${(LinceseNearEndWarning)}"){
+		Dialog.alert("${(LinceseNearEndWarning)}");
+	}
+ 	$(document).on('keydown','input.inputText', function(evt){
+		if(evt.keyCode==13){
+			needVerifyCode($('#UserName').val(),login);
+			evt.preventDefault();
+			evt.stopPropagation();
+		}
+	});
+ 	$('#UserName').change(function(){
+ 		var userName=this.value.trim();
+ 		if(userName!==''){
+ 			needVerifyCode(userName);
+ 		}	
+ 	});
+ 	
+	$('#UserName').focus().select();
+	needVerifyCode($('#UserName').val());
+	Cookie.set("_ZCMS_ShowNewMessage", "false");
+	if(!Cookie.get("zcms_skin")){
+		Cookie.set("zcms_skin", $V('skin'), 60*60*24*100);
+	}
+	Selector.setValue('skin',Cookie.get("zcms_skin").toLowerCase(),null, true);
+	$S('skin',Cookie.get("zcms_skin").toLowerCase());
+	
+	//验证类型
+	var loginType = Cookie.get("loginType");
+	if (loginType && loginType == 'ldap') {
+		$("#loginType_ldap").attr("checked", true);
+		$("#loginType_local").removeAttr("checked");
+	}
+	
+	byebyeIE6();
+ });
+
+function onLanguageChange(){
+	var dc = {Language:$V('Language')};
+	Server.sendRequest("Application.changeLanguage",dc,function(response){
+		window.location.reload();
+	});
+}
+
+function onSkinChange(){
+	Cookie.set("zcms_skin", $V('skin'), 60*60*24*100);
+	Config.skin=$V('skin');
+	window.location.reload();
+}
+
+</script>
+</head>
+<body class="loginPageBody">
+	<!--[if lte IE 6]>
+<a id="maximizeController" href="maximizeController.html" target="_blank" style="display:none;">这是个链接</a>
+<script type="text/javascript">
+Page.onLoad(function(){
+	document.getElementById('maximizeController').click();
+	try{
+		window.focus();
+	}catch(e){}
+});
+</script>
+<![endif]-->
+	<script>
+if(window.top.location != window.self.location){
+	window.top.location = window.self.location;
+}
+</script>
+	<div class="loginWrapbg">
+		<div style="width: 100%; height: 50%; left: 0; top: 0; z-index: -1;"></div>
+		<div class="loginCt" style="">
+			<div class="loginLogo"></div>
+			<div class="welcome">
+				<z:lang id="Platform.WelcomeLogin">欢迎登录</z:lang>
+				${Title}
+			</div>
+			<div class="loginBar" id="loginBar">
+				<form id="form1" method="post">
+					<div class="">
+
+						<div class="fieldWrap">
+							<div class="lable userName">
+								<z:lang id="Common.UserName">用户名</z:lang>
+								：
+							</div>
+							<div class="inputWrap">
+								<input name="UserName" type="text" class="inputText"
+									id="UserName" onFocus="this.select();">
+							</div>
+						</div>
+
+						<div class="fieldWrap">
+							<div class="lable passWord">
+								<z:lang id="Common.Password">密码</z:lang>
+								：
+							</div>
+							<div class="inputWrap">
+								<input name="Password" type="password" class="inputText"
+									id="Password" onFocus="this.select();">
+							</div>
+						</div>
+						<div class="fieldWrap verifyCodeWrap" id='verifyCodeWrap'></div>
+						
+						<!--  
+						<div class="fieldWrap">
+							<div class="lable language">
+								<z:lang id="Platform.Language">语言</z:lang>
+								：
+							</div>
+							<div class="inputWrap selectWrap">
+								<z:select id="Language" method="Application.getLanguages"
+									listWidth="200" style="height:24px; width:192px;"
+									value="${User.Language}" onchange="onLanguageChange()" />
+							</div>
+						</div>
+						-->
+						<div class="fieldWrap">
+							<div class="lable theme">
+								<z:lang id="Platform.Theme">主题</z:lang>
+								：
+							</div>
+							<div class="inputWrap selectWrap">
+								<z:select id="skin" listWidth="200"
+									style="height:24px; width:192px;" onchange="onSkinChange()">
+									<select>
+										<option value="zvingclassic"><z:lang
+												id="Platform.BlueTheme">经典蓝色</z:lang></option>
+										<option value="zvinggreen"><z:lang
+												id="Platform.GreenTheme">清新绿色</z:lang></option>
+										<option value="zvingdeep"><z:lang
+												id="Platform.DarkTheme">雅致深色</z:lang></option>
+										<option value="zvingred"><z:lang
+												id="Platform.RedTheme">庄重红色</z:lang></option>
+										<option value="zvingpurple"><z:lang
+												id="Platform.PurpleTheme">优雅紫色</z:lang></option>
+										<option value="zvingflat"><z:lang
+												id="Platform.FlatTheme">扁平明快</z:lang></option>
+									</select>
+								</z:select>
+							</div>
+						</div>
+						
+						<div class="fieldWrap" style="height:24px;width:319px;">
+							<div class="lable loginType">
+					
+							</div>
+							<div>
+								<label for="loginType_local">
+								<input id="loginType_local"  class="inputRadio" type="radio" name="loginType" value="local" checked/>
+								本地验证
+									 <!--  
+									<a href="javascript:void(0);" class="tip"
+									onMouseOut="Tip.close(this)"
+									onMouseOver='Tip.show(this,"");'>
+									<img src="framework/images/icon_tip.gif" width="16" height="16"></a>
+									-->
+								</label>
+								
+								<label for="loginType_ldap">
+								<input id="loginType_ldap"  class="inputRadio" type="radio" name="loginType" value="ldap" />
+								域帐户
+									<a href="javascript:void(0);" class="tip"
+									onMouseOut="Tip.close(this)"
+									onMouseOver='Tip.show(this,"<b>本地验证：</b>使用cms系统中设置的用户名/密码登录<br /> <b>  域帐户：</b>使用公司域帐户登录，一般是自己电脑的<br />开机用户名/密码或jira登录用户名/密码");'>
+									<img src="framework/images/icon_tip.gif" width="16" height="16"></a>
+						</label>
+							</div>
+						</div>
+						<div id="loginBtnWrap">
+							<a href="#;" class="inline-block" id="loginBtn"
+								onClick="login(); return false;"><z:lang id="Platform.Login">登录</z:lang></a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="copyright">
+			<div class="center">${(LicenseWarning)}
+				<z:lang id="Login.Copyright">Copyright &copy; 2007-2013 Zving.com Inc. All rights reserved.泽元软件版权所有</z:lang>
+			</div>
+		</div>
+</body>
+	</html>
+</z:init>

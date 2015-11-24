@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<html style="overflow-x:hidden">
+<z:init method="Video.init">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../framework/main.js"></script>
+<script type="text/javascript" src="../framework/components/styleToolbar.js"></script>
+<%@include file="../contentcore/contentScript.zhtml"%>
+<style>
+#videocapture { width: 320px; }
+#videocapture img { margin:3px; }
+#videocapture .default { margin:1px; border:2px solid #F18F00; }
+#videocapture a:hover { opacity:0.5; }
+cke_comment {
+	background: #ffff00 url(editorplugin/comment/comment.gif) no-repeat 0 0;
+	border: 1px dotted #ffcc33;
+	padding-left: 18px;
+	color: #cb9;
+}
+.gradient .input1 { width:135px; }
+#summaryLength {font-family: Constantia, Corbel;font-size: 26px;line-height: 12px;margin-right: 5px;}
+</style>
+<script>
+Page.onLoad(function(){
+	var uploader = new Uploader("File");
+	uploader.onFileSelect(function(fileNames){
+		if(fileNames){
+			if(isEmpty($V("#Title")))
+			{    var name = fileNames.split(",")[0];
+				$('#Title').val(name.substring(0,name.lastIndexOf(".")));
+				}
+		}
+	});
+
+	if(!isEmpty($V("#Title"))) {
+		$('#titleLength').html($V("#Title").length);
+	}
+	if($G('Title')){
+		$('#Title').on('keyup blur change paste',function(){
+			$('#titleLength').html($V('#Title').length);
+		});
+		var st = new StyleToolbar('TitleStyle',$G('Title'),'FontColor');
+		st.show();
+		$S("TitleStyle", "${TitleStyle}");
+	}
+	if($G('ShortTitle')) {
+		st = new StyleToolbar('ShortTitleStyle',$G('ShortTitle'),"FontColor,Bold,Italic,UnderLine");
+		st.show();
+		$S("ShortTitleStyle", "${ShortTitleStyle}");
+		
+		$('#ShortTitleStyle_Bold').parents().click(function(){//当标题框内字体变粗时，修改字间距以保证字距和标题框背景上的标尺刻度一致
+			if($('#ShortTitle').css('fontWeight') == 'bold')
+				$('#ShortTitle').css('letterSpacing', '-1px');
+			else
+				$('#ShortTitle').css('letterSpacing', '');
+			return true;
+		});	
+	}
+	//添加摘要字数显示
+	if(!isEmpty($V("#Summary"))) {
+		$('#summaryLength').html($V("#Summary").length);
+	}
+	if($G('Summary')){
+		$('#Summary').on('keyup blur change paste',function(){
+			$('#summaryLength').html($V('#Summary').length);
+		});
+	}
+});
+
+function uploadSave(){
+	var winframe=window.frameElement;
+	if(Verify.hasError()){
+	 	return;
+    }
+	var dc = Form.getData('contentform');
+    if(sourcetype == 'upload'){
+    	var uploader = new Uploader("File");
+      	if(!uploader.hasFile()){
+    		Dialog.alert("@{Media.SelectFileFirst}");	
+    		return;
+      	}
+    	if(!uploader.hasError()){
+    		uploader.sendRequest("Video.upload",dc,function(response){
+    			if(response.Status == 0) {
+    				Dialog.alert(response.Message);
+    				$("#tdSrcFileName").html($("#tdSrcFileName").html());
+    			} else {
+    				dialogOpener.DataList.loadData("contentlist");
+    				AllDocumentsEvent.fire({type:'updatecatalogtree',cid:$V("#CatalogID")}); //触发所有iframe内的updatecatalogtree事件,更新栏目内容数量
+    				ownerDialog.close();
+    				dialogOpener.showInQuickEditor($V('ContentID'));
+    			}
+    		});
+    		Node.disable(dialogOpener.$D.CancelButton);
+    		Node.disable(dialogOpener.$D.OKButton);
+    	}else{
+    		Dialog.alert("@{Media.UploadErrorMsg}");	
+    	}
+   	}else{
+   	   	var externalSource = $V('#ExternalSource');
+   	   	if(!externalSource){
+   	   	   	Dialog.alert("@{Media.ExternalSource.NotNull}");
+   	   	   	return;
+   	   	}
+   	   	Server.sendRequest("Video.addFromURL",dc,function(response){
+	   	   	if(response.Status == 0) {
+				Dialog.alert(response.Message);
+			} else {
+				dialogOpener.DataList.loadData("contentlist");
+				//AllDocumentsEvent.fire({type:'updatecatalogtree',cid:$V("#CatalogID")}); //触发所有iframe内的updatecatalogtree事件,更新栏目内容数量
+				ownerDialog.close();
+				dialogOpener.showInQuickEditor($V('ContentID'));
+			}
+   	   	});
+	}
+}
+
+var sourcetype = 'upload';
+function onSourceClick(source) {
+	sourcetype = source;
+	if(source == 'upload') {
+		$('#uploader').show();
+		$('#weblink').hide();
+		$('#trConvertFlag').show();
+	} else {
+		$('#uploader').hide();
+		$('#weblink').show();
+		$('#trConvertFlag').hide();
+	}
+}
+</script>
+</head>
+</head>
+<body>
+<!-- hash引用的外部js都需要放到body内都需要放到body标签内 -->
+<script src="../editor/ueditor.config.js"></script>
+<script src="../editor/ueditor.all.js"></script>
+<form id="contentform">
+	<input type="hidden" id="Method" value="ADD" />
+	<input type="hidden" id="ContentID" value="${ContentID}" />
+	<input type="hidden" id="SiteID" value="${SiteID}" />
+	<input type="hidden" id="CatalogID" value="${CatalogID}" />
+	<table width="100%" border="0" align="center" cellpadding="2" style="padding: 4px;">
+		<tr><td width="90" height="5"></td><td></td></tr>
+		<tr id="trSourceType">
+			<td height="28" align="right"><span class="dye"><z:lang id="Common.Type">类型</z:lang>：</span></td>
+			<td><z:radio onclick="onSourceClick(this.value)" id="Type_Source" code="SourceType" value="upload"/></td>
+		</tr>
+		<tr id="uploader">
+			<td height="28" align="right"><span class="dye"><z:lang id="Media.File">文件</z:lang>：</span></td>
+			<td><span id="tdSrcFileName"><z:uploader id="File" fileCount="1"
+				fileName="" width="300"
+				allowType="${AllowType}"/></span></td>
+		</tr>
+		<tr id="weblink" style="display:none">
+			<td height="35" align="right"><span class="dye"><z:lang id="Media.Video.ExternalSource">网络视频内容</z:lang>：</span></td>
+			<td><textarea style="width: 390px;" id="ExternalSource" name="ExternalSource">${ExternalSource}</textarea>
+			<a href="javascript:void(0);" class="tip" onMouseOut="Tip.close(this)" 
+			onMouseOver='Tip.show(this,"@{Media.Video.ExternalTip}");'>
+			<img src="../framework/images/icon_tip.gif" width="16" height="16"></a>
+			</td>
+		</tr>
+		<tr id="trConvertFlag">
+			<td height="28" align="right"><span class="dye"><z:lang id="Media.Video.Convert">是否转换格式</z:lang>：</span></td>
+			<td><z:radio id="ConvertFlag" name="ConvertFlag" code="YesOrNo" value="Y"></z:radio>&nbsp;<z:lang id="Media.Video.ConvertNote">（注：转换格式在栏目管理统一设置）</z:lang>
+			</td>
+		</tr>
+		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Platform.Title">标题</z:lang>：</span></td>
+ 			<td>
+     			<input type="text" id="Title" value="${Title}" verify="NotNull&&Length<120" onBlur="verifySameTitle();" 
+      				 style="width:360px;background:url(images/rule.gif) repeat-x left bottom;${TitleStyle}" />
+				<span id="titleLength"></span>
+				<input type="checkbox" value="checkbox" id="ShowShortTitle" onclick="$('#trShortTitle').toggle()" ${User.ShowSubTitleAndShortTitle=='Y' ? 'checked' : ''}>
+				<label for="ShowShortTitle"><z:lang id="Contentcore.Content.ShortTitle">短标题</z:lang></label>
+				<input type="checkbox" value="checkbox" id="ShowSubTitle" onclick="$('#trSubTitle').toggle()" ${User.ShowSubTitleAndShortTitle=='Y' ? 'checked' : ''}>
+				<label for="ShowSubTitle"><z:lang id="Contentcore.Content.SubTitle">副标题</z:lang></label>
+      		</td>
+ 		</tr>
+ 		<tr id="trVerifyTitle" style="display: none;">
+			<td height="28" align="right" style="padding-right: 5px;">&nbsp;</td>
+			<td align="left" valign="middle">
+				<div id="catalognotice" class="notice"
+					style="margin: 0px; border-width: 1px; width: 376px; padding-top: 2px; padding-bottom: 2px"><font
+					color="#FF6600">&nbsp;&nbsp;&nbsp;<z:lang id="Contentcore.Title.Notice">注意：当前栏目下已有相同标题的记录</z:lang></font></div>
+				<div id="sitenotice" class="notice"
+					style="margin: 0px; border-width: 1px; width: 376px; padding-top: 2px; padding-bottom: 2px; display: none;"><font
+					color="#FF6600">&nbsp;&nbsp;&nbsp;<z:lang id="Contentcore.Title.SiteNotice">注意：当前站点下已经存在相同标题的记录</z:lang></font></div>
+			</td>
+		</tr>
+		<tr id="trShortTitle" style="display: ${User.ShowSubTitleAndShortTitle=='Y' ? '' : 'none'};">
+			<td height="28" align="right" >
+				<span class="dye"><z:lang id="Contentcore.Content.ShortTitle">短标题</z:lang>：</span>
+			</td>
+			<td colspan="3" align="left">
+				<input name="ShortTitle" type="text" style="background:url(images/rule.gif) repeat-x left bottom; width:360px;${ShortTitleStyle}"
+							id="ShortTitle" size="50" value="${ShortTitle}" verify="Length<50"/>
+			</td>
+		</tr>
+		<tr id="trSubTitle" style="display: ${User.ShowSubTitleAndShortTitle=='Y' ? '' : 'none'};">
+			<td height="28" align="right" >
+				<span class="dye"><z:lang id="Contentcore.Content.SubTitle">副标题</z:lang>：</span>
+			</td>
+			<td colspan="3" align="left">
+				<input name="SubTitle" type="text" style="background: url(images/rule.gif) repeat-x left bottom; width: 360px;"
+							id="SubTitle" size="50" value="${SubTitle}" verify="Length<120"/>
+			</td>
+		</tr>
+		<tr>
+			<td height="28" align="right" >
+				<span class="dye"><z:lang id="Contentcore.SourceTitle">源标题</z:lang>：</span>
+			</td>
+			<td colspan="3" align="left">
+				<input name="SourceTitle" type="text" style="width: 360px;"
+							id="SourceTitle" size="50" value="${SourceTitle}" verify="Length<120"  />
+			</td>
+		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Plugin.Author">作者</z:lang>：</span></td>
+ 			<td><input  type="text" id="Author" value="${Author}" /></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.Edit">编辑</z:lang>：</span></td>
+ 			<td><input  type="text" id="Editor" value="${Editor}" /></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.Content.Attribute">内容属性</z:lang>：</span></td>
+ 			<td><z:checkbox id="Attribute" code="ContentAttribute" value="${Attribute}" /></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.Site.PublishPlatform">发布平台</z:lang>：</span></td>
+ 			<td><z:checkbox id="PlatformAttribute" method="PublishPlatform.getUsedPublishPlatforms" value="${PlatformAttribute}" onClick="hasChangePlatFormAttribute($('#platFormAttributeChange'))"/><input type="hidden" id="platFormAttributeChange" name="platFormAttributeChange" value="false"></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.Content.Summary">摘要</z:lang>：</span></td>
+ 			<td align="left"><textarea class='inputText' style="width:390px" id='Summary'>${Summary}</textarea>&nbsp;&nbsp;<span id="summaryLength"></span></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.ContentTag.KeywordUsage">关键字</z:lang>：</span></td>
+ 			<td><input type="text" id="Keyword" value="${Keyword}" style="width:390px;" /></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye">Tag：</span></td>
+ 			<td>
+  			<input type="text" id="Tag" value="${Tag}" style="width:390px;" />
+  			<input type="button" onclick="selectTag('Video')" value="@{Common.Browse}"/>
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.resourceDlg.source">来源</z:lang>：</span></td>
+ 			<td>
+  			<input type="text" id="Source" value="${Source}" style="width:390px;" />
+  			<input type="button" id="Sourcebutton" onclick="selectSource()" value="@{Common.Browse}"/>
+ 			</td>
+ 		</tr>
+  		<tr>
+  			<td align="right"><span class="dye"><z:lang id="Contentcore.Content.SourceURL">来源地址</z:lang>：</span></td>
+  			<td colspan="2">
+   			<input type="text" id="SourceURL" value="${SourceURL}" style="width:390px;" />
+  			</td>
+  		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.Sensitivity">敏感度</z:lang>：</span></td>
+ 			<td><z:select style="width:118px" id="Priority" value="${Priority}" code="BadWordLevel" /></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.Content.PublishDate">发布时间</z:lang>：</span></td>
+ 			<td><input  type="text" id="PublishDate" value="${PublishDate}" ztype="DateTime" style="width:140px" /></td>
+ 		</tr>
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.OfflineDate">下线时间</z:lang>：</span></td>
+ 			<td><input  type="text" id="DownlineDate" value="${DownlineDate}" ztype="DateTime" style="width:140px" /></td>
+ 		</tr>
+	  			
+			<!-- //zq 2015/06/18 独立模板 -->
+			<%@include file="../cxdata/platformContentTemplateExtend.zhtml"%>
+	
+ 		<tr>
+ 			<td align="right"><span class="dye"><z:lang id="Contentcore.File">文件</z:lang>：</span></td>
+ 			<td>
+ 				<z:checkbox id="StaticFileNameFlag" value="${StaticFileNameFlag}" options="@{Contentcore.CustomStaticFileName}:Y" onclick="showStaticFileName()" />
+ 				<div id="spanStaticFileName" style="display:none;">
+  					<input type="text" id="StaticFileName" value="${StaticFileName}"  verify="NotNull&&@{Contentcore.FileNameContain}|Regex=^[a-zA-Z0-9_-]+$" condition="$NV('StaticFileNameFlag')=='Y'" />
+ 				</div>
+ 			</td>
+ 		</tr>
+		<tr>
+			<td align="right"><span class="dye"><z:lang id="Contentcore.Weight" >权重</z:lang>：</span></td>
+			<td><z:slider id="Weight" value="${Weight}" /></td>
+		</tr>
+	</table>
+	<z:extend id="com.zving.contentcore.ContentExtendUI" />
+</form>
+</body>
+</z:init>
+</html>

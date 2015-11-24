@@ -1,0 +1,490 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+
+<script src="../framework/main.js"></script>
+<!--[if lte IE 6]>
+<style type="text/css">
+#LogoSrc{
+	_behavior:expression(Util.setImgMaxSize(this,120,120));
+}
+</style>
+<![endif]-->
+</head>
+<z:init method="Site.init">
+<body class="z-body-detail">
+<script>
+function linkCheckLog(){
+	var diag = new Dialog("@{Contentcore.LinkCheck.Name}","linkCheck.zhtml?SiteID="+$V('#ID'),1000,600);
+	diag.show();
+}
+
+function browseTemplate(id,type,tid,siteID,platformID){
+	var value = $V(tid);
+	var diag = new Dialog("@{Contentcore.Block.SelectTemplate}","templateSelectDialog.zhtml?SiteID="+siteID+"&Type="+type+"&Value="+value+"&PlatformID="+platformID,700,300);
+	diag.onOk = function(){
+		var t = $DW.getTemplate();
+		if(!t){
+			t = "";
+		} 			
+		$S(id,t);
+		$D.close();
+	};
+	diag.show();
+}
+
+function browseFile(type){
+	var diag = new Dialog("@{Contentcore.SelectCSSFile}","filePathSelectDialog.zhtml?SiteID="+$V('#ID')+"&SelectType=File&Extension=css",700,400);
+	diag.onOk = function(){
+		var path = $DW.getPath();
+		if(path){
+			$S('EditorCss',path);
+			$D.close();
+		}
+	};
+	diag.show();
+}
+
+function save(){
+	var dc = Form.getData("form1");
+	if(Verify.hasError()){
+		return;
+	}
+	dc["SiteID"]=$V("SiteID");
+	if($V('#Name').length>100){
+		Dialog.alert("@{Contentcore.SiteNameLength}");
+		return;
+	}
+	if($V('#Path').length>100){
+		Dialog.alert("@{Contentcore.SitePathLength}");
+		return;
+	}
+	Server.sendRequest("Site.edit",dc,function(response){
+		if(response.Status == 1){
+			MsgPop(response.Message);
+			window.parent.Tree.loadData("tree1");
+		}else{
+			Dialog.warn(response.Message,null,response.Status);
+		}
+	});
+}
+
+Page.onLoad(function(){
+	if(!$V('#ID')){
+		$('#form1').disable();
+		$('#trToolbar a[id!="Import"]').disable();
+	}
+	if(!Application.hasPriv("ContentCore.TemplateMenu.Edit")){
+		$("#editIndexTemplate").attr("onclick",null);
+	}
+});
+
+function publishIndex() {
+	var diag = new Dialog("@{Contentcore.PublishIndex}","publishDialog.zhtml",350,100);
+	diag.onLoad = function(){
+		$DW.$('#trCheckbox').hide();
+	};
+	diag.onOk = function(){
+		$D.close();
+		//var waitDlg=Dialog.wait("@{Contentcore.IndexIsPublishing}");
+		var dc = new DataCollection();
+		dc.add("SiteID", $V('SiteID'));
+		Server.sendRequest("Site.publishIndex", dc, function(response) {
+			if(response.Status == 1) {
+				var taskID = response.TaskID;
+				var p = new Progress(taskID,"@{Contentcore.Publishing}...",500,150);
+				$D.close();
+				p.show(function(){
+					$D.close();
+					MsgPop("@{Contentcore.Catalog.PublishSuccess}");
+				});
+				//Node.hide(p.Dialog.okButton);
+				//Node.hide(p.Dialog.cancelButton);
+				//p.Dialog.cancelButton.onclick = function(){}
+			} else {
+				Dialog.alert(response.Message);
+			}
+		});
+	};
+	diag.show();
+}
+
+function publish(status) {
+	var diag = new Dialog("@{Contentcore.PublishAll}","publishDialog.zhtml",350,100);
+	diag.onLoad = function(){
+		$DW.$('#trCheckbox').hide();
+	};
+	
+	diag.onOk = function(){
+		var dc = new DataCollection();
+		dc.add("SiteID", $V('SiteID'));
+		dc.add("PublishStatus", status);
+		Server.sendRequest("Site.publish", dc, function(response) {
+			    var taskID = response.TaskID;
+				var p = new Progress(taskID,"@{Contentcore.Catalog.Publishing}",500,150);
+				$D.close();
+				p.show(function(){
+					$D.close();
+					MsgPop("@{Contentcore.PublishSuccess}");
+				});
+				Node.hide(p.Dialog.okButton);
+				Node.hide(p.Dialog.cancelButton);
+				p.Dialog.cancelButton.onclick = function(){}
+			});
+	};
+	diag.show();
+}
+
+function exportSite() {
+	var diag = new Dialog("@{Contentcore.ExportFileType}","exportSiteTypeDialog.zhtml?SiteID="+$V('#ID'),500,50);
+	diag.onOk = function(){
+		var selType=$DW.$NV("exportSiteType").join();
+		if(!selType){
+			Dialog.alert("@{Contentcore.SelectExportSiteType}");
+			return;
+		}
+		Dialog.confirm("@{Contentcore.ConfirmExportSite}", function() {
+			var dc = new DataCollection();
+			dc.add("SiteID", $V('SiteID'));
+			dc.add("ExportSiteType",selType);
+			Server.sendRequest("Site.exportSite", dc, function(response) {
+				    var taskID = response.TaskID;
+					var p = new Progress(taskID,"@{Contentcore.Exporting}",500,150);
+					p.show(function(){
+						$D.close();
+						MsgPop("@{Contentcore.ExportSiteSuccess}");
+						window.location.href = "../site/export?Path=" + response.Path+"&SiteID="+$V('SiteID');
+					});
+					Node.hide(p.Dialog.okButton);
+					Node.hide(p.Dialog.cancelButton);
+					p.Dialog.cancelButton.onclick = function(){}
+				});
+			$D.close();
+		});
+		
+	}
+	diag.show();
+}
+function importSite() {
+	var diag = new Dialog("ImportSiteDiag");
+
+   <z:if condition="${ID}">    
+	diag.title = "@{Contentcore.ImportSite2}";
+   </z:if>
+   <z:else>
+	diag.title = "@{Contentcore.ImportSite2}";
+   </z:else>
+
+	diag.url = 'siteImport.zhtml?ID=${ID}';
+	diag.width = 500;
+	diag.height = 170;
+	diag.onOk = function(){
+		$DW.doUpload();
+	}
+	diag.show();
+}
+function sortSite(){
+	var diag = new Dialog();
+	diag.width = 350;
+	diag.height = 90;
+	diag.title = "@{Contentcore.SiteSort}";
+	diag.url = "siteSort.zhtml";
+	diag.onLoad = function(){
+		try{
+			$DW.$('#Move').focus();
+		}catch(e){}
+	};
+	diag.onOk = sortSiteSave
+	diag.show();
+}
+
+function sortSiteSave(){
+	if($DW.Verify.hasError()){
+	  	return;
+    }
+    var dc = new DataCollection();
+    dc.add("Move", $DW.$V("Move"));
+    dc.add("SiteID", $V("SiteID"));
+    dc.add("ParentID", $V("ParentID"));
+	Server.sendRequest("Site.sortSite",dc,function(response){
+			if(response.Status==1){
+				MsgPop(response.Message);
+				window.parent.parent.location.reload();
+			} else {
+				Dialog.alert(response.Message);
+			}
+		});	
+}
+
+function assignPriv(){
+	var siteid = $V("#SiteID");
+	if(!siteid){
+		Dialog.alert("@{Contentcore.SiteIDWrong}");
+		return;
+	}
+	var diag = new Dialog();
+	diag.width = 860;
+	diag.height = 400;
+	diag.title = "@{Contentcore.Priv.AssignPriv}";
+	diag.url = "privOwnerTabs.zhtml?PrivType=Site&OwnerType=B&ID="+siteid;
+	diag.show();
+}
+
+//在新窗口编辑模板
+function editTemplate(templateeleID,platformID,siteID){
+	var templateFileName = $V(templateeleID);
+	if(!templateFileName || !platformID || !siteID){
+		return;
+	}
+	var url = "templateeditor/editor.zhtml?FileName="+templateFileName+"&PlatformID="+platformID+"&SiteID="+siteID;
+	window.open(url);
+}
+</script>
+<z:menu id="PublishContentStatus">
+<a id="PUBLISHED" onclick="publish(30)"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Published">发布已发布的文档</z:lang></a>
+<a id="TOPUBLISH" onclick="publish(20)"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Topublish">发布待发布的文档</z:lang></a>
+<a id="DRAFT" onclick="publish(0)"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Draft">发布初稿</z:lang></a>
+<a id="EDITING" onclick="publish(60)"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Editing">发布重新编辑的文档</z:lang></a>
+<a id="OFFLINE" onclick="publish(40)"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.Offline">发布已下线的文档</z:lang></a>
+<a id="ALL" onclick="publish(-1)"><img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishContentStatus.All">发布所有文档</z:lang></a>
+</z:menu>
+<input type="hidden" id="ParentID" value="${ParentID}" />
+<input type="hidden" id="SiteID" value="${ID}" />
+<input type="hidden" id="ResourceID" value="${ResourceID}" />
+<input type="hidden" id="path" value="${Path}" />
+<table width="100%" border="0" cellspacing="0" cellpadding="0"
+    height="*" class="">
+    <tr>
+        <td height="37" id="trToolbar"><z:toolbar theme="flat">
+            <z:button theme="flat" id="Save" onClick="save();" priv="com.zving.cms.Site.Edit.${ID}">
+                <img src="../icons/icon040a16.png" /><z:lang id="Common.Save">保存</z:lang></z:button>
+            <z:button theme="flat" onClick="sortSite();" priv="com.zving.cms.Site.Edit.${ID}">
+                <img src="../icons/icon040a13.png" /><z:lang id="Contentcore.Sort">排序</z:lang></z:button>
+            <z:button theme="flat" id="PublishIndex" onClick="publishIndex();" priv="com.zving.cms.Site.Publish.${ID}">
+                <img src="../icons/icon040a9.png" /><z:lang id="Contentcore.PublishIndex">发布首页</z:lang></z:button>
+            <z:button theme="flat" type="select" menu="PublishContentStatus" id="PublishAll" priv="com.zving.cms.Site.Publish.${ID}">
+                <img src="../icons/icon040a7.png" /><z:lang id="Contentcore.PublishAll">发布全站</z:lang></z:button>
+            <z:button theme="flat" id="Export" onClick="exportSite();" priv="com.zving.cms.Site.Export.${ID}">
+                <img src="../icons/icon044a7.png" /><z:lang id="Contentcore.ExportSite">导出站点</z:lang></z:button>
+            <z:if condition="${ID}">
+            <z:button theme="flat" id="Import" onClick="importSite();" priv="ContentCore.SiteMenu.Add">
+                <img src="../icons/icon044a22.png" /><z:lang id="Contentcore.ImportSite2">导入站点</z:lang></z:button>
+            <z:button theme="flat" id="AssignPriv" onClick="assignPriv();" priv="com.zving.cms.Site.AssignPriv.${ID}">
+                <img src="../icons/icon040a8.png" /><z:lang id="Contentcore.Priv.AssignPriv">分配权限</z:lang></z:button>
+            </z:if>
+            <z:else>
+            <z:button theme="flat" id="Import" onClick="importSite();" priv="ContentCore.SiteMenu.Add">
+                <img src="../icons/icon044a22.png" /><z:lang id="Contentcore.ImportSite2">导入站点</z:lang></z:button>
+            </z:else>
+            <z:button theme="flat" id="LinkCheckLog" onClick="linkCheckLog();" priv="com.zving.cms.Site.Edit.${ID}">
+                <img src="../icons/icon029a10.png" /><z:lang id="Contentcore.LinkCheck.Name">链接及文件检查</z:lang></z:button>
+        </z:toolbar></td>
+    </tr>
+    <tr valign="top">
+    <td style="padding:10px;" height="*"><div id="SP1" class="z-contentBorder">
+        <form id="form1">
+        <div class="z-legend"><strong><z:lang id="Contentcore.Block.BasicInfo">基本属性</z:lang></strong></div>
+        <div class="z-card">
+        <table width="100%" border="1" cellpadding="3" cellspacing="0" bordercolor="#eeeeee" class="formTable">
+          <tr id="tr_ID">
+              <td width="120"><z:lang id="Contentcore.SiteID">站点ID</z:lang>：</td>
+              <td>${ID} &nbsp; 
+              </td>
+          </tr>
+          <z:if condition="${ParentID}">
+          <tr>
+              <td><z:lang id="Contentcore.ParentSiteID">父站点ID</z:lang>：</td>
+              <td>${ParentID}  <span class="gray">( ${ParentName})</span> &nbsp; 
+              </td>
+          </tr>
+			 		</z:if>
+					<tr>
+						<td><z:lang id="Contentcore.SiteName">站点名称</z:lang>：</td>
+						<td><input name="Name" type="text"  id="Name"
+							onBlur="setAlias();" onChange="setAlias();" value="${Name}"
+							 style="width:160px" verify="NotNull" />
+			                <input name="ID" type="hidden"
+							id="ID" value="${ID}" /></td>
+			 		</tr>
+					<tr>
+						<td><z:lang id="Contentcore.SiteDirectory">站点目录名</z:lang>：</td>
+						<td><input type="text"  id="Path"
+							value="${Path}"  style="width:160px"
+							verify='NotNull&&<z:lang id="Contentcore.SiteDirectoryVerify">只允许大小写字母、数字、英文句号、下划线及英文破折线</z:lang>|Regex=^[\w\.\_\-]+$' /></td>
+			 		</tr>
+					<tr>
+			      <td  ><z:lang id="User.Branch">所属机构</z:lang>：</td>
+			      <td >
+			           <!--<z:select id="BranchInnerCode" style="width:160px" method="Branch.getBranchTable" value="${BranchInnerCode}" />-->
+			           <z:select id="BranchInnerCode" value="${BranchInnerCode}" valueText="${BranchName}" style="width:160px" listWidth="240" listHeight="300" listURL="../platform/BranchSelectList.zhtml"  defaultBlank="true"  ></z:select>
+			      
+			      </td>
+			     </tr>
+		      <tr>
+		        <td><z:lang id="Platform.Language">语言</z:lang>：</td>
+		        <td ><z:select id="Language" style="width:160px;" method="Application.getLanguages" value="${Language}" /></td>
+		      </tr>
+					<tr>
+						<td><z:lang id="Contentcore.SiteURL">站点URL</z:lang>：</td>
+						<td><input name="URL" type="text"  id="URL"
+							value="${URL}" style="width:260px" verify="URL|NotNull" />
+							<a href="javascript:void(0);" class="tip"
+                    			onMouseOut="Tip.close(this)"
+                    	onMouseOver='Tip.show(this,"@{Contentcore.Site.UrlTip}");'><img
+                    	src="../framework/images/icon_tip.gif" width="16" height="16"></a></td>
+			 		</tr>
+					<tr>
+						<td><z:lang id="Contentcore.SiteNote">站点备注</z:lang>：</td>
+						<td><textarea id="Info" 
+									style="width:260px;height:40px">${Info}</textarea></td>
+			 		</tr>
+			 	 </table>
+        </div>
+         <div class="z-legend"><strong><z:lang id="Contentcore.AllSiteIndexTemplate">站点首页模板</z:lang></strong></div>
+        <div class="z-card">
+        <table width="100%" border="1" cellpadding="3" cellspacing="0" bordercolor="#eeeeee" class="formTable">
+        	 <z:list method="PublishPlatform.getUsedIndexTemplate?SiteID=${ID}">
+					<tr>
+						<td width="120">${Name}<z:lang id="Contentcore.Catalog.IndexTemplate">首页模板</z:lang>：</td>
+						<td><input name="IndexTemplate_${ID}" type="text" 
+							id="IndexTemplate_${ID}" value="${IndexTemplate}" style="width:200px" />
+			                <a  href="#" title="@{Contentcore.Edit}@{Contentcore.Block.Template}">
+			                	<img onclick="editTemplate('IndexTemplate_${ID}','${ID}','${SiteID}')"
+			                		title="@{Contentcore.Edit}@{Contentcore.Block.Template}" 
+			                		alt="@{Contentcore.Edit}@{Contentcore.Block.Template}" 
+			                		id="editIndexTemplate" src="../framework/images/icon_edit15.gif">
+			                </a>
+			                <input
+							type="button" onClick="browseTemplate('IndexTemplate_${ID}','SiteIndex','IndexTemplate_${ID}','${SiteID}','${ID}');"
+							value="@{Contentcore.Browse}" />
+						</td>
+			 		</tr>
+			 </z:list>
+         </table> 
+        </div>
+		<div class="z-legend"><strong><z:lang id="Contentcore.OtherProp">其他属性</z:lang></strong></div>
+        <div class="z-card">
+         <table width="100%" border="1" cellpadding="3" cellspacing="0" bordercolor="#eeeeee" class="formTable">
+		 		 <tr>
+              <td td width="120"><z:lang id="Contentcore.Logo">Logo图片</z:lang>：</td>
+              <td align="left"><a href="#"><img onclick="uploadLogo();" src="${LogoSrc}"onerror="src='../platform/images/picture404.gif';this.onerror=null;" border="0" align="absmiddle" style="max-width:120px;max-height:120px;"
+                  id="LogoSrc"></a> <input type="hidden" ID="LogoFile" value="${LogoFile}">
+                  <z:if condition="${ID&&HasSiteEditPriv}">
+									<script>
+									function uploadLogo(){
+										var diag = new Dialog();
+										diag.width = 805;
+										diag.height = 450;
+										diag.title = "@{Contentcore.UploadSiteImageLogo}";
+										diag.url = "../contentcore/resourceDialog.zhtml?InputType=radio&SiteID="+$V("SiteID")+"&DataType=Site&DataID="+$V("SiteID")+"&CatalogID=0&ResourceType=image&ImageType=logo&ImageWidth=120&ImageHeight=120&ResourceID="+$V("#ResourceID");
+										diag.onReady = function() {
+											$DW.$( document ).on("pageinit", ".ui-page", function() {
+												$DW.$("#trSourceType").hide();
+											});
+										}
+										diag.onOk = function(){
+											$DW.getImage(function(src,path,resourceID){
+													$("#LogoSrc").attr("src",src);
+													$S("#LogoFile",path);
+													canCutting();
+											});
+										};
+										diag.show();	
+									}									
+									function removeSizeSuffix(url){
+										var i1 = url.lastIndexOf("_");
+										var i2 = url.lastIndexOf("x",url.lastIndexOf("."));	
+										if(i2>0&&i1>0&&i2>i1){
+											return url.substring(0,i1)+url.substring(url.lastIndexOf("."));	
+										}
+										return url;	
+									}
+									function cleanLogo(){
+												$("#LogoSrc").attr("src",'../platform/images/addpicture.png');
+											$S("#LogoFile",'');
+									}									
+									function editLogo() {
+										var diag = new Dialog("CuttingDiag");
+										diag.width = 800;
+										diag.height = 500;
+										diag.title = "@{Contentcore.ImageCutting.Title}";
+										var path = $V("LogoFile");
+										if(!path){
+											return;
+										}
+										path = removeSizeSuffix(path);
+										diag.url = "../contentcore/commonImageCuttingDialog.zhtml?SiteID="+$V("SiteID")+"&Path="+path;
+										diag.onOk = function(){
+											var dc = new DataCollection();
+											dc.add("SiteID",$V("SiteID"));
+											dc.add("Path",path);
+												var wait = Dialog.wait("@{Contentcore.WaitingTip}");
+												Server.sendRequest("CatalogResources.cuttingSave", dc, function(response){
+													wait.close();
+												if(response.Status == 1) {
+													$D.close();
+													var src = $("#LogoSrc").attr("src");
+													if(src.indexOf("?") > 0) {
+														src = src.substring(0, src.indexOf("?"));
+													}
+													src += "?" + new Date().getTime();
+													$("#LogoSrc").attr("src", src);
+												} else {
+													Dialog.warn(response.Message);
+												}
+											});
+										};
+										diag.show();
+									}
+									function canCutting(){
+										var src = $V("#LogoFile");
+										if(src && src.toLowerCase().startsWith("http")) {
+											$("img.btn_cutting").hide();
+										}else{
+											$("img.btn_cutting").show();
+										}
+									}
+									Page.onLoad(function(){
+										canCutting();
+									});
+									</script>
+									<a href="#"><img onclick="uploadLogo();" title="@{Common.Edit}" alt="edit" src="../framework/images/icon_edit15.gif"></a>
+									<a href="#;"><img onclick="cleanLogo();" title="@{Common.Clear}" alt="clear" src="../framework/images/icon_delete15.gif"></a>
+									<a href="#;"><img class="btn_cutting" onclick="editLogo();" title="@{Contentcore.ImageCutting.Title}" alt="cutting" src="../framework/images/icon_clip15.gif"></a>
+					</z:if>				
+              </td>
+          </tr>
+ 				 <z:if condition="${!('N'==Config.ShowSiteSEOConfig)}">
+ 				  <tr>
+			       <td><z:lang id="Contentcore.Catalog.SEOKeyword">SEO关键字</z:lang>：</td>
+					  <td align="left"><input type="text" 
+									id="SEOKeywords" value="${SEOKeywords}" style="width:260px"/></td>
+			 	  </tr>
+					<tr>
+			          <td><z:lang id="Contentcore.Catalog.SEODescription">SEO描述</z:lang>：</td>
+					  <td align="left"><textarea id="SEODescription" 
+									style="width:260px;height:40px">${SEODescription}</textarea></td>
+			 	  </tr>
+					
+					<tr>
+			          <td><z:lang id="Contentcore.Catalog.SEOTitle">SEO标题</z:lang>：</td>
+					  <td align="left"><input type="text" 
+									id="SEOTitle" value="${SEOTitle}" style="width:260px"/></td>
+			 	  </tr> 
+			 	  </z:if>
+				</table>
+         </div>
+        </form>
+       </div></td>
+    </tr>
+</table>
+</body>
+</z:init>
+</html>

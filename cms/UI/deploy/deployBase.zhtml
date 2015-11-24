@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:priv priv="DataChannel.Deploy" />
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+
+<script src="../framework/main.js"></script>
+</head>
+<z:init method="Deploy.init">
+<body class="z-body-detail">
+<script>
+function save(){
+	var dc = Form.getData('form2');
+	if(Verify.hasError()){
+		return;
+	}
+	var current = Tree('tree1').currentNode && Tree('tree1').currentNode.el;
+	Server.sendRequest("Deploy.edit",dc,function(response){
+		if(response.Status==1){
+			MsgPop(response.Message);
+    		Tree.loadData("tree1",function(){
+        		if(current){
+        			Tree.select('tree1', 'cid', current.getAttribute("cid"), true);
+           		}
+       		});
+		}else{
+			Dialog.alert(response.Message);
+		}
+	});
+}
+
+function deploy(){
+	var id = '${ID}';
+	if(isEmpty(id) || id == "null"){
+		Dialog.alert("@{Deploy.SelectFirst}");
+		return;
+	}
+	Dialog.confirm("@{Deploy.ConfirmExecute}",function(){
+		var dc = {IDs:id};	
+		Server.sendRequest("DeployList.deploy",dc,function(response){
+			if(response.Status==0){
+				Dialog.alert(response.Message);
+			}else{
+       		    MsgPop("@{Deploy.AddToQueue}");
+			}
+		});
+	});
+}
+
+function clearLog() {
+	var id = '${ID}';
+	if(isEmpty(id) || id == "null"){
+		Dialog.alert("@{Deploy.SelectFirst}");
+		return;
+	}
+	Dialog.confirm("@{Deploy.ConfirmClearLog}",function(){
+		var dc = {ID:id};
+		Server.sendRequest("DeployList.clear",dc,function(response){
+			if(response.Status==0){
+				Dialog.alert(response.Message);
+			}else{
+       		    MsgPop("@{Common.ExecuteSuccess}");
+			}
+		});
+	});
+}
+function changeMethod(){
+	var deployMethod = $NV("Method");
+	if(deployMethod=="ftp"||deployMethod=="sftp"||deployMethod=="sersync"){
+     $("#trHost").show();
+	 $("#trPort").show();
+	  //默认rsync客户端的端口是874,
+	  if(deployMethod=="sersync"){
+		  $("#TargetName").html("<z:lang id="Deploy.SersyncDeploy.TargetRsyncModel">目标Rsync目录模块</z:lang>");
+		  $("#trUserName").hide();
+		  $("#trPassword").hide();
+		  $("#trFilter").hide();
+		  if($("#Port").val()==""){
+			  $("#Port").val("874");
+		  }	  
+	  }else{
+		  $("#trFilter").show();
+		  $("#trUserName").show();
+		  $("#trPassword").show();	  
+		  $("#TargetName").html("<z:lang id="Deploy.TargetDir">目标目录</z:lang>");
+	  }
+	 if($V("Port")==""){
+		 	if(deployMethod=="sftp"){
+		 		$S("Port",22);
+		 	}else{
+		 		$S("Port",21);
+		 	}
+	 }
+  }else{
+     $("#trHost").hide();
+	 $("#trPort").hide();
+	 $("#TargetName").html("<z:lang id="Deploy.TargetDir">目标目录</z:lang>");
+	 $("#trFilter").show();
+	 $("#trUserName").hide();
+	 $("#trPassword").hide();
+  }
+}
+
+function setPath(){
+	var path = $V("SourceDir");
+	/*if(path.indexOf(siteRoot) > -1) {
+		path = path.substring(siteRoot.length);
+	}*/
+	var diag = new Dialog("@{Deploy.SelectSourceDir}","../contentcore/filePathSelectDialog.zhtml?SelectType=Path&Path="+path+"&PlatformID="+$V('#PlatformID'),700,400);
+	diag.onLoad = function(){
+			$DW.$("#trToolBar").remove();
+		};
+	diag.onOk = function(){
+		var path = $DW.getPath();
+		if(path && path.length > 1 && path.indexOf("/") == 0){
+			path = path.substring(1);
+		}
+		$S('SourceDir', path);
+		$D.close();
+	};
+	diag.show();
+}
+
+Page.onLoad(function(){
+	if($NV("Method")=="local"){
+		$("#trHost").hide();
+		$("#trPort").hide();
+		$("#trUserName").hide();
+		$("#trPassword").hide();
+	}else if($NV("Method")=="sersync"){
+		$("#trUserName").hide();
+		$("#trPassword").hide();
+		$("#trFilter").hide();
+		 $("#TargetName").html("<z:lang id="Deploy.SersyncDeploy.TargetRsyncModel">目标Rsync目录模块</z:lang>");
+	}
+	var id="${ID}";
+	initControl(id);
+	if(!id){
+		$("#js_layoutTable1 a").disable();
+		$("#js_layoutTable1 input").disable();
+	} 
+});
+function initControl(id){
+	if(!id||id=='null'){
+		$(":input").each(function(){
+			$(this).disable();
+		});
+		$("#saveBn").disable();
+		$("#deployBn").disable();
+		$("#clearBn").disable();
+	}
+}
+</script>
+
+<form id="form2">
+<table width="100%" id="js_layoutTable1" border="0" cellspacing="0"
+	cellpadding="0" height="*" class="js_layoutTable">
+	<tr>
+		<td height="37">
+			<z:toolbar theme="flat">
+				<z:button id="saveBn" onClick="save()" priv="DataChannel.Deploy.Edit" theme="flat">
+					<img src="../icons/icon029a2.png" /><z:lang id="Common.Save">保存</z:lang></z:button>
+				<z:button id="deployBn" onClick="deploy()" priv="DataChannel.Deploy.Add" theme="flat">
+					<img src="../icons/icon029a13.png" /><z:lang id="Deploy.Execute">立即分发</z:lang></z:button>
+				<z:button id="clearBn" onClick="clearLog()" priv="DataChannel.Deploy.Add" theme="flat">
+					<img src="../icons/icon029a13.png" /><z:lang id="Common.Clear">清空</z:lang></z:button>
+			</z:toolbar> 
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style="padding: 10px;" height="*">
+			<input type="hidden" id="ID" value="${ID}" />
+			<div class="z-overflowPanel" style="padding:6px;">
+			<table style="margin-top:6px">
+				<tr>
+					<td height="30" width="25%" align="right"><z:lang id="Deploy.Name">任务名称</z:lang>：</td>
+					<td><input type="text" id="Name" name="Name" size="40" value="${Name}" verify="NotNull" /></td>
+				</tr>
+				<tr>
+					<td height="30" align="right"><z:lang id="Common.Type">类型</z:lang>：</td>
+					<td><z:radio id="Method" method="Deploy.getMethodData" value="${Method}" onclick="changeMethod()"></z:radio></td>
+				</tr>
+				<tr>
+					<td height="25" align="right"><z:lang id="Contentcore.Site.PublishPlatform">发布平台</z:lang>：</td>
+					<td><z:select id="PlatformID" name="PlatformID" value="${PlatformID}" method="PublishPlatform.getUsedPublishPlatforms"></z:select></td>
+				</tr>
+				<tr>
+					<td height="30" align="right"><z:lang id="Deploy.SourceDir">源目录</z:lang>：</td>
+					<td>
+						<input type="text" id="SourceDir" name="SourceDir" size="40" value="${SourceDir}" verify="NotNull" readonly />
+						<input type="button" value="@{Common.Browse}..." onclick="setPath()">
+					</td>
+				</tr>
+				<tr>
+					<td height="30" id="TargetName" align="right"><z:lang id="Deploy.TargetDir">目标目录</z:lang>：</td>
+					<td><input type="text" id="TargetDir" name="TargetDir" size="40" value="${TargetDir}" verify="NotNull" /></td>
+				</tr>
+				<tr>
+					<td height="30" align="right"><z:lang id="Common.Status">状态</z:lang>：</td>
+					<td><z:radio name="Enable" code="Enable" value="${Enable}"></z:radio></td>
+				</tr>
+				<tr id="trHost">
+					<td height="30" align="right"><z:lang id="Deploy.ServerAddr">服务器地址/URL</z:lang>：</td>
+					<td><input type="text" id="Host" name="Host" size="40" value="${Host}" verify="NotNull" condition="$('#trHost').css('display')!='none';" /></td>
+				</tr>
+				<tr id="trPort">
+					<td height="30" align="right"><z:lang id="Deploy.Port">端口</z:lang>：</td>
+					<td><input type="text" id="Port" name="Port" size="40" value="${Port}" ztype="Number" verify="NotNull&&Int" condition="$('#trPort').css('display')!='none';" /></td>
+				</tr>
+				<tr id="trUserName">
+					<td height="30" align="right"><z:lang id="Deploy.ServerUsername">用户名</z:lang>：</td>
+					<td><input type="text" id="UserName" name="UserName" size="40" value="${UserName}" verify="NotNull" condition="$('#trUserName').css('display')!='none';" /></td>
+				</tr>
+				<tr id="trPassword">
+					<td height="30" align="right"><z:lang id="Deploy.ServerPassword">密码</z:lang>：</td>
+					<td><input type="text" id="Password" name="Password" size="40" value="${Password}" verify="NotNull" condition="$('#trPassword').css('display')!='none';" /></td>
+				</tr>
+				<tr id="trFilter">
+					<td height="45" align="right" valign="top">包涵文件：<br /> <span style="color:#ADA9A9">(留空则分发全部)</span></td>
+					<td><textarea id="FileFilter" name="FileFilter" style="width: 427px; height: 150px;">${FileFilter}</textarea>
+						<br/><z:lang id="Deploy.FileFilterTip">多个过滤项使用回车分隔。</z:lang></td>
+				</tr>
+			</table>
+		</div>
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</z:init>
+</html>
