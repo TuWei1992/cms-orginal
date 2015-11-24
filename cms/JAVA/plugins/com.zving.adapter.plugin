@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<id>com.zving.adapter</id>
+	<name>Adapter</name>
+	<class>com.zving.adapter.AdapterPlugin</class>
+	<author>wanglijun</author>
+	<provider></provider>
+	<version>1.0</version>
+	<description></description>
+	<updateSite>http://www.zving.com/update/</updateSite>
+	<UIAsJar>false</UIAsJar>
+	<resourceAsJar>false</resourceAsJar>
+	<required>
+		<plugin version="2.0">com.zving.framework</plugin>
+		<plugin version="2.0">com.zving.platform</plugin>
+		<plugin version="1.0">com.zving.contentcore</plugin>
+	</required>
+	<files>
+		<file>JAVA/com/zving/adapter/AdapterPlugin.java</file>
+		<file>JAVA/com/zving/adapter/AdapterContentType.java</file>
+		<file>JAVA/com/zving/adapter/template/AdapterDetailTemplate.java</file>
+		<file>JAVA/com/zving/adapter/template/AdapterListTemplate.java</file>
+		<file>JAVA/com/zving/adapter/tag/HotCXAdapterTag.java</file>
+		<file>JAVA/plugins/com.zving.adapter.plugin</file>
+	</files>
+</plugin>
