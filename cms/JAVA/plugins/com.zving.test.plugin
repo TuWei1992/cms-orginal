@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<id>com.zving.test</id>
+	<name>Test</name>
+	<class>com.zving.test.TestPlugin</class>
+	<author></author>
+	<provider></provider>
+	<version>1.0</version>
+	<description></description>
+	<updateSite>http://www.zving.com/update/</updateSite>
+	<UIAsJar>false</UIAsJar>
+	<resourceAsJar>false</resourceAsJar>
+	<required>
+		<plugin version="2.0">com.zving.framework</plugin>
+		<plugin version="2.0">com.zving.platform</plugin>
+		<plugin version="1.0">com.zving.contentcore</plugin>
+	</required>
+	<extendItem>
+		<id>com.zving.test.tag.CmsBookTag</id>
+		<class>com.zving.test.tag.CmsBookTag</class>
+		<description></description>
+		<extendService>com.zving.contentcore.service.TagService</extendService>
+	</extendItem>
+	<extendItem>
+		<id>com.zving.test.template.BookListTemplate</id>
+		<class>com.zving.test.template.BookListTemplate</class>
+		<description></description>
+		<extendService>com.zving.contentcore.service.TemplateTypeService</extendService>
+	</extendItem>
+	<extendItem>
+		<id>com.zving.test.template.BookDetailTemplate</id>
+		<class>com.zving.test.template.BookDetailTemplate</class>
+		<description></description>
+		<extendService>com.zving.contentcore.service.TemplateTypeService</extendService>
+	</extendItem>
+	<files>
+		<file>JAVA/com/zving/schema/Book.java</file>
+		<directory>JAVA/com/zving/test</directory>
+		<file>JAVA/plugins/com.zving.test.plugin</file>
+	</files>
+</plugin>
