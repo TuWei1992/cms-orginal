@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script src="../framework/main.js"></script>
+<script>
+function uploadSave(){
+	var u = new Uploader("File");
+	if(u.hasFile()&&!u.hasError()){
+		var dc = {GroupID:$V("#GroupID"),CatalogID:$V("#CatalogID")};
+		u.sendRequest("ImageUpload.uploadZip",dc,function(response){
+  			if(response.Status==1){
+  				MsgPop(response.Message);
+				dialogOpener.DataList.loadData("imgList");
+				//zq 多了一层parent
+				dialogOpener.DataList.loadData("contentlist");
+				ownerDialog.close();
+ 			}else{
+ 				Dialog.warn(response.Message);	
+ 			}
+ 		});
+ 		return;
+	}
+}
+</script>
+</head>
+<body class="z-body-detail">
+<input type="hidden" id="GroupID" value="${GroupID}" />
+<input type="hidden" id="CatalogID" value="${CatalogID}" />
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0"
+	cellpadding="0">
+	<tr>
+		<td style="padding: 10px;" align="center">
+		<z:lang id="Contentcore.FileNameConfrim"><font color="red">注：</font>请检查文件名称,如果文件名称中包含中文,将会导致文件在UNIX,LINX系统中显示异常.</z:lang>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding: 10px;" align="center">
+		<z:init method="Core.File.initAllowTypes">
+			<z:lang id="Contentcore.File">文件</z:lang>：<z:uploader id="File" width="300" allowType="rar,zip" fileCount="1"/>
+		</z:init>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

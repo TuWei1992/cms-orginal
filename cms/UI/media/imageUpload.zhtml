@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<z:init method="ImageUpload.init">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css"/>
+<script src="../framework/main.js"></script>
+<script type="text/javascript">
+function uploadSave(){
+	var winframe=window.frameElement;
+	if(Verify.hasError()){
+	 	return;
+    }
+  	var uploader = new Uploader("File");
+  	if(!$V('#ID')&&!uploader.hasFile()){
+		Dialog.alert("@{Media.SelectFileFirst}");	
+		return;
+  	}
+	if(!uploader.hasError()){
+		var dc = Form.getData('form2');
+		dc.CatalogID=$V("CatalogID");
+		uploader.sendRequest("ImageUpload.upload",dc,function(response){
+			if(response.Status == 0) {
+				Dialog.alert(response.Message);
+				$("#tdSrcFileName").html($("#tdSrcFileName").html());
+			} else {
+				MsgPop(response.Message);
+				dialogOpener.DataList.loadData("imgList");
+				//zq 多了一层parent
+				dialogOpener.DataList.loadData("contentlist");
+				ownerDialog.close();
+			}
+		});
+		Node.disable(dialogOpener.$D.CancelButton);
+		Node.disable(dialogOpener.$D.OKButton);
+	}else{
+		Dialog.alert("@{Media.UploadErrorMsg}");	
+	}
+}
+function selectContent(){
+	var diag = new Dialog("@{Contentcore.Block.BrowseArticle}","../contentcore/contentSelector.zhtml?SelectType=radio",800,500);
+	diag.onOk = function(){
+			var arr = $DW.$N("SelectedID");
+			for (var i = 0; arr && i < arr.length; i++) {
+				if (arr[i].checked) {
+ 					var url = arr[i].getAttribute("link");
+					$S("SourceURL",url);
+					var title = arr[i].getAttribute("title");
+					var type = arr[i].getAttribute("contenttype");
+					$S("CName",type+"："+title);
+					break;
+				}
+			}
+			diag.close();
+	}
+	diag.show();
+}
+
+function selectCatalog(){
+	var diag = new Dialog("@{Contentcore.SelectCatalog}","../contentcore/catalogSelector.zhtml?InputType=radio",400,500);
+	diag.onOk = function(){
+			var arr = $DW.Tree('tree1').getCheckedData();
+			if(!arr||arr.length==0){
+				Dialog.alert("@{Common.PleaseSelectRowFirst}");
+				return;
+			}
+			for (var i = 0; arr && i < arr.length; i++) {
+ 					var url = arr[i].el.getAttribute("link");
+					$S("SourceURL",url);
+					var name = arr[i].el.getAttribute("catalogName");
+					$S("CName","@{Contentcore.Catalog}："+name);
+					break;
+			}
+			diag.close();
+	}
+	diag.show();
+}
+
+function inputUrl(){
+	var diag = new Dialog("@{Contentcore.ExternalURL}","../contentcore/inputExternalLink.zhtml",400,100);
+	diag.onOk = function(){
+		var url = $DW.$V("#LinkURL");
+		$S("SourceURL",url);
+		$S("CName",url);
+		diag.close();
+	}
+	diag.show();
+}
+
+function version(){
+	var diag = new Dialog("图片历史版本","imageVersion.zhtml?ID="+$V("ID"),800,600);
+	diag.show();
+}
+</script>
+	</head>
+	<body>
+	<form id="form2">
+	<input type="hidden" id="GroupID" name="GroupID" value="${GroupID}" />
+	<input type="hidden" id="ID" name="ID" value="${ID}" />
+	<input type="hidden" id="CatalogID" name="CatalogID" value="${CatalogID}" />
+	<table width="100%" border="0" align="center" style="padding: 4px">
+		<tr>
+			<td colspan="3">
+				<z:if condition="${ID}">
+					<z:toolbar id="Toolbar">
+						<z:button theme="flat" onClick="version()" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}">
+							<img src="../icons/icon026a12.png" /> <z:lang id="Article.Version">版本</z:lang>
+						</z:button>
+					</z:toolbar>
+				</z:if>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<z:if condition="${Spath}">
+		<tr>
+			<td width="79" height="45" align="right"></td>
+			<td colspan="2"><img id="image_${ID}" align="center" height="88" onerror="src='../platform/images/picture404.png';this.onerror=null;" src='${Prefix}${Spath}' ></td>
+		</tr>
+		</z:if>
+		<tr>
+			<td width="79" height="45" align="right"><z:lang id="Media.File">文件</z:lang>：</td>
+			<td colspan="2"><span id="tdSrcFileName"><z:uploader id="File" width="295"
+				allowType="jpg,jpeg,gif,png,bmp" /></span>
+				<script>
+					Page.onLoad(function(){
+						var u =new Uploader("File");
+						u.onFileSelect(function(name){
+							if(name.split(",").length>1){
+								$('#ImageName').hide();
+								$('#ImageAuthor').hide();
+								$('#ImageURL').hide();
+								$S('Name',"");
+								$S('Author',"");
+								$S('SourceURL',"");
+								}
+							});
+						});
+				
+				</script>
+				</td>
+		</tr>
+		<tr id ="ImageName">
+			<td height="25" align="right"><z:lang id="Common.Name">名称</z:lang>：</td>
+			<td width="243"><input type="text" id="Name" name="Name"
+				size="40" value="${Name}" /></td>
+		</tr>	
+		<tr id= "ImageAuthor">
+			<td height="25" align="right"><z:lang id="Plugin.Author">作者</z:lang>：</td>
+			<td><input type="text" id="Author" name="Author" size="40"
+				value="${Author}" /></td>
+		</tr>
+		<tr>
+			<td height="25" align="right" valign="top"><z:lang id="Media.Info">简介</z:lang>：</td>
+			<td><textarea id="Info" name="Info" style="width: 480px; height: 100px;" verify="Length<=400">${Info}</textarea></td>
+		</tr>
+		<tr id="ImageURL">
+			<td height="25" align="right"><z:lang id="Imageplayer.ImageUploadJSP.ImageLinkUrl">连接地址</z:lang>：</td>
+			<td height="50">
+			<input type="text" id="SourceURL" name="SourceURL" value="${SourceURL}" style="width:295px"  />
+			</td>
+		</tr>
+	</table>
+	</form>
+	</body>
+	</html>
+</z:init>

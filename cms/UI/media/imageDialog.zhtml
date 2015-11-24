@@ -1,0 +1,273 @@
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html style="overflow:auto">
+<z:init method="ImageGroup.init">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../framework/main.js"></script>
+<script src="../editor/ueditor.config.js"></script>
+<script src="../editor/ueditor.all.js"></script>
+<script type="text/javascript" src="../framework/components/styleToolbar.js"></script>
+<%@include file="../contentcore/contentScript.zhtml"%>
+<script>
+Page.onLoad(function(){
+	if("${DisableEdit}"=="true")
+    {
+		 $("div.cxc").hide();
+		  $("div.potopic img").attr("onclick","");
+    }
+	onQuickEditorLoad();
+	resetPriv();
+	var showSubTitleAndShortTitle = '${User.ShowSubTitleAndShortTitle}';
+	var shortTitle = $V("ShortTitle").trim();
+	var subTitle = $V("SubTitle").trim();
+	if(showSubTitleAndShortTitle=="N"){
+		if(shortTitle!=""||shortTitle.length!=0){
+			$("#trShortTitle").toggle();
+			$("#ShowShortTitle").prop('checked',true);
+		}
+		if(subTitle!=""||subTitle.length!=0){
+			$("#trSubTitle").toggle();
+			$("#ShowSubTitle").prop('checked',true);
+		}
+	}
+});
+</script>
+</head>
+<style type="text/css">
+.img-wrapper li { width:132px; }
+.rowline{border-collapse: separate;}
+.rowline td{ padding:5px; vertical-align:middle; border-top:1px solid #fff; border-bottom:1px solid #e9e9e9;}
+.rowline tr:first-child td{border-top:none 0;}
+.rowline tr:last-child td{border-bottom:none 0;}
+#summaryLength {font-family: Constantia, Corbel;font-size: 26px;line-height: 12px;margin-right: 5px;}
+
+</style>
+<body class="z-body-detail" style="background-color:white">
+<script src="editorplugin/config.js"></script>
+<form id="form2">
+<input type="hidden" id="CatalogID" name="CatalogID" value="${CatalogID}" />
+<input type="hidden" id="SiteID" name="SiteID" value="${SiteID}" />
+<input type="hidden" id="ContentID" name="ContentID" value='${ContentID}'/>
+<input type="hidden" id="RelativeContent" value="${RelativeContent}" />
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="*" class="js_layoutTable">
+        <tr><td>
+      <div style="padding:5px 12px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        	<tr>
+        		<td width="90"></td>
+        		<td></td>
+        	</tr>
+			<tr>
+       			<td align="right"><span class="dye"><z:lang id="Platform.Title">标题</z:lang>：</span></td>
+       			<td colspan="2">
+       				<input type="text" id="Title" value="${Title}" verify="NotNull&&Length<120" onBlur="verifySameTitle();" 
+       				 	style="width:390px;background:url(images/rule.gif) repeat-x left bottom;${TitleStyle}" />
+					<span id="titleLength"></span>
+					<input type="checkbox" value="checkbox" id="ShowShortTitle"
+						onclick="$('#trShortTitle').toggle()" ${User.ShowSubTitleAndShortTitle=='Y' ? 'checked' : ''}>
+					<label for="ShowShortTitle"><z:lang id="Contentcore.Content.ShortTitle">短标题</z:lang></label> 
+					<input type="checkbox" value="checkbox" id="ShowSubTitle"
+						onclick="$('#trSubTitle').toggle()" ${User.ShowSubTitleAndShortTitle=='Y' ? 'checked' : ''}>
+					<label for="ShowSubTitle"><z:lang id="Contentcore.Content.SubTitle">副标题</z:lang></label>
+       			</td>
+            </tr>
+            <tr id="trVerifyTitle" style="display: none;">
+				<td height="28" align="right" style="padding-right: 5px;">&nbsp;</td>
+				<td align="left" valign="middle">
+				<div id="catalognotice" class="notice"
+					style="margin: 0px; border-width: 1px; width: 90%; padding-top: 2px; padding-bottom: 2px"><font
+					color="#FF6600">&nbsp;&nbsp;&nbsp;<z:lang id="Contentcore.Title.Notice">注意：当前栏目下已有相同标题的记录</z:lang></font></div>
+				<div id="sitenotice" class="notice"
+					style="margin: 0px; border-width: 1px; width: 90%; padding-top: 2px; padding-bottom: 2px; display: none;"><font
+					color="#FF6600">&nbsp;&nbsp;&nbsp;<z:lang id="Contentcore.Title.SiteNotice">注意：当前站点下已经存在相同标题的记录</z:lang></font></div>
+				</td>
+			</tr>
+  			<tr id="trShortTitle" style="display: ${User.ShowSubTitleAndShortTitle=='Y' ? '' : 'none'};">
+  				<td align="right"><span class="dye"><z:lang id="Contentcore.Content.ShortTitle">短标题</z:lang>：</span></td>
+  				<td align="left"><input type="text" id="ShortTitle" value="${ShortTitle}" style="width:390px;${ShortTitleStyle}" verify="Length<50"/></td>
+  			</tr>
+  			<tr id="trSubTitle" style="display: ${User.ShowSubTitleAndShortTitle=='Y' ? '' : 'none'};">
+  				<td align="right"><span class="dye"><z:lang id="Contentcore.Content.SubTitle">副标题</z:lang>：</span></td>
+  				<td align="left"><input type="text" id="SubTitle" value="${SubTitle}" style="width:390px;" verify="Length<120"/></td>
+  			</tr>
+  			 <tr >
+  				<td align="right"><span class="dye"><z:lang id="Contentcore.SourceTitle">源标题</z:lang>：</span></td>
+  				<td align="left"><input type="text" id="SourceTitle" value="${SourceTitle}"verify="Length<120" style="width:390px;" /></td>
+  			</tr>
+   			<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Plugin.Author">作者</z:lang>：</span></td>
+	  			<td><input  type="text" id="Author" value="${Author}" /></td>
+	  			<td rowspan="4" align="center">
+
+				<a href="#">
+				<img id="LogoSrc" align="absmiddle" style="max-width:120px;max-height:120px;" src="${LogoSrc}" onclick="uploadLogo();" onerror="this.src='../platform/images/picture404.png';this.onerror=null;" >
+				</a>
+				<input type="hidden" id="LogoFile" name="LogoFile" value="${LogoFile}" /><br/>
+				<input type="hidden" id="ResourceID" value="${ResourceID}" />
+				<script>
+					function uploadLogo(){
+						var diag = new Dialog();
+						diag.width = 805;
+						diag.height = 450;
+						diag.title = "@{Contentcore.Content.UploadLogo}";
+						diag.url = "../contentcore/resourceDialog.zhtml?InputType=radio&SiteID="+$V("#SiteID")+"&DataType=File&DataID="+$V("#ContentID")+"&CatalogID="+$V("#CatalogID")+"&ResourceType=image&ImageWidth=120&ImageHeight=120";
+						diag.onReady = function() {
+							$DW.$( document ).on("pageinit", ".ui-page", function() {
+								$DW.$("#trSourceType").hide();
+							});
+						}
+						diag.onOk = function(){
+							$DW.getImage(function(src,path,resourceID){
+									$("#LogoSrc").attr("src",src);
+									$S("#LogoFile",path);
+									$S("#ResourceID",resourceID);
+								});
+							};
+						diag.show();	
+					}
+					function removeSizeSuffix(url){
+						var i1 = url.lastIndexOf("_");
+						var i2 = url.lastIndexOf("x",url.lastIndexOf("."));	
+						if(i2>0&&i1>0&&i2>i1){
+							return url.substring(0,i1)+url.substring(url.lastIndexOf("."));	
+						}
+						return url;	
+					}
+					function cleanLogo(){
+						$("#LogoSrc").attr("src",'../platform/images/nopicture.png');
+						$S("#LogoFile",'');
+						$S("#ResourceID",'0');
+					}
+					function editLogo() {
+						var diag = new Dialog("CuttingDiag");
+						diag.width = 800;
+						diag.height = 500;
+						diag.title = "@{Contentcore.ImageCutting.Title}";
+						var path = $V("LogoFile");
+						if(!path){
+							return;
+						}
+						path = removeSizeSuffix(path);
+						diag.url = "../contentcore/commonImageCuttingDialog.zhtml?SiteID="+$V("SiteID")+"&Path="+path;
+						diag.onOk = function(){
+							var dc = {SiteID:$V("SiteID"),Path:path};
+							var wait = Dialog.wait("@{Contentcore.WaitingTip}");
+							Server.sendRequest("CatalogResources.cuttingSave", dc, function(response){
+								wait.close();
+								if(response.Status == 1) {
+									$D.close();
+									var src = $("#LogoSrc").attr("src");
+									if(src.indexOf("?") > 0) {
+										src = src.substring(0, src.indexOf("?"));
+									}
+									src += "?" + new Date().getTime();
+									$("#LogoSrc").attr("src", src);
+								} else {
+									Dialog.warn(response.Message);
+								}
+							});
+						};
+						diag.show();
+					}
+					</script>
+					<a href="#"><img onclick="uploadLogo();" title="@{Common.Edit}" alt="edit" src="../framework/images/icon_edit15.gif"></a>
+					<a href="#;"><img onclick="cleanLogo();" title="@{Common.Clear}" alt="clear" src="../framework/images/icon_delete15.gif"></a>
+					<a href="#;"><img onclick="editLogo();" title="@{Contentcore.ImageCutting.Title}" alt="cutting" src="../framework/images/icon_clip15.gif"></a>
+			</td>
+	  		</tr>
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.Edit">编辑</z:lang>：</span></td>
+	  			<td><input  type="text" id="Editor" value="${Editor}" /></td>
+	  		</tr>
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.Content.Attribute">内容属性</z:lang>：</span></td>
+	  			<td><z:checkbox id="Attribute" code="ContentAttribute" value="${Attribute}" /></td>
+	  		</tr>
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.Site.PublishPlatform">发布平台</z:lang>：</span></td>
+	  			<td><z:checkbox id="PlatformAttribute" method="PublishPlatform.getUsedPublishPlatforms" value="${PlatformAttribute}" onClick="hasChangePlatFormAttribute($('#platFormAttributeChange'))"/><input type="hidden" id="platFormAttributeChange" name="platFormAttributeChange" value="false"></td>
+	  		</tr>
+	  		<tr>
+   				<td align="right"><span class="dye"><z:lang id="Contentcore.Content.Summary">摘要</z:lang>：</span></td>
+          		<td align="left"><textarea class='inputText' style="width:390px" id='Summary'>${Summary}</textarea>&nbsp;&nbsp;<span id="summaryLength"></span></td>
+            </tr>
+  			<tr>
+  				<td align="right"><span class="dye"><z:lang id="Contentcore.ContentTag.KeywordUsage">关键字</z:lang>：</span></td>
+  				<td><input type="text" id="Keyword" value="${Keyword}" style="width:390px;" /></td>
+  			</tr>
+  			<tr>
+           		<td align="right"><span class="dye">Tag：</span></td>
+				<td align="left">
+					<input type='text' style="width:390px" class='inputText' value="${Tag}" id='Tag' name="Tag">
+					<input type="button" onclick="selectTag('Image')" value="@{Common.Browse}"/>
+				</td>
+			</tr>
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.resourceDlg.source">来源</z:lang>：</span></td>
+	  			<td>
+	   			<input type="text" id="Source" value="${Source}" style="width:390px;" />
+	   			<input type="button" onclick="selectSource()" value="@{Common.Browse}"/>
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.Content.SourceURL">来源地址</z:lang>：</span></td>
+	  			<td colspan="2">
+	   			<input type="text" id="SourceURL" value="${SourceURL}" style="width:390px;" />
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.Sensitivity">敏感度</z:lang>：</span></td>
+	  			<td><z:select style="width:118px" id="Priority" value="${Priority}" code="BadWordLevel" /></td>
+	  		</tr>
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.Content.PublishDate">发布时间</z:lang>：</span></td>
+	  			<td><input  type="text" id="PublishDate" value="${format(PublishDate,'yyyy-MM-dd HH:mm:ss')}" ztype="DateTime" style="width:140px" /></td>
+	  		</tr>
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.OfflineDate">下线时间</z:lang>：</span></td>
+	  			<td><input  type="text" id="DownlineDate" value="${format(DownlineDate,'yyyy-MM-dd HH:mm:ss')}" ztype="DateTime" style="width:140px" /></td>
+	  		</tr>
+	  			
+			<!-- //zq 2015/06/18 独立模板 -->
+			<%@include file="../cxdata/platformContentTemplateExtend.zhtml"%>
+	
+	  		<tr>
+	  			<td align="right"><span class="dye"><z:lang id="Contentcore.File">文件</z:lang>：</span></td>
+	  			<td>
+	  				<z:checkbox id="StaticFileNameFlag" value="${StaticFileNameFlag}" options="@{Contentcore.CustomStaticFileName}:Y" onclick="showStaticFileName()" />
+	  				<div id="spanStaticFileName" style="display:none;">
+	   					<input type="text" id="StaticFileName" value="${StaticFileName}" verify="NotNull&&@{Contentcore.FileNameContain}|Regex=^[a-zA-Z0-9_-]+$" condition="$NV('StaticFileNameFlag')=='Y'" />
+	  				</div>
+	  			</td>
+	  		</tr>
+			<tr>
+                <td align="right"><span class="dye"><z:lang id="Media.AddUser">添加人</z:lang>：</span></td>
+                <td align="left"><span id="tdAddUser">${AddUser}</span></td>
+            </tr>
+			<tr>
+                <td align="right"><span class="dye"><z:lang id="Media.AddTime">添加时间</z:lang>：</span></td>
+                <td align="left"><span id="tdAddTime">${format(AddTime,'yyyy-MM-dd HH:mm:ss')}</span></td>
+            </tr>
+			<tr>
+				<td height="25" align="right"><span class="dye"><z:lang id="Media.PublishDate">发布时间</z:lang>：</span></td>
+				<td align="left" id="tdPublishDate">${format(PublishDate,'yyyy-MM-dd HH:mm:ss')}</td>
+			</tr>
+			<tr>
+				<td align="right"><span class="dye"><z:lang id="Contentcore.Weight" >权重</z:lang>：</span></td>
+				<td align="left"><z:slider id="Weight" value="${Weight}" /></td>
+			</tr>
+        </table>
+        <z:extend id="com.zving.contentcore.ContentExtendUI" />
+      </div></td>
+  </tr>
+</table>
+</form>
+</body>
+</z:init>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../include/init.zhtml"%>
+<%@ taglib uri="controls" prefix="z"%>
+<html style="overflow:auto">
+<z:init method="ImageGroup.init">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=10, chrome=1" />
+<meta name="renderer" content="webkit" />
+<title></title>
+<link href="../style/default.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../framework/main.js"></script>
+<script src="../editor/ueditor.config.js"></script>
+<script src="../editor/ueditor.all.js"></script>
+<script type="text/javascript" src="../framework/components/styleToolbar.js"></script>
+<%@include file="../contentcore/contentScript.zhtml"%>
+</head>
+<body class="z-body-detail">
+<script>
+var locals=locals||{};
+locals['imageList']={
+	CatalogID: '${CatalogID}',
+	ContentID: '${ContentID}',
+	SiteID: '${SiteID}',
+	StatusName: '${StatusName}',
+	DisableEdit: '${DisableEdit}'
+};
+(function(){
+	var map=Zving.Lang.Map[Lang.getCurrentLang()];
+	
+	map['Article.Search.Type.Published']="@{Article.Search.Type.Published}";
+	map['Common.PleaseSelectRowFirst']="@{Common.PleaseSelectRowFirst}";
+	map['Media.UploadImage']="@{Media.UploadImage}";
+	map['Media.Dialog.EditImage']="@{Media.Dialog.EditImage}";
+	map['Common.ConfirmDelete']="@{Common.ConfirmDelete}";
+	map['Contentcore.ImageCutting.Title']="@{Contentcore.ImageCutting.Title}";
+	map['Contentcore.Edit']="@{Contentcore.Edit}";
+	map['Common.Close']="@{Common.Close}";
+	map['Contentcore.Content.UploadLogo']="@{Contentcore.Content.UploadLogo}";
+}());
+</script>
+<script type="text/javascript" src="imageList.js"></script>
+<script>
+//增加扩展点
+<z:extend id="com.zving.contentcore.ContentEditorScirpt" />
+Page.onReady(function(){
+	//锁定按钮显示隐藏js方法
+	var isLock = $V("IsLock");
+	var lockUser = $V("LockUser");
+	var userName = $V("UserName");
+	if(isLock=='Y'){
+		if(userName==lockUser){
+			$('#Lock').hide();
+			$('#ReleaseLock').show();
+		}else{
+			$('#Lock').hide();
+			//直接禁用，不再判断权限
+			$('#ReleaseLock').attr('priv','').disable();
+			$('#BtnSave').attr('priv','').disable();
+			$('#BtnPublish').attr('priv','').disable();
+			$('#BtnToPublish').attr('priv','').disable();
+
+		}
+	}else{
+		$('#ReleaseLock').hide();
+		$('#Lock').show();
+	}
+	
+	//判断文档状态，如果是已发布则默认为浏览
+	if (locals['contentScript'].Status == 30){
+		var viewSelectBtn = $("#BtnPreview").getComponent('Button');
+	    viewSelectBtn.setActiveItemById("View",false);
+	}else{
+		var viewSelectBtn = $("#BtnPreview").getComponent('Button');
+		viewSelectBtn.setActiveItemById("Preview",false);
+	}
+
+	//由于id变化了，所以隐藏按钮功能需要重写
+	if(!isEmpty($V("#ContentID")) && $V("Method") != "ADD") {
+		$('#trToolbar a').enable();
+		$('#form1').enable();
+	} else {
+		$('#form1').disable();
+		$('#trToolbar a').disable();
+	}
+});
+
+</script>
+<style type="text/css">
+.img-wrapper li { width:132px; }
+.rowline{border-collapse: separate;}
+.rowline td{ padding:5px; vertical-align:middle; border-top:1px solid #fff; border-bottom:1px solid #e9e9e9;}
+.rowline tr:first-child td{border-top:none 0;}
+.rowline tr:last-child td{border-bottom:none 0;}
+</style>
+<!--[if lte IE 6]>
+<style type="text/css">
+.potopic img{
+	_behavior:expression(Util.setImgMaxSize(this,120,120));
+}
+</style>
+<![endif]-->
+<script src="editorplugin/config.js"></script>
+<form id="form1">
+<input type="hidden" id="CatalogID" name="CatalogID" value="${CatalogID}" />
+<input type="hidden" id="SiteID" name="SiteID" value="${SiteID}" />
+<input type="hidden" id="ID" value="${ID}" />
+<input type="hidden" id="ContentID" name="ContentID" value='${ContentID}'/>
+<input type="hidden" id="RelativeContent" value="${RelativeContent}" />
+<input type="hidden" id="Method" value="${Method}">
+<input type="hidden" id="UpdateType" value="quick" />
+<input type="hidden" id="IsLock" value="${IsLock}"/>
+<input type="hidden" id="LockUser" value="${LockUser}"/>
+<input type="hidden" id="UserName" value="${UserName}"/>
+<input type="hidden" id="ContentType" value="${ContentType}"/>
+
+  <z:menu id="ContentPreviewType">
+  <a id="Preview" target="_blank" href="../contentcore/preview.zhtml?path=../content/preview&ContentType=${ContentType}&ID=${ContentID}"><img src="../icons/icon403a3.png" /><z:lang id="Platform.Preview">预览</z:lang></a>
+  <a id="View" target="_blank" href="${Link}"><img src="../icons/icon040a7.png" /><z:lang id="Common.Browse">浏览</z:lang></a>
+  </z:menu>
+<table width="100%" id="js_layoutTable" border="0" cellspacing="0" cellpadding="0" height="*" class="js_layoutTable">
+  	<tr>
+    	<td align="right" id="trToolbar" height=33>
+    	<z:toolbar id="Toolbar">
+    	<z:if condition="${!DisableEdit}">
+    	<z:button onClick="Edit()" id="BtnEdit" theme="flat" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}">
+        	<img src="../icons/icon003a4.png" /><z:lang id="Common.BasicInfo">基本信息</z:lang>
+		</z:button>
+    	<z:button id="BtnUploadImage" onClick="upload()" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}" theme="flat">
+			<img src="../icons/icon400a4.png" /><z:lang id="Common.Upload">上传</z:lang>
+		</z:button>
+		<z:button id="BtnUploadZip" onClick="uploadZip()" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}" theme="flat">
+			<img src="../icons/icon400a4.png" /><z:lang id="Media.UploadZip">上传压缩包</z:lang>
+		</z:button>
+		<z:button onClick="save()" id="BtnSave" theme="flat" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}"> 
+			<img src="../icons/icon003a16.png" /><z:lang id="Common.Save">保存</z:lang>
+        </z:button>
+        <z:button onClick="publish(true)" theme="flat" id="BtnPublish" priv="com.zving.cms.Catalog.Content.Publish.${CatalogID}"> 
+        	<img src="../icons/icon003a13.png" /><z:lang id="Contentcore.Publish">发布</z:lang>
+        </z:button>
+        <z:button onClick="topublish(true)" theme="flat" id="BtnToPublish" priv="com.zving.cms.Catalog.Content.Publish.${CatalogID}"> 
+        	<img src="../icons/icon003a13.png" /><z:lang id="Contentcore.WaitToPublish">待发布</z:lang>
+        </z:button>
+        <z:button theme="flat" type="select" menu="ContentPreviewType" id="BtnPreview">
+		<img src="../icons/icon403a3.png" /><z:lang id="Contentcore.Preview">预览</z:lang></z:button>
+
+        <z:button priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}" id="Lock" onClick="lockEdit('Y')" theme="flat">
+			<img src="../icons/icon014a2.png" /><z:lang id="Contentcore.EditLock">锁定编辑</z:lang>
+		</z:button>
+		<z:button priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}" id="ReleaseLock" onClick="lockEdit('N')" theme="flat">
+			<img src="../icons/icon014a18.png" /><z:lang id="Contentcore.ReleaseLock">解除锁定</z:lang>
+		</z:button>
+        <z:if condition="${TopFlag>0}">
+	        <z:button onClick="setNotTop()" theme="flat" id="BtnSetNotTop" priv="com.zving.cms.Catalog.Content.SetTop.${CatalogID}"> 
+	        	<img src="../icons/icon400a15.png" /><z:lang id="Search.CancelTop">取消置顶</z:lang>
+	        </z:button>
+        </z:if>
+        <z:else>
+	        <z:button onClick="setTop()" theme="flat" id="BtnSetTop" priv="com.zving.cms.Catalog.Content.SetTop.${CatalogID}"> 
+	        	<img src="../icons/icon400a14.png" /><z:lang id="Contentcore.SetTop">置顶</z:lang>
+	        </z:button>
+        </z:else>
+        <z:button id="BtnRelaContent" onClick="relative()" theme="flat" priv="com.zving.cms.Catalog.Content.Edit.${CatalogID}">
+        	<img src="../icons/icon003a17.png" /><z:lang id="Contentcore.RelaContent">相关内容</z:lang>
+        </z:button>
+        <z:button id="BtnContentLog" onClick="contentLog('Image','${ContentID}')" theme="flat" priv="com.zving.cms.Catalog.Content.${CatalogID}">
+        	<img src="../icons/extra/icon_column.gif" /><z:lang id="Contentcore.ContentLog">操作记录</z:lang>
+        </z:button>
+		</z:if>
+		</z:toolbar>
+        </td></tr>
+  <tr valign="top">
+    <td height="*">
+    <table width="99%" border="1" cellspacing="0" cellpadding="3" bordercolor="#eee" frame="void" rules="rows" class="rowline" >
+    <z:datalist id="imgList" method="ImageList.bindDataList" page="false" dragClass=".sn" sortEnd="ImageafterRowSortEnd" >
+			<tr valign="middle" onDblClick="editImage();">
+					<td width="5%" align="center" valign="middle" class="sn" style=""><img src="../framework/images/icon_drag.gif"/></td>
+					<td width="20%" align="center" > 
+					<div class="potopic" style="position:relative;">
+						<a href="javascript:void();" id="${ID}" >
+							<img id="image_${ID}" align="center" onclick="clickEdit(${ID})" style="max-width:120px;max-height:120px;" onerror="src='../platform/images/picture404.png';this.onerror=null;" src='${Prefix}${ThumbnailPath}'  title="ID：${ID}&#13名称：${Name}&#13作者：${Author}">
+							<div class="c_text" style="background:#F78682;color:#fff;position:absolute;padding:0 4px;z-index:2;left:2px;top:5px">${IsLogo}</div>
+						<input type="hidden" id="Path_${ID}" name="Path_${ID}" value="${Path}" > 
+						<input type="hidden" name="OrderFlag" value="${OrderFlag}" />
+						<input type="hidden" name="ImageID" value="${ID}" />
+						</a>
+						</div>
+					  	<div class='cxc'>
+							<a href="#;"><img onclick="clickView('${ID}');" title="@{Contentcore.Preview}" alt="view" src="../framework/images/icon_zoomout.gif"></a>
+							<a href="#"><img onclick="clickEdit('${ID}');" title="@{Common.Edit}" alt="edit" src="../framework/images/icon_edit15.gif"></a>
+							<a href="#;"><img onclick="setCover('${ID}');" title="@{Media.SetCover}" alt="delete" src="../framework/images/icon_cover15.gif"></a>
+							<a href="#;"><img onclick="cutting(${ID}, '${ImagePath}');" title="@{Media.Cutting}" alt="cutting" src="../framework/images/icon_clip15.gif"></a>
+							<a href="#;"><img onclick="clickDelete('${ID}');" title="@{Common.Delete}" alt="delete" src="../framework/images/icon_delete15.gif"></a>
+					</div>
+					</td>
+					<td width="75%" style="line-height:1.6;">
+						<div>名称：<input type="text" id="Name_${ID}" name="Name_${ID}" value="${Name}" style="width:75%;margin-bottom:5px;"/></div>
+						<div>链接：<input type="text" id="SourceURL_${ID}" name="SourceURL_${ID}" value="${SourceURL}" style="width:75%;margin-bottom:5px;"/></div>
+						<div>简介：<textarea id="Info_${ID}" name="Info_${ID}" style="width:75%;height:38px; vertical-align:middle" verify="Length<=400">${Info}</textarea></div>
+					</td>
+				</tr>
+			</z:datalist>
+		</table>
+	</td>
+  </tr>
+</table>
+</form>
+</body>
+</z:init>
+</html>
